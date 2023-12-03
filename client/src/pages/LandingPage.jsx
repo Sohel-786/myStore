@@ -60,7 +60,22 @@ function LandingPage() {
         </div>
 
         <div className="flex w-full h-[450px]">
-          <div></div>
+          <div className="flex flex-col w-[50%] justify-center pl-16 gap-2">
+            <h1 className="text-black font-Slab text-[45px]">
+              Best Fashion Collection
+            </h1>
+            <p className="font-Nova font-black text-gray-500">
+              What you wear is how you present yourself to the world, especially
+              today, when human contacts are so quick. Fashion is instant
+              language.
+            </p>
+
+            <div className="w-fit bg-black relative mt-3 z-[1] before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]">
+              <button className="w-fit relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black hover:text-black ">
+                EXPLORE SHOP COLLECTION
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </UserLayout>

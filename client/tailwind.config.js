@@ -10,7 +10,9 @@ export default {
       fontFamily : {
         Nova : "'Nova Square', sans-serif",
         Roboto : "'Roboto', sans-serif",
-        OpenSans : "'Open Sans', sans-serif"
+        OpenSans : "'Open Sans', sans-serif",
+        Mukta : "'Mukta', sans-serif",
+        Slab : "'Roboto Slab', serif"
       }
     },
   },
