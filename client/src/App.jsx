@@ -1,8 +1,8 @@
-import UserLayout from "./layouts/UserLayout";
+import LandingPage from "./pages/LandingPage";
 
 function App(){
   return <>
-      <UserLayout />
+      <LandingPage />
   </>
 }
 
