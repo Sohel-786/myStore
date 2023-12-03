@@ -1,7 +1,35 @@
+import AliceCarousel from "react-alice-carousel";
 import UserLayout from "../layouts/UserLayout";
 import { IoMdSearch } from "react-icons/io";
 
 function LandingPage() {
+  const items = [
+    <img
+      style={{
+        width: "100%",
+        height: "300px",
+      }}
+      src="https://staticg.sportskeeda.com/editor/2022/09/e4ec8-16639485644227-1920.jpg?w=840"
+      role="presentation"
+    />,
+    <img
+      style={{
+        width: "100%",
+        height: "300px",
+      }}
+      src="https://a.storyblok.com/f/178900/640x360/96c10c6475/47ae4213c4289a0bc0bb2bf1906eb42d1680613685_main.jpg/m/filters:quality(95)format(webp)"
+      role="presentation"
+    />,
+    <img
+      style={{
+        width: "100%",
+        height: "300px",
+      }}
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbnwfUM7lfCNSNsxnTNFcUWWq9jSuDZM7p4XcQye5znXyCXcMNdLmpxJMUkcA-1JrS6cs&usqp=CAU"
+      role="presentation"
+    />,
+  ];
+
   return (
     <UserLayout>
       <div className="absolute top-0 z-[-1] max-w-[1480px]">
@@ -75,6 +103,22 @@ function LandingPage() {
                 EXPLORE SHOP COLLECTION
               </button>
             </div>
+          </div>
+
+          <div className="w-[50%] flex justify-center">
+            <AliceCarousel
+              responsive={{
+                0: {
+                  items: 3,
+                },
+              }}
+              mouseTracking={true}
+              infinite={true}
+              disableDotsControls={true}
+              animationDuration={200}
+              items={items}
+              activeIndex={1}
+            />
           </div>
         </div>
       </div>
