@@ -4,7 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 function LandingPage() {
   return (
     <UserLayout>
-      <div className="absolute top-0 z-[-1]">
+      <div className="absolute top-0 z-[-1] max-w-[1480px]">
         <img src="/assets/main.jpg" alt="Front Image" />
       </div>
 
@@ -27,17 +27,25 @@ function LandingPage() {
       </div>
         <div className="bg-white w-full">
             <div className="w-[70%] py-4 mx-auto relative -top-10 bg-white rounded-t-3xl">
-                <ul className="flex justify-center items-center gap-10 font-Roboto font-semibold tracking-wide">
+                <ul className="flex justify-center items-center gap-8 font-Roboto font-semibold tracking-wide">
                     <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">Home</li>
+
+                    <li className="h-full text-gray-400 text-2xl relative top-[-2px]">|</li>
+
                     <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">All Products</li>
+                    <li className="h-full text-gray-400 text-2xl relative top-[-2px]">|</li>
                     <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">Men</li>
+                    <li className="h-full text-gray-400 text-2xl relative top-[-2px]">|</li>
                     <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">Women</li>
+                    <li className="h-full text-gray-400 text-2xl relative top-[-2px]">|</li>
                     <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">Kids</li>
                 </ul>
             </div>
 
-            <div>
+            <div className="flex w-full h-[450px]">
+                <div>
 
+                </div>
             </div>
         </div>
     </UserLayout>
