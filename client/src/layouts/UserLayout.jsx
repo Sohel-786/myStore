@@ -5,7 +5,7 @@ import { MdPersonAdd } from "react-icons/md";
 function UserLayout({ children }) {
   return (
     <section className="w-full max-w-[1280px] mx-auto">
-      <header className="flex max-w-[1280px] sticky justify-between items-center w-full px-5 py-1 border-b-2 border-gray-200 shadow-header">
+      <header className="flex z-30 max-w-[1280px] sticky justify-between items-center w-full px-5 py-1 border-b-2 border-gray-200 shadow-header">
         <div className="flex items-center gap-3 w-[60%]">
           <img
             src="https://classroom-react.netlify.app/assets/classroom.svg"
@@ -46,6 +46,9 @@ function UserLayout({ children }) {
           </span>
         </div>
       </header>
+      <div className="relative -top-20 z-[1]">
+        <img src="/assets/main.jpg" alt="Front Image" />       
+      </div>
     </section>
   );
 }
