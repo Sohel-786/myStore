@@ -12,16 +12,15 @@ function UserLayout({ children }) {
             alt="logo"
             className="w-36 aspect-auto"
           />
-        <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
-          <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />
-          <input
-            className="bg-transparent w-[95%] text-white border-none outline-none"
-            type="text"
-            placeholder="Search for Products, Brands and More"
-          />
+          <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
+            <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />
+            <input
+              className="bg-transparent w-[95%] text-white border-none outline-none"
+              type="text"
+              placeholder="Search for Products, Brands and More"
+            />
+          </div>
         </div>
-        </div>
-
 
         <div>
           <span
