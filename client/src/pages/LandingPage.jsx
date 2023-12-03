@@ -1,31 +1,33 @@
 import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 import UserLayout from "../layouts/UserLayout";
 import { IoMdSearch } from "react-icons/io";
 
 function LandingPage() {
   const items = [
     <img
-      style={{
-        width: "100%",
-        height: "300px",
-      }}
-      src="https://staticg.sportskeeda.com/editor/2022/09/e4ec8-16639485644227-1920.jpg?w=840"
+      className="w-full h-full rounded-lg"
+      src="/assets/1.jpg"
       role="presentation"
     />,
     <img
-      style={{
-        width: "100%",
-        height: "300px",
-      }}
-      src="https://a.storyblok.com/f/178900/640x360/96c10c6475/47ae4213c4289a0bc0bb2bf1906eb42d1680613685_main.jpg/m/filters:quality(95)format(webp)"
+      className="w-full h-full rounded-lg"
+      src="/assets/2.jpg"
       role="presentation"
     />,
     <img
-      style={{
-        width: "100%",
-        height: "300px",
-      }}
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbnwfUM7lfCNSNsxnTNFcUWWq9jSuDZM7p4XcQye5znXyCXcMNdLmpxJMUkcA-1JrS6cs&usqp=CAU"
+      className="w-full h-full rounded-lg"
+      src="/assets/3.jpg"
+      role="presentation"
+    />,
+    <img
+      className="w-full h-full rounded-lg"
+      src="/assets/4.jpg"
+      role="presentation"
+    />,
+    <img
+      className="w-full h-full"
+      src="/assets/5.jpg"
       role="presentation"
     />,
   ];
@@ -87,8 +89,8 @@ function LandingPage() {
           </ul>
         </div>
 
-        <div className="flex w-full h-[450px]">
-          <div className="flex flex-col w-[50%] justify-center pl-16 gap-2">
+        <div className="flex w-full h-[400px] px-[50px] mb-12">
+          <div className="flex flex-col w-[50%] justify-center pl-[20px] gap-2">
             <h1 className="text-black font-Slab text-[45px]">
               Best Fashion Collection
             </h1>
@@ -105,19 +107,20 @@ function LandingPage() {
             </div>
           </div>
 
-          <div className="w-[50%] flex justify-center">
+          <div className="w-[50%] flex justify-center pl-[50px] pr-[20px]">
             <AliceCarousel
-              responsive={{
-                0: {
-                  items: 3,
-                },
-              }}
-              mouseTracking={true}
+              // responsive={{
+              //   0: {
+              //     items: 1,
+              //   },
+              // }}
+              disableButtonsControls={true}
               infinite={true}
               disableDotsControls={true}
-              animationDuration={200}
+              animationDuration={500}
               items={items}
-              activeIndex={1}
+              autoPlay={true}
+              autoPlayInterval={3000}
             />
           </div>
         </div>
