@@ -91,11 +91,11 @@ function SignUp({HaveAccount, close}) {
         noValidate
         className="flex flex-col items-center w-[90%] shadow-formshadow bg-gradient-to-r rounded-xl md:w-[65%] lg:w-full"
       >
-        {/* <img
+        <img
           className="w-[240px] sm:w-[270px] aspect-auto mb-5 select-none"
-          src="/assets/signUp.svg"
+          src="/assets/SignUp.svg"
           alt="sign In"
-        /> */}
+        />
 
         {previewImage ? (
           <div className="flex flex-col">

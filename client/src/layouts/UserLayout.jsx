@@ -25,9 +25,9 @@ function UserLayout({ children }) {
       <header className="flex z-30 max-w-[1280px] sticky justify-between items-center w-full px-5 py-1 shadow-header bg-[#00000056]">
         <div className="flex items-center gap-3 w-[60%]">
           <img
-            src="https://classroom-react.netlify.app/assets/classroom.svg"
+            src="/assets/MyStoreLogo.svg"
             alt="logo"
-            className="w-36 aspect-auto"
+            className="w-40 aspect-auto rounded-md"
           />
           <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
             <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />

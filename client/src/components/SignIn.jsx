@@ -73,11 +73,11 @@ function SignIn({CreateAccount, close}) {
         noValidate
         className="flex flex-col items-center w-[90%] shadow-formshadow bg-gradient-to-r rounded-xl md:w-[65%] lg:w-full"
       >
-        {/* <img
+        <img
             className="w-[240px] sm:w-[270px] aspect-auto mb-5 select-none"
-            src="/assets/signUp.svg"
+            src="/assets/SignIn.svg"
             alt="sign In"
-          /> */}
+          />
 
         <input
           onChange={handleChange}
