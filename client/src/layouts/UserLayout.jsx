@@ -2,16 +2,16 @@ import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser, FaCartShopping } from "react-icons/fa6";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
-import Drawer from 'react-modern-drawer';
-import 'react-modern-drawer/dist/index.css';
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 import SignUp from "../components/SignUp";
 import { useState } from "react";
 
 function UserLayout({ children }) {
-
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSingUp, setOpenSignUp] = useState(false);
+  const [isOpenSingIn, setOpenSignIn] = useState(false);
   const toggleDrawer = () => {
-      setIsOpen((prevState) => !prevState)
+    setOpenSignUp((prevState) => !prevState);
   };
 
   return (
@@ -34,21 +34,34 @@ function UserLayout({ children }) {
         </div>
 
         <div>
-          <Button onclick={toggleDrawer} text={'Cart'}><FaCartShopping size={"18px"} /></Button>
+          <Button onclick={toggleDrawer} text={"Cart"}>
+            <FaCartShopping size={"18px"} />
+          </Button>
         </div>
 
         <div className="flex items-center gap-3">
-          <Button onclick={toggleDrawer} text={'Login'}> <FaRegCircleUser size={"18px"} /> </Button>
-          <Button onclick={toggleDrawer} text={'Sign Up'}> <MdPersonAdd size={"18px"} /> </Button>
+          <Button onclick={toggleDrawer} text={"Login"}>
+            {" "}
+            <FaRegCircleUser size={"18px"} />{" "}
+          </Button>
+          <Button onclick={toggleDrawer} text={"Sign Up"}>
+            {" "}
+            <MdPersonAdd size={"18px"} />{" "}
+          </Button>
         </div>
       </header>
       <Drawer
-         open={isOpen}
-         onClose={toggleDrawer}
-         direction='right'
-         size={'400px'}
+        open={isOpenSingUp}
+        onClose={toggleDrawer}
+        direction="right"
+        size={"400px"}
       >
-        <SignUp />
+        <SignUp
+          HaveAccount={() => {
+            setOpenSignUp(false);
+            setOpenSignIn(true);
+          }}
+        />
       </Drawer>
       {children}
     </section>

@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
 
-function SignUp() {
+function SignUp({HaveAccount}) {
   const [previewImage, setPreviewImage] = useState();
   const [viewPassword, setViewpassword] = useState(false);
   const [signupDetails, setSignupDetails] = useState({
@@ -174,9 +174,12 @@ function SignUp() {
         <p className="font-bold text-[15px] tracking-wide my-4">
           Already have an account ?{" "}
           <span
+            onClick={() => {
+
+            }}
             type="button"
-            className="text-sky-300 underline cursor-pointer text-[16px] hover:text-sky-400 hover:scale-110"
-          ></span>
+            className="text-cyan-500 underline cursor-pointer text-[16px] hover:text-sky-500 hover:scale-110"
+          >Login</span>
         </p>
       </form>
     </section>
