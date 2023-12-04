@@ -46,7 +46,7 @@ function UserLayout({ children }) {
          open={isOpen}
          onClose={toggleDrawer}
          direction='right'
-         size={'450px'}
+         size={'400px'}
       >
         <SignUp />
       </Drawer>
