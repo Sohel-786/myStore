@@ -67,6 +67,9 @@ function UserLayout({ children }) {
             setOpenSignUp(false);
             setOpenSignIn(true);
           }}
+          close={() => {
+            setOpenSignUp(false);
+          }}
         />
       </Drawer>
       <Drawer
@@ -76,9 +79,12 @@ function UserLayout({ children }) {
         size={"450px"}
       >
         <SignIn
-          HaveAccount={() => {
-            setOpenSignUp(false);
-            setOpenSignIn(true);
+          CreateAccount={() => {
+            setOpenSignUp(true);
+            setOpenSignIn(false);
+          }}
+          close={() => {
+            setOpenSignIn(false);
           }}
         />
       </Drawer>

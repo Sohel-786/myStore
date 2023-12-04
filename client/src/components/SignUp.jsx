@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
+import { IoClose } from "react-icons/io5";
 
-function SignUp({HaveAccount}) {
+
+function SignUp({HaveAccount, close}) {
   const [previewImage, setPreviewImage] = useState();
   const [viewPassword, setViewpassword] = useState(false);
   const [signupDetails, setSignupDetails] = useState({
@@ -83,7 +84,8 @@ function SignUp({HaveAccount}) {
   }
 
   return (
-    <section className="flex justify-center items-center my-10 w-full">
+    <section className="flex flex-col justify-center relative items-center my-10 w-full">
+        <span onClick={close} className="cursor-pointer"><IoClose size={'40px'} className="absolute -top-8 -left-10 text-white" /></span>
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -174,9 +176,7 @@ function SignUp({HaveAccount}) {
         <p className="font-bold text-[15px] tracking-wide my-4">
           Already have an account ?{" "}
           <span
-            onClick={() => {
-
-            }}
+            onClick={HaveAccount}
             type="button"
             className="text-cyan-500 underline cursor-pointer text-[16px] hover:text-sky-500 hover:scale-110"
           >Login</span>

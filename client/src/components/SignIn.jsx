@@ -1,12 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
+import { IoClose } from "react-icons/io5";
 
-function SignIn() {
-  const [previewImage, setPreviewImage] = useState();
+function SignIn({CreateAccount, close}) {
   const [viewPassword, setViewpassword] = useState(false);
   const [signupDetails, setSignupDetails] = useState({
     email: "",
@@ -69,7 +66,8 @@ function SignIn() {
   }
 
   return (
-    <section className="flex justify-center items-center my-10 w-[50%] mx-auto">
+    <section className="flex flex-col justify-center items-center my-10 w-[50%] mx-auto">
+        <span onClick={close} className="cursor-pointer"><IoClose size={'40px'} className="absolute top-1 right-2 text-black" /></span>
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -127,6 +125,7 @@ function SignIn() {
 
         <span
           type="button"
+          onClick={CreateAccount}
           className="border-2 mt-6 flex items-center gap-1 text-black relative shadow-logBtn border-black hover:border-white rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
         >
           Create New Account
