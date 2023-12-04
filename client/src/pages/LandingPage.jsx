@@ -3,6 +3,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import UserLayout from "../layouts/UserLayout";
 import { IoMdSearch } from "react-icons/io";
 
+
 function LandingPage() {
   const items = [
     <img
@@ -26,7 +27,7 @@ function LandingPage() {
       role="presentation"
     />,
     <img
-      className="w-full h-full"
+      className="w-full h-full rounded-lg"
       src="/assets/5.jpg"
       role="presentation"
     />,
@@ -109,11 +110,6 @@ function LandingPage() {
 
           <div className="w-[50%] flex justify-center pl-[50px] pr-[20px]">
             <AliceCarousel
-              // responsive={{
-              //   0: {
-              //     items: 1,
-              //   },
-              // }}
               disableButtonsControls={true}
               infinite={true}
               disableDotsControls={true}
@@ -125,6 +121,8 @@ function LandingPage() {
           </div>
         </div>
       </div>
+
+      
     </UserLayout>
   );
 }

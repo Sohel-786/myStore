@@ -2,8 +2,18 @@ import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser, FaCartShopping } from "react-icons/fa6";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
+import Drawer from 'react-modern-drawer';
+import 'react-modern-drawer/dist/index.css';
+import SignUp from "../components/SignUp";
+import { useState } from "react";
 
 function UserLayout({ children }) {
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+      setIsOpen((prevState) => !prevState)
+  };
+
   return (
     <section className="w-full max-w-[1480px] mx-auto">
       <header className="flex z-30 max-w-[1280px] sticky justify-between items-center w-full px-5 py-1 shadow-header bg-[#00000056]">
@@ -24,14 +34,22 @@ function UserLayout({ children }) {
         </div>
 
         <div>
-          <Button text={'Cart'}><FaCartShopping size={"18px"} /></Button>
+          <Button onclick={toggleDrawer} text={'Cart'}><FaCartShopping size={"18px"} /></Button>
         </div>
 
         <div className="flex items-center gap-3">
-          <Button text={'Login'}> <FaRegCircleUser size={"18px"} /> </Button>
-          <Button text={'Sign Up'}> <MdPersonAdd size={"18px"} /> </Button>
+          <Button onclick={toggleDrawer} text={'Login'}> <FaRegCircleUser size={"18px"} /> </Button>
+          <Button onclick={toggleDrawer} text={'Sign Up'}> <MdPersonAdd size={"18px"} /> </Button>
         </div>
       </header>
+      <Drawer
+         open={isOpen}
+         onClose={toggleDrawer}
+         direction='right'
+         size={'450px'}
+      >
+        <SignUp />
+      </Drawer>
       {children}
     </section>
   );
