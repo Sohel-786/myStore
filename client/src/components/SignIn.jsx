@@ -1,0 +1,139 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
+
+function SignIn() {
+  const [previewImage, setPreviewImage] = useState();
+  const [viewPassword, setViewpassword] = useState(false);
+  const [signupDetails, setSignupDetails] = useState({
+    email: "",
+    fullname: "",
+    password: "",
+    avatar: "",
+  });
+
+  function handlePassView() {
+    setViewpassword(viewPassword ? false : true);
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setSignupDetails({ ...signupDetails, [name]: value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (
+      !signupDetails.email ||
+      !signupDetails.password ||
+      !signupDetails.avatar ||
+      !signupDetails.fullname
+    ) {
+      // toast.error("Please Fill all the field");
+      return;
+    }
+
+    if (signupDetails.fullname.length < 5) {
+      // toast.error("Name Should at least 5 characters long");
+      return;
+    }
+
+    if (!isEmail(signupDetails.email)) {
+      // toast.error("Invalid Email, Please Enter Valid Email");
+      return;
+    }
+
+    if (!isValidPassword(signupDetails.password)) {
+      // toast.error(
+      //   "Password Must be 6 to 16 character long with atleast a number and symbol"
+      // );
+      return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("fullname", signupDetails.fullname);
+    formData.append("email", signupDetails.email);
+    formData.append("password", signupDetails.password);
+    formData.append("avatar", signupDetails.avatar);
+
+    //   const res = await dispatch(createUser(formData));
+
+    //   if (res?.payload?.data?.success) {
+    //     navigate("/");
+    //   }
+  }
+
+  return (
+    <section className="flex justify-center items-center my-10 w-full">
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="flex flex-col items-center w-[90%] shadow-formshadow bg-gradient-to-r rounded-xl md:w-[65%] lg:w-full"
+      >
+        {/* <img
+            className="w-[240px] sm:w-[270px] aspect-auto mb-5 select-none"
+            src="/assets/signUp.svg"
+            alt="sign In"
+          /> */}
+
+        <input
+          onChange={handleChange}
+          className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-[1.3px] border-b-[2.5px] focus:ring-0 border-black focus:outline-none placeholder:font-semibold font-bold my-3"
+          type="email"
+          name="email"
+          placeholder="Enter your Email"
+        />
+
+        <div className="w-[95%] sm:w-[80%] px-2 pl-3 bg-transparent border-[1.3px] border-b-[2.5px] border-black my-3 flex justify-center items-center">
+          <input
+            onChange={handleChange}
+            className="bg-transparent py-3 focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
+            type={viewPassword ? "text" : "password"}
+            name="password"
+            placeholder="Choose your Password"
+          />
+          {viewPassword ? (
+            <span type="button" className="cursor-pointer">
+              <FiEye
+                className="text-2xl"
+                aria-label="eye"
+                onClick={handlePassView}
+              />
+            </span>
+          ) : (
+            <span type="button" className="cursor-pointer">
+              <FiEyeOff
+                className="text-2xl"
+                aria-label="eyeOff"
+                onClick={handlePassView}
+              />
+            </span>
+          )}
+        </div>
+
+        <div
+          aria-label="Submit Details"
+          className="w-[80%] bg-gray-600 relative mt-3 z-[1] before:absolute before:bg-black before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
+        >
+          <button className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
+            Submit
+          </button>
+        </div>
+
+        <span
+          type="button"
+          className="border-2 flex items-center gap-1 text-black relative shadow-logBtn border-black hover:border-white rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
+        >
+            Create New Account
+        </span>
+      </form>
+    </section>
+  );
+}
+
+export default SignIn;
