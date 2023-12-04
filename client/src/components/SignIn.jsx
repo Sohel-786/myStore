@@ -69,7 +69,7 @@ function SignIn() {
   }
 
   return (
-    <section className="flex justify-center items-center my-10 w-full">
+    <section className="flex justify-center items-center my-10 w-[50%] mx-auto">
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -121,15 +121,15 @@ function SignIn() {
           className="w-[80%] bg-gray-600 relative mt-3 z-[1] before:absolute before:bg-black before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
         >
           <button className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
-            Submit
+            Login
           </button>
         </div>
 
         <span
           type="button"
-          className="border-2 flex items-center gap-1 text-black relative shadow-logBtn border-black hover:border-white rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
+          className="border-2 mt-6 flex items-center gap-1 text-black relative shadow-logBtn border-black hover:border-white rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
         >
-            Create New Account
+          Create New Account
         </span>
       </form>
     </section>
