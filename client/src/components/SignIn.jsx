@@ -84,7 +84,7 @@ function SignIn({CreateAccount, close}) {
           className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-[1.3px] border-b-[2.5px] focus:ring-0 border-black focus:outline-none placeholder:font-semibold font-bold my-3"
           type="email"
           name="email"
-          placeholder="Enter your Email"
+          placeholder="Enter Your Email"
         />
 
         <div className="w-[95%] sm:w-[80%] px-2 pl-3 bg-transparent border-[1.3px] border-b-[2.5px] border-black my-3 flex justify-center items-center">
@@ -93,7 +93,7 @@ function SignIn({CreateAccount, close}) {
             className="bg-transparent py-3 focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
             type={viewPassword ? "text" : "password"}
             name="password"
-            placeholder="Choose your Password"
+            placeholder="Enter Your Password"
           />
           {viewPassword ? (
             <span type="button" className="cursor-pointer">
