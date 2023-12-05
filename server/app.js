@@ -5,6 +5,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import morgon from "morgan";
+import errMiddleware from "./middlewares/error.middleware";
 
 const app = express();
 
@@ -33,6 +34,6 @@ app.all("*", (req, res) => {
     );
 });
 
-// app.use(errMiddleware);
+app.use(errMiddleware);
 
 export default app;

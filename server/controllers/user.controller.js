@@ -4,6 +4,13 @@ import AppError from "../utils/appError";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
 
+const cookieOptions = {
+  secure: true,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
+  httpOnly: true,
+  sameSite: "none",
+};
+
 export const register = async (req, res, next) => {
   const { fullname, email, password } = req.body;
 
@@ -66,7 +73,9 @@ export const register = async (req, res, next) => {
 
   await user.save();
 
-  // TODO : jwttoken
+  const token = await user.JWTtoken();
+
+  res.cookie("token", token, cookieOptions);
 
   user.password = undefined; // so the password don't get returned in res
 
@@ -75,3 +84,41 @@ export const register = async (req, res, next) => {
     user,
   });
 };
+
+export const login = async (req, res, next) => {
+    const { email, password } = req.body;
+  
+    if ((!email, !password)) {
+      return next(new AppError("All input fields are required", 400));
+    }
+  
+    const user = await User.findOne({ email }).select("+password");
+  
+    if (!user || !(await user.comparePassword(password))) {
+      return next(new AppError("Email or Password do not match", 400));
+    }
+  
+    const token = await user.JWTtoken();
+    user.password = undefined;
+  
+    res.cookie("token", token, cookieOptions);
+  
+    res.status(200).json({
+      success: true,
+      msg: "User Logged In Successfully",
+      user,
+    });
+  };
+
+ export const logout = (req, res) => {
+    res.cookie("token", null, {
+      secure: true,
+      maxAge: 0,
+      httpOnly: true,
+    });
+  
+    res.status(200).json({
+      success: true,
+      msg: "Successfully Logged Out",
+    });
+  };
