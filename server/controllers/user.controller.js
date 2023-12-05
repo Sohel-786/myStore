@@ -4,7 +4,7 @@ import AppError from "../utils/appError";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
 
-const register = async (req, res, next) => {
+export const register = async (req, res, next) => {
   const { fullname, email, password } = req.body;
 
   if ((!fullname, !email, !password)) {
