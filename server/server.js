@@ -1,6 +1,7 @@
 import app from "./app.js";
 
 // import connect from "./config/db.js";
+import connect from './config/db.js';
 
 import cloudinary from "cloudinary";
 
