@@ -5,73 +5,73 @@ import cloudinary from "cloudinary";
 import fs from "fs/promises";
 
 const register = async (req, res, next) => {
-    const { fullname, email, password } = req.body;
-  
-    if ((!fullname, !email, !password)) {
-      return next(new AppError("All input fields are required", 400));
-    }
-  
-    if (!isValidPassword(password)) {
-      return next(
-        new AppError(
-          "Password must be 6 to 16 characters long with at least a number and symbol",
-          400
-        )
-      );
-    }
+  const { fullname, email, password } = req.body;
 
-    if (!isEmail(email)) {
-        return next(new AppError("Invalid Email, Please provide valid email", 400));
+  if ((!fullname, !email, !password)) {
+    return next(new AppError("All input fields are required", 400));
+  }
+
+  if (!isValidPassword(password)) {
+    return next(
+      new AppError(
+        "Password must be 6 to 16 characters long with at least a number and symbol",
+        400
+      )
+    );
+  }
+
+  if (!isEmail(email)) {
+    return next(new AppError("Invalid Email, Please provide valid email", 400));
+  }
+
+  const userExits = await User.findOne({ email });
+
+  if (userExits) {
+    return next(new AppError("User Already Registered", 400));
+  }
+
+  const user = await User.create({
+    fullname,
+    email,
+    password,
+    avatar: {
+      public_id: email,
+      secure_url: "secure_url",
+    },
+  });
+
+  if (!user) {
+    return next(
+      new AppError("User Registeration failed, please try again later", 400)
+    );
+  }
+
+  if (req.file) {
+    try {
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "lms",
+      });
+
+      if (result) {
+        user.avatar.public_id = result.public_id;
+        user.avatar.secure_url = result.secure_url;
+
+        // remove file from local server
+        fs.rm(`uploads/${req.file.filename}`);
       }
-  
-    const userExits = await User.findOne({ email });
-  
-    if (userExits) {
-      return next(new AppError("User Already Registered", 400));
+    } catch (e) {
+      return next(new AppError("File not uploaded, please try again", 500));
     }
-  
-    const user = await User.create({
-      fullname,
-      email,
-      password,
-      avatar: {
-        public_id: email,
-        secure_url: "secure_url",
-      },
-    });
-  
-    if (!user) {
-      return next(
-        new AppError("User Registeration failed, please try again later", 400)
-      );
-    }
-    
-    if (req.file) {
-      try {
-        const result = await cloudinary.v2.uploader.upload(req.file.path, {
-          folder: "lms",
-        });
-  
-        if (result) {
-          user.avatar.public_id = result.public_id;
-          user.avatar.secure_url = result.secure_url;
-  
-          // remove file from local server
-          fs.rm(`uploads/${req.file.filename}`);
-        }
-      } catch (e) {
-        return next(new AppError("File not uploaded, please try again", 500));
-      }
-    }
-  
-    await user.save();
-  
-    // TODO : jwttoken
-  
-    user.password = undefined; // so the password don't get returned in res
-  
-    res.status(201).json({
-      success: true,
-      user,
-    });
-  };
+  }
+
+  await user.save();
+
+  // TODO : jwttoken
+
+  user.password = undefined; // so the password don't get returned in res
+
+  res.status(201).json({
+    success: true,
+    user,
+  });
+};
