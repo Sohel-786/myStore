@@ -1,6 +1,6 @@
-import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
-import User from "../models/user.model";
-import AppError from "../utils/appError";
+import { isEmail, isValidPassword } from "../helpers/RegexMatcher.js";
+import User from "../models/user.model.js";
+import AppError from "../utils/appError.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
 
@@ -123,7 +123,7 @@ export const logout = (req, res) => {
     });
   };
 
-export const getUser = async (res, res) => {
+export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
 

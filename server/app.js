@@ -5,8 +5,8 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import morgon from "morgan";
-import errMiddleware from "./middlewares/error.middleware";
-import userRoutes from "./routes/user.routes";
+import errMiddleware from "./middlewares/error.middleware.js";
+import userRoutes from "./routes/user.routes.js";
 
 const app = express();
 

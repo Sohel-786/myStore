@@ -1,5 +1,5 @@
 import JWT from "jsonwebtoken";
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 
 export const IsLoggedIn = (req, res, next) => {
   const token = (req.cookies && req.cookies.token) || null;
