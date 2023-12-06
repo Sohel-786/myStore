@@ -21,6 +21,7 @@ function SignUp({HaveAccount, close}) {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
 
   function handlePassView() {
     setViewpassword(viewPassword ? false : true);

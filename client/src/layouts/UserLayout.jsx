@@ -1,5 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser, FaCartShopping } from "react-icons/fa6";
+import { IoLogOut } from "react-icons/io5";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
 import Drawer from "react-modern-drawer";
@@ -7,14 +8,16 @@ import "react-modern-drawer/dist/index.css";
 import SignUp from "../components/SignUp";
 import { useState } from "react";
 import SignIn from "../components/SignIn";
+import { useSelector } from "react-redux";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
+  const { isLoggedIn, role } = useSelector((s) => s.auth);
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
-  }
+  };
 
   const toggleDrawerSignUp = () => {
     setOpenSignUp((prevState) => !prevState);
@@ -45,16 +48,18 @@ function UserLayout({ children }) {
           </Button>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Button onclick={toggleDrawerSignIn} text={"Login"}>
-            {" "}
-            <FaRegCircleUser size={"18px"} />{" "}
-          </Button>
-          <Button onclick={toggleDrawerSignUp} text={"Sign Up"}>
-            {" "}
-            <MdPersonAdd size={"18px"} />{" "}
-          </Button>
-        </div>
+        {!isLoggedIn && (
+          <div className="flex items-center gap-3">
+            <Button onclick={toggleDrawerSignIn} text={"Login"}>
+              {" "}
+              <FaRegCircleUser size={"18px"} />{" "}
+            </Button>
+            <Button onclick={toggleDrawerSignUp} text={"Sign Up"}>
+              {" "}
+              <MdPersonAdd size={"18px"} />{" "}
+            </Button>
+          </div>
+        )}
       </header>
       <Drawer
         open={isOpenSingUp}
