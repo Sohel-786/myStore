@@ -4,7 +4,10 @@ import { FaEdit } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
 import { IoClose } from "react-icons/io5";
-
+import { toast } from "react-toastify";
+import { createUser } from "../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 function SignUp({HaveAccount, close}) {
   const [previewImage, setPreviewImage] = useState();
@@ -15,6 +18,9 @@ function SignUp({HaveAccount, close}) {
     password: "",
     avatar: "",
   });
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handlePassView() {
     setViewpassword(viewPassword ? false : true);
@@ -34,24 +40,26 @@ function SignUp({HaveAccount, close}) {
       !signupDetails.avatar ||
       !signupDetails.fullname
     ) {
-      // toast.error("Please Fill all the field");
+      toast.error('Please Fill all the field', {
+        theme : 'dark',
+      });
       return;
     }
 
     if (signupDetails.fullname.length < 5) {
-      // toast.error("Name Should at least 5 characters long");
+      toast.error("Name Should at least 5 characters long");
       return;
     }
 
     if (!isEmail(signupDetails.email)) {
-      // toast.error("Invalid Email, Please Enter Valid Email");
+      toast.error("Invalid Email, Please Enter Valid Email");
       return;
     }
 
     if (!isValidPassword(signupDetails.password)) {
-      // toast.error(
-      //   "Password Must be 6 to 16 character long with atleast a number and symbol"
-      // );
+      toast.error(
+        "Password Must be 6 to 16 character long with atleast a number and symbol"
+      );
       return;
     }
 
@@ -62,11 +70,11 @@ function SignUp({HaveAccount, close}) {
     formData.append("password", signupDetails.password);
     formData.append("avatar", signupDetails.avatar);
 
-    //   const res = await dispatch(createUser(formData));
+      const res = await dispatch(createUser(formData));
 
-    //   if (res?.payload?.data?.success) {
-    //     navigate("/");
-    //   }
+      if (res?.payload?.data?.success) {
+        navigate("/");
+      }
   }
 
   function handleImage(e) {
@@ -167,8 +175,8 @@ function SignUp({HaveAccount, close}) {
           )}
         </div>
 
-        <div aria-label="Submit Details" className="w-[80%] bg-gray-600 relative mt-3 z-[1] before:absolute before:bg-black before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]">
-          <button className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
+        <div aria-label="Submit Details" className="w-[80%] bg-gray-600 relative mt-3 z-[1] before:absolute before:bg-black before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:focus-within:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]">
+          <button type="submit" className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
             Submit
           </button>
         </div>
