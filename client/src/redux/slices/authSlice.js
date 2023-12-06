@@ -6,6 +6,14 @@ const initialState = {
     data : {}
 }
 
+export const getUserDetails = createAsyncThunk("/auth/user",async () => {
+    try{
+        
+    } catch(e){
+
+    }
+})
+
 const authSlice = createSlice({
     name : 'auth',
     reducers : {},
