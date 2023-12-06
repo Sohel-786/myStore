@@ -9,3 +9,5 @@ userRoutes.post('/register', upload.single('avatar') ,register);
 userRoutes.post('/login', login);
 
 userRoutes.get('/logout', IsLoggedIn, logout);
+
+export default userRoutes;

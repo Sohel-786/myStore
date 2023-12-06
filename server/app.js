@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import morgon from "morgan";
 import errMiddleware from "./middlewares/error.middleware";
+import userRoutes from "./routes/user.routes";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use(
 );
 
 app.use(cookieParser());
+
+app.use('/user', userRoutes);
 
 app.use("/ping", (req, res) => {
   res.send("Pong");
