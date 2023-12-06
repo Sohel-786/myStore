@@ -50,7 +50,7 @@ const authSlice = createSlice({
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
         }
-      })
+      });
   },
 });
 
