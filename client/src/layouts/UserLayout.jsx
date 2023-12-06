@@ -1,5 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser, FaCartShopping } from "react-icons/fa6";
+import { BiSolidUser } from "react-icons/bi";
 import { IoLogOut } from "react-icons/io5";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
@@ -14,6 +15,7 @@ function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
   const { isLoggedIn, role } = useSelector((s) => s.auth);
+  const wrapperRef = useRef("profileMenu");
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
@@ -22,6 +24,28 @@ function UserLayout({ children }) {
   const toggleDrawerSignUp = () => {
     setOpenSignUp((prevState) => !prevState);
   };
+
+  function handleProfilemenuview(ref, useClickOutside) {
+    useEffect(() => {
+      function handleClickoutside(e) {
+        if (isLoggedIn) {
+          if (ref.current && !ref.current.contains(e.target)) {
+            useClickOutside();
+          }
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickoutside);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickoutside);
+      };
+    }, [ref, useClickOutside]);
+  }
+
+  handleProfilemenuview(wrapperRef, () => {
+    setShowProfile(false);
+  });
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">
@@ -48,7 +72,49 @@ function UserLayout({ children }) {
           </Button>
         </div>
 
-        {!isLoggedIn && (
+        {isLoggedIn ? <div
+              className="flex flex-col justify-center items-center"
+              ref={wrapperRef}
+            >
+              <div
+                rel="preload"
+                fetchpriority="high"
+                onClick={() => {
+                  setShowProfile(!showProfile);
+                }}
+                className="rounded-full w-11 h-11 mr-3 cursor-pointer bg-center bg-cover hover:border-[1px] border-transparent hover:border-pink-300"
+                style={{
+                  userSelect: "none",
+                  backgroundImage: `url(${img})`,
+                }}
+              ></div>
+
+              {showProfile && (
+                <div className="absolute flex flex-col justify-center w-36 bg-white shadow-menu top-16 right-4 rounded-md">
+                  <div className="w-full p-2">
+                    <h1 className="font-slab text-sm tracking-wide text-indigo-500">
+                      Hay
+                    </h1>
+                    <p className="font-roboto font-semibold tracking-wide text-gray-600 mt-1 capitalize">
+                      {name}
+                    </p>
+                  </div>
+                  <hr className="w-[90%] self-center" />
+                  <Link to={"/profile"}>
+                    <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
+                      <BiSolidUser size={"18px"} /> My Profile
+                    </div>
+                  </Link>
+                  
+                  <div
+                    onClick={handleLogout}
+                    className="flex gap-4 cursor-pointer items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200"
+                  >
+                    <IoLogOut size={"18px"} /> Logout
+                  </div>
+                </div>
+              )}
+            </div> : (
           <div className="flex items-center gap-3">
             <Button onclick={toggleDrawerSignIn} text={"Login"}>
               {" "}
