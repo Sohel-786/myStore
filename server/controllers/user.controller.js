@@ -110,7 +110,7 @@ export const login = async (req, res, next) => {
     });
   };
 
- export const logout = (req, res) => {
+export const logout = (req, res) => {
     res.cookie("token", null, {
       secure: true,
       maxAge: 0,
@@ -122,3 +122,21 @@ export const login = async (req, res, next) => {
       msg: "Successfully Logged Out",
     });
   };
+
+export const getUser = async (res, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if(!user){
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    return res.status(200).json({
+      success: true,
+      user,
+      message : 'User Details Fetched Successfully'
+    });
+  } catch (err) {
+    return res.status(400).send(err.message);
+  }
+}
