@@ -7,14 +7,18 @@ import Button from "../components/Button";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import SignUp from "../components/SignUp";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SignIn from "../components/SignIn";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
   const { isLoggedIn, role } = useSelector((s) => s.auth);
+  const [showProfile, setShowProfile] = useState(false);
+  const name = useSelector((s) => s?.auth?.data?.fullname);
+  const img = useSelector((s) => s?.auth?.data?.avatar?.secure_url);
   const wrapperRef = useRef("profileMenu");
 
   const toggleDrawerSignIn = () => {
@@ -46,6 +50,10 @@ function UserLayout({ children }) {
   handleProfilemenuview(wrapperRef, () => {
     setShowProfile(false);
   });
+
+  function handleLogout(){
+
+  }
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">
@@ -91,7 +99,7 @@ function UserLayout({ children }) {
             ></div>
 
             {showProfile && (
-              <div className="absolute flex flex-col justify-center w-36 bg-white shadow-menu top-16 right-4 rounded-md">
+              <div className="absolute flex flex-col justify-center w-36 bg-white shadow-menu top-16 right-4 rounded-md overflow-hidden">
                 <div className="w-full p-2">
                   <h1 className="font-slab text-sm tracking-wide text-indigo-500">
                     Hay
