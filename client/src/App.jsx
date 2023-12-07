@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { checkIsLoggedIn } from "./redux/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
 import AdminFront from "./pages/Admin/AdminFront";
+import AddProduct from "./pages/Admin/AddProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin-view" element={<AdminFront />} />
+        <Route path="/add-product" element={<AddProduct />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </>
