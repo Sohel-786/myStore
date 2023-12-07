@@ -110,16 +110,16 @@ function UserLayout({ children }) {
                 </div>
                 <hr className="w-[90%] self-center" />
                 <Link to={"/profile"}>
-                  <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
-                    <BiSolidUser size={"18px"} /> My Profile
+                  <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 relative hover:shadow-logBtn border-white hover:border-black rounded-[5px] cursor-pointer  hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:z-[2] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base">
+                    <span className="z-10 flex gap-3 items-center"><BiSolidUser size={"18px"} /> My Profile</span>
                   </div>
                 </Link>
 
                 <div
                   onClick={handleLogout}
-                  className="flex gap-4 cursor-pointer items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200"
+                  className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 relative hover:shadow-logBtn border-white hover:border-black rounded-[5px] cursor-pointer  hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:z-[2] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
                 >
-                  <IoLogOut size={"18px"} /> Logout
+                  <span className="z-10 flex gap-3 items-center"><IoLogOut size={"18px"} /> Logout</span>
                 </div>
               </div>
             )}
