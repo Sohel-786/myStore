@@ -1,5 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser, FaCartShopping } from "react-icons/fa6";
+import { RiAdminFill } from "react-icons/ri";
 import { BiSolidUser } from "react-icons/bi";
 import { IoLogOut } from "react-icons/io5";
 import { MdPersonAdd } from "react-icons/md";
@@ -10,7 +11,7 @@ import SignUp from "../components/SignUp";
 import { useEffect, useRef, useState } from "react";
 import SignIn from "../components/SignIn";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
@@ -20,6 +21,7 @@ function UserLayout({ children }) {
   const name = useSelector((s) => s?.auth?.data?.fullname);
   const img = useSelector((s) => s?.auth?.data?.avatar?.secure_url);
   const wrapperRef = useRef("profileMenu");
+  const navigate = useNavigate();
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
@@ -51,9 +53,7 @@ function UserLayout({ children }) {
     setShowProfile(false);
   });
 
-  function handleLogout(){
-
-  }
+  function handleLogout() {}
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">
@@ -74,10 +74,20 @@ function UserLayout({ children }) {
           </div>
         </div>
 
-        <div>
+        <div className="flex gap-2 items-center">
           <Button onclick={toggleDrawerSignUp} text={"Cart"}>
             <FaCartShopping size={"18px"} />
           </Button>
+          {role === "ADMIN" && (
+            <Button
+              onclick={() => {
+                navigate("/admin-view");
+              }}
+              text={"Admin View"}
+            >
+              <RiAdminFill size={"18px"} />
+            </Button>
+          )}
         </div>
 
         {isLoggedIn ? (
@@ -111,7 +121,9 @@ function UserLayout({ children }) {
                 <hr className="w-[90%] self-center" />
                 <Link to={"/profile"}>
                   <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 relative hover:shadow-logBtn border-white hover:border-black rounded-[5px] cursor-pointer  hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:z-[2] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base">
-                    <span className="z-10 flex gap-3 items-center"><BiSolidUser size={"18px"} /> My Profile</span>
+                    <span className="z-10 flex gap-3 items-center">
+                      <BiSolidUser size={"18px"} /> My Profile
+                    </span>
                   </div>
                 </Link>
 
@@ -119,7 +131,9 @@ function UserLayout({ children }) {
                   onClick={handleLogout}
                   className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 relative hover:shadow-logBtn border-white hover:border-black rounded-[5px] cursor-pointer  hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:z-[2] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
                 >
-                  <span className="z-10 flex gap-3 items-center"><IoLogOut size={"18px"} /> Logout</span>
+                  <span className="z-10 flex gap-3 items-center">
+                    <IoLogOut size={"18px"} /> Logout
+                  </span>
                 </div>
               </div>
             )}
