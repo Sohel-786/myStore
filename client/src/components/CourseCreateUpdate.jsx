@@ -11,13 +11,13 @@ import { toast } from "react-toastify";
 //   updateCourse,
 // } from "../../redux/slices/courseSlice";
 
-function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
+function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [dragActive, setDragActive] = useState(false);
-  const [courseDetails, setCourseDetails] = useState(
+  const [productDetails, setProductDetails] = useState(
     location.pathname === "/admin/dashboard"
       ? {
           ...courseData,
@@ -59,14 +59,14 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const uploadedImage = e.dataTransfer.files[0];
-      setCourseDetails(function (state) {
+      setProductDetails(function (state) {
         return { ...state, thumbnail: uploadedImage };
       });
       const fileReader = new FileReader();
       fileReader.readAsDataURL(uploadedImage);
       fileReader.addEventListener("load", function () {
         let result = this.result;
-        setCourseDetails(function (state) {
+        setProductDetails(function (state) {
           return { ...state, previewImage: result };
         });
       });
@@ -75,8 +75,8 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setCourseDetails({
-      ...courseDetails,
+    setProductDetails({
+      ...productDetails,
       [name]: value,
     });
   }
@@ -84,15 +84,15 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
   function handleImage(e) {
     const uploadedImage = e.target.files[0];
     if (!uploadedImage) return;
-    setCourseDetails({
-      ...courseDetails,
+    setProductDetails({
+      ...productDetails,
       thumbnail: uploadedImage,
     });
     const fileReader = new FileReader();
     fileReader.readAsDataURL(uploadedImage);
     fileReader.addEventListener("load", function () {
-      setCourseDetails({
-        ...courseDetails,
+      setProductDetails({
+        ...productDetails,
         previewImage: this.result,
       });
     });
@@ -127,26 +127,26 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (
-      !courseDetails.title ||
-      !courseDetails.category ||
-      !courseDetails.createdBy ||
-      !courseDetails.description ||
-      !courseDetails.thumbnail
+      !productDetails.title ||
+      !productDetails.category ||
+      !productDetails.createdBy ||
+      !productDetails.description ||
+      !productDetails.thumbnail
     ) {
       toast.error("All fields are Required");
       return;
     }
 
     if (location.pathname === "/admin/dashboard") {
-      if (!courseDetails._id) {
+      if (!productDetails._id) {
         toast.error("Something Went Wrong");
         return;
       }
 
-      // const res = await dispatch(updateCourse(courseDetails));
+      // const res = await dispatch(updateCourse(productDetails));
       // console.log(res);
       // if (res?.payload?.success) {
-      //   setCourseDetails({
+      //   setProductDetails({
       //     title: "",
       //     description: "",
       //     category: "",
@@ -157,9 +157,9 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
       //   closeCourseUpdate();
       // }
     } else {
-      // const res = await dispatch(createCourse(courseDetails));
+      // const res = await dispatch(createCourse(productDetails));
       // if (res?.payload?.success) {
-      //   setCourseDetails({
+      //   setProductDetails({
       //     title: "",
       //     description: "",
       //     category: "",
@@ -200,7 +200,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
         />
         <img
           className="w-auto h-auto"
-          src={courseDetails.previewImage ? courseDetails.previewImage : ""}
+          src={productDetails.previewImage ? productDetails.previewImage : ""}
           alt="Preview Image"
         />
       </div>
@@ -213,7 +213,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
         onDragEnter={handleDrag}
         className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[230px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
       >
-        {courseDetails.previewImage ? (
+        {productDetails.previewImage ? (
           <div
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -239,8 +239,8 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
               <button
                 aria-label="Cancel selected Image"
                 onClick={() => {
-                  setCourseDetails({
-                    ...courseDetails,
+                  setProductDetails({
+                    ...productDetails,
                     previewImage: "",
                     thumbnail: "",
                   });
@@ -253,7 +253,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
 
             <img
               id="thumbnail"
-              src={courseDetails.previewImage ? courseDetails.previewImage : ""}
+              src={productDetails.previewImage ? productDetails.previewImage : ""}
               alt="Course Thumbnail"
               className="max-w-full h-full"
             />
@@ -310,7 +310,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
             className="rounded-lg border-gray-300 border-[1.2px] w-full"
             type="text"
             id="title"
-            value={courseDetails?.title}
+            value={productDetails?.title}
           />
         </div>
 
@@ -328,7 +328,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
               className="rounded-lg border-gray-300 border-[1.2px] w-full"
               type="text"
               id="category"
-              value={courseDetails?.category}
+              value={productDetails?.category}
             />
           </div>
           <div className="my-2 w-full">
@@ -344,7 +344,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
               className="rounded-lg border-gray-300 border-[1.2px] w-full"
               type="text"
               id="createdBy"
-              value={courseDetails?.createdBy}
+              value={productDetails?.createdBy}
             />
           </div>
         </div>
@@ -363,7 +363,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
             className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
             type="text"
             id="description"
-            value={courseDetails?.description}
+            value={productDetails?.description}
           />
         </div>
 
@@ -391,4 +391,4 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
   );
 }
 
-export default CourseCreateUpdate;
+export default ProductCreateUpdate;

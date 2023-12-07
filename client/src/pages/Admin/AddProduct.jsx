@@ -1,10 +1,10 @@
-import CourseCreateUpdate from "../../components/CourseCreateUpdate";
+import ProductCreateUpdate from "../../components/CourseCreateUpdate";
 import AdminLayout from "../../layouts/AdminLayout";
 
 function AddProduct(){
     return (
         <AdminLayout>
-            <CourseCreateUpdate />
+            <ProductCreateUpdate />
         </AdminLayout>
     )
 }
