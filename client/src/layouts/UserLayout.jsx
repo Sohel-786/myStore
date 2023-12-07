@@ -74,7 +74,7 @@ function UserLayout({ children }) {
           </div>
         </div>
 
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center text-white">
           <Button onclick={toggleDrawerSignUp} text={"Cart"}>
             <FaCartShopping size={"18px"} />
           </Button>
@@ -139,7 +139,7 @@ function UserLayout({ children }) {
             )}
           </div>
         ) : (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 text-white">
             <Button onclick={toggleDrawerSignIn} text={"Login"}>
               {" "}
               <FaRegCircleUser size={"18px"} />{" "}
