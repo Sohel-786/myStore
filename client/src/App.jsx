@@ -19,6 +19,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin-view" element={<AdminFront />} />
         <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/manage-products" element={<AddProduct />} />
+        <Route path="/history" element={<AddProduct />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </>
