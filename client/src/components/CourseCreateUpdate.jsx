@@ -204,193 +204,193 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           alt="Preview Image"
         />
       </div>
-      
+
       <div className="sm:flex w-full px-12">
-
-      <div
-        id="container"
-        style={{
-          userSelect: "none",
-        }}
-        onDragEnter={handleDrag}
-        className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[350px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
-      >
-        {productDetails.previewImage ? (
-          <div
-            onDragEnter={handleDrag}
-            onDragLeave={handleDrag}
-            onDragOver={handleDrag}
-            onDrop={handleDrop}
-            onMouseOver={handleBlur}
-            onMouseOut={handleBlurRemove}
-            className="w-full h-full flex justify-center items-center"
-          >
+        <div
+          id="container"
+          style={{
+            userSelect: "none",
+          }}
+          onDragEnter={handleDrag}
+          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[350px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+        >
+          {productDetails.previewImage ? (
             <div
-              id="thumbnailBtn"
-              className="lg:hidden z-10 absolute flex-col gap-2"
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+              onMouseOver={handleBlur}
+              onMouseOut={handleBlurRemove}
+              className="w-full h-full flex justify-center items-center"
             >
-              <button
-                aria-label="View Image On Full Screen"
-                onClick={() => {
-                  handleFullImageView();
-                }}
-                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
+              <div
+                id="thumbnailBtn"
+                className="lg:hidden z-10 absolute flex-col gap-2"
               >
-                VIEW
-              </button>
-              <button
-                aria-label="Cancel selected Image"
-                onClick={() => {
-                  setProductDetails({
-                    ...productDetails,
-                    previewImage: "",
-                    thumbnail: "",
-                  });
-                }}
-                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
-              >
-                CANCEL
-              </button>
-            </div>
-
-            <img
-              id="thumbnail"
-              src={productDetails.previewImage ? productDetails.previewImage : ""}
-              alt="Course Thumbnail"
-              className="max-w-full h-full"
-            />
-          </div>
-        ) : dragActive ? (
-          <div
-            className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
-            onDragEnter={handleDrag}
-            onDragLeave={handleDrag}
-            onDragOver={handleDrag}
-            onDrop={handleDrop}
-          ></div>
-        ) : (
-          <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
-            <HiOutlinePhoto size={"70px"} className="text-gray-300" />
-            <p className="text-gray-500 text-sm font-semibold text-center">
-              <label htmlFor="courseImage">
-                <span
-                  type="button"
-                  className="text-black text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-black hover:text-white rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                <button
+                  aria-label="View Image On Full Screen"
+                  onClick={() => {
+                    handleFullImageView();
+                  }}
+                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
                 >
-                  Upload a file
-                </span>{" "}
-              </label>
-              or drag and drop <br /> PNG, JPG, JPEG, WEBP
-            </p>
-          </div>
-        )}
-      </div>
+                  VIEW
+                </button>
+                <button
+                  aria-label="Cancel selected Image"
+                  onClick={() => {
+                    setProductDetails({
+                      ...productDetails,
+                      previewImage: "",
+                      thumbnail: "",
+                    });
+                  }}
+                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
+                >
+                  CANCEL
+                </button>
+              </div>
 
-      <form
-        noValidate
-        onSubmit={handleSubmit}
-        className="bg-white text-black px-4 sm:px-5 rounded-xl w-[95%] lg:w-[50%] flex flex-col items-center"
-      >
-        <input
-          type="file"
-          hidden
-          id="courseImage"
-          onChange={handleImage}
-          accept=".jpg, .jpeg, .png, .webp, .svg"
-        />
-
-        <div className="my-2 w-full">
-          <label
-            className="block text-black font-semibold tracking-wide mb-3 font-sans"
-            htmlFor="title"
-          >
-            Title
-          </label>
-          <input
-            name="title"
-            onChange={handleChange}
-            className="rounded-lg border-gray-300 border-[1.2px] w-full"
-            type="text"
-            id="title"
-            value={productDetails?.title}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 w-full gap-3 my-4">
-          <div className="my-2 w-full">
-            <label
-              className="block text-black font-semibold tracking-wide mb-3 font-sans"
-              htmlFor="category"
-            >
-              Category
-            </label>
-            <input
-              name="category"
-              onChange={handleChange}
-              className="rounded-lg border-gray-300 border-[1.2px] w-full"
-              type="text"
-              id="category"
-              value={productDetails?.category}
-            />
-          </div>
-          <div className="my-2 w-full">
-            <label
-              className="block text-black font-semibold tracking-wide mb-3 font-sans"
-              htmlFor="createdBy"
-            >
-              Created By
-            </label>
-            <input
-              name="createdBy"
-              onChange={handleChange}
-              className="rounded-lg border-gray-300 border-[1.2px] w-full"
-              type="text"
-              id="createdBy"
-              value={productDetails?.createdBy}
-            />
-          </div>
-        </div>
-
-        <div className="my-2 w-full">
-          <label
-            className="block text-black font-semibold tracking-wide mb-3 font-sans"
-            htmlFor="description"
-          >
-            Description
-          </label>
-          <textarea
-            name="description"
-            onChange={handleChange}
-            rows={"8"}
-            className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
-            type="text"
-            id="description"
-            value={productDetails?.description}
-          />
-        </div>
-
-        <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
-          {location.pathname === "/admin/dashboard" ? (
-            <button
-              aria-label="Update the Course"
-              type="submit"
-              className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
-            >
-              Update
-            </button>
+              <img
+                id="thumbnail"
+                src={
+                  productDetails.previewImage ? productDetails.previewImage : ""
+                }
+                alt="Course Thumbnail"
+                className="max-w-full h-full"
+              />
+            </div>
+          ) : dragActive ? (
+            <div
+              className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            ></div>
           ) : (
-            <button
-              aria-label="Create Course"
-              type="submit"
-              className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
-            >
-              Create
-            </button>
+            <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
+              <HiOutlinePhoto size={"70px"} className="text-gray-300" />
+              <p className="text-gray-500 text-sm font-semibold text-center">
+                <label htmlFor="courseImage">
+                  <span
+                    type="button"
+                    className="text-black text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-black hover:text-white rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                  >
+                    Upload a file
+                  </span>{" "}
+                </label>
+                or drag and drop <br /> PNG, JPG, JPEG, WEBP
+              </p>
+            </div>
           )}
         </div>
-      </form>
-      </div>
 
+        <form
+          noValidate
+          onSubmit={handleSubmit}
+          className="bg-white text-black px-4 sm:px-5 rounded-xl w-[95%] lg:w-[50%] flex flex-col items-center"
+        >
+          <input
+            type="file"
+            hidden
+            id="courseImage"
+            onChange={handleImage}
+            accept=".jpg, .jpeg, .png, .webp, .svg"
+          />
+
+          <div className="my-2 w-full">
+            <label
+              className="block text-black font-semibold tracking-wide mb-3 font-sans"
+              htmlFor="title"
+            >
+              Title
+            </label>
+            <input
+              name="title"
+              onChange={handleChange}
+              className="rounded-lg border-gray-300 border-[1.2px] w-full"
+              type="text"
+              id="title"
+              value={productDetails?.title}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 w-full gap-3 my-4">
+            <div className="my-2 w-full">
+              <label
+                className="block text-black font-semibold tracking-wide mb-3 font-sans"
+                htmlFor="category"
+              >
+                Category
+              </label>
+              <input
+                name="category"
+                onChange={handleChange}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full"
+                type="text"
+                id="category"
+                value={productDetails?.category}
+              />
+            </div>
+            <div className="my-2 w-full">
+              <label
+                className="block text-black font-semibold tracking-wide mb-3 font-sans"
+                htmlFor="createdBy"
+              >
+                Created By
+              </label>
+              <input
+                name="createdBy"
+                onChange={handleChange}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full"
+                type="text"
+                id="createdBy"
+                value={productDetails?.createdBy}
+              />
+            </div>
+          </div>
+
+          <div className="my-2 w-full">
+            <label
+              className="block text-black font-semibold tracking-wide mb-3 font-sans"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <textarea
+              name="description"
+              onChange={handleChange}
+              rows={"8"}
+              className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
+              type="text"
+              id="description"
+              value={productDetails?.description}
+            />
+          </div>
+
+          <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
+            {location.pathname === "/admin/dashboard" ? (
+              <button
+                aria-label="Update the Course"
+                type="submit"
+                className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
+              >
+                Update
+              </button>
+            ) : (
+              <button
+                aria-label="Create Course"
+                type="submit"
+                className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
+              >
+                Create
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </section>
   );
 }
