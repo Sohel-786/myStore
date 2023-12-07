@@ -1,10 +1,10 @@
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 // import {
 //   createCourse,
 //   getAllCourses,
