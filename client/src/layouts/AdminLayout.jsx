@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { TiUser } from "react-icons/ti";
 import { IoLogOut } from "react-icons/io5";
 
-function AdminLayout() {
+function AdminLayout({children}) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -91,6 +91,7 @@ function AdminLayout() {
           </Button>
         </div>
       </header>
+      {children}
     </section>
   );
 }

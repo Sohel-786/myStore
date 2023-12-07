@@ -179,13 +179,13 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   return (
     <section
       className={`flex flex-col items-center w-full ${
-        location.pathname === "/admin/dashboard" ? "py-0" : "py-20"
-      } pt-14 `}
+        location.pathname === "/add-product" ? "py-0" : "py-20"
+      } pt-8 `}
     >
-      <h1 className="mb-4 lg:mb-8 text-4xl font-bold tracking-wider">
-        {location.pathname === "/admin/dashboard"
-          ? "Update Course"
-          : "Create Course"}
+      <h1 className="mb-4 lg:mb-8 text-4xl font-bold font-Nova">
+        {location.pathname === "/manage-products"
+          ? "Update Product"
+          : "ADD PRODUCT"}
       </h1>
 
       {/* To View Image on Full Screen */}
@@ -204,6 +204,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           alt="Preview Image"
         />
       </div>
+      
+      <div className="sm:flex w-full px-12">
 
       <div
         id="container"
@@ -211,7 +213,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           userSelect: "none",
         }}
         onDragEnter={handleDrag}
-        className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[230px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+        className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[350px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
       >
         {productDetails.previewImage ? (
           <div
@@ -273,7 +275,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <label htmlFor="courseImage">
                 <span
                   type="button"
-                  className="text-indigo-600 text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-indigo-100 hover:text-indigo-500 rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                  className="text-black text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-black hover:text-white rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
                 >
                   Upload a file
                 </span>{" "}
@@ -287,7 +289,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       <form
         noValidate
         onSubmit={handleSubmit}
-        className="bg-white text-black px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
+        className="bg-white text-black px-4 sm:px-5 rounded-xl w-[95%] lg:w-[50%] flex flex-col items-center"
       >
         <input
           type="file"
@@ -387,6 +389,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           )}
         </div>
       </form>
+      </div>
+
     </section>
   );
 }
