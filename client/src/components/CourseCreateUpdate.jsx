@@ -368,8 +368,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <ul className="w-full flex gap-4 pl-1 items-center h-full">
                 {["s", "m", "l", "xl"].map((el) => {
                   return (
-                    <li className="capitalize px-4 rounded-md border-[1px] cursor-pointer border-black">
-                      {el}
+                    <li className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base capitalize">
+                      <span className="z-10 block">{el}</span>
                     </li>
                   );
                 })}
@@ -449,17 +449,17 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <button
                 aria-label="Update the Course"
                 type="submit"
-                className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
+                className="border-2 flex items-center gap-1 relative shadow-logBtn hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
               >
-                Update
+                <span className="z-[3]">Update</span>
               </button>
             ) : (
               <button
                 aria-label="Create Course"
                 type="submit"
-                className="border-2 flex items-center gap-1 relative shadow-logBtn hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
+                className="border-2 flex items-center gap-1 relative shadow-logBtn hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
               >
-                Add Product
+                <span className="z-[3]">Add Product</span>
               </button>
             )}
           </div>
