@@ -24,10 +24,10 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           previewImage: courseData?.thumbnail?.secure_url,
         }
       : {
-          title: "",
+          name: "",
           description: "",
           category: "",
-          createdBy: "",
+          price: "",
           thumbnail: null,
           previewImage: null,
         }
@@ -127,9 +127,9 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (
-      !productDetails.title ||
+      !productDetails.name ||
       !productDetails.category ||
-      !productDetails.createdBy ||
+      !productDetails.price ||
       !productDetails.description ||
       !productDetails.thumbnail
     ) {
@@ -147,10 +147,10 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       // console.log(res);
       // if (res?.payload?.success) {
       //   setProductDetails({
-      //     title: "",
+      //     name : "",
       //     description: "",
       //     category: "",
-      //     createdBy: "",
+      //     price: "",
       //     thumbnail: null,
       //     previewImage: null,
       //   });
@@ -160,10 +160,10 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       // const res = await dispatch(createCourse(productDetails));
       // if (res?.payload?.success) {
       //   setProductDetails({
-      //     title: "",
+      //     name: "",
       //     description: "",
       //     category: "",
-      //     createdBy: "",
+      //     price: "",
       //     thumbnail: null,
       //     previewImage: null,
       //   });
@@ -303,53 +303,61 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           <div className="my-2 w-full">
             <label
               className="block text-black font-semibold tracking-wide mb-3 font-sans"
-              htmlFor="title"
+              htmlFor="name"
             >
-              Title
+              Name
             </label>
             <input
-              name="title"
+              name="name"
               onChange={handleChange}
-              className="rounded-lg border-gray-300 border-[1.2px] w-full"
+              className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
               type="text"
-              id="title"
-              value={productDetails?.title}
+              id="name"
+              value={productDetails?.name}
             />
           </div>
 
           <div className="grid grid-cols-2 w-full gap-3 my-4">
             <div className="my-2 w-full">
               <label
-                className="block text-black font-semibold tracking-wide mb-3 font-sans"
+                className="block text-black font-semibold tracking-wide mb-3 font-sans "
                 htmlFor="category"
               >
                 Category
               </label>
-              <input
+              <select
                 name="category"
                 onChange={handleChange}
-                className="rounded-lg border-gray-300 border-[1.2px] w-full"
+                className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
                 type="text"
                 id="category"
                 value={productDetails?.category}
-              />
+              >
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="kids">Kids</option>
+              </select>
             </div>
             <div className="my-2 w-full">
               <label
                 className="block text-black font-semibold tracking-wide mb-3 font-sans"
-                htmlFor="createdBy"
+                htmlFor="price"
               >
-                Created By
+                Price
               </label>
               <input
-                name="createdBy"
+                name="price"
                 onChange={handleChange}
-                className="rounded-lg border-gray-300 border-[1.2px] w-full"
-                type="text"
-                id="createdBy"
-                value={productDetails?.createdBy}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
+                type="number"
+                id="price"
+                value={productDetails?.price}
               />
             </div>
+          </div>
+
+          <div className="mt-2 w-full flex">
+              
           </div>
 
           <div className="my-2 w-full">
