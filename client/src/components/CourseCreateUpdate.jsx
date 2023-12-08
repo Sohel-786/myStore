@@ -28,10 +28,10 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           description: "",
           category: "",
           price: "",
-          deliveryInfo : '',
-          availableSizes : [],
-          sale: 'no',
-          pricedrop : 0,
+          deliveryInfo: "",
+          availableSizes: [],
+          sale: "no",
+          pricedrop: 0,
           thumbnail: null,
           previewImage: null,
         }
@@ -377,8 +377,10 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
             </div>
 
             <div className="w-[50%] flex flex-col">
-                <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">Delivery Info</h1>
-                <input
+              <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">
+                Delivery Info
+              </h1>
+              <input
                 name="deliveryInfo"
                 onChange={handleChange}
                 className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
