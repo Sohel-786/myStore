@@ -28,6 +28,10 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           description: "",
           category: "",
           price: "",
+          deliveryInfo : '',
+          availableSizes : [],
+          sale: 'no',
+          pricedrop : 0,
           thumbnail: null,
           previewImage: null,
         }
@@ -180,7 +184,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
     <section
       className={`flex flex-col items-center w-full ${
         location.pathname === "/add-product" ? "py-0" : "py-20"
-      } pt-8 `}
+      } pt-8 pb-10`}
     >
       <h1 className="mb-4 lg:mb-8 text-4xl font-bold font-Nova text-gray-700">
         {location.pathname === "/manage-products"
@@ -361,7 +365,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">
                 Available Sizes
               </h1>
-              <ul className="w-full flex gap-4 pl-1">
+              <ul className="w-full flex gap-4 pl-1 items-center h-full">
                 {["s", "m", "l", "xl"].map((el) => {
                   return (
                     <li className="capitalize px-4 rounded-md border-[1px] cursor-pointer border-black">
@@ -370,6 +374,55 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
                   );
                 })}
               </ul>
+            </div>
+
+            <div className="w-[50%] flex flex-col">
+                <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">Delivery Info</h1>
+                <input
+                name="deliveryInfo"
+                onChange={handleChange}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
+                type="text"
+                id="deliveryInfo"
+                value={productDetails?.deliveryInfo}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 w-full gap-3 my-4">
+            <div className="my-2 w-full">
+              <label
+                className="block text-black font-semibold tracking-wide mb-3 font-sans "
+                htmlFor="sale"
+              >
+                On Sale
+              </label>
+              <select
+                name="sale"
+                onChange={handleChange}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
+                id="sale"
+                value={productDetails?.sale}
+              >
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+            <div className="my-2 w-full">
+              <label
+                className="block text-black font-semibold tracking-wide mb-3 font-sans"
+                htmlFor="pricedrop"
+              >
+                Price Drop
+              </label>
+              <input
+                name="pricedrop"
+                onChange={handleChange}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
+                type="number"
+                id="pricedrop"
+                value={productDetails?.pricedrop}
+              />
             </div>
           </div>
 
@@ -404,9 +457,9 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <button
                 aria-label="Create Course"
                 type="submit"
-                className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
+                className="border-2 flex items-center gap-1 relative shadow-logBtn hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
               >
-                Create
+                Add Product
               </button>
             )}
           </div>
