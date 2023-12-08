@@ -182,7 +182,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
         location.pathname === "/add-product" ? "py-0" : "py-20"
       } pt-8 `}
     >
-      <h1 className="mb-4 lg:mb-8 text-4xl font-bold font-Nova">
+      <h1 className="mb-4 lg:mb-8 text-4xl font-bold font-Nova text-gray-700">
         {location.pathname === "/manage-products"
           ? "Update Product"
           : "ADD PRODUCT"}
@@ -357,7 +357,20 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           </div>
 
           <div className="mt-2 w-full flex">
-              
+            <div className="w-[50%] flex flex-col">
+              <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">
+                Available Sizes
+              </h1>
+              <ul className="w-full flex gap-4 pl-1">
+                {["s", "m", "l", "xl"].map((el) => {
+                  return (
+                    <li className="capitalize px-4 rounded-md border-[1px] cursor-pointer border-black">
+                      {el}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
 
           <div className="my-2 w-full">
