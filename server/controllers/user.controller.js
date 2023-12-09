@@ -86,57 +86,57 @@ export const register = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-    const { email, password } = req.body;
-  
-    if ((!email, !password)) {
-      return next(new AppError("All input fields are required", 400));
-    }
-  
-    const user = await User.findOne({ email }).select("+password");
-  
-    if (!user || !(await user.comparePassword(password))) {
-      return next(new AppError("Email or Password do not match", 400));
-    }
-  
-    const token = await user.JWTtoken();
-    user.password = undefined;
-  
-    res.cookie("token", token, cookieOptions);
-  
-    res.status(200).json({
-      success: true,
-      msg: "User Logged In Successfully",
-      user,
-    });
-  };
+  const { email, password } = req.body;
+
+  if ((!email, !password)) {
+    return next(new AppError("All input fields are required", 400));
+  }
+
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user || !(await user.comparePassword(password))) {
+    return next(new AppError("Email or Password do not match", 400));
+  }
+
+  const token = await user.JWTtoken();
+  user.password = undefined;
+
+  res.cookie("token", token, cookieOptions);
+
+  res.status(200).json({
+    success: true,
+    msg: "User Logged In Successfully",
+    user,
+  });
+};
 
 export const logout = (req, res) => {
-    res.cookie("token", null, {
-      secure: true,
-      maxAge: 0,
-      httpOnly: true,
-    });
-  
-    res.status(200).json({
-      success: true,
-      msg: "Successfully Logged Out",
-    });
-  };
+  res.cookie("token", null, {
+    secure: true,
+    maxAge: 0,
+    httpOnly: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    msg: "Successfully Logged Out",
+  });
+};
 
 export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
 
-    if(!user){
+    if (!user) {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
     return res.status(200).json({
       success: true,
       user,
-      message : 'User Details Fetched Successfully'
+      message: "User Details Fetched Successfully",
     });
   } catch (err) {
     return res.status(400).send(err.message);
   }
-}
+};

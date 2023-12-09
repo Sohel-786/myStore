@@ -5,7 +5,7 @@ import { IoLogOut } from "react-icons/io5";
 import { logout } from "../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 
-function AdminLayout({children}) {
+function AdminLayout({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -84,23 +84,29 @@ function AdminLayout({children}) {
         </ul>
 
         <div className="flex items-center justify-center gap-3">
-          <Button onclick={() => {
-            navigate('/')
-          }} text={"Client View"}>
+          <Button
+            onclick={() => {
+              navigate("/");
+            }}
+            text={"Client View"}
+          >
             <TiUser size={"18px"} />
           </Button>
-          <Button onclick={async () => {
-            const res = await dispatch(logout());
+          <Button
+            onclick={async () => {
+              const res = await dispatch(logout());
 
-            if (res?.payload?.data) {
-              scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-              navigate("/");
-            }
-          }} text={"LogOut"}>
-            <IoLogOut size={"18px"} /> 
+              if (res?.payload?.data) {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+                navigate("/");
+              }
+            }}
+            text={"LogOut"}
+          >
+            <IoLogOut size={"18px"} />
           </Button>
         </div>
       </header>

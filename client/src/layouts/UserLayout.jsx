@@ -15,8 +15,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice";
 
 function UserLayout({ children }) {
-  const [isOpenSingUp, setOpenSignUp] = useState();
-  const [isOpenSingIn, setOpenSignIn] = useState();
+  const [isOpenSingUp, setOpenSignUp] = useState(false);
+  const [isOpenSingIn, setOpenSignIn] = useState(false);
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
   const name = useSelector((s) => s?.auth?.data?.fullname);
@@ -24,11 +24,6 @@ function UserLayout({ children }) {
   const wrapperRef = useRef("profileMenu");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setOpenSignIn(false);
-    setOpenSignUp(false);
-  }, []);
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);

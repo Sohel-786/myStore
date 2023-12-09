@@ -48,7 +48,7 @@ function SignIn({ CreateAccount, close }) {
     const res = await dispatch(login(signinDetails));
 
     if (res?.payload?.data?.success) {
-      navigate("/");
+      close();
     }
   }
 

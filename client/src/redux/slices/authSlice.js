@@ -31,9 +31,9 @@ export const createUser = createAsyncThunk("/auth/create", async (data) => {
   }
 });
 
-export const login = createAsyncThunk('/auth/login', async (data) => {
+export const login = createAsyncThunk("/auth/login", async (data) => {
   try {
-    const res = axiosInstance.post('/user/login', data);
+    const res = axiosInstance.post("/user/login", data);
     toast.promise(res, {
       pending: "Wait! Logging on to your account",
       success: "Done",
@@ -43,11 +43,11 @@ export const login = createAsyncThunk('/auth/login', async (data) => {
   } catch (err) {
     toast.error(err?.response?.data?.message);
   }
-})
+});
 
-export const logout = createAsyncThunk('/auth/logout', async () => {
+export const logout = createAsyncThunk("/auth/logout", async () => {
   try {
-    const res = axiosInstance.get('/user/logout');
+    const res = axiosInstance.get("/user/logout");
     toast.promise(res, {
       pending: "Wait! Logging out",
       success: "Done",
@@ -57,7 +57,7 @@ export const logout = createAsyncThunk('/auth/logout', async () => {
   } catch (err) {
     toast.error(err?.response?.data?.message);
   }
-})
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -86,13 +86,13 @@ const authSlice = createSlice({
           state.data = action?.payload?.data?.user;
         }
       })
-      .addCase(logout.fulfilled, (state,action) => {
+      .addCase(logout.fulfilled, (state, action) => {
         if (action.payload) {
-        state.isLoggedIn = false;
-        state.role = "";
-        state.data = {};
+          state.isLoggedIn = false;
+          state.role = "";
+          state.data = {};
         }
-      })
+      });
   },
 });
 
