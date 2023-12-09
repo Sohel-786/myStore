@@ -10,18 +10,25 @@ import "react-modern-drawer/dist/index.css";
 import SignUp from "../components/SignUp";
 import { useEffect, useRef, useState } from "react";
 import SignIn from "../components/SignIn";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../redux/slices/authSlice";
 
 function UserLayout({ children }) {
-  const [isOpenSingUp, setOpenSignUp] = useState(false);
-  const [isOpenSingIn, setOpenSignIn] = useState(false);
+  const [isOpenSingUp, setOpenSignUp] = useState();
+  const [isOpenSingIn, setOpenSignIn] = useState();
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
   const name = useSelector((s) => s?.auth?.data?.fullname);
   const img = useSelector((s) => s?.auth?.data?.avatar?.secure_url);
   const wrapperRef = useRef("profileMenu");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setOpenSignIn(false);
+    setOpenSignUp(false);
+  }, []);
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
@@ -53,7 +60,17 @@ function UserLayout({ children }) {
     setShowProfile(false);
   });
 
-  function handleLogout() {}
+  async function handleLogout() {
+    const res = await dispatch(logout());
+
+    if (res?.payload?.data) {
+      scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      navigate("/");
+    }
+  }
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">

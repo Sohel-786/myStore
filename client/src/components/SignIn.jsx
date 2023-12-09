@@ -4,10 +4,10 @@ import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { login } from "../redux/slices/authSlice";
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function SignIn({CreateAccount, close}) {
+function SignIn({ CreateAccount, close }) {
   const [viewPassword, setViewpassword] = useState(false);
   const [signinDetails, setSigninDetails] = useState({
     email: "",
@@ -28,10 +28,7 @@ function SignIn({CreateAccount, close}) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (
-      !signinDetails.email ||
-      !signinDetails.password
-    ) {
+    if (!signinDetails.email || !signinDetails.password) {
       toast.error("Please Fill all the field");
       return;
     }
@@ -48,26 +45,28 @@ function SignIn({CreateAccount, close}) {
       return;
     }
 
-      const res = await dispatch(login(signinDetails));
+    const res = await dispatch(login(signinDetails));
 
-      if (res?.payload?.data?.success) {
-        navigate("/");
-      }
+    if (res?.payload?.data?.success) {
+      navigate("/");
+    }
   }
 
   return (
     <section className="flex flex-col justify-center items-center my-10 w-[50%] mx-auto">
-        <span onClick={close} className="cursor-pointer"><IoClose size={'40px'} className="absolute top-1 right-2 text-black" /></span>
+      <span onClick={close} className="cursor-pointer">
+        <IoClose size={"40px"} className="absolute top-1 right-2 text-black" />
+      </span>
       <form
         onSubmit={handleSubmit}
         noValidate
         className="flex flex-col items-center w-[90%] shadow-formshadow bg-gradient-to-r rounded-xl md:w-[65%] lg:w-full"
       >
         <img
-            className="w-[240px] sm:w-[270px] aspect-auto mb-5 select-none"
-            src="/assets/SignIn.svg"
-            alt="sign In"
-          />
+          className="w-[240px] sm:w-[270px] aspect-auto mb-5 select-none"
+          src="/assets/SignIn.svg"
+          alt="sign In"
+        />
 
         <input
           onChange={handleChange}
@@ -108,7 +107,10 @@ function SignIn({CreateAccount, close}) {
           aria-label="Submit Details"
           className="w-[80%] bg-gray-600 relative mt-3 z-[1] before:absolute before:bg-black before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
         >
-          <button type="submit" className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
+          <button
+            type="submit"
+            className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black"
+          >
             Login
           </button>
         </div>

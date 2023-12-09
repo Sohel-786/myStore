@@ -2,9 +2,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { TiUser } from "react-icons/ti";
 import { IoLogOut } from "react-icons/io5";
+import { logout } from "../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 function AdminLayout({children}) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   return (
@@ -86,7 +89,17 @@ function AdminLayout({children}) {
           }} text={"Client View"}>
             <TiUser size={"18px"} />
           </Button>
-          <Button text={"LogOut"}>
+          <Button onclick={async () => {
+            const res = await dispatch(logout());
+
+            if (res?.payload?.data) {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+              navigate("/");
+            }
+          }} text={"LogOut"}>
             <IoLogOut size={"18px"} /> 
           </Button>
         </div>
