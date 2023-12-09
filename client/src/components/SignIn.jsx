@@ -2,15 +2,19 @@ import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
 import { IoClose } from "react-icons/io5";
+import { toast } from "react-toastify";
+import { login } from "../redux/slices/authSlice";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn({CreateAccount, close}) {
   const [viewPassword, setViewpassword] = useState(false);
-  const [signupDetails, setSignupDetails] = useState({
+  const [signinDetails, setSigninDetails] = useState({
     email: "",
-    fullname: "",
     password: "",
-    avatar: "",
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handlePassView() {
     setViewpassword(viewPassword ? false : true);
@@ -18,51 +22,37 @@ function SignIn({CreateAccount, close}) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setSignupDetails({ ...signupDetails, [name]: value });
+    setSigninDetails({ ...signinDetails, [name]: value });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (
-      !signupDetails.email ||
-      !signupDetails.password ||
-      !signupDetails.avatar ||
-      !signupDetails.fullname
+      !signinDetails.email ||
+      !signinDetails.password
     ) {
-      // toast.error("Please Fill all the field");
+      toast.error("Please Fill all the field");
       return;
     }
 
-    if (signupDetails.fullname.length < 5) {
-      // toast.error("Name Should at least 5 characters long");
+    if (!isEmail(signinDetails.email)) {
+      toast.error("Invalid Email, Please Enter Valid Email");
       return;
     }
 
-    if (!isEmail(signupDetails.email)) {
-      // toast.error("Invalid Email, Please Enter Valid Email");
+    if (!isValidPassword(signinDetails.password)) {
+      toast.error(
+        "Password Must be 6 to 16 character long with atleast a number and symbol"
+      );
       return;
     }
 
-    if (!isValidPassword(signupDetails.password)) {
-      // toast.error(
-      //   "Password Must be 6 to 16 character long with atleast a number and symbol"
-      // );
-      return;
-    }
+      const res = await dispatch(login(signinDetails));
 
-    const formData = new FormData();
-
-    formData.append("fullname", signupDetails.fullname);
-    formData.append("email", signupDetails.email);
-    formData.append("password", signupDetails.password);
-    formData.append("avatar", signupDetails.avatar);
-
-    //   const res = await dispatch(createUser(formData));
-
-    //   if (res?.payload?.data?.success) {
-    //     navigate("/");
-    //   }
+      if (res?.payload?.data?.success) {
+        navigate("/");
+      }
   }
 
   return (
@@ -118,7 +108,7 @@ function SignIn({CreateAccount, close}) {
           aria-label="Submit Details"
           className="w-[80%] bg-gray-600 relative mt-3 z-[1] before:absolute before:bg-black before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
         >
-          <button className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
+          <button type="submit" className="w-full relative text-white z-10 font-Roboto tracking-wide font-black px-5 py-2 cursor-pointer rounded-md  border-2 border-black">
             Login
           </button>
         </div>

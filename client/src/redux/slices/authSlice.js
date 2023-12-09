@@ -31,6 +31,20 @@ export const createUser = createAsyncThunk("/auth/create", async (data) => {
   }
 });
 
+export const login = createAsyncThunk('/auth/login', async (data) => {
+  try {
+    const res = axiosInstance.post('/user/login', data);
+    toast.promise(res, {
+      loading: "Wait! Logging on to your account",
+      success: "Done",
+      error: "Failed to Login",
+    });
+    return await res;
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
+  }
+})
+
 const authSlice = createSlice({
   name: "auth",
   reducers: {},
@@ -50,7 +64,14 @@ const authSlice = createSlice({
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
         }
-      });
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.isLoggedIn = true;
+          state.role = action?.payload?.data?.user?.role;
+          state.data = action?.payload?.data?.user;
+        }
+      })
   },
 });
 
