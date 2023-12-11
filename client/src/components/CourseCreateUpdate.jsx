@@ -166,23 +166,27 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       //   closeCourseUpdate();
       // }
     } else {
-      // const res = await dispatch(createCourse(productDetails));
-      // if (res?.payload?.success) {
-      //   setProductDetails({
-      //     name: "",
-      //     description: "",
-      //     category: "",
-      //     price: "",
-      //     thumbnail: null,
-      //     previewImage: null,
-      //   });
-      //   await dispatch(getAllCourses());
-      //   scrollTo({
-      //     top: 0,
-      //     behavior: "smooth",
-      //   });
-      //   navigate("/courses");
-      // }
+      const res = await dispatch(addProduct(productDetails));
+      if (res?.payload?.success) {
+        setProductDetails({
+          name: "",
+          description: "",
+          category: "",
+          price: "",
+          deliveryInfo: "",
+          availableSizes: [],
+          sale: "no",
+          pricedrop: 0,
+          thumbnail: null,
+          previewImage: null,
+        });
+        await dispatch(getAllProducts());
+        scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        navigate("/manage-products");
+      }
     }
   }
   return (
