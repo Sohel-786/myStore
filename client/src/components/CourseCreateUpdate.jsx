@@ -369,7 +369,28 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <ul className="w-full flex gap-4 pl-1 items-center h-full">
                 {["s", "m", "l", "xl"].map((el) => {
                   return (
-                    <li key={nanoid(4)} className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base capitalize">
+                    <li key={nanoid(4)} onClick={() => {
+                      if(productDetails.availableSizes.includes(el)){
+                        const temp = productDetails.availableSizes.filter((ele) => {
+                          if(ele !== el){
+                            return ele;
+                          }
+                        });
+                        setProductDetails({
+                          ...productDetails,
+                          availableSizes : temp
+                        });
+                      }else{
+                        setProductDetails({
+                          ...productDetails,
+                          availableSizes : [...productDetails.availableSizes, el]
+                        })
+                      }
+
+                    }} className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base capitalize" style={{
+                      backgroundColor : productDetails.availableSizes.includes(el) ? 'black' : '',
+                      color : productDetails.availableSizes.includes(el) ? 'white' : ''
+                    }}>
                       <span className="z-10 block">{el}</span>
                     </li>
                   );
@@ -416,7 +437,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
                 className="block text-black font-semibold tracking-wide mb-3 font-sans"
                 htmlFor="pricedrop"
               >
-                Price Drop
+                Price Drop (%)
               </label>
               <input
                 name="pricedrop"
