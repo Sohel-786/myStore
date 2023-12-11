@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 //   getAllCourses,
 //   updateCourse,
 // } from "../../redux/slices/courseSlice";
+import { nanoid } from 'nanoid';
 
 function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   const dispatch = useDispatch();
@@ -368,7 +369,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               <ul className="w-full flex gap-4 pl-1 items-center h-full">
                 {["s", "m", "l", "xl"].map((el) => {
                   return (
-                    <li className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base capitalize">
+                    <li key={nanoid(4)} className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base capitalize">
                       <span className="z-10 block">{el}</span>
                     </li>
                   );
@@ -439,7 +440,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
               name="description"
               onChange={handleChange}
               rows={"8"}
-              className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
+              className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y px-2 py-1"
               type="text"
               id="description"
               value={productDetails?.description}
