@@ -133,9 +133,13 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
     e.preventDefault();
     if (
       !productDetails.name ||
+      !productDetails.description ||
       !productDetails.category ||
       !productDetails.price ||
-      !productDetails.description ||
+      !productDetails.deliveryInfo ||
+      !productDetails.availableSizes ||
+      !productDetails.sale ||
+      !productDetails.pricedrop ||
       !productDetails.thumbnail
     ) {
       toast.error("All fields are Required");
