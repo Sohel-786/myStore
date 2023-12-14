@@ -29,11 +29,11 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           name: "",
           description: "",
           category: "men",
-          price: 0,
+          price: "0",
           deliveryInfo: "",
           availableSizes: [],
           sale: "NO",
-          pricedrop: 0,
+          pricedrop: "0",
           thumbnail: null,
           previewImage: null,
         }
@@ -185,7 +185,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       // }
     } else {
       const res = await dispatch(addProduct(formData));
-      if (res?.payload?.success) {
+      console.log(res);
+      if (res?.payload?.data?.success) {
         setProductDetails({
           name: "",
           description: "",

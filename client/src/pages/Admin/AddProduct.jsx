@@ -1,4 +1,4 @@
-import ProductCreateUpdate from "../../components/CourseCreateUpdate";
+import ProductCreateUpdate from "../../components/ProductCreateUpdate";
 import AdminLayout from "../../layouts/AdminLayout";
 
 function AddProduct(){

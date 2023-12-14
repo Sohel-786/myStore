@@ -48,7 +48,7 @@ export const AddProduct = async (req, res, next) => {
     category,
     price,
     deliveryInfo,
-    availableSizes,
+    availableSizes : availableSizes.split(','),
     sale,
     pricedrop,
     thumbnail: {

@@ -36,7 +36,7 @@ const productSchema = new Schema({
     default: "NO",
   },
   pricedrop: {
-    type: String,
+    type: Number,
     default: 0,
   },
   thumbnail: {
