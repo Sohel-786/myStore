@@ -26,15 +26,31 @@ const productSchema = new Schema({
     trim: true,
     lowercase: true,
   },
-  availableSizes: {},
+  availableSizes: {
+    type: Array,
+    required: ["true", "You must provide the correct size of the product."],
+  },
+  sale: {
+    type: String,
+    enum: ["NO", "YES"],
+    default: "NO",
+  },
+  pricedrop: {
+    type: String,
+    default: 0,
+  },
+  thumbnail: {
+    public_id: {
+      type: String,
+      required: true,
+    },
+    secure_url: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
-// name: "",
-//           description: "",
-//           category: "",
-//           price: "",
-//           deliveryInfo: "",
-//           availableSizes: [],
-//           sale: "no",
-//           pricedrop: 0,
-//           thumbnail: null,
+const Product = model("product", productSchema);
+
+export default Product;
