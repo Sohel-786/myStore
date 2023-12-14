@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { AddProduct, getAllProducts } from "../controllers/product.controller";
-import upload from "../middlewares/multer.middleware";
-import { IsLoggedIn, authorizedRoles } from "../middlewares/auth.middleware";
+import { AddProduct, getAllProducts } from "../controllers/product.controller.js";
+import upload from "../middlewares/multer.middleware.js";
+import { IsLoggedIn, authorizedRoles } from "../middlewares/auth.middleware.js";
 const productRoutes = Router();
 
 productRoutes

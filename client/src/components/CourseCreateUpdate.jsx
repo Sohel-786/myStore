@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 //   updateCourse,
 // } from "../../redux/slices/courseSlice";
 import { nanoid } from "nanoid";
-import { addProduct } from "../redux/slices/productSlice";
+import { addProduct, getAllProducts } from "../redux/slices/productSlice";
 
 function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   const dispatch = useDispatch();
@@ -147,13 +147,25 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       return;
     }
 
+    const formData = new FormData();
+
+    formData.append("name", productDetails.name);
+    formData.append("description", productDetails.description);
+    formData.append("category", productDetails.category);
+    formData.append("price", productDetails.price)
+    formData.append("deliveryInfo", productDetails.deliveryInfo)
+    formData.append("availableSizes", productDetails.availableSizes)
+    formData.append("sale", productDetails.sale)
+    formData.append("pricedrop", productDetails.pricedrop)
+    formData.append("thumbnail", productDetails.thumbnail)
+
     if (location.pathname === "/admin/dashboard") {
       if (!productDetails._id) {
         toast.error("Something Went Wrong");
         return;
       }
 
-      // const res = await dispatch(updateCourse(productDetails));
+      // const res = await dispatch(updateCourse(formData));
       // console.log(res);
       // if (res?.payload?.success) {
       //   setProductDetails({
@@ -167,7 +179,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       //   closeCourseUpdate();
       // }
     } else {
-      const res = await dispatch(addProduct(productDetails));
+      const res = await dispatch(addProduct(formData));
       if (res?.payload?.success) {
         setProductDetails({
           name: "",

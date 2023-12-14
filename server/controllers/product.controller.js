@@ -1,6 +1,6 @@
-import Product from "../models/product.model";
+import Product from "../models/product.model.js";
 import cloudinary from "cloudinary";
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 import fs from "fs/promises";
 
 export const getAllProducts = async (req, res, next) => {
