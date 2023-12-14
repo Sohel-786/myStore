@@ -451,8 +451,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
                 id="sale"
                 value={productDetails?.sale}
               >
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="NO">No</option>
+                <option value="YES">Yes</option>
               </select>
             </div>
             <div className="my-2 w-full">

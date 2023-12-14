@@ -13,3 +13,5 @@ productRoutes
     upload.single("thumbnail"),
     AddProduct
   );
+
+export default productRoutes;
