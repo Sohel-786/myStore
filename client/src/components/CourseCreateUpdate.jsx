@@ -28,7 +28,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           name: "",
           description: "",
           category: "",
-          price: "",
+          price: 0,
           deliveryInfo: "",
           availableSizes: [],
           sale: "no",
