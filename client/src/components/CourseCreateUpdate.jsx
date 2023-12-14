@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 //   updateCourse,
 // } from "../../redux/slices/courseSlice";
 import { nanoid } from "nanoid";
+import { addProduct } from "../redux/slices/productSlice";
 
 function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   const dispatch = useDispatch();

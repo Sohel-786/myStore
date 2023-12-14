@@ -56,7 +56,7 @@ export const register = async (req, res, next) => {
   if (req.file) {
     try {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
-        folder: "lms",
+        folder: "mystore",
       });
 
       if (result) {
@@ -105,7 +105,7 @@ export const login = async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    msg: "User Logged In Successfully",
+    message: "User Logged In Successfully",
     user,
   });
 };
