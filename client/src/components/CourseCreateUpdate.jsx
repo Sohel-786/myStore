@@ -28,11 +28,11 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       : {
           name: "",
           description: "",
-          category: "",
+          category: "men",
           price: 0,
           deliveryInfo: "",
           availableSizes: [],
-          sale: "no",
+          sale: "NO",
           pricedrop: 0,
           thumbnail: null,
           previewImage: null,
@@ -90,16 +90,21 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
   function handleImage(e) {
     const uploadedImage = e.target.files[0];
     if (!uploadedImage) return;
-    setProductDetails({
-      ...productDetails,
-      thumbnail: uploadedImage,
+    setProductDetails(function (s) {
+      return {
+        ...s,
+        thumbnail: uploadedImage,
+      };
     });
     const fileReader = new FileReader();
     fileReader.readAsDataURL(uploadedImage);
     fileReader.addEventListener("load", function () {
-      setProductDetails({
-        ...productDetails,
-        previewImage: this.result,
+      let result = this.result;
+      setProductDetails(function (s) {
+        return {
+          ...s,
+          previewImage: result,
+        };
       });
     });
   }
@@ -152,12 +157,12 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
     formData.append("name", productDetails.name);
     formData.append("description", productDetails.description);
     formData.append("category", productDetails.category);
-    formData.append("price", productDetails.price)
-    formData.append("deliveryInfo", productDetails.deliveryInfo)
-    formData.append("availableSizes", productDetails.availableSizes)
-    formData.append("sale", productDetails.sale)
-    formData.append("pricedrop", productDetails.pricedrop)
-    formData.append("thumbnail", productDetails.thumbnail)
+    formData.append("price", productDetails.price);
+    formData.append("deliveryInfo", productDetails.deliveryInfo);
+    formData.append("availableSizes", productDetails.availableSizes);
+    formData.append("sale", productDetails.sale);
+    formData.append("pricedrop", productDetails.pricedrop);
+    formData.append("thumbnail", productDetails.thumbnail);
 
     if (location.pathname === "/admin/dashboard") {
       if (!productDetails._id) {
@@ -184,8 +189,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
         setProductDetails({
           name: "",
           description: "",
-          category: "",
-          price: "",
+          category: "men",
+          price: "0",
           deliveryInfo: "",
           availableSizes: [],
           sale: "no",
