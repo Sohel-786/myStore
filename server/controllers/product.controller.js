@@ -48,6 +48,7 @@ export const AddProduct = async (req, res, next) => {
     name,
     description,
     category,
+    brand,
     price,
     deliveryInfo,
     availableSizes : availableSizes.split(','),
