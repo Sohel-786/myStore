@@ -25,14 +25,8 @@ export const getAllProducts = createAsyncThunk(
   "/product/getAllProducts",
   async () => {
     try {
-      const res = axiosInstance.get("/product/");
-      toast.promise(res, {
-        pending: "Wait, Fetching All Products",
-        success: "Done",
-        error: "Something Went Wrong",
-      });
-
-      return await res;
+      const res = await axiosInstance.get("/product/");
+      return  res;
     } catch (e) {
       toast.error(e?.response?.data?.message);
     }
