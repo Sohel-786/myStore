@@ -17,6 +17,12 @@ const productSchema = new Schema(
       trim: true,
       lowercase: true,
     },
+    brand: {
+      type: String,
+      required: ["true", "You Should Specify the Product Brand."],
+      trim: true,
+      lowercase: true,
+    },
     price: {
       type: Number,
       required: ["true", "The product must have price."],

@@ -28,6 +28,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       : {
           name: "",
           description: "",
+          brand: "",
           category: "men",
           price: "0",
           deliveryInfo: "",
@@ -146,7 +147,8 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       !productDetails.availableSizes ||
       !productDetails.sale ||
       !productDetails.pricedrop ||
-      !productDetails.thumbnail
+      !productDetails.thumbnail ||
+      !productDetails.brand
     ) {
       toast.error("All fields are Required");
       return;
@@ -156,6 +158,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
 
     formData.append("name", productDetails.name);
     formData.append("description", productDetails.description);
+    formData.append("brand", productDetails.brand);
     formData.append("category", productDetails.category);
     formData.append("price", productDetails.price);
     formData.append("deliveryInfo", productDetails.deliveryInfo);
@@ -190,6 +193,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
         setProductDetails({
           name: "",
           description: "",
+          brand: "",
           category: "men",
           price: "0",
           deliveryInfo: "",
@@ -349,7 +353,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
             />
           </div>
 
-          <div className="grid grid-cols-2 w-full gap-3 my-4">
+          <div className="grid grid-cols-2 w-full gap-3 my-2">
             <div className="my-2 w-full">
               <label
                 className="block text-black font-semibold tracking-wide mb-3 font-sans "
@@ -388,7 +392,26 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
             </div>
           </div>
 
-          <div className="mt-2 w-full flex">
+          <div className="w-full my-2">
+            <div className="my-0 w-full">
+              <label
+                className="block text-black font-semibold tracking-wide mb-3 font-sans "
+                htmlFor="brand"
+              >
+                Brand
+              </label>
+              <input
+                name="brand"
+                onChange={handleChange}
+                className="rounded-lg border-gray-300 border-[1.2px] w-full px-2 py-2"
+                type="text"
+                id="brand"
+                value={productDetails?.brand}
+              />
+            </div>
+          </div>
+
+          <div className="my-2 w-full flex">
             <div className="w-[50%] flex flex-col">
               <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">
                 Available Sizes
@@ -455,7 +478,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 w-full gap-3 my-4">
+          <div className="grid grid-cols-2 w-full gap-3 my-2">
             <div className="my-2 w-full">
               <label
                 className="block text-black font-semibold tracking-wide mb-3 font-sans "

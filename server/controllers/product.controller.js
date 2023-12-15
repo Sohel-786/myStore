@@ -27,12 +27,14 @@ export const AddProduct = async (req, res, next) => {
     availableSizes,
     sale,
     pricedrop,
+    brand
   } = req.body;
 
   if (
     (!name,
     !description,
     !category,
+    !brand,
     !price,
     !deliveryInfo,
     !availableSizes,
