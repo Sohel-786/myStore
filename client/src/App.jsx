@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminFront from "./pages/Admin/AdminFront";
 import AddProduct from "./pages/Admin/AddProduct";
 import { getAllProducts } from "./redux/slices/productSlice";
+import ManageProducts from "./pages/Admin/ManageProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin-view" element={<AdminFront />} />
         <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/manage-products" element={<AddProduct />} />
+        <Route path="/manage-products" element={<ManageProducts />} />
         <Route path="/history" element={<AddProduct />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
