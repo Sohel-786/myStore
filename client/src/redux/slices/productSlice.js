@@ -3,7 +3,7 @@ import axiosInstance from "../../config/axiosInstance";
 import { toast } from "react-toastify";
 
 const initialState = {
-  products: [],
+  Allproducts: [],
 };
 
 export const addProduct = createAsyncThunk("/product/add", async (data) => {
@@ -26,7 +26,7 @@ export const getAllProducts = createAsyncThunk(
   async () => {
     try {
       const res = await axiosInstance.get("/product/");
-      return  res;
+      return res;
     } catch (e) {
       toast.error(e?.response?.data?.message);
     }
@@ -40,7 +40,7 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllProducts.fulfilled, (state, action) => {
       if (action.payload) {
-        state.products = action?.payload?.data?.allProducts;
+        state.Allproducts = action?.payload?.data?.products;
       }
     });
   },

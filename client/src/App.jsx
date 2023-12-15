@@ -5,12 +5,14 @@ import { checkIsLoggedIn } from "./redux/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
 import AdminFront from "./pages/Admin/AdminFront";
 import AddProduct from "./pages/Admin/AddProduct";
+import { getAllProducts } from "./redux/slices/productSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkIsLoggedIn());
+    dispatch(getAllProducts());
   }, []);
 
   return (
