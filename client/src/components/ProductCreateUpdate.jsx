@@ -167,25 +167,30 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
     formData.append("pricedrop", productDetails.pricedrop);
     formData.append("thumbnail", productDetails.thumbnail);
 
-    if (location.pathname === "/admin/dashboard") {
+    if (location.pathname === "/manage-products") {
       if (!productDetails._id) {
         toast.error("Something Went Wrong");
         return;
       }
 
-      // const res = await dispatch(updateCourse(formData));
-      // console.log(res);
-      // if (res?.payload?.success) {
-      //   setProductDetails({
-      //     name : "",
-      //     description: "",
-      //     category: "",
-      //     price: "",
-      //     thumbnail: null,
-      //     previewImage: null,
-      //   });
-      //   closeProductUpdate();
-      // }
+      const res = await dispatch(updateCourse(formData));
+      console.log(res);
+      if (res?.payload?.success) {
+        setProductDetails({
+          name: "",
+          description: "",
+          brand: "",
+          category: "men",
+          price: "0",
+          deliveryInfo: "",
+          availableSizes: [],
+          sale: "NO",
+          pricedrop: "0",
+          thumbnail: null,
+          previewImage: null,
+        });
+        closeProductUpdate();
+      }
     } else {
       const res = await dispatch(addProduct(formData));
       console.log(res);
