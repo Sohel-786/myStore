@@ -70,7 +70,7 @@ function UserLayout({ children }) {
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">
-      <header className="flex z-30 max-w-[1280px] sticky justify-between items-center w-full px-5 py-1 shadow-header bg-[#00000056]">
+      <header className="flex z-30 max-w-[1480px] sticky justify-between items-center w-full px-5 py-1 shadow-header bg-[#00000056]">
         <div className="flex items-center gap-3 w-[60%]">
           <img
             src="/assets/MyStoreLogo.svg"

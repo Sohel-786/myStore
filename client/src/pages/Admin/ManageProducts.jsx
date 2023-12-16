@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import AdminLayout from "../../layouts/AdminLayout";
-import Product from "../../components/Product/Product";
 import { nanoid } from "@reduxjs/toolkit";
+import ProductModification from "../../components/Product/ProductModification";
 
 function ManageProducts(){
 
@@ -11,7 +11,7 @@ function ManageProducts(){
         <AdminLayout>
             {
                 Allproducts.map((el) => {
-                    return <Product key={nanoid(4)} data={el} />
+                    return <ProductModification key={nanoid(4)} data={el} />
                 })
             }
         </AdminLayout>
