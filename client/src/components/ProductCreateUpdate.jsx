@@ -173,9 +173,9 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
         return;
       }
 
-      const res = await dispatch(updateProduct(formData, productDetails._id));
-      console.log(res);
-      if (res?.payload?.success) {
+      const res = await dispatch(updateProduct({data: formData, id :productDetails._id}));
+      if (res?.payload?.data?.success) {
+        dispatch(getAllProducts());
         setProductDetails({
           name: "",
           description: "",
@@ -193,7 +193,6 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
       }
     } else {
       const res = await dispatch(addProduct(formData));
-      console.log(res);
       if (res?.payload?.data?.success) {
         setProductDetails({
           name: "",

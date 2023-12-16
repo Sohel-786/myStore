@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   AddProduct,
   getAllProducts,
+  updateProduct,
 } from "../controllers/product.controller.js";
 import upload from "../middlewares/multer.middleware.js";
 import { IsLoggedIn, authorizedRoles } from "../middlewares/auth.middleware.js";

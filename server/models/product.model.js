@@ -42,6 +42,13 @@ const productSchema = new Schema(
       enum: ["NO", "YES"],
       default: "NO",
     },
+    category: {
+      type: String,
+      enum: ["men", "women", "kids"],
+      required: ["true", "You should specify the category of product."],
+      trim: true,
+      lowercase: true,
+    },
     pricedrop: {
       type: Number,
       default: 0,

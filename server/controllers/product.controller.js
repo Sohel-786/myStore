@@ -27,7 +27,7 @@ export const AddProduct = async (req, res, next) => {
     availableSizes,
     sale,
     pricedrop,
-    brand
+    brand,
   } = req.body;
 
   if (
@@ -51,7 +51,7 @@ export const AddProduct = async (req, res, next) => {
     brand,
     price,
     deliveryInfo,
-    availableSizes : availableSizes.split(','),
+    availableSizes: availableSizes.split(","),
     sale,
     pricedrop,
     thumbnail: {
@@ -99,7 +99,7 @@ export const updateProduct = async (req, res, next) => {
     availableSizes,
     sale,
     pricedrop,
-    brand
+    brand,
   } = req.body;
 
   if (
@@ -118,7 +118,7 @@ export const updateProduct = async (req, res, next) => {
 
   const product = await Product.findById(productId);
 
-  if(!product){
+  if (!product) {
     return next(new AppError("Product Doesn't exists", 400));
   }
 
@@ -133,7 +133,7 @@ export const updateProduct = async (req, res, next) => {
   product.brand = brand;
 
   if (req.file) {
-    await cloudinary.v2.uploader.destroy(product.thumbnail.public_id)
+    await cloudinary.v2.uploader.destroy(product.thumbnail.public_id);
     try {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
         folder: "mystore",
@@ -158,4 +158,4 @@ export const updateProduct = async (req, res, next) => {
     product,
     message: "Product Updated Successfully",
   });
-}
+};
