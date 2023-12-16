@@ -17,4 +17,13 @@ productRoutes
     AddProduct
   );
 
+productRoutes
+  .route("/:productId")
+  .put(
+    IsLoggedIn,
+    authorizedRoles("ADMIN"),
+    upload.single("thumbnail"),
+    updateProduct
+  );
+
 export default productRoutes;

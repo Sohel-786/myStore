@@ -20,6 +20,20 @@ export const addProduct = createAsyncThunk("/product/add", async (data) => {
     toast.error(e?.response?.data?.message);
   }
 });
+export const updateProduct = createAsyncThunk("/product/update", async (data, id) => {
+  try {
+    const res = axiosInstance.put(`/product/`, data);
+    toast.promise(res, {
+      pending: "Wait, Adding New Product",
+      success: "Done",
+      error: "Something Went Wrong",
+    });
+
+    return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
 
 export const getAllProducts = createAsyncThunk(
   "/product/getAllProducts",

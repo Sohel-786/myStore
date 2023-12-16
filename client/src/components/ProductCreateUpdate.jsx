@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 //   updateCourse,
 // } from "../../redux/slices/courseSlice";
 import { nanoid } from "nanoid";
-import { addProduct, getAllProducts } from "../redux/slices/productSlice";
+import { addProduct, getAllProducts, updateProduct } from "../redux/slices/productSlice";
 
 function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
   const dispatch = useDispatch();
@@ -173,7 +173,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
         return;
       }
 
-      const res = await dispatch(updateCourse(formData));
+      const res = await dispatch(updateProduct(formData, productDetails._id));
       console.log(res);
       if (res?.payload?.success) {
         setProductDetails({
