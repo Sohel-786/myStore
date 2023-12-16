@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoBagHandleSharp } from "react-icons/io5";
 
 function Product({ data }) {
   const [showDetails, seShowDetails] = useState(true);
@@ -31,13 +33,20 @@ function Product({ data }) {
       </div>
       {showDetails ? (
         <div className="my-3 px-[10px] relative">
-          <div className="flex flex-col py-4 px-[10px]">
+          <div className="flex flex-col py-4">
             <span
               type="button"
               onClick={onclick}
-              className="border-[1px] text-[#d4d5d9] flex items-center gap-1 relative hover:border-black cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
+              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0"
             >
-              WISHLIST
+              <IoBagHandleSharp size={"18px"} className="relative top-[-3px]" />ADD TO BAG
+            </span>
+            <span
+              type="button"
+              onClick={onclick}
+              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0"
+            >
+              <IoMdHeartEmpty className="relative top-[-1px]" size={"18px"} /> WISHLIST
             </span>
           </div>
           <div>
