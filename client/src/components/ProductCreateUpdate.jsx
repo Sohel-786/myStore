@@ -13,17 +13,17 @@ import { toast } from "react-toastify";
 import { nanoid } from "nanoid";
 import { addProduct, getAllProducts } from "../redux/slices/productSlice";
 
-function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
+function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [dragActive, setDragActive] = useState(false);
   const [productDetails, setProductDetails] = useState(
-    location.pathname === "/admin/dashboard"
+    location.pathname === "/manage-products"
       ? {
-          ...courseData,
-          previewImage: courseData?.thumbnail?.secure_url,
+          ...ProductData,
+          previewImage: ProductData?.thumbnail?.secure_url,
         }
       : {
           name: "",
@@ -184,7 +184,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
       //     thumbnail: null,
       //     previewImage: null,
       //   });
-      //   closeCourseUpdate();
+      //   closeProductUpdate();
       // }
     } else {
       const res = await dispatch(addProduct(formData));
@@ -534,7 +534,7 @@ function ProductCreateUpdate({ courseData, closeCourseUpdate }) {
           </div>
 
           <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
-            {location.pathname === "/admin/dashboard" ? (
+            {location.pathname === "/manage-products" ? (
               <button
                 aria-label="Update the Course"
                 type="submit"

@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { HiPencilSquare } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function ProductModification({ data }) {
+function ProductModification({ handleUpdate, data }) {
   const navigate = useNavigate();
 
   let {
@@ -29,12 +29,7 @@ function ProductModification({ data }) {
     return Math.floor(price - temp);
   }
   return (
-    <li
-      className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]"
-      onClick={(e) => {
-
-      }}
-    >
+    <li className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]">
       <div className="h-[340px] w-full">
         <img src={thumbnail.secure_url} alt={name} className="w-full h-[80%]" />
       </div>
@@ -44,44 +39,43 @@ function ProductModification({ data }) {
         </div>
       )}
 
-        <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[90px] z-[4]">
-          <div className="flex flex-col py-4 gap-2">
-            <span
-              type="button"
-              // onClick={}
-              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
-            >
-              <span className="flex items-center justify-center gap-[6px] z-10">
-                <HiPencilSquare
-                  size={"18px"}
-                  className="relative top-[-3px]"
-                />
-                UPDATE
-              </span>
+      <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[90px] z-[4]">
+        <div className="flex flex-col py-4 gap-2">
+          <span
+            type="button"
+            onClick={() => {
+              handleUpdate(data);
+            }}
+            className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+          >
+            <span className="flex items-center justify-center gap-[6px] z-10">
+              <HiPencilSquare size={"18px"} className="relative top-[-3px]" />
+              UPDATE
             </span>
-            <span
-              type="button"
-              // onClick={}
-              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
-            >
-              <span className="flex items-center justify-center gap-[6px] z-10">
-                <MdDelete className="relative top-[-1px]" size={"18px"} />
-                DELETE
-              </span>
+          </span>
+          <span
+            type="button"
+            // onClick={}
+            className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+          >
+            <span className="flex items-center justify-center gap-[6px] z-10">
+              <MdDelete className="relative top-[-1px]" size={"18px"} />
+              DELETE
             </span>
-          </div>
-          <div>
-            <p
-              className="capitalize text-[#535766] text-[13px] leading-[14px]"
-              title={name}
-            >
-              Sizes:{" "}
-              <span className="uppercase ml-[2px] font-Roboto">
-                {availableSizes.join(" , ")}
-              </span>
-            </p>
-          </div>
+          </span>
         </div>
+        <div>
+          <p
+            className="capitalize text-[#535766] text-[13px] leading-[14px]"
+            title={name}
+          >
+            Sizes:{" "}
+            <span className="uppercase ml-[2px] font-Roboto">
+              {availableSizes.join(" , ")}
+            </span>
+          </p>
+        </div>
+      </div>
       <div className="my-3 px-[10px]">
         <div>
           <h1 className="capitalize text-[#282c3f] mb-[6px] font-black font-Nova ">
