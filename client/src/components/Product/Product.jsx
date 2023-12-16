@@ -40,6 +40,11 @@ function Product({ data }) {
       <div className="h-[280px] w-full">
         <img src={thumbnail.secure_url} alt={name} className="w-full h-full" />
       </div>
+      {
+        sale === 'YES' && <div className="absolute bg-black text-white px-[6px] py-[2px] rounded-xl text-[8px] tracking-wider font-Roboto font-semibold top-1 left-1">
+          <p>SALE</p>
+        </div>
+      }
       {showDetails && (
         <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[40px] z-[2]">
           <div className="flex flex-col py-4 gap-2">
