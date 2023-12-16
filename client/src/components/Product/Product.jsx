@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoBagHandleSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 function Product({ data }) {
   const [showDetails, setShowDetails] = useState(false);
-  // 83.9873px
+  const navigate = useNavigate();
+  const bagRef = useRef([]);
+  const wishRef = useRef([]);
 
   let {
+    _id,
     name,
     description,
     brand,
@@ -29,26 +33,32 @@ function Product({ data }) {
   }
   return (
     <li
-      className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative"
+      className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]"
       onMouseEnter={() => {
         setShowDetails(true);
       }}
       onMouseLeave={() => {
-        setShowDetails(false)
+        setShowDetails(false);
+      }}
+      onClick={(e) => {
+        if (bagRef.current && !bagRef.current.contains(e.target) && wishRef.current && !wishRef.current.contains(e.target)) {
+          navigate(`/product-details/${_id}`);
+        }
       }}
     >
       <div className="h-[280px] w-full">
         <img src={thumbnail.secure_url} alt={name} className="w-full h-full" />
       </div>
-      {
-        sale === 'YES' && <div className="absolute bg-black text-white px-[6px] py-[2px] rounded-xl text-[8px] tracking-wider font-Roboto font-semibold top-1 left-1">
+      {sale === "YES" && (
+        <div className="absolute bg-black text-white px-[6px] py-[2px] rounded-xl text-[8px] tracking-wider font-Roboto font-semibold top-1 left-1">
           <p>SALE</p>
         </div>
-      }
+      )}
       {showDetails && (
-        <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[40px] z-[2]">
+        <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[40px] z-[4]">
           <div className="flex flex-col py-4 gap-2">
             <span
+              ref={bagRef}
               type="button"
               // onClick={}
               className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
@@ -62,6 +72,7 @@ function Product({ data }) {
               </span>
             </span>
             <span
+              ref={wishRef}
               type="button"
               // onClick={}
               className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
