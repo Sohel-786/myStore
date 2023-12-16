@@ -1,8 +1,9 @@
 import { IoIosSearch } from "react-icons/io";
-import { FaRegCircleUser, FaCartShopping } from "react-icons/fa6";
+import { FaRegCircleUser } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { BiSolidUser } from "react-icons/bi";
-import { IoLogOut } from "react-icons/io5";
+import { IoLogOut, IoBagHandleSharp  } from "react-icons/io5";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
 import Drawer from "react-modern-drawer";
@@ -87,8 +88,11 @@ function UserLayout({ children }) {
         </div>
 
         <div className="flex gap-2 items-center text-white">
-          <Button onclick={toggleDrawerSignUp} text={"Cart"}>
-            <FaCartShopping size={"18px"} />
+          <Button onclick={toggleDrawerSignUp} text={"Bag"}>
+            <IoBagHandleSharp size={"18px"} />
+          </Button>
+          <Button onclick={toggleDrawerSignUp} text={"Wishlist"}>
+            <FaHeart size={"18px"} />
           </Button>
           {role === "ADMIN" && (
             <Button

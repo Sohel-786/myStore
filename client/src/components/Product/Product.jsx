@@ -3,7 +3,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { IoBagHandleSharp } from "react-icons/io5";
 
 function Product({ data }) {
-  const [showDetails, seShowDetails] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
   // 83.9873px
 
   let {
@@ -28,19 +28,27 @@ function Product({ data }) {
     return Math.floor(price - temp);
   }
   return (
-    <li className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative">
+    <li
+      className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative"
+      onMouseEnter={() => {
+        setShowDetails(true);
+      }}
+      onMouseLeave={() => {
+        setShowDetails(false)
+      }}
+    >
       <div className="h-[280px] w-full">
         <img src={thumbnail.secure_url} alt={name} className="w-full h-full" />
       </div>
       {showDetails && (
-        <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[40px]">
-          <div className="flex flex-col py-4 gap-2 z-[5]">
+        <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[40px] z-[2]">
+          <div className="flex flex-col py-4 gap-2">
             <span
               type="button"
-              onClick={onclick}
-              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0"
+              // onClick={}
+              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
             >
-              <span className="flex items-center justify-center gap-[6px]">
+              <span className="flex items-center justify-center gap-[6px] z-10">
                 <IoBagHandleSharp
                   size={"18px"}
                   className="relative top-[-3px]"
@@ -50,11 +58,11 @@ function Product({ data }) {
             </span>
             <span
               type="button"
-              onClick={onclick}
-              className="border-[1px] border-[#d4d5d9] py-2 relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:-z-10 before:transition-all before:ease-in-out hover:before:right-0"
+              // onClick={}
+              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
             >
-              <span className="flex items-center justify-center gap-[6px]">
-                <IoMdHeartEmpty className="relative top-[-1px]" size={"18px"} />{" "}
+              <span className="flex items-center justify-center gap-[6px] z-10">
+                <IoMdHeartEmpty className="relative top-[-1px]" size={"18px"} />
                 WISHLIST
               </span>
             </span>
