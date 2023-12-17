@@ -139,7 +139,7 @@ function ForgotPassword({ hideForgotPass }) {
         </button>
 
         <button
-        aria-label="Cancel Reset Password Process"
+          aria-label="Cancel Reset Password Process"
           onClick={() => {
             setRegisteredEmail({
               email: "",
@@ -197,12 +197,12 @@ function ForgotPassword({ hideForgotPass }) {
                 OK
               </button>
               <button
-              aria-label="Change Emal Address"
-                onClick={() =>{
+                aria-label="Change Emal Address"
+                onClick={() => {
                   setRegisteredEmail({
                     email: "",
                   });
-                  setshowSendMail(false)
+                  setshowSendMail(false);
                 }}
                 className="bg-gradient-to-t from-orange-900 via-orange-600 to-orange-400 w-fit self-center text-white px-5 py-3 text-sm sm:text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-900 transition-all duration-300 ease-in-out hover:scale-110"
               >
@@ -220,7 +220,7 @@ function ForgotPassword({ hideForgotPass }) {
         className="w-full flex items-center gap-3 sm:gap-5 mt-6"
       >
         <button
-          aria-label='Send Mail to Registered Email Address'
+          aria-label="Send Mail to Registered Email Address"
           onClick={handleSubmit}
           className="text-white px-4 sm:px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
         >
