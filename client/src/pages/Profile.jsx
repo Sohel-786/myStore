@@ -209,13 +209,13 @@ function Profile() {
   return (
     <UserLayout>
       <div className="flex flex-col items-center w-full h-[900px] lg:h-auto relative">
-          <div className="w-[200px] aspect-auto absolute top-[-50px] left-3 ">
-            <img
-              className="w-full aspect-auto"
-              src={"/assets/MyLogo2.svg"}
-              alt="logo"
-            />
-          </div>
+        <div className="w-[200px] aspect-auto absolute top-[-50px] left-3 ">
+          <img
+            className="w-full aspect-auto"
+            src={"/assets/MyLogo2.svg"}
+            alt="logo"
+          />
+        </div>
 
         <div className="w-[90%] h-[90%] lg:h-[470px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
           <div
