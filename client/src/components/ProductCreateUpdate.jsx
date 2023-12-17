@@ -11,7 +11,11 @@ import { toast } from "react-toastify";
 //   updateCourse,
 // } from "../../redux/slices/courseSlice";
 import { nanoid } from "nanoid";
-import { addProduct, getAllProducts, updateProduct } from "../redux/slices/productSlice";
+import {
+  addProduct,
+  getAllProducts,
+  updateProduct,
+} from "../redux/slices/productSlice";
 
 function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
   const dispatch = useDispatch();
@@ -173,7 +177,9 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
         return;
       }
 
-      const res = await dispatch(updateProduct({data: formData, id :productDetails._id}));
+      const res = await dispatch(
+        updateProduct({ data: formData, id: productDetails._id })
+      );
       if (res?.payload?.data?.success) {
         dispatch(getAllProducts());
         setProductDetails({
@@ -448,12 +454,12 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
                           });
                         }
                       }}
-                      className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base capitalize"
+                      className="border-[1px] flex items-center relative shadow-logBtn hover:border-black rounded-md overflow-hidden cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[2] lg:py-[5px] lg:px-3 lg:text-base capitalize"
                       style={{
                         backgroundColor: productDetails.availableSizes.includes(
                           el
                         )
-                          ? "black"
+                          ? "#5f29cc"
                           : "",
                         color: productDetails.availableSizes.includes(el)
                           ? "white"

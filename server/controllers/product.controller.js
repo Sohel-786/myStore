@@ -127,7 +127,7 @@ export const updateProduct = async (req, res, next) => {
   product.category = category;
   product.price = price;
   product.deliveryInfo = deliveryInfo;
-  product.availableSizes = availableSizes;
+  product.availableSizes = availableSizes.split(',');
   product.sale = sale;
   product.pricedrop = pricedrop;
   product.brand = brand;
