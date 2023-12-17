@@ -12,7 +12,7 @@ import SignUp from "../components/SignUp";
 import { useEffect, useRef, useState } from "react";
 import SignIn from "../components/SignIn";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice";
 
 function UserLayout({ children }) {
@@ -25,6 +25,7 @@ function UserLayout({ children }) {
   const wrapperRef = useRef("profileMenu");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
@@ -70,8 +71,8 @@ function UserLayout({ children }) {
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">
-      <header className="flex z-30 max-w-[1480px] sticky justify-between items-center w-full px-5 py-1 shadow-header bg-[#00000056]">
-        <div className="flex items-center gap-3 w-[60%]">
+      <header className={`flex z-30 max-w-[1480px] sticky ${location.pathname === '/profile' ? 'justify-end' : 'justify-between' } items-center w-full px-5 py-2 shadow-header`}>
+        {location.pathname !== '/profile' && <div className="flex items-center gap-3 w-[60%]">
           <img
             src="/assets/MyStoreLogo.svg"
             alt="logo"
@@ -85,9 +86,9 @@ function UserLayout({ children }) {
               placeholder="Search for Products, Brands and More"
             />
           </div>
-        </div>
+        </div>}
 
-        <div className="flex gap-2 items-center text-white">
+        <div className={`flex gap-2 items-center text-white`}>
           <Button onclick={toggleDrawerSignUp} text={"Bag"}>
             <IoBagHandleSharp size={"18px"} />
           </Button>
@@ -108,7 +109,7 @@ function UserLayout({ children }) {
 
         {isLoggedIn ? (
           <div
-            className="flex flex-col justify-center items-center"
+            className={`${location.pathname === '/profile' ? 'hidden' : 'flex'} flex-col justify-center items-center`}
             ref={wrapperRef}
           >
             <div

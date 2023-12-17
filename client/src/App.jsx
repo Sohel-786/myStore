@@ -7,6 +7,7 @@ import AdminFront from "./pages/Admin/AdminFront";
 import AddProduct from "./pages/Admin/AddProduct";
 import { getAllProducts } from "./redux/slices/productSlice";
 import ManageProducts from "./pages/Admin/ManageProducts";
+import Profile from "./pages/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/admin-view" element={<AdminFront />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/manage-products" element={<ManageProducts />} />
