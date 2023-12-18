@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { BiEdit } from "react-icons/bi";
-import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
 import { MdFreeCancellation, MdOutlineMonochromePhotos } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
@@ -14,7 +13,7 @@ import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
 import ForgotPassword from "../components/ForgotPassword";
 import UserLayout from "../layouts/UserLayout";
-// import { cancelSubscription } from "../redux/slices/paymentSlice";
+import Drawer from "react-modern-drawer";
 
 function Profile() {
   const navigate = useNavigate();
@@ -27,6 +26,7 @@ function Profile() {
   const [enableSave, setEnableSave] = useState(false);
 
   const [forgotPassView, setForgotPassView] = useState(false);
+  const [isPassChange, setIsPasschange] = useState(false);
 
   const [viewPassChange, setViewPassChange] = useState(false);
   const [viewOldPassword, setViewOldpassword] = useState(false);
@@ -43,6 +43,10 @@ function Profile() {
     oldPassword: "",
     newPassword: "",
   });
+
+  function toggleDrawerPassword() {
+    setIsPasschange(!isPassChange);
+  }
 
   function handleOldPassView() {
     setViewOldpassword(!viewOldPassword);
@@ -208,7 +212,7 @@ function Profile() {
 
   return (
     <UserLayout>
-      <div className="flex flex-col items-center w-full h-[900px] lg:h-[300px] border-2 border-black mt-2 relative">
+      <div className="flex flex-col items-center w-full h-[900px] lg:h-[320px] mt-2 relative">
         {/* Logo */}
         <div className="w-[200px] aspect-auto absolute top-[-60px] left-3 ">
           <img
@@ -269,7 +273,7 @@ function Profile() {
               <MdOutlineMonochromePhotos
                 hidden={!editable}
                 size={"60px"}
-                className="relative -top-14 left-14 text-gray-500 hover:text-gray-700 transition-colors duration-300 ease-in-out"
+                className="relative -top-14 left-14 text-cyan-400 hover:text-gray-500 transition-colors duration-300 ease-in-out"
               />
             </label>
 
@@ -278,7 +282,7 @@ function Profile() {
               <MdOutlineMonochromePhotos
                 hidden={!editable}
                 size={"50px"}
-                className="relative top-32 left-24 text-gray-500 hover:text-gray-700 transition-colors duration-300 ease-in-out cursor-pointer"
+                className="relative top-32 left-24 text-cyan-400 hover:text-gray-500 transition-colors duration-300 ease-in-out cursor-pointer"
               />
             </label>
 
@@ -312,18 +316,17 @@ function Profile() {
 
           <div className="flex flex-col px-5 py-4 w-full h-[57%] lg:w-[60%] lg:h-full">
             <div className="w-full lg:h-[10%]">
-              <p className="float-right font-slab text-stone-500">
+              <p className="float-right font-slab font-bold text-stone-500">
                 Joined On {createdAt.slice(0, 10)}
               </p>
             </div>
-
-            <div className="w-full flex flex-col gap-5 justify-center lg:pb-16 lg:h-[90%]">
+            <div className="w-full flex flex-col gap-5 justify-center lg:h-[90%]">
               <fieldset
                 style={{
                   userSelect: "none",
                   border: editable ? "2px solid #4f46e5" : "2px solid #e5e7eb",
                 }}
-                className="w-[70%] border-[1.5px] px-2 lg:px-4 pb-1 lg:pb-[2px] pt-1 rounded-xl"
+                className="w-[70%] border-[1.5px] px-2 lg:px-4 pb-1 lg:pb-[2px] pt-[2px] rounded-xl"
               >
                 <legend className="font-Slab text-black font-bold lg:text-sm">
                   Name
@@ -355,39 +358,44 @@ function Profile() {
               </fieldset>
 
               {/* Change Password Input and Button Container */}
-              {viewPassChange ? (
-                // change password section
-                <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
+              {/* // change password section */}
+              <Drawer
+                open={isPassChange}
+                onClose={toggleDrawerPassword}
+                direction="right"
+                size={"450px"}
+              >
+                <div className="flex justify-center items-center w-full h-full">
                   <div
                     id="changePass"
-                    className="flex flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6"
+                    className="flex flex-col justify-center w-full bg-white rounded-xl py-5 px-6"
                   >
                     <label
                       htmlFor="oldpassword"
-                      className="font-slab text-gray-600 mt-4 mb-2 pl-1"
+                      className="font-Nova text-[20px] font-bold text-gray-600 mt-4 mb-2 capitalize"
                     >
                       Enter your old password
                     </label>
 
-                    <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
+                    <div className="w-full px-3 bg-transparent border-[2px] border-black focus-within:before:right-0 flex items-center gap-2 relative shadow-logBtn rounded-[5px] cursor-pointer font-bold text-xs text-black focus-within:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out lg:py-[5px] lg:px-3 lg:text-base">
                       <input
                         onChange={handlePasswordChange}
-                        className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+                        className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold z-10 py-1"
                         type={viewOldPassword ? "text" : "password"}
                         name="oldPassword"
                         id="oldpassword"
                         value={passwordData.oldPassword}
                       />
                       {viewOldPassword ? (
-                        <span type="button">
-                          <FiEye
-                            aria-label="eyeOn"
-                            className="text-xl"
-                            onClick={handleOldPassView}
-                          />
-                        </span>
+                          <span type="button" className="z-10">
+                            <FiEye
+                              aria-label="eyeOn"
+                              className="text-xl"
+                              onClick={handleOldPassView}
+                            />
+                          </span>
                       ) : (
-                        <span type="button">
+                        <span type="button" className="z-10">
                           <FiEyeOff
                             aria-label="eyeOff"
                             className="text-xl"
@@ -398,22 +406,22 @@ function Profile() {
                     </div>
                     <label
                       htmlFor="newpassword"
-                      className="font-slab text-gray-600 mt-4 mb-2 pl-1"
+                      className="font-Nova text-[20px] font-bold capitalize text-gray-600 mt-4 mb-2 pl-1"
                     >
                       Create new password
                     </label>
 
-                    <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
+                    <div className="w-full px-3 bg-transparent border-[2px] border-black focus-within:before:right-0 flex items-center gap-2 relative shadow-logBtn rounded-[5px] cursor-pointer font-bold text-xs text-black focus-within:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out lg:py-[5px] lg:px-3 lg:text-base">
                       <input
                         onChange={handlePasswordChange}
-                        className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+                        className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold z-10 py-1 font-bold"
                         type={viewNewPassword ? "text" : "password"}
                         name="newPassword"
                         id="newpassword"
                         value={passwordData.newPassword}
                       />
                       {viewNewPassword ? (
-                        <span type="button">
+                        <span type="button" className="z-10">
                           <FiEye
                             aria-label="eyeOn"
                             className="text-xl"
@@ -421,7 +429,7 @@ function Profile() {
                           />
                         </span>
                       ) : (
-                        <span type="button">
+                        <span type="button" className="z-10">
                           <FiEyeOff
                             aria-label="eyeOff"
                             className="text-xl"
@@ -462,7 +470,7 @@ function Profile() {
                             oldPassword: "",
                             newPassword: "",
                           });
-                          setViewPassChange(false);
+                          setIsPasschange(false);
                         }}
                         className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
                       >
@@ -475,22 +483,19 @@ function Profile() {
 
                   <ForgotPassword hideForgotPass={hideForgotPass} />
                 </div>
-              ) : (
-                <button
-                  aria-label="Change Your password"
-                  style={{
-                    userSelect: "none",
-                  }}
-                  onClick={() => {
-                    setViewPassChange(true);
-                  }}
-                  className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
-                >
-                  <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">
-                    Change your password
-                  </span>
-                </button>
-              )}
+              </Drawer>
+              <button
+                aria-label="Change Your password"
+                style={{
+                  userSelect: "none",
+                }}
+                onClick={toggleDrawerPassword}
+                className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
+              >
+                <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">
+                  Change your password
+                </span>
+              </button>
 
               {/* Profile buttons, for save, edit, cancel */}
               <div
