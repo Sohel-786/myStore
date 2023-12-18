@@ -486,7 +486,9 @@ function Profile() {
                   }}
                   className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
                 >
-                  <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">Change your password</span>
+                  <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">
+                    Change your password
+                  </span>
                 </button>
               )}
 
