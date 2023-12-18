@@ -208,8 +208,9 @@ function Profile() {
 
   return (
     <UserLayout>
-      <div className="flex flex-col items-center w-full h-[900px] lg:h-auto relative">
-        <div className="w-[200px] aspect-auto absolute top-[-50px] left-3 ">
+      <div className="flex flex-col items-center w-full h-[900px] lg:h-[300px] border-2 border-black mt-2 relative">
+        {/* Logo */}
+        <div className="w-[200px] aspect-auto absolute top-[-60px] left-3 ">
           <img
             className="w-full aspect-auto"
             src={"/assets/MyLogo2.svg"}
@@ -217,7 +218,8 @@ function Profile() {
           />
         </div>
 
-        <div className="w-[90%] h-[90%] lg:h-[470px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
+        <div className="w-[90%] h-[90%] lg:h-full flex flex-col lg:flex-row justify-center items-center shadow-profile rounded-lg">
+
           <div
             style={{ userSelect: "none" }}
             className="flex flex-col w-full h-[43%] items-center lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
@@ -236,7 +238,7 @@ function Profile() {
             <div
               onMouseOver={handleBlur}
               onMouseOut={handleBlurRemove}
-              className="flex flex-col justify-center items-center h-[80%] lg:h-auto w-fit rounded-full"
+              className="flex flex-col justify-center items-center h-[80%] lg:h-auto w-fit rounded-full relative"
             >
               <div
                 id="profileImage"
@@ -246,7 +248,7 @@ function Profile() {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                 }}
-                className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px] "
+                className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[250px] lg:h-[250px] absolute top-[-50px] right-[-80px]"
               ></div>
 
               <div id="profileBtn" className="hidden absolute flex-col gap-2">
