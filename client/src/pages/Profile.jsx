@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { BiEdit, BiSolidEdit } from "react-icons/bi";
+import { BiEdit } from "react-icons/bi";
 import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
-import { MdFreeCancellation } from "react-icons/md";
+import { MdFreeCancellation, MdOutlineMonochromePhotos } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
 // import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -250,7 +250,10 @@ function Profile() {
                 className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[250px] lg:h-[250px] absolute top-[-50px] right-[-120px]"
               ></div>
 
-              <div id="profileBtn" className="hidden absolute top-14 right-[-25px] flex-col gap-2">
+              <div
+                id="profileBtn"
+                className="hidden absolute top-14 right-[-25px] flex-col gap-2"
+              >
                 <button
                   aria-label="See the Image on Full Screen"
                   onClick={handleFullImageView}
@@ -263,19 +266,19 @@ function Profile() {
 
             {/* this for the small screens  */}
             <label htmlFor="profile" className="inline-block lg:hidden">
-              <BiSolidEdit
+              <MdOutlineMonochromePhotos
                 hidden={!editable}
                 size={"60px"}
-                className="relative -top-14 left-14 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
+                className="relative -top-14 left-14 text-gray-500 hover:text-gray-700 transition-colors duration-300 ease-in-out"
               />
             </label>
 
             {/* this for the large screens */}
             <label htmlFor="profile" className="hidden lg:inline-block">
-              <BiSolidEdit
+              <MdOutlineMonochromePhotos
                 hidden={!editable}
-                size={"80px"}
-                className="relative -top-20 left-24 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out cursor-pointer"
+                size={"50px"}
+                className="relative top-32 left-24 text-gray-500 hover:text-gray-700 transition-colors duration-300 ease-in-out cursor-pointer"
               />
             </label>
 
@@ -307,22 +310,22 @@ function Profile() {
             />
           </div>
 
-          <div className="flex flex-col px-5 py-4 w-full h-[57%] lg:w-1/2 lg:h-full">
-            <div className="w-full lg:h-[20%]">
+          <div className="flex flex-col px-5 py-4 w-full h-[57%] lg:w-[60%] lg:h-full">
+            <div className="w-full lg:h-[10%]">
               <p className="float-right font-slab text-stone-500">
                 Joined On {createdAt.slice(0, 10)}
               </p>
             </div>
 
-            <div className="w-full flex flex-col gap-5 justify-center lg:pb-16 lg:h-[80%]">
+            <div className="w-full flex flex-col gap-5 justify-center lg:pb-16 lg:h-[90%]">
               <fieldset
                 style={{
                   userSelect: "none",
                   border: editable ? "2px solid #4f46e5" : "2px solid #e5e7eb",
                 }}
-                className="w-full border-[2px] px-2 lg:px-4 pb-1 lg:pb-2 rounded-xl"
+                className="w-[70%] border-[1.5px] px-2 lg:px-4 pb-1 lg:pb-[2px] pt-1 rounded-xl"
               >
-                <legend className="font-slab text-stone-500 lg:text-lg">
+                <legend className="font-Slab text-black font-bold lg:text-sm">
                   Name
                 </legend>
 
@@ -338,15 +341,15 @@ function Profile() {
                   id="fullname"
                   onChange={handleChange}
                   value={formData.fullname}
-                  className={`capitalize text-xl w-full font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent lg:text-4xl`}
+                  className={`capitalize text-xl w-[80%] font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent lg:text-lg`}
                 />
               </fieldset>
 
-              <fieldset className="w-[90%] border-[2px] px-4 py-2 pb-3 select-none lg:select-auto lg:py-3 rounded-xl cursor-not-allowed">
-                <legend className="font-slab text-stone-500 lg:text-lg">
+              <fieldset className="w-[80%] border-[2px] px-4 py-2 pb-3 select-none lg:select-auto lg:pt-1 lg:pb-0 rounded-xl cursor-not-allowed">
+                <legend className="font-slab text-black lg:text-sm font-bold">
                   Email
                 </legend>
-                <h1 className="text-xl font-roboto font-semibold tracking-wide">
+                <h1 className="font-roboto font-semibold tracking-wide text-lg">
                   {email}
                 </h1>
               </fieldset>
@@ -481,9 +484,9 @@ function Profile() {
                   onClick={() => {
                     setViewPassChange(true);
                   }}
-                  className="bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 w-fit px-5 py-2 text-lg font-slab text-white rounded-xl border-2 border-white mt-2 hover:scale-110 transition-all duration-300 ease-in-out shadow-marquee hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800"
+                  className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:duration-300 before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
                 >
-                  Change your password
+                  <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">Change your password</span>
                 </button>
               )}
 
