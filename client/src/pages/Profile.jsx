@@ -497,7 +497,7 @@ function Profile() {
                 style={{
                   userSelect: "none",
                 }}
-                className="w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-6 mt-4 lg:mt-6"
+                className="w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-6 mt-4 lg:mt-1"
               >
                 {editable ? (
                   <>
@@ -512,7 +512,7 @@ function Profile() {
                         setEnableSave(false);
                         setProfilePhoto(null);
                       }}
-                      className="flex justify-center items-center rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500  py-2 gap-2 px-4 lg:text-xl lg:px-5"
+                      className="border-2 flex items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-zinc-500 before:to-zinc-800 hover:border-white before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
                     >
                       <MdFreeCancellation size={"22px"} />
                       Cancel
@@ -522,7 +522,7 @@ function Profile() {
                       aria-label="Save Profile"
                       onClick={handleSubmit}
                       disabled={!enableSave}
-                      className="flex justify-center items-center rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500 disabled:cursor-not-allowed disabled:bg-gradient-to-r disabled:from-red-800 disabled:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
+                      className="border-2 flex items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-t before:from-green-500 before:to-green-900 hover:border-white before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base disabled:bg-gradient-to-tr disabled:text-white disabled:border-white disabled:cursor-not-allowed disabled:from-red-800 disabled:to-red-500"
                     >
                       <GiSave size={"22px"} />
                       Save
@@ -535,24 +535,11 @@ function Profile() {
                       onClick={() => {
                         setEditable(true);
                       }}
-                      className="flex justify-center items-center rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
+                      className="border-2 flex items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-green-500 before:to-green-800 hover:border-white before:-z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
                     >
                       <BiEdit size={"22px"} />
                       Edit Profile
                     </button>
-
-                    {subscription &&
-                      subscription?.status &&
-                      (subscription?.status === "created" ||
-                        subscription?.status === "active") && (
-                        <button
-                          onClick={handleCancelBundle}
-                          className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
-                        >
-                          <TbDeviceDesktopCancel size={"22px"} />
-                          Cancel Subscription
-                        </button>
-                      )}
                   </>
                 )}
               </div>
