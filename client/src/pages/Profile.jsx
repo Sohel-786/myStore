@@ -219,7 +219,6 @@ function Profile() {
         </div>
 
         <div className="w-[90%] h-[90%] lg:h-full flex flex-col lg:flex-row justify-center items-center shadow-profile rounded-lg">
-
           <div
             style={{ userSelect: "none" }}
             className="flex flex-col w-full h-[43%] items-center lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
