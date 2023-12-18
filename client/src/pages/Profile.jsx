@@ -387,13 +387,13 @@ function Profile() {
                         value={passwordData.oldPassword}
                       />
                       {viewOldPassword ? (
-                          <span type="button" className="z-10">
-                            <FiEye
-                              aria-label="eyeOn"
-                              className="text-xl"
-                              onClick={handleOldPassView}
-                            />
-                          </span>
+                        <span type="button" className="z-10">
+                          <FiEye
+                            aria-label="eyeOn"
+                            className="text-xl"
+                            onClick={handleOldPassView}
+                          />
+                        </span>
                       ) : (
                         <span type="button" className="z-10">
                           <FiEyeOff
