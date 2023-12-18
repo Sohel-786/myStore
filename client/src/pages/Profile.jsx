@@ -458,9 +458,9 @@ function Profile() {
                       <button
                         aria-label="Change the password"
                         onClick={handlePasswordSubmit}
-                        className="border-2 flex items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-sky-400 before:via-sky-600 before:to-sky-800 hover:border-white before:z-10 before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base"
+                        className="border-2 flex items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-sky-400 before:via-sky-600 before:to-sky-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base overflow-hidden"
                       >
-                        <span  className="z-[3]">SUBMIT</span>
+                        <span  className="z-[5]">SUBMIT</span>
                       </button>
 
                       <button
@@ -472,9 +472,9 @@ function Profile() {
                           });
                           setIsPasschange(false);
                         }}
-                        className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
+                        className="border-2 flex bg-black text-white items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-orange-400 before:via-orange-600 before:to-orange-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base overflow-hidden"
                       >
-                        CANCEL
+                        <span className="z-[5]">CANCEL</span>
                       </button>
                     </div>
                   </div>

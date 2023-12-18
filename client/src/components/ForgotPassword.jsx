@@ -111,14 +111,14 @@ function ForgotPassword({ hideForgotPass }) {
   return isLoggedIn ? (
     <div
       id="forgotPass"
-      className="hidden flex-col justify-center items-center w-[80%] md:w-[60%] lg:w-[60%] bg-white rounded-xl py-5 px-4"
+      className="hidden flex-col justify-center items-center w-[80%] md:w-[60%] lg:w-full font-Nova text-center bg-white py-5 px-4"
     >
       <div className="w-full bg-transparent flex flex-col justify-center items-center">
         <h1 className="font-roboto tracking-wide text-2xl font-semibold my-4">
           We'll send you a mail to your registered email address
         </h1>
 
-        <p className="font-mono text-lg font-semibold tracking-wider text-blue-500">
+        <p className="font-Slab my-2 text-lg font-semibold tracking-wider text-blue-500">
           {data.email.slice(0, 5)}**********
           {data.email.slice(data.email.length - 7, data.email.length)}
         </p>
@@ -133,9 +133,9 @@ function ForgotPassword({ hideForgotPass }) {
         <button
           aria-label="Continue Reset Password Process"
           onClick={handleCurrentSubmit}
-          className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
+          className="border-2 flex bg-black text-white items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-blue-400 before:via-blue-600 before:to-blue-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-lg overflow-hidden"
         >
-          Continue
+          <span className="z-[5]">Continue</span>
         </button>
 
         <button
@@ -146,9 +146,9 @@ function ForgotPassword({ hideForgotPass }) {
             });
             hideForgotPass();
           }}
-          className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-red-800 via-red-600 to-red-400 hover:bg-gradient-to-t hover:from-red-400 hover:via-red-600 hover:to-red-800 hover:scale-110 transition-all duration-300"
+          className="border-2 flex hover:text-white items-center gap-2 relative shadow-logBtn border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-red-400 before:via-red-600 before:to-red-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-lg overflow-hidden"
         >
-          CANCEL
+          <span className="z-[5]">Cancel</span>
         </button>
       </div>
     </div>
