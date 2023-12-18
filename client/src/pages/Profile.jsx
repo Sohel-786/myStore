@@ -218,10 +218,10 @@ function Profile() {
           />
         </div>
 
-        <div className="w-[90%] h-[90%] lg:h-full flex flex-col lg:flex-row justify-center items-center shadow-profile rounded-lg">
+        <div className="w-full h-[90%] lg:h-full flex flex-col lg:flex-row justify-center items-center shadow-profile rounded-lg">
           <div
             style={{ userSelect: "none" }}
-            className="flex flex-col w-full h-[43%] items-center lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
+            className="flex flex-col w-full h-[43%] items-center lg:h-full lg:items-center lg:w-[40%] lg:justify-normal"
           >
             <div className="w-full p-3 h-[20%] lg:h-auto">
               <div
@@ -247,10 +247,10 @@ function Profile() {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                 }}
-                className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[250px] lg:h-[250px] absolute top-[-50px] right-[-80px]"
+                className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[250px] lg:h-[250px] absolute top-[-50px] right-[-120px]"
               ></div>
 
-              <div id="profileBtn" className="hidden absolute flex-col gap-2">
+              <div id="profileBtn" className="hidden absolute top-14 right-[-25px] flex-col gap-2">
                 <button
                   aria-label="See the Image on Full Screen"
                   onClick={handleFullImageView}
