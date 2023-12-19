@@ -16,6 +16,7 @@ import UserLayout from "../layouts/UserLayout";
 import Drawer from "react-modern-drawer";
 import AddressCart from "../components/Profile/AddressCart";
 import Button from "../components/Button";
+import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
 
 function Profile() {
   const navigate = useNavigate();
@@ -567,16 +568,10 @@ function Profile() {
         <Drawer
           open={Address}
           onClose={toggleAddressDrawer}
-          direction="bottom"
-          size={"300px"}
+          direction="right"
+          size={"410px"}
         >
-            <div className="w-full h-full flex justify-center items-center">
-                    <div className="w-[50%] flex flex-col gap-2">
-                      <label htmlFor="address">Enter Your Address</label>
-
-                      <textarea name="address" id="address" rows={'5'} className="resize-none border-[1px] border-black rounded-lg p-2 "></textarea>
-                    </div>
-            </div>
+          <AddressAddUpdate />
         </Drawer>
       </div>
     </UserLayout>
