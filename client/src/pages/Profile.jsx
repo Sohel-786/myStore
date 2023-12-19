@@ -23,12 +23,11 @@ function Profile() {
   const { avatar, fullname, email, createdAt } = useSelector(
     (s) => s?.auth?.data
   );
-  const { isLoggedIn } = useSelector((s) => s?.auth);
 
   const [editable, setEditable] = useState(false);
   const [enableSave, setEnableSave] = useState(false);
 
-  const [forgotPassView, setForgotPassView] = useState(false);
+  const [Address, setAddress] = useState(false);
   const [isPassChange, setIsPasschange] = useState(false);
 
   const [viewPassChange, setViewPassChange] = useState(false);
@@ -202,6 +201,10 @@ function Profile() {
 
     const forgotPass = document.getElementById("forgotPass");
     forgotPass.style.display = "none";
+  }
+
+  function toggleAddressDrawer(){
+    setAddress(!Address);
   }
 
   return (
@@ -554,12 +557,27 @@ function Profile() {
 
         <div className="w-full flex justify-end items-center my-5">
           <button
-            onClick={onclick}
+            onClick={toggleAddressDrawer}
             className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-black before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
           >
             <span className="z-[5]">Add New Address</span>
           </button>
         </div>
+
+        <Drawer
+          open={Address}
+          onClose={toggleAddressDrawer}
+          direction="bottom"
+          size={"300px"}
+        >
+            <div className="w-full h-full flex justify-center items-center">
+                    <div className="w-[50%] flex flex-col gap-2">
+                      <label htmlFor="address">Enter Your Address</label>
+
+                      <textarea name="address" id="address" rows={'5'} className="resize-none border-[1px] border-black rounded-lg p-2 "></textarea>
+                    </div>
+            </div>
+        </Drawer>
       </div>
     </UserLayout>
   );
