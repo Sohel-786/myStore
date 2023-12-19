@@ -2,21 +2,24 @@ import { toast } from "react-toastify";
 import Button from "../Button";
 import { GoCopy } from "react-icons/go";
 
-
 function AddressCart({ data }) {
   return (
     <div className=" w-full rounded-md p-3 shadow-logBtn">
       <div className="py-3 px-2 rounded-md bg-blue-100 flex items-center">
         <h1 className="font-mono font-black capitalize w-[98%] pr-2">
-          This is the first address i am having so just show it as a demo.
-          This is the first address i am having so just show it as a demo.
-          This is the first address i am having so just show it as a demo.
+          This is the first address i am having so just show it as a demo. This
+          is the first address i am having so just show it as a demo. This is
+          the first address i am having so just show it as a demo.
         </h1>
-        <div onClick={() => {
+        <div
+          onClick={() => {
             navigator.clipboard.writeText(data);
-            toast.success(`Address`)
-        }} title="Copy" className="cursor-pointer w-8 h-8 rounded-full flex justify-center items-center hover:bg-cyan-200">
-            <GoCopy />
+            toast.success(`Address`);
+          }}
+          title="Copy"
+          className="cursor-pointer w-8 h-8 rounded-full flex justify-center items-center hover:bg-cyan-200"
+        >
+          <GoCopy />
         </div>
       </div>
       <div className="flex items-center mt-3 gap-3">
