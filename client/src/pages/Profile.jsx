@@ -552,12 +552,12 @@ function Profile() {
         </h1>
         <AddressCart data={"nothing"} />
 
-        <div className="w-full flex justify-end items-center">
+        <div className="w-full flex justify-end items-center my-5">
           <button
             onClick={onclick}
-            className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-black text-white hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-black before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-white before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
+            className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-black before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
           >
-            <span className="z-[5]">Change</span>
+            <span className="z-[5]">Add New Address</span>
           </button>
         </div>
       </div>
