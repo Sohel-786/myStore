@@ -15,13 +15,15 @@ import ForgotPassword from "../components/Profile/ForgotPassword";
 import UserLayout from "../layouts/UserLayout";
 import Drawer from "react-modern-drawer";
 import AddressCart from "../components/Profile/AddressCart";
+import Button from "../components/Button";
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { avatar, fullname, email, createdAt, subscription } = useSelector(
+  const { avatar, fullname, email, createdAt } = useSelector(
     (s) => s?.auth?.data
   );
+  const { isLoggedIn } = useSelector((s) => s?.auth);
 
   const [editable, setEditable] = useState(false);
   const [enableSave, setEnableSave] = useState(false);
@@ -37,7 +39,7 @@ function Profile() {
   const [formData, setFormdata] = useState({
     fullname: fullname,
     avatar: null,
-    previewImage: avatar.secure_url,
+    previewImage: avatar?.secure_url,
   });
 
   const [passwordData, setPasswordData] = useState({
@@ -200,15 +202,6 @@ function Profile() {
 
     const forgotPass = document.getElementById("forgotPass");
     forgotPass.style.display = "none";
-  }
-
-  async function handleCancelBundle() {
-    const res = await dispatch(cancelSubscription());
-    if (res?.payload?.data?.success) {
-      await dispatch(getUserData());
-      toast.success("Cancellation complete");
-      navigate("/");
-    }
   }
 
   return (
@@ -461,7 +454,7 @@ function Profile() {
                         onClick={handlePasswordSubmit}
                         className="border-2 flex items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-sky-400 before:via-sky-600 before:to-sky-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base overflow-hidden"
                       >
-                        <span  className="z-[5]">SUBMIT</span>
+                        <span className="z-[5]">SUBMIT</span>
                       </button>
 
                       <button
@@ -553,9 +546,21 @@ function Profile() {
           </div>
         </div>
       </div>
-        <div className="w-full px-16 flex flex-wrap items-center my-5">
-            <AddressCart data={'nothing'} />
+      <div className="w-full px-16 flex flex-wrap items-center my-5">
+        <h1 className="mb-4 font-Slab font-bold tracking-wide text-2xl text-zinc-500">
+          Registered Addresses
+        </h1>
+        <AddressCart data={"nothing"} />
+
+        <div className="w-full flex justify-end items-center">
+          <button
+            onClick={onclick}
+            className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-black text-white hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-black before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-white before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
+          >
+            <span className="z-[5]">Change</span>
+          </button>
         </div>
+      </div>
     </UserLayout>
   );
 }
