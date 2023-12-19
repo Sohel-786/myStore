@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import axiosInstance from "../config/axiosInstance";
+import axiosInstance from "../../config/axiosInstance";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
-import { isEmail } from "../helpers/RegexMatcher";
+import { isEmail } from "../../helpers/RegexMatcher";
 import { MdEmail } from "react-icons/md";
 
 function ForgotPassword({ hideForgotPass }) {

@@ -11,9 +11,10 @@ import { toast } from "react-toastify";
 import axiosInstance from "../config/axiosInstance";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
-import ForgotPassword from "../components/ForgotPassword";
+import ForgotPassword from "../components/Profile/ForgotPassword";
 import UserLayout from "../layouts/UserLayout";
 import Drawer from "react-modern-drawer";
+import AddressCart from "../components/Profile/AddressCart";
 
 function Profile() {
   const navigate = useNavigate();
@@ -552,6 +553,9 @@ function Profile() {
           </div>
         </div>
       </div>
+        <div className="w-full px-16 flex flex-wrap items-center my-5">
+            <AddressCart data={'nothing'} />
+        </div>
     </UserLayout>
   );
 }
