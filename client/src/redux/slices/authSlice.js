@@ -45,19 +45,22 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
   }
 });
 
-export const getUserDetails = createAsyncThunk("/auth/getUserDetails", async () => {
-  try {
-    const res = axiosInstance.get("/user/me");
-    toast.promise(res, {
-      pending: "Wait! Getting Profile Data",
-      success: "Done",
-      error: "Failed to Load Profile Data",
-    });
-    return await res;
-  } catch (err) {
-    toast.error(err?.response?.data?.message);
+export const getUserDetails = createAsyncThunk(
+  "/auth/getUserDetails",
+  async () => {
+    try {
+      const res = axiosInstance.get("/user/me");
+      toast.promise(res, {
+        pending: "Wait! Getting Profile Data",
+        success: "Done",
+        error: "Failed to Load Profile Data",
+      });
+      return await res;
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
   }
-});
+);
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
   try {

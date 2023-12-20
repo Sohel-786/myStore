@@ -205,7 +205,7 @@ function Profile() {
     forgotPass.style.display = "none";
   }
 
-  function toggleAddressDrawer(){
+  function toggleAddressDrawer() {
     setAddress(!Address);
   }
 

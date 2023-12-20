@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { getUserDetails } from "../../redux/slices/authSlice";
 
 function AddressAddUpdate({ Addressdata, toggle }) {
-
   const dispatch = useDispatch();
   const [data, setData] = useState(
     Addressdata

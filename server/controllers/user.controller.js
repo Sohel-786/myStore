@@ -141,13 +141,13 @@ export const getUser = async (req, res) => {
   }
 };
 
-export const addAddress = async(req, res,next) => {
+export const addAddress = async (req, res, next) => {
   try {
     const { address, country, state, city, postal } = req.body;
-    
-    if((!address, !country, !state, !city, !postal)){
-      return next(new AppError("All input fields are required", 400))
-    };
+
+    if ((!address, !country, !state, !city, !postal)) {
+      return next(new AppError("All input fields are required", 400));
+    }
 
     const user = await User.findById(req.user.id);
     if (!user) {
@@ -159,17 +159,16 @@ export const addAddress = async(req, res,next) => {
       country,
       state,
       city,
-      postal
+      postal,
     });
 
     user.save();
 
     return res.status(201).json({
-      success : true,
-      message : 'Address Added Successfully'
-    })
-
+      success: true,
+      message: "Address Added Successfully",
+    });
   } catch (e) {
     return res.status(400).send(err.message);
   }
-}
+};
