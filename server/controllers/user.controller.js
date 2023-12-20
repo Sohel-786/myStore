@@ -1,3 +1,4 @@
+import { off } from "process";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher.js";
 import User from "../models/user.model.js";
 import AppError from "../utils/appError.js";
@@ -140,3 +141,36 @@ export const getUser = async (req, res) => {
     return res.status(400).send(err.message);
   }
 };
+
+export const addAddress = async(req, res,next) => {
+  try {
+    const { address, country, state, city, postal } = req.body;
+    
+    if((!address, !country, !state, !city, !postal)){
+      return next(new AppError("All input fields are required", 400))
+    };
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    user.address.push({
+      address,
+      country,
+      state,
+      city,
+      postal
+    });
+
+    user.save();
+
+    return res.status(201).json({
+      success : true,
+      message : 'Address Added Successfully'
+    })
+
+  } catch (e) {
+    return res.status(400).send(err.message);
+  }
+}

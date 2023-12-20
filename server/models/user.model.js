@@ -24,6 +24,31 @@ const userSchema = new Schema(
       {
         address: {
           type: String,
+          required: [true, "Address is Required"],
+          trim: true,
+          lowercase: true,
+        },
+        country : {
+          type: String,
+          required: [true, "Country Name is Required"],
+          trim: true,
+          lowercase: true,
+        },
+        state : {
+          type: String,
+          required: [true, "State Name is Required"],
+          trim: true,
+          lowercase: true,
+        },
+        city : {
+          type: String,
+          required: [true, "City Name is Required"],
+          trim: true,
+          lowercase: true,
+        },
+        postal : {
+          type: String,
+          required: [true, "City Name is Required"],
           trim: true,
           lowercase: true,
         },
