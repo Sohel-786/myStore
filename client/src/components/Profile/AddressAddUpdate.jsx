@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../config/axiosInstance";
 import { nanoid } from "nanoid";
+import axios from "axios";
 
 function AddressAddUpdate({ Addressdata }) {
   var headers = new Headers();
@@ -12,8 +13,8 @@ function AddressAddUpdate({ Addressdata }) {
         }
       : {
           address: "",
-          country: "",
-          state: "",
+          country: "India",
+          state: "Gujarat",
           city: "",
           postal: "",
         }
@@ -26,19 +27,61 @@ function AddressAddUpdate({ Addressdata }) {
     handleCountries();
   }, []);
 
+  useEffect(() => {
+    handleCities(data.country, data.state);
+  }, [data.state]);
+
   async function handleCountries() {
     let { data } = await axiosInstance.get("/country-data");
 
     setCountryData(data.data);
   }
 
+  async function handleCities(country, state) {
+    try {
+      let { data: res } = await axios.post(
+        "https://countriesnow.space/api/v0.1/countries/state/cities",
+        {
+          country,
+          state,
+        }
+      );
+      setCities(res.data);
+    } catch (e) {
+      console.log("Error");
+    }
+  }
+
   function handleChange(e) {
     const { value, name } = e.target;
 
-    setData({
-      ...data,
-      [name]: value,
+    setData(function (s) {
+      return {
+        ...s,
+        [name]: value,
+      };
     });
+
+    if (name === "country") {
+      if (countryData[value].length === 0) {
+        setData(function (s) {
+          return {
+            ...s,
+            state: "Not Available",
+            city: "Not Available",
+          };
+        });
+
+        setCities(["Not Available"]);
+      } else {
+        setData(function (s) {
+          return {
+            ...s,
+            state: countryData[value][0],
+          };
+        });
+      }
+    }
   }
 
   function handleSubmit() {}
@@ -77,7 +120,9 @@ function AddressAddUpdate({ Addressdata }) {
           className="border-black border-2 rounded-sm px-2 py-2"
           value={data.country}
         >
-          {countryData && (
+          {!countryData ? (
+            <option value={data.country}>{data.country}</option>
+          ) : (
             <>
               {Object.keys(countryData).map((el) => {
                 return (
@@ -99,13 +144,17 @@ function AddressAddUpdate({ Addressdata }) {
           State / Province / Region
         </label>
         <select
+          onChange={handleChange}
           name="state"
           id="state"
           className="border-black border-2 rounded-sm px-2 py-2"
+          value={data.state}
         >
-          {data.country !== "" && (
+          {!countryData ? (
+            <option value={data.state}>{data.state}</option>
+          ) : (
             <>
-              {countryData[data.country].map((el) => {
+              {countryData[data.country].length === 0 ? <option value={'Not Available'}>{'Not Available'}</option>  : countryData[data.country].map((el) => {
                 return (
                   <option key={nanoid(4)} value={el}>
                     {el}
@@ -127,11 +176,12 @@ function AddressAddUpdate({ Addressdata }) {
               City
             </label>
             <select
+              onChange={handleChange}
               name="city"
               id="city"
               className="border-black border-2 rounded-sm px-2 py-2 w-full"
             >
-              {data.country && data.state && cities !== "" && (
+              {cities && (
                 <>
                   {cities.map((el) => {
                     return (
