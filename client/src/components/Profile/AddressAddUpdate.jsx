@@ -39,18 +39,20 @@ function AddressAddUpdate({ Addressdata }) {
   }
 
   async function handleCities(country, state) {
-   if(data.state !== 'not available'){ try {
-      let { data: res } = await axios.post(
-        "https://countriesnow.space/api/v0.1/countries/state/cities",
-        {
-          country,
-          state,
-        }
-      );
-      setCities(res.data);
-    } catch (e) {
-      console.log("Error");
-    }}
+    if (data.state !== "not available") {
+      try {
+        let { data: res } = await axios.post(
+          "https://countriesnow.space/api/v0.1/countries/state/cities",
+          {
+            country,
+            state,
+          }
+        );
+        setCities(res.data);
+      } catch (e) {
+        console.log("Error");
+      }
+    }
   }
 
   function handleChange(e) {
@@ -73,7 +75,7 @@ function AddressAddUpdate({ Addressdata }) {
           };
         });
 
-        setCities(["Not Available"]);
+        setCities([]);
       } else {
         setData(function (s) {
           return {
@@ -104,9 +106,11 @@ function AddressAddUpdate({ Addressdata }) {
           Enter Your Address
         </label>
         <textarea
+          onChange={handleChange}
           name="address"
           id="address"
           rows="3"
+          value={data.address}
           className="border-2 border-gray-500 resize-none rounded-md p-2"
         ></textarea>
         <p className="font-Roboto text-[13px] mt-1">
@@ -162,13 +166,17 @@ function AddressAddUpdate({ Addressdata }) {
             <option value={data.state}>{data.state}</option>
           ) : (
             <>
-              {countryData[data.country].length === 0 ? <option value={'Not Available'}>{'Not Available'}</option>  : countryData[data.country].map((el) => {
-                return (
-                  <option key={nanoid(4)} value={el}>
-                    {el}
-                  </option>
-                );
-              })}
+              {countryData[data.country].length === 0 ? (
+                <option value={"Not Available"}>{"Not Available"}</option>
+              ) : (
+                countryData[data.country].map((el) => {
+                  return (
+                    <option key={nanoid(4)} value={el}>
+                      {el}
+                    </option>
+                  );
+                })
+              )}
             </>
           )}
         </select>
@@ -192,7 +200,7 @@ function AddressAddUpdate({ Addressdata }) {
             >
               {cities && (
                 <>
-                  {cities.map((el) => {
+                  {cities.length === 0 ? <option value={'Not Available'}>{'Not Available'}</option> : cities.map((el) => {
                     return (
                       <option key={nanoid(4)} value={el} className="capitalize">
                         {el}
@@ -211,9 +219,11 @@ function AddressAddUpdate({ Addressdata }) {
               Zip / Postal Code
             </label>
             <input
+              onChange={handleChange}
               name="postal"
               id="postal"
               className="border-2 border-gray-500 resize-none rounded-md p-2"
+              value={data.postal}
             />
           </div>
         </div>
