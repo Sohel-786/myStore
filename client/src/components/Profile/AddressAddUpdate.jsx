@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../config/axiosInstance";
 import { nanoid } from "nanoid";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function AddressAddUpdate({ Addressdata }) {
   var headers = new Headers();
@@ -38,7 +39,7 @@ function AddressAddUpdate({ Addressdata }) {
   }
 
   async function handleCities(country, state) {
-    try {
+   if(data.state !== 'not available'){ try {
       let { data: res } = await axios.post(
         "https://countriesnow.space/api/v0.1/countries/state/cities",
         {
@@ -49,7 +50,7 @@ function AddressAddUpdate({ Addressdata }) {
       setCities(res.data);
     } catch (e) {
       console.log("Error");
-    }
+    }}
   }
 
   function handleChange(e) {
@@ -67,8 +68,8 @@ function AddressAddUpdate({ Addressdata }) {
         setData(function (s) {
           return {
             ...s,
-            state: "Not Available",
-            city: "Not Available",
+            state: "not available",
+            city: "not available",
           };
         });
 
@@ -84,7 +85,14 @@ function AddressAddUpdate({ Addressdata }) {
     }
   }
 
-  function handleSubmit() {}
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if ((!data.address, !data.country, !data.state, !data.city, !data.postal)) {
+      toast.error("Please Fill all the field");
+      return;
+    }
+  }
 
   return (
     <div className="h-full w-full flex justify-center items-center">
@@ -180,12 +188,13 @@ function AddressAddUpdate({ Addressdata }) {
               name="city"
               id="city"
               className="border-black border-2 rounded-sm px-2 py-2 w-full"
+              value={data.city}
             >
               {cities && (
                 <>
                   {cities.map((el) => {
                     return (
-                      <option key={nanoid(4)} value={el}>
+                      <option key={nanoid(4)} value={el} className="capitalize">
                         {el}
                       </option>
                     );
@@ -212,6 +221,7 @@ function AddressAddUpdate({ Addressdata }) {
         <hr className="my-5" />
 
         <button
+          type="submit"
           aria-label="Save Address"
           onClick={() => {}}
           className="border-2 flex bg-black text-white justify-center items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-zinc-400 before:via-zinc-600 before:to-zinc-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base overflow-hidden"
