@@ -569,7 +569,7 @@ function Profile() {
           open={Address}
           onClose={toggleAddressDrawer}
           direction="right"
-          size={"410px"}
+          size={"450px"}
         >
           <AddressAddUpdate />
         </Drawer>
