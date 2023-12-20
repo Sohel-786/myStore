@@ -3,10 +3,12 @@ import axiosInstance from "../../config/axiosInstance";
 import { nanoid } from "nanoid";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { getUserDetails } from "../../redux/slices/authSlice";
 
-function AddressAddUpdate({ Addressdata }) {
-  var headers = new Headers();
-  headers.append("X-CSCAPI-KEY", "API_KEY");
+function AddressAddUpdate({ Addressdata, toggle }) {
+
+  const dispatch = useDispatch();
   const [data, setData] = useState(
     Addressdata
       ? {
@@ -87,12 +89,37 @@ function AddressAddUpdate({ Addressdata }) {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if ((!data.address, !data.country, !data.state, !data.city, !data.postal)) {
       toast.error("Please Fill all the field");
       return;
+    }
+
+    try {
+      const res = axiosInstance.post("/user/add-address", data);
+      toast.promise(res, {
+        pending: "Wait, Adding your address",
+        success: "Address Added Successfully",
+        error: "Something Went Wrong",
+      });
+
+      await res;
+      if (res?.data?.success) {
+        setData({
+          address: "",
+          country: "India",
+          state: "Gujarat",
+          city: "",
+          postal: "",
+        });
+
+        toggle();
+        dispatch(getUserDetails());
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
     }
   }
 
@@ -200,13 +227,21 @@ function AddressAddUpdate({ Addressdata }) {
             >
               {cities && (
                 <>
-                  {cities.length === 0 ? <option value={'Not Available'}>{'Not Available'}</option> : cities.map((el) => {
-                    return (
-                      <option key={nanoid(4)} value={el} className="capitalize">
-                        {el}
-                      </option>
-                    );
-                  })}
+                  {cities.length === 0 ? (
+                    <option value={"Not Available"}>{"Not Available"}</option>
+                  ) : (
+                    cities.map((el) => {
+                      return (
+                        <option
+                          key={nanoid(4)}
+                          value={el}
+                          className="capitalize"
+                        >
+                          {el}
+                        </option>
+                      );
+                    })
+                  )}
                 </>
               )}{" "}
             </select>

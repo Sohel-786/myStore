@@ -17,6 +17,7 @@ import Drawer from "react-modern-drawer";
 import AddressCart from "../components/Profile/AddressCart";
 import Button from "../components/Button";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
+import { getUserDetails } from "../redux/slices/authSlice";
 
 function Profile() {
   const navigate = useNavigate();
@@ -571,7 +572,7 @@ function Profile() {
           direction="right"
           size={"450px"}
         >
-          <AddressAddUpdate />
+          <AddressAddUpdate toggle={toggleAddressDrawer} />
         </Drawer>
       </div>
     </UserLayout>
