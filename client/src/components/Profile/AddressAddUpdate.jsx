@@ -1,7 +1,47 @@
-import Button from "../Button";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../config/axiosInstance";
+import { nanoid } from "nanoid";
 
-function AddressAddUpdate() {
+function AddressAddUpdate({ Addressdata }) {
+  var headers = new Headers();
+  headers.append("X-CSCAPI-KEY", "API_KEY");
+  const [data, setData] = useState(
+    Addressdata
+      ? {
+          ...Addressdata,
+        }
+      : {
+          address: "",
+          country: "",
+          state: "",
+          city: "",
+          postal: "",
+        }
+  );
+
+  const [countryData, setCountryData] = useState(null);
+
+  useEffect(() => {
+    handleCountries();
+  }, []);
+
+  async function handleCountries() {
+    let { data } = await axiosInstance.get("/country-data");
+
+    setCountryData(data.data);
+  }
+
+  function handleChange(e){
+    const { value, name } = e.target;
+
+    setData({
+      ...data,
+      [name] : value
+    })
+  }
+
   function handleSubmit() {}
+
   return (
     <div className="h-full w-full flex justify-center items-center">
       <form onSubmit={handleSubmit} className="w-full px-8 flex flex-col">
@@ -30,11 +70,25 @@ function AddressAddUpdate() {
           Country
         </label>
         <select
+          onChange={handleChange}
           name="country"
           id="country"
           className="border-black border-2 rounded-sm px-2 py-2"
+          value={data.country}
         >
-          <option value={"India"}>India</option>
+          {countryData && (
+            <>
+              {
+                Object.keys(countryData).map((el) => {
+                return (
+                  <option key={nanoid(4)} value={el}>
+                    {el}
+                  </option>
+                );
+              })
+              }
+            </>
+          )}
         </select>
 
         <hr className="my-3" />
@@ -50,7 +104,17 @@ function AddressAddUpdate() {
           id="state"
           className="border-black border-2 rounded-sm px-2 py-2"
         >
-          <option value={"gujrat"}>Gujrat</option>
+          {data.country !== "" && (
+            <>
+              {countryData[data.country].map((el) => {
+                return (
+                  <option key={nanoid(4)} value={el}>
+                    {el}
+                  </option>
+                );
+              })}
+            </>
+          )}
         </select>
 
         <hr className="my-3" />
@@ -90,9 +154,7 @@ function AddressAddUpdate() {
 
         <button
           aria-label="Save Address"
-          onClick={() => {
-
-          }}
+          onClick={() => {}}
           className="border-2 flex bg-black text-white justify-center items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-zinc-400 before:via-zinc-600 before:to-zinc-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base overflow-hidden"
         >
           <span className="z-[5]">SAVE</span>
