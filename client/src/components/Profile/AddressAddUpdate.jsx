@@ -20,6 +20,7 @@ function AddressAddUpdate({ Addressdata }) {
   );
 
   const [countryData, setCountryData] = useState(null);
+  const [cities, setCities] = useState(null);
 
   useEffect(() => {
     handleCountries();
@@ -31,13 +32,13 @@ function AddressAddUpdate({ Addressdata }) {
     setCountryData(data.data);
   }
 
-  function handleChange(e){
+  function handleChange(e) {
     const { value, name } = e.target;
 
     setData({
       ...data,
-      [name] : value
-    })
+      [name]: value,
+    });
   }
 
   function handleSubmit() {}
@@ -78,15 +79,13 @@ function AddressAddUpdate({ Addressdata }) {
         >
           {countryData && (
             <>
-              {
-                Object.keys(countryData).map((el) => {
+              {Object.keys(countryData).map((el) => {
                 return (
                   <option key={nanoid(4)} value={el}>
                     {el}
                   </option>
                 );
-              })
-              }
+              })}
             </>
           )}
         </select>
@@ -132,7 +131,17 @@ function AddressAddUpdate({ Addressdata }) {
               id="city"
               className="border-black border-2 rounded-sm px-2 py-2 w-full"
             >
-              <option value={"ahmedabad"}>Ahmedabad</option>
+              {data.country && data.state && cities !== "" && (
+                <>
+                  {cities.map((el) => {
+                    return (
+                      <option key={nanoid(4)} value={el}>
+                        {el}
+                      </option>
+                    );
+                  })}
+                </>
+              )}{" "}
             </select>
           </div>
           <div className="w-[50%]">
