@@ -35,7 +35,9 @@ function AddressCart({ data, handleChange, handleDelete }) {
       </div>
       <div className="flex items-center mt-3 gap-3">
         <button
-          onClick={handleChange}
+          onClick={() => {
+            handleChange(data);
+          }}
           className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-black text-white hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-black before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-white before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
         >
           <span className="z-[5]">Change</span>

@@ -33,6 +33,7 @@ function Profile() {
 
   const [Address, setAddress] = useState(false);
   const [isPassChange, setIsPasschange] = useState(false);
+  const [addressData, setAddressData] = useState(null);
 
   const [viewPassChange, setViewPassChange] = useState(false);
   const [viewOldPassword, setViewOldpassword] = useState(false);
@@ -211,7 +212,11 @@ function Profile() {
     setAddress(!Address);
   }
 
-  function handleAddressChange() {}
+  function handleAddressChange(data) {
+    setAddressData(data);
+    console.log('sohel');
+    toggleAddressDrawer();
+  }
 
   function handleDelete() {}
 
@@ -600,7 +605,7 @@ function Profile() {
           direction="right"
           size={"450px"}
         >
-          <AddressAddUpdate toggle={toggleAddressDrawer} />
+          <AddressAddUpdate Addressdata={addressData} toggle={toggleAddressDrawer} />
         </Drawer>
       </div>
     </UserLayout>
