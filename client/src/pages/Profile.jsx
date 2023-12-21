@@ -214,7 +214,7 @@ function Profile() {
 
   function handleAddressChange(data) {
     setAddressData(data);
-    console.log('sohel');
+    console.log("sohel");
     toggleAddressDrawer();
   }
 
@@ -570,7 +570,7 @@ function Profile() {
         <hr />
 
         <div className="w-full h-auto flex gap-10 items-center my-5">
-          {address ? (
+          {address && (
             <>
               {address.map((el) => {
                 return (
@@ -583,14 +583,13 @@ function Profile() {
                 );
               })}
             </>
-          ) : (
-            <div>
-              <h1>No Address Added Yet.</h1>
-            </div>
           )}
           <div className="w-fit flex justify-center items-center">
             <div
-              onClick={toggleAddressDrawer}
+              onClick={() => {
+                setAddressData(null);
+                toggleAddressDrawer();
+              }}
               title="Add Address"
               className="p-5 rounded-full bg-blue-200 flex justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out hover:bg-blue-100 text-blue-500 hover:text-blue-600"
             >
@@ -605,7 +604,10 @@ function Profile() {
           direction="right"
           size={"450px"}
         >
-          <AddressAddUpdate Addressdata={addressData} toggle={toggleAddressDrawer} />
+          <AddressAddUpdate
+            Addressdata={addressData}
+            toggle={toggleAddressDrawer}
+          />
         </Drawer>
       </div>
     </UserLayout>
