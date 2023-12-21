@@ -559,7 +559,7 @@ function Profile() {
           Registered Addresses
         </h1>
 
-        <div className="w-full flex gap-10 items-center my-5">
+        <div className="w-full h-auto flex gap-10 items-center my-5">
           {address ? (
             <>
               {address.map((el) => {
@@ -571,9 +571,9 @@ function Profile() {
               <h1>No Address Added Yet.</h1>
             </div>
           )}
-          <div className="w-[200px] h-full flex justify-center items-center">
-            <div className=" p-6 rounded-full bg-blue-100 flex justify-center items-center">
-            <IoAdd />
+          <div className="w-fit flex justify-center items-center">
+            <div onClick={toggleAddressDrawer} title="Add Address" className="p-5 rounded-full bg-blue-200 flex justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out hover:bg-blue-100 text-blue-500 hover:text-blue-600">
+            <IoAdd size={'70px'} />
             </div>
           </div>
         </div>
