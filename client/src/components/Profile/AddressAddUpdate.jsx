@@ -8,19 +8,23 @@ import { getUserDetails } from "../../redux/slices/authSlice";
 
 function AddressAddUpdate({ Addressdata, toggle }) {
   const dispatch = useDispatch();
-  const [data, setData] = useState(
-    Addressdata
-      ? {
-          ...Addressdata,
-        }
-      : {
-          address: "",
-          country: "India",
-          state: "Gujarat",
-          city: "",
-          postal: "",
-        }
-  );
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    setData(
+      Addressdata
+        ? {
+            ...Addressdata,
+          }
+        : {
+            address: "",
+            country: "India",
+            state: "Gujarat",
+            city: "",
+            postal: "",
+          }
+    );
+  }, [Addressdata]);
 
   const [countryData, setCountryData] = useState(null);
   const [cities, setCities] = useState(null);
@@ -30,7 +34,9 @@ function AddressAddUpdate({ Addressdata, toggle }) {
   }, []);
 
   useEffect(() => {
-    handleCities(data.country, data.state);
+    if(data.state){
+      handleCities(data?.country, data?.state);
+    }
   }, [data.state]);
 
   async function handleCountries() {
@@ -122,8 +128,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
     }
   }
 
-  return (
-    <div className="h-full w-full flex justify-center items-center select-none">
+  return  data && <div className="h-full w-full flex justify-center items-center select-none">
       <form onSubmit={handleSubmit} className="w-full px-8 flex flex-col">
         <label
           htmlFor="address"
@@ -136,7 +141,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           name="address"
           id="address"
           rows="3"
-          value={data.address}
+          value={data?.address}
           className="border-2 border-gray-500 resize-none rounded-md p-2"
         ></textarea>
         <p className="font-Roboto text-[13px] mt-1">
@@ -156,10 +161,10 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           name="country"
           id="country"
           className="border-black border-2 rounded-sm px-2 py-2"
-          value={data.country}
+          value={data?.country}
         >
           {!countryData ? (
-            <option value={data.country}>{data.country}</option>
+            <option value={data?.country}>{data?.country}</option>
           ) : (
             <>
               {Object.keys(countryData).map((el) => {
@@ -186,16 +191,16 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           name="state"
           id="state"
           className="border-black border-2 rounded-sm px-2 py-2"
-          value={data.state}
+          value={data?.state}
         >
           {!countryData ? (
-            <option value={data.state}>{data.state}</option>
+            <option value={data?.state}>{data?.state}</option>
           ) : (
             <>
-              {countryData[data.country].length === 0 ? (
+              {countryData[data?.country].length === 0 ? (
                 <option value={"Not Available"}>{"Not Available"}</option>
               ) : (
-                countryData[data.country].map((el) => {
+                countryData[data?.country].map((el) => {
                   return (
                     <option key={nanoid(4)} value={el}>
                       {el}
@@ -273,8 +278,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           <span className="z-[5]">SAVE</span>
         </button>
       </form>
-    </div>
-  );
+    </div>;
 }
 
 export default AddressAddUpdate;
