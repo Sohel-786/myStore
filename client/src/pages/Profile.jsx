@@ -552,14 +552,14 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="w-full px-16 flex flex-wrap items-center my-5">
+      <div className="w-full px-16 flex flex-col flex-wrap my-5">
         <h1 className="mb-4 font-Slab font-bold tracking-wide text-2xl text-zinc-500">
           Registered Addresses
         </h1>
         {
-          address ?  <>{
+          address ? <>{
             address.map((el) => {
-              <AddressCart key={nanoid(4)} data={el} />
+              return <AddressCart key={nanoid(4)} data={el} />
             })
           }</> : <div>
             <h1>No Address Added Yet.</h1>

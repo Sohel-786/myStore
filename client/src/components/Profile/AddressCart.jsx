@@ -6,19 +6,29 @@ function AddressCart({ data }) {
   const { address, country, state, city, postal } = data;
 
   return (
-    <div className=" w-full rounded-md p-3 shadow-logBtn">
-      <div className="py-3 px-2 rounded-md bg-blue-100 flex items-center">
-        <h1 className="font-mono font-black capitalize w-[98%] pr-2">
-          {address}
+    <div className="w-[40%] rounded-md p-3 shadow-logBtn relative">
+      <div className="py-3 px-2 rounded-md bg-blue-100 flex flex-col items-center">
+        <h1 className="font-Nova font-black capitalize pr-2">
+          {address}.
+          <br/>
+          <span>{state}</span>, {" "}
+          <span className="capitalize">{city}</span>-<span>{postal}.</span><br/>
+          <span className="capitalize">{country}</span>
         </h1>
-        
+
+
         <div
           onClick={() => {
-            navigator.clipboard.writeText(data);
-            toast.success(`Address`);
+            navigator.clipboard.writeText( (address +" "+ state +" "+ city +" "+ postal +" "+ country));
+            toast.success(`Address`,{
+              position: 'bottom-right',
+              autoClose: 500,
+              theme : "dark",
+              hideProgressBar: true,
+            });
           }}
           title="Copy"
-          className="cursor-pointer w-8 h-8 rounded-full flex justify-center items-center hover:bg-cyan-200"
+          className="cursor-pointer absolute right-0 top-0 w-8 h-8 rounded-full flex justify-center items-center hover:bg-cyan-200"
         >
           <GoCopy />
         </div>
