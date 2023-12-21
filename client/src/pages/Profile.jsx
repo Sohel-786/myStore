@@ -18,11 +18,12 @@ import AddressCart from "../components/Profile/AddressCart";
 import Button from "../components/Button";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
 import { getUserDetails } from "../redux/slices/authSlice";
+import { nanoid } from "nanoid";
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { avatar, fullname, email, createdAt } = useSelector(
+  const { avatar, fullname, email, createdAt, address } = useSelector(
     (s) => s?.auth?.data
   );
 
@@ -555,14 +556,22 @@ function Profile() {
         <h1 className="mb-4 font-Slab font-bold tracking-wide text-2xl text-zinc-500">
           Registered Addresses
         </h1>
-        <AddressCart data={"nothing"} />
-
+        {
+          address ?  <>{
+            address.map((el) => {
+              <AddressCart key={nanoid(4)} data={el} />
+            })
+          }</> : <div>
+            <h1>No Address Added Yet.</h1>
+          </div> 
+        }
+        
         <div className="w-full flex justify-end items-center my-5">
           <button
             onClick={toggleAddressDrawer}
             className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-black before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
           >
-            <span className="z-[5]">Add New Address</span>
+            <span className="z-[5]">Add Address</span>
           </button>
         </div>
 
