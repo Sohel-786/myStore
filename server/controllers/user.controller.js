@@ -172,3 +172,39 @@ export const addAddress = async (req, res, next) => {
     return res.status(400).send(err.message);
   }
 };
+
+export const updateAddress = async (req, res, next) => {
+  try {
+    const { address, country, state, city, postal, _id } = req.body;
+
+    if ((!address, !country, !state, !city, !postal)) {
+      return next(new AppError("All input fields are required", 400));
+    }
+
+    const userCheck = await User.findById(req.user.id);
+    if (!userCheck) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+    const user = await User.findOne({_id : req.user.id, 'address._id' : _id});
+    if (!user) {
+      return next(new AppError("Such Address Doesn't Exist", 400));
+    }
+
+    user.address.push({
+      address,
+      country,
+      state,
+      city,
+      postal,
+    });
+
+    user.save();
+
+    return res.status(201).json({
+      success: true,
+      message: "Address Added Successfully",
+    });
+  } catch (e) {
+    return res.status(400).send(err.message);
+  }
+};
