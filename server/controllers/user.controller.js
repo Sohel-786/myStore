@@ -185,18 +185,12 @@ export const updateAddress = async (req, res, next) => {
     if (!userCheck) {
       return next(new AppError("Unauthenticated, please login", 400));
     }
-    const user = await User.findOne({_id : req.user.id, 'address._id' : _id});
+    const user = await User.findByIdAndUpdate(req.user.id, {$set : {`address.${_id}` :}});
     if (!user) {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
 
-    user.address.push({
-      address,
-      country,
-      state,
-      city,
-      postal,
-    });
+    user
 
     user.save();
 
