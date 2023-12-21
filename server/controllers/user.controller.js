@@ -185,18 +185,34 @@ export const updateAddress = async (req, res, next) => {
     if (!userCheck) {
       return next(new AppError("Unauthenticated, please login", 400));
     }
-    const user = await User.findByIdAndUpdate(req.user.id, {$set : {`address.${_id}` :}});
+    const user = await User.updateOne(
+      {
+        _id: req.user.id,
+        address: {
+          $elemMatch: {
+            _id: _id,
+          },
+        },
+      },
+      {
+        $set: {
+          "address.$[inner].country": country,
+        },
+      },
+      {
+        arrayFilters: [{ "inner._id": _id }],
+      }
+    );
+
     if (!user) {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
-
-    user
 
     user.save();
 
     return res.status(201).json({
       success: true,
-      message: "Address Added Successfully",
+      message: "Updated Successfully",
     });
   } catch (e) {
     return res.status(400).send(err.message);
