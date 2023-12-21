@@ -123,7 +123,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
   }
 
   return (
-    <div className="h-full w-full flex justify-center items-center">
+    <div className="h-full w-full flex justify-center items-center select-none">
       <form onSubmit={handleSubmit} className="w-full px-8 flex flex-col">
         <label
           htmlFor="address"

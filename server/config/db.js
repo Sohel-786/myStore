@@ -10,7 +10,7 @@ export default async () => {
         console.log(`Connection to MongoDB : ${connection.host}`)
         }
     } catch (e) {
-        console.log(err);
+        console.log(e);
         process.exit(1);
     }
 }

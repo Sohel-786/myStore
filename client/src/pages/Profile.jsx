@@ -21,7 +21,6 @@ import { getUserDetails } from "../redux/slices/authSlice";
 import { nanoid } from "nanoid";
 import { IoAdd } from "react-icons/io5";
 
-
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -211,6 +210,10 @@ function Profile() {
   function toggleAddressDrawer() {
     setAddress(!Address);
   }
+
+  function handleAddressChange() {}
+
+  function handleDelete() {}
 
   return (
     <UserLayout>
@@ -559,11 +562,20 @@ function Profile() {
           Registered Addresses
         </h1>
 
+        <hr />
+
         <div className="w-full h-auto flex gap-10 items-center my-5">
           {address ? (
             <>
               {address.map((el) => {
-                return <AddressCart key={nanoid(4)} data={el} />;
+                return (
+                  <AddressCart
+                    key={nanoid(4)}
+                    data={el}
+                    handleChange={handleAddressChange}
+                    handleDelete={handleDelete}
+                  />
+                );
               })}
             </>
           ) : (
@@ -572,8 +584,12 @@ function Profile() {
             </div>
           )}
           <div className="w-fit flex justify-center items-center">
-            <div onClick={toggleAddressDrawer} title="Add Address" className="p-5 rounded-full bg-blue-200 flex justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out hover:bg-blue-100 text-blue-500 hover:text-blue-600">
-            <IoAdd size={'70px'} />
+            <div
+              onClick={toggleAddressDrawer}
+              title="Add Address"
+              className="p-5 rounded-full bg-blue-200 flex justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out hover:bg-blue-100 text-blue-500 hover:text-blue-600"
+            >
+              <IoAdd size={"70px"} />
             </div>
           </div>
         </div>
