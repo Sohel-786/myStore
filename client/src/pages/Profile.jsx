@@ -19,6 +19,8 @@ import Button from "../components/Button";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
 import { getUserDetails } from "../redux/slices/authSlice";
 import { nanoid } from "nanoid";
+import { IoAdd } from "react-icons/io5";
+
 
 function Profile() {
   const navigate = useNavigate();
@@ -556,23 +558,24 @@ function Profile() {
         <h1 className="mb-4 font-Slab font-bold tracking-wide text-2xl text-zinc-500">
           Registered Addresses
         </h1>
-        {
-          address ? <>{
-            address.map((el) => {
-              return <AddressCart key={nanoid(4)} data={el} />
-            })
-          }</> : <div>
-            <h1>No Address Added Yet.</h1>
-          </div> 
-        }
-        
-        <div className="w-full flex justify-end items-center my-5">
-          <button
-            onClick={toggleAddressDrawer}
-            className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black hover:border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-black before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
-          >
-            <span className="z-[5]">Add Address</span>
-          </button>
+
+        <div className="w-full flex gap-10 items-center my-5">
+          {address ? (
+            <>
+              {address.map((el) => {
+                return <AddressCart key={nanoid(4)} data={el} />;
+              })}
+            </>
+          ) : (
+            <div>
+              <h1>No Address Added Yet.</h1>
+            </div>
+          )}
+          <div className="w-[200px] h-full flex justify-center items-center">
+            <div className=" p-6 rounded-full bg-blue-100 flex justify-center items-center">
+            <IoAdd />
+            </div>
+          </div>
         </div>
 
         <Drawer
