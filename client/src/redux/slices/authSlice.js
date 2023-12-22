@@ -63,6 +63,22 @@ export const getUserDetails = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk('/auth/update-user', async (data) => {
+  try {
+      const res = axiosInstance.put('/user/update', data);
+      toast.promise(res, {
+        pending : 'Wait, Updating Your Profile',
+        success : 'Profile Updated',
+        error : 'Something Went Wrong'
+      })
+
+      return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+
+  }
+})
+
 export const logout = createAsyncThunk("/auth/logout", async () => {
   try {
     const res = axiosInstance.get("/user/logout");

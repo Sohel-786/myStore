@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher.js";
 import User from "../models/user.model.js";
 import AppError from "../utils/appError.js";
@@ -142,6 +141,48 @@ export const getUser = async (req, res) => {
   }
 };
 
+export const updateProfile = async (req, res, next) => {
+  try {
+    const { fullname } = req.body;
+    const { id } = req.user;
+  
+    const user = await User.findById(id);
+  
+    if (!user) {
+      return next(new AppError("User does not exist", 400));
+    }
+  
+    if (fullname) {
+      user.fullname = fullname;
+    }
+  
+    if (req.file) {
+      await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+  
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "lms",
+      });
+  
+      if (result) {
+        user.avatar.public_id = result.public_id;
+        user.avatar.secure_url = result.secure_url;
+  
+        // remove file from local server
+        fs.rm(`uploads/${req.file.filename}`);
+      }
+    }
+  
+    await user.save();
+  
+    res.status(200).json({
+      success: true,
+      message: "User details updated successfully",
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+}
+
 export const addAddress = async (req, res, next) => {
   try {
     const { address, country, state, city, postal } = req.body;
@@ -170,7 +211,7 @@ export const addAddress = async (req, res, next) => {
       message: "Address Added Successfully",
     });
   } catch (e) {
-    return res.status(400).send(err.message);
+    return res.status(400).send(e.message);
   }
 };
 
@@ -260,3 +301,4 @@ export const deleteAddress = async (req, res, next) => {
     return res.status(400).send(e.message);
   }
 };
+

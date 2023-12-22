@@ -15,7 +15,7 @@ import UserLayout from "../layouts/UserLayout";
 import Drawer from "react-modern-drawer";
 import AddressCart from "../components/Profile/AddressCart";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
-import { getUserDetails } from "../redux/slices/authSlice";
+import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 import { nanoid } from "nanoid";
 import { IoAdd } from "react-icons/io5";
 

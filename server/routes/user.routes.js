@@ -7,6 +7,7 @@ import {
   logout,
   register,
   updateAddress,
+  updateProfile,
 } from "../controllers/user.controller.js";
 import upload from "../middlewares/multer.middleware.js";
 import { IsLoggedIn } from "../middlewares/auth.middleware.js";
@@ -19,6 +20,8 @@ userRoutes.post("/login", login);
 userRoutes.get("/logout", IsLoggedIn, logout);
 
 userRoutes.get("/me", IsLoggedIn, getUser);
+
+userRoutes.put('/update', IsLoggedIn, updateProfile);
 
 userRoutes
   .route("/address")
