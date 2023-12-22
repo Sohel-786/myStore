@@ -24,7 +24,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
             address: "",
             country: "India",
             state: "Gujarat",
-            city: "",
+            city: "Abrama",
             postal: "",
           }
     );
@@ -59,6 +59,17 @@ function AddressAddUpdate({ Addressdata, toggle }) {
             state,
           }
         );
+        if (res.data.length === 0) {
+          setData({
+            ...data,
+            city: "not available",
+          });
+        } else {
+          setData({
+            ...data,
+            city: res.data[0],
+          });
+        }
         setCities(res.data);
       } catch (e) {
         console.log("Error");
@@ -101,7 +112,13 @@ function AddressAddUpdate({ Addressdata, toggle }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if ((!data.address, !data.country, !data.state, !data.city, !data.postal)) {
+    if (
+      !data.address ||
+      !data.country ||
+      !data.state ||
+      !data.city ||
+      !data.postal
+    ) {
       toast.error("Please Fill all the field");
       return;
     }
