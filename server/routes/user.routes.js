@@ -20,9 +20,10 @@ userRoutes.get("/logout", IsLoggedIn, logout);
 
 userRoutes.get("/me", IsLoggedIn, getUser);
 
-userRoutes.post("/add-address", IsLoggedIn, addAddress);
-
-userRoutes.put("/update-address", IsLoggedIn, updateAddress);
+userRoutes
+  .route("/address")
+  .post(IsLoggedIn, addAddress)
+  .put(IsLoggedIn, updateAddress);
 
 userRoutes.delete("/delete-address/:addressId", IsLoggedIn, deleteAddress);
 

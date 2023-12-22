@@ -6,6 +6,7 @@ const initialState = {
   isLoggedIn: false,
   role: "",
   data: {},
+  networkRequest : false
 };
 
 export const checkIsLoggedIn = createAsyncThunk("/auth/user", async () => {
@@ -78,7 +79,7 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
 
 export const addAddress = createAsyncThunk("/add/address", async (data) => {
   try {
-    const res = axiosInstance.post("/user/add-address", data);
+    const res = axiosInstance.post("/user/address", data);
     toast.promise(res, {
       pending: "Wait, Adding your address",
       success: "Address Added Successfully",
@@ -94,7 +95,7 @@ export const updateAddress = createAsyncThunk(
   "/update/address",
   async (data) => {
     try {
-      const res = axiosInstance.put("/user/update-address", data);
+      const res = axiosInstance.put("/user/address", data);
       toast.promise(
         res,
         {
@@ -145,6 +146,7 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
+          state.networkRequest = true;
         }
       })
       .addCase(createUser.fulfilled, (state, action) => {
