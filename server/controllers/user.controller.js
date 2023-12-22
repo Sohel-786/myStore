@@ -226,6 +226,172 @@ export const changePassword = async function (req, res, next) {
   });
 };
 
+export const forgotPassword = async (req, res, next) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return next(new AppError("Email is required", 400));
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return next(new AppError("Email is not registered", 400));
+  }
+
+  const resetToken = await user.generatePasswordToken();
+
+  await user.save();
+
+  const resetPasswordurl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+  const subject = "Reset Password";
+  // const name = (user.fullname).toUpperCase()
+  const message = `
+  <div
+  style="
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px;
+    background-color: #0f1729;
+    border-radius: 20px;
+  "
+>
+  <div style="width: 100%; height:250px">
+    <img
+      style="width: 100%; height: 100%"
+      src="https://res.cloudinary.com/da3zef4f0/image/upload/v1696837273/lms/classroomlogo_n9974k.png"
+      alt="classroom"
+    />
+  </div>
+  <h1
+  style="
+    font-size: 30px;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+  "
+  >
+  Hello, ${user.fullname.toUpperCase()}
+  </h1>
+  <h1
+    style="
+      font-size: 25px;
+      font-weight: 500;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #d2d2d2da;
+      text-align: center;
+    "
+  >
+    Reset Your Password
+  </h1>
+  <div style="width: fit-content; padding: 10px; margin: auto">
+    <a href=${resetPasswordurl}
+        style="
+          padding: 15px 50px;
+          border-radius: 10px;
+          background: linear-gradient(
+            to right,
+            rgb(56, 0, 146),
+            rgb(0, 119, 198)
+          );
+          color: white;
+          font-weight: bold;
+          font-size: 23px;
+          border: 1px solid white;
+          cursor: pointer;
+          letter-spacing: 3px;
+          font-family: 'Roboto Condensed', sans-serif;
+          text-decoration : none
+        "
+      >
+        Reset
+    </a>
+  </div>
+
+  <div style="width: 80px; height: 80px; margin: auto">
+    <img
+      style="width: 100%; height: 100%"
+      src="https://res.cloudinary.com/da3zef4f0/image/upload/v1696838585/lms/giphy_lrbsuy.gif"
+      alt="arrowGif"
+    />
+  </div>
+
+    <div style="width:95%;margin:auto;background-color:white;border-radius:10px">
+      <p style="color: black; text-align: center;font-size: 14px;font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight: 700;letter-spacing: 1.5px;padding:20px 15px">
+      If the above link doesn't work for some reason then copy paste this
+      link in new tab
+    </p>
+       <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-decoration: underline;font-size: 13px;text-align: center;padding-bottom:15px">${resetPasswordurl}</p>
+    </div>
+   
+
+    <div style="width: 80%; border-left:5px solid rgb(255, 0, 255);margin:20px 80px; padding:5px 30px;border-radius: 10px;">
+      <p style="font-size: 18px; color: rgb(255, 143, 143);font-weight:bold;font-family:monospace;letter-spacing: 1.5px;">If you have not requested this, kindly ignore it.</p>
+    </div>
+</div>`;
+
+  try {
+    await sendEmail(email, subject, message);
+
+    res.status(200).json({
+      success: true,
+      message: `Reset password mail has been sent to registered email successfully!`,
+    });
+  } catch (e) {
+    user.forgotPasswordExpiry = undefined;
+    user.forgotPasswordToken = undefined;
+    await user.save();
+
+    return next(new AppError(e.message, 500));
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  const { resetToken } = req.params;
+  const { password } = req.body;
+
+  if (!password) {
+    return next(new AppError("Password is Required", 400));
+  }
+
+  if (!isValidPassword(password)) {
+    return next(
+      new AppError(
+        "Password must be 6 to 16 characters long with at least a number and symbol",
+        400
+      )
+    );
+  }
+
+  const forgotPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  const user = await User.findOne({
+    forgotPasswordToken,
+    forgotPasswordExpiry: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    return next(
+      new AppError("Token in invalid or expired, please try again", 400)
+    );
+  }
+
+  user.password = password;
+  user.forgotPasswordToken = undefined;
+  user.forgotPasswordExpiry = undefined;
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Password changed successfully",
+  });
+};
+
 export const addAddress = async (req, res, next) => {
   try {
     const { address, country, state, city, postal } = req.body;

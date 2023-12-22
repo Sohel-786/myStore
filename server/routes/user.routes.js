@@ -3,10 +3,12 @@ import {
   addAddress,
   changePassword,
   deleteAddress,
+  forgotPassword,
   getUser,
   login,
   logout,
   register,
+  resetPassword,
   updateAddress,
   updateProfile,
 } from "../controllers/user.controller.js";
@@ -23,6 +25,10 @@ userRoutes.get("/logout", IsLoggedIn, logout);
 userRoutes.get("/me", IsLoggedIn, getUser);
 
 userRoutes.put('/update', IsLoggedIn, upload.single("avatar"), updateProfile);
+
+userRoutes.post("/reset", forgotPassword);
+
+userRoutes.post("/reset/:resetToken", resetPassword);
 
 userRoutes.post("/changepassword", IsLoggedIn, changePassword);
 
