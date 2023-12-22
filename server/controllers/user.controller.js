@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher.js";
 import User from "../models/user.model.js";
 import AppError from "../utils/appError.js";
@@ -196,11 +197,15 @@ export const updateAddress = async (req, res, next) => {
       },
       {
         $set: {
+          "address.$[inner].address": address,
           "address.$[inner].country": country,
+          "address.$[inner].state": state,
+          "address.$[inner].city": city,
+          "address.$[inner].postal": postal,
         },
       },
       {
-        arrayFilters: [{ "inner._id": _id }],
+        arrayFilters: [{ "inner._id": new mongoose.Types.ObjectId(_id) }],
       }
     );
 
@@ -208,13 +213,11 @@ export const updateAddress = async (req, res, next) => {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
 
-    user.save();
-
     return res.status(201).json({
       success: true,
       message: "Updated Successfully",
     });
   } catch (e) {
-    return res.status(400).send(err.message);
+    return res.status(400).send(e.message);
   }
 };

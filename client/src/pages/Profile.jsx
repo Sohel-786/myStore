@@ -214,7 +214,6 @@ function Profile() {
 
   function handleAddressChange(data) {
     setAddressData(data);
-    console.log("sohel");
     toggleAddressDrawer();
   }
 

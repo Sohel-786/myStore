@@ -103,25 +103,51 @@ function AddressAddUpdate({ Addressdata, toggle }) {
     }
 
     try {
-      const res = axiosInstance.post("/user/add-address", data);
-      toast.promise(res, {
-        pending: "Wait, Adding your address",
-        success: "Address Added Successfully",
-        error: "Something Went Wrong",
-      });
-
-      await res;
-      if (res?.data?.success) {
-        setData({
-          address: "",
-          country: "India",
-          state: "Gujarat",
-          city: "",
-          postal: "",
+      if(!Addressdata){
+        console.log('Add')
+        const res = axiosInstance.post("/user/add-address", data);
+        toast.promise(res, {
+          pending: "Wait, Adding your address",
+          success: "Address Added Successfully",
+          error: "Something Went Wrong",
         });
 
-        toggle();
-        dispatch(getUserDetails());
+        await res;
+        if (res?.payload?.data?.success) {
+          setData({
+            address: "",
+            country: "India",
+            state: "Gujarat",
+            city: "",
+            postal: "",
+          });
+
+          toggle();
+          dispatch(getUserDetails());
+        }
+      }else{
+        console.log('update')
+        const res = axiosInstance.put("/user/update-address", data);
+        toast.promise(res, {
+          pending: "Wait, Updating Address",
+          success: "Address Updated Successfully",
+          error: "Something Went Wrong",
+        });
+
+        await res;
+        console.log(res);
+        if (res?.payload?.data?.success) {
+          setData({
+            address: "",
+            country: "India",
+            state: "Gujarat",
+            city: "",
+            postal: "",
+          });
+
+          toggle();
+          dispatch(getUserDetails());
+        }
       }
     } catch (err) {
       toast.error(err?.response?.data?.message);
@@ -274,7 +300,6 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           <button
             type="submit"
             aria-label="Save Address"
-            onClick={() => {}}
             className="border-2 flex bg-black text-white justify-center items-center gap-2 relative shadow-logBtn border-black  rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-zinc-400 before:via-zinc-600 before:to-zinc-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-3 lg:text-base overflow-hidden"
           >
             <span className="z-[5]">SAVE</span>
