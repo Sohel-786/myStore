@@ -113,28 +113,26 @@ export const updateAddress = createAsyncThunk(
   }
 );
 
-export const deleteAddress = createAsyncThunk(
-  "/delete/address",
-  async (_id) => {
-    try {
-      const res = axiosInstance.delete("/user/delete-address", _id);
-      toast.promise(
-        res,
-        {
-          pending: "Wait, Deleting Address",
-          success: "Address Deleted Successfully",
-          error: "Something Went Wrong",
-        },
-        {
-          theme: "dark",
-        }
-      );
-      return await res;
-    } catch (err) {
-      toast.error(err?.response?.data?.message);
-    }
+export const deleteAddress = createAsyncThunk("/delete/address", async (id) => {
+  try {
+    const res = axiosInstance.delete(`/user/delete-address/${id}`);
+    toast.promise(
+      res,
+      {
+        pending: "Wait, Deleting Address",
+        success: "Address Deleted Successfully",
+        error: "Something Went Wrong",
+      },
+      {
+        theme: "dark",
+        hideProgressBar: true,
+      }
+    );
+    return await res;
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
   }
-);
+});
 
 const authSlice = createSlice({
   name: "auth",

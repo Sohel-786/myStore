@@ -5,7 +5,6 @@ import { BiEdit } from "react-icons/bi";
 import { useState } from "react";
 import { MdFreeCancellation, MdOutlineMonochromePhotos } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
-// import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-toastify";
 import axiosInstance from "../config/axiosInstance";
@@ -15,9 +14,8 @@ import ForgotPassword from "../components/Profile/ForgotPassword";
 import UserLayout from "../layouts/UserLayout";
 import Drawer from "react-modern-drawer";
 import AddressCart from "../components/Profile/AddressCart";
-import Button from "../components/Button";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
-import { deleteAddress, getUserDetails } from "../redux/slices/authSlice";
+import { getUserDetails } from "../redux/slices/authSlice";
 import { nanoid } from "nanoid";
 import { IoAdd } from "react-icons/io5";
 
@@ -215,13 +213,6 @@ function Profile() {
   function handleAddressChange(data) {
     setAddressData(data);
     toggleAddressDrawer();
-  }
-
-  async function handleDelete(id) {
-    const res = await dispatch(deleteAddress(id));
-    if(res?.payload?.data?.success){
-      dispatch(getUserDetails());
-    }
   }
 
   return (
@@ -582,7 +573,6 @@ function Profile() {
                     key={nanoid(4)}
                     data={el}
                     handleChange={handleAddressChange}
-                    handleDelete={handleDelete}
                   />
                 );
               })}

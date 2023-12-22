@@ -213,7 +213,7 @@ export const updateAddress = async (req, res, next) => {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
       message: "Updated Successfully",
     });
@@ -224,9 +224,9 @@ export const updateAddress = async (req, res, next) => {
 
 export const deleteAddress = async (req, res, next) => {
   try {
-    const { _id } = req.body;
+    const { addressId } = req.params;
 
-    if (_id) {
+    if (!addressId) {
       return next(
         new AppError("Please provide the correct ID of the address", 400)
       );
@@ -242,7 +242,7 @@ export const deleteAddress = async (req, res, next) => {
       },
       {
         $pull: {
-          address: { _id: _id },
+          address: { _id: addressId },
         },
       }
     );
@@ -251,9 +251,10 @@ export const deleteAddress = async (req, res, next) => {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
       message: "Address Deleted Successfully",
+      user,
     });
   } catch (e) {
     return res.status(400).send(e.message);

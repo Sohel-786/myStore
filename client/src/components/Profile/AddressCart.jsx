@@ -1,10 +1,18 @@
 import { toast } from "react-toastify";
-import Button from "../Button";
 import { GoCopy } from "react-icons/go";
+import { deleteAddress, getUserDetails } from "../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
-function AddressCart({ data, handleChange, handleDelete }) {
+function AddressCart({ data, handleChange }) {
   const { address, country, state, city, postal, _id } = data;
+  const dispatch = useDispatch();
 
+  async function handleDelete() {
+    const res = await dispatch(deleteAddress(_id));
+    if(res?.payload?.data?.success){
+      dispatch(getUserDetails());
+    }
+  }
   return (
     <div className="w-[40%] rounded-md p-3 shadow-logBtn relative h-[210px]">
       <div className="py-3 px-2 rounded-md bg-blue-100 h-[73%] w-full">
@@ -45,10 +53,8 @@ function AddressCart({ data, handleChange, handleDelete }) {
           <span className="z-[5]">Change</span>
         </button>
         <button
-          onClick={() => {
-            handleDelete(_id);
-          }}
-          className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-black before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
+          onClick={handleDelete}
+          className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black border-black hover:border-white rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-[red] before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
         >
           <span className="z-[5]">Delete</span>
         </button>
