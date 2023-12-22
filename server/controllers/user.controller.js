@@ -209,13 +209,14 @@ export const updateAddress = async (req, res, next) => {
       }
     );
 
-    if (!user) {
+    if (user?.matchedCount === 0) {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
 
     return res.status(201).json({
       success: true,
       message: "Updated Successfully",
+      user,
     });
   } catch (e) {
     return res.status(400).send(e.message);
