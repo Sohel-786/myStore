@@ -112,7 +112,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           error: "Something Went Wrong",
         });
 
-        await res;
+        res = await res;
         if (res?.payload?.data?.success) {
           setData({
             address: "",
@@ -134,8 +134,8 @@ function AddressAddUpdate({ Addressdata, toggle }) {
           error: "Something Went Wrong",
         });
 
-        await res;
-        console.log(res);
+        res = await res;
+        console.log(res, 'Check');
         if (res?.payload?.data?.success) {
           setData({
             address: "",
