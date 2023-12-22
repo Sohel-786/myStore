@@ -3,27 +3,29 @@ import Button from "../Button";
 import { GoCopy } from "react-icons/go";
 
 function AddressCart({ data, handleChange, handleDelete }) {
-  const { address, country, state, city, postal } = data;
+  const { address, country, state, city, postal, _id } = data;
 
   return (
     <div className="w-[40%] rounded-md p-3 shadow-logBtn relative h-[210px]">
       <div className="py-3 px-2 rounded-md bg-blue-100 h-[73%] w-full">
         <h1 className="font-Nova font-black capitalize pr-2 w-full">
           <span className="capitalize break-words">{address}.</span>
-          <br/>
-          <span>{state}</span>, {" "}
-          <span className="capitalize">{city}</span>-<span>{postal}.</span><br/>
+          <br />
+          <span>{state}</span>, <span className="capitalize">{city}</span>-
+          <span>{postal}.</span>
+          <br />
           <span className="capitalize">{country}</span>
         </h1>
 
-
         <div
           onClick={() => {
-            navigator.clipboard.writeText( (address +" "+ state +" "+ city +" "+ postal +" "+ country));
-            toast.success(`Address`,{
-              position: 'bottom-right',
+            navigator.clipboard.writeText(
+              address + " " + state + " " + city + " " + postal + " " + country
+            );
+            toast.success(`Address`, {
+              position: "bottom-right",
               autoClose: 500,
-              theme : "dark",
+              theme: "dark",
               hideProgressBar: true,
             });
           }}
@@ -43,7 +45,9 @@ function AddressCart({ data, handleChange, handleDelete }) {
           <span className="z-[5]">Change</span>
         </button>
         <button
-          onClick={handleDelete}
+          onClick={() => {
+            handleDelete(_id);
+          }}
           className={`border-2 flex items-center gap-2 relative shadow-logBtn overflow-hidden bg-white text-black border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs hover:text-white before:content-[''] before:left-full before:absolute before:top-0 before:bottom-0 before:right-0 before:bg-black before:z-[3] before:transition-all before:ease-in-out hover:before:left-0 lg:py-[5px] lg:px-6 lg:text-base`}
         >
           <span className="z-[5]">Delete</span>

@@ -17,7 +17,7 @@ import Drawer from "react-modern-drawer";
 import AddressCart from "../components/Profile/AddressCart";
 import Button from "../components/Button";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
-import { getUserDetails } from "../redux/slices/authSlice";
+import { deleteAddress, getUserDetails } from "../redux/slices/authSlice";
 import { nanoid } from "nanoid";
 import { IoAdd } from "react-icons/io5";
 
@@ -217,7 +217,12 @@ function Profile() {
     toggleAddressDrawer();
   }
 
-  function handleDelete() {}
+  async function handleDelete(id) {
+    const res = await dispatch(deleteAddress(id));
+    if(res?.payload?.data?.success){
+      dispatch(getUserDetails());
+    }
+  }
 
   return (
     <UserLayout>

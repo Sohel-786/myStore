@@ -216,7 +216,44 @@ export const updateAddress = async (req, res, next) => {
     return res.status(201).json({
       success: true,
       message: "Updated Successfully",
-      user,
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
+
+export const deleteAddress = async (req, res, next) => {
+  try {
+    const { _id } = req.body;
+
+    if (_id) {
+      return next(
+        new AppError("Please provide the correct ID of the address", 400)
+      );
+    }
+
+    const userCheck = await User.findById(req.user.id);
+    if (!userCheck) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+    const user = await User.updateOne(
+      {
+        _id: req.user.id,
+      },
+      {
+        $pull: {
+          address: { _id: _id },
+        },
+      }
+    );
+
+    if (user?.matchedCount === 0) {
+      return next(new AppError("Such Address Doesn't Exist", 400));
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: "Address Deleted Successfully",
     });
   } catch (e) {
     return res.status(400).send(e.message);
