@@ -205,7 +205,7 @@ export const updateAddress = async (req, res, next) => {
         },
       },
       {
-        arrayFilters: [{ "inner._id": new mongoose.Types.ObjectId(_id) }],
+        arrayFilters: [{ "inner._id": _id }], //new mongoose.Types.ObjectId()
       }
     );
 
