@@ -114,6 +114,7 @@ function Profile() {
     const res = await dispatch(updateUser(data));
 
     if (res?.payload?.data?.success) {
+      console.log('check')
       await dispatch(getUserDetails());
     }
 

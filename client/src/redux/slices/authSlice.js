@@ -70,6 +70,10 @@ export const updateUser = createAsyncThunk('/auth/update-user', async (data) => 
         pending : 'Wait, Updating Your Profile',
         success : 'Profile Updated',
         error : 'Something Went Wrong'
+      }, {
+        theme : 'dark',
+        autoClose : 1000,
+        hideProgressBar : true
       })
 
       return await res;
@@ -77,7 +81,7 @@ export const updateUser = createAsyncThunk('/auth/update-user', async (data) => 
     toast.error(e?.response?.data?.message);
 
   }
-})
+});
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
   try {

@@ -21,7 +21,7 @@ userRoutes.get("/logout", IsLoggedIn, logout);
 
 userRoutes.get("/me", IsLoggedIn, getUser);
 
-userRoutes.put('/update', IsLoggedIn, updateProfile);
+userRoutes.put('/update', IsLoggedIn, upload.single("avatar"), updateProfile);
 
 userRoutes
   .route("/address")

@@ -154,6 +154,7 @@ export const updateProfile = async (req, res, next) => {
   
     if (fullname) {
       user.fullname = fullname;
+      console.log(user.fullname);
     }
   
     if (req.file) {
