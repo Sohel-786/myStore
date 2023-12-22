@@ -6,10 +6,10 @@ function AddressCart({ data, handleChange, handleDelete }) {
   const { address, country, state, city, postal } = data;
 
   return (
-    <div className="w-[40%] rounded-md p-3 shadow-logBtn relative">
-      <div className="py-3 px-2 rounded-md bg-blue-100 flex flex-col items-center">
-        <h1 className="font-Nova font-black capitalize pr-2">
-          {address}.
+    <div className="w-[40%] rounded-md p-3 shadow-logBtn relative h-[210px]">
+      <div className="py-3 px-2 rounded-md bg-blue-100 h-[73%] w-full">
+        <h1 className="font-Nova font-black capitalize pr-2 w-full">
+          <span className="capitalize break-words">{address}.</span>
           <br/>
           <span>{state}</span>, {" "}
           <span className="capitalize">{city}</span>-<span>{postal}.</span><br/>

@@ -154,7 +154,7 @@ export const addAddress = async (req, res, next) => {
     if (!user) {
       return next(new AppError("Unauthenticated, please login", 400));
     }
-
+    console.log(city, address, country, state, postal);
     user.address.push({
       address,
       country,

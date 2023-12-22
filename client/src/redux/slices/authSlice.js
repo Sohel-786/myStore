@@ -76,6 +76,43 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
   }
 });
 
+export const addAddress = createAsyncThunk("/add/address", async (data) => {
+  try {
+    const res = axiosInstance.post("/user/add-address", data);
+    toast.promise(res, {
+      pending: "Wait, Adding your address",
+      success: "Address Added Successfully",
+      error: "Something Went Wrong",
+    });
+    return await res;
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
+  }
+});
+
+export const updateAddress = createAsyncThunk(
+  "/update/address",
+  async (data) => {
+    try {
+      const res = axiosInstance.put("/user/update-address", data);
+      toast.promise(
+        res,
+        {
+          pending: "Wait, Updating Address",
+          success: "Address Updated Successfully",
+          error: "Something Went Wrong",
+        },
+        {
+          theme: "dark",
+        }
+      );
+      return await res;
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   reducers: {},

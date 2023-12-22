@@ -25,6 +25,7 @@ const userSchema = new Schema(
         address: {
           type: String,
           required: [true, "Address is Required"],
+          maxlength : [117, "Specify Address in Short"],
           trim: true,
         },
         country : {

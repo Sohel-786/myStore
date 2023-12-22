@@ -4,7 +4,11 @@ import { nanoid } from "nanoid";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { getUserDetails } from "../../redux/slices/authSlice";
+import {
+  addAddress,
+  getUserDetails,
+  updateAddress,
+} from "../../redux/slices/authSlice";
 
 function AddressAddUpdate({ Addressdata, toggle }) {
   const dispatch = useDispatch();
@@ -103,51 +107,25 @@ function AddressAddUpdate({ Addressdata, toggle }) {
     }
 
     try {
-      if(!Addressdata){
-        console.log('Add')
-        const res = axiosInstance.post("/user/add-address", data);
-        toast.promise(res, {
-          pending: "Wait, Adding your address",
-          success: "Address Added Successfully",
-          error: "Something Went Wrong",
+      let res;
+      if (!Addressdata) {
+        res = await dispatch(addAddress(data));
+      } else {
+        res = await dispatch(updateAddress(data));
+        console.log(res, "Check");
+      }
+
+      if (res?.payload?.data?.success) {
+        setData({
+          address: "",
+          country: "India",
+          state: "Gujarat",
+          city: "",
+          postal: "",
         });
 
-        res = await res;
-        if (res?.payload?.data?.success) {
-          setData({
-            address: "",
-            country: "India",
-            state: "Gujarat",
-            city: "",
-            postal: "",
-          });
-
-          toggle();
-          dispatch(getUserDetails());
-        }
-      }else{
-        console.log('update')
-        const res = axiosInstance.put("/user/update-address", data);
-        toast.promise(res, {
-          pending: "Wait, Updating Address",
-          success: "Address Updated Successfully",
-          error: "Something Went Wrong",
-        });
-
-        res = await res;
-        console.log(res, 'Check');
-        if (res?.payload?.data?.success) {
-          setData({
-            address: "",
-            country: "India",
-            state: "Gujarat",
-            city: "",
-            postal: "",
-          });
-
-          toggle();
-          dispatch(getUserDetails());
-        }
+        toggle();
+        dispatch(getUserDetails());
       }
     } catch (err) {
       toast.error(err?.response?.data?.message);
@@ -170,6 +148,7 @@ function AddressAddUpdate({ Addressdata, toggle }) {
             id="address"
             rows="3"
             value={data?.address}
+            maxLength={117}
             className="border-2 border-gray-500 resize-none rounded-md p-2"
           ></textarea>
           <p className="font-Roboto text-[13px] mt-1">
