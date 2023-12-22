@@ -56,6 +56,7 @@ function Profile() {
   function handleOldPassView() {
     setViewOldpassword(!viewOldPassword);
   }
+
   function handleNewPassView() {
     setViewNewpassword(!viewNewPassword);
   }
@@ -100,6 +101,7 @@ function Profile() {
       [name]: value,
     });
   }
+
   async function handleSubmit() {
     if (formData.fullname === fullname && !formData.avatar) {
       return;
@@ -130,10 +132,8 @@ function Profile() {
     try {
       const res = axiosInstance.post("/user/changepassword", passwordData);
       toast.promise(res, {
-        loading: "Wait! Changing your password",
-        success: (data) => {
-          return data?.data?.message;
-        },
+        pending: "Wait! Changing your password",
+        success: "Password Chnaged",
         error: (data) => {
           let msg = data?.response?.data?.message;
           if (msg === "Invalid Old Password") {
@@ -154,7 +154,7 @@ function Profile() {
       const response = await res;
 
       if (response?.data?.success) {
-        setViewPassChange(false);
+        toggleDrawerPassword();
         setPasswordData({
           oldPassword: "",
           newPassword: "",

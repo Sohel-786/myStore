@@ -184,6 +184,48 @@ export const updateProfile = async (req, res, next) => {
   }
 }
 
+export const changePassword = async function (req, res, next) {
+  const { oldPassword, newPassword } = req.body;
+  const { id } = req.user;
+
+  if (!oldPassword || !newPassword) {
+    return next(new AppError("All fields are required", 400));
+  }
+
+  const user = await User.findById(id).select("+password");
+
+  if (!user) {
+    return next(new AppError("User does not exist", 400));
+  }
+
+  const isPasswordvalid = await user.comparePassword(oldPassword);
+
+  if (!isPasswordvalid) {
+    return next(new AppError("Invalid Old Password", 400));
+  }
+
+  if (!isValidPassword(newPassword)) {
+    return next(
+      new AppError(
+        "Password must be 6 to 16 characters long with at least a number and symbol",
+        400
+      )
+    );
+  }
+
+  user.password = newPassword;
+
+  await user.save();
+
+  user.password = undefined;
+
+  res.status(200).json({
+    success: true,
+    message: "Your Password is changed",
+    user,
+  });
+};
+
 export const addAddress = async (req, res, next) => {
   try {
     const { address, country, state, city, postal } = req.body;

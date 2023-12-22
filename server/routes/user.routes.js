@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addAddress,
+  changePassword,
   deleteAddress,
   getUser,
   login,
@@ -22,6 +23,8 @@ userRoutes.get("/logout", IsLoggedIn, logout);
 userRoutes.get("/me", IsLoggedIn, getUser);
 
 userRoutes.put('/update', IsLoggedIn, upload.single("avatar"), updateProfile);
+
+userRoutes.post("/changepassword", IsLoggedIn, changePassword);
 
 userRoutes
   .route("/address")
