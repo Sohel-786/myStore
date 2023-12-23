@@ -105,7 +105,7 @@ function SignIn({ CreateAccount, close }) {
         <div className="w-[80%]">
           <h1 onClick={() => {
             navigate('/forgot-password')
-          }} className="font-Nova font-bold tracking-wide hover:underline cursor-pointer hover:text-sky-600">Forgotten Password ?</h1>
+          }} className="font-Nova w-fit font-bold tracking-wide hover:underline cursor-pointer hover:text-sky-600">Forgotten Password ?</h1>
         </div>
 
         <div

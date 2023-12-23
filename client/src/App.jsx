@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import ForgotPassword from "./components/Profile/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ForgottenPassword from "./pages/ForgottenPassword";
+import AllProducts from "./pages/AllProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,8 @@ function App() {
           path="/admin-view"
           element={networkRequest ? <AdminFront /> : <Loading />}
         />
+
+        <Route path="/all-products" element={<AllProducts />} />
         <Route
           path="/add-product"
           element={networkRequest ? <AddProduct /> : <Loading />}

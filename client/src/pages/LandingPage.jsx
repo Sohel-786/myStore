@@ -2,9 +2,11 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import UserLayout from "../layouts/UserLayout";
 import { IoMdSearch } from "react-icons/io";
-
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
   const items = [
     <img
       className="w-full h-full rounded-lg"
@@ -66,7 +68,9 @@ function LandingPage() {
               |
             </li>
 
-            <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+            <li onClick={() => {
+              navigate('/all-products')
+            }} className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
               All Products
             </li>
             <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
