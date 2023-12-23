@@ -74,9 +74,12 @@ function UserLayout({ children }) {
       <header className={`flex z-30 max-w-[1480px] sticky ${location.pathname === '/profile' ? 'justify-end' : 'justify-between' } items-center w-full px-5 py-2 shadow-header`}>
         {location.pathname !== '/profile' && <div className="flex items-center gap-3 w-[60%]">
           <img
+            onClick={() => {
+              navigate('/')
+            }}
             src="/assets/MyStoreLogo.svg"
             alt="logo"
-            className="w-40 aspect-auto rounded-md"
+            className="w-40 aspect-auto rounded-md cursor-pointer"
           />
           <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
             <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />

@@ -13,6 +13,7 @@ import ForgotPassword from "./components/Profile/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import AllProducts from "./pages/AllProducts";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function App() {
         />
 
         <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/product-details/:id" element={<AllProducts />} />
+        <Route path="/product-details/:id" element={<ProductDetail />} />
         <Route
           path="/add-product"
           element={networkRequest ? <AddProduct /> : <Loading />}

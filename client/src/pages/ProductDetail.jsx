@@ -6,6 +6,7 @@ function ProductDetail(){
 
     return (
         <UserLayout>
+                
         </UserLayout>
     )
 }
