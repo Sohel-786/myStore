@@ -50,11 +50,20 @@ function ForgotPassword({ hideForgotPass, toggle }) {
   async function handleSendMail() {
     try {
       const res = axiosInstance.post("/user/reset", registeredEmail);
-      toast.promise(res, {
-        pending: "Wait, Sending Mail",
-        success: "Reset password mail has been sent to registered email successfully!",
-        error: "Something Went Wrong",
-      });
+      toast.promise(
+        res,
+        {
+          pending: "Wait, Sending Mail",
+          success:
+            "Reset password mail has been sent to registered email successfully!",
+          error: "Something Went Wrong",
+        },
+        {
+          theme: "dark",
+          hideProgressBar: true,
+          autoClose: 3000,
+        }
+      );
 
       const response = await res;
 
@@ -62,7 +71,7 @@ function ForgotPassword({ hideForgotPass, toggle }) {
         setRegisteredEmail({
           email: "",
         });
-        navigate("/signin");
+        navigate("/");
       }
     } catch (err) {
       toast.error(err.response?.data?.message);
@@ -77,26 +86,29 @@ function ForgotPassword({ hideForgotPass, toggle }) {
 
     try {
       const res = axiosInstance.post("/user/reset", { email: data.email });
-      toast.promise(res, {
-        pending: "Wait, Sending Mail",
-        success: "Reset password mail has been sent to registered email successfully!",
-        error: (data) => {
-          const msg = data?.response?.data?.message;
-
-          if (msg === "Email is required") {
-            return "User Is Not Logged In";
-          }
-          if (msg === "Email is not registered") {
-            return "User doesn't exists";
-          } else {
-            return "Something Went Wrong";
-          }
+      toast.promise(
+        res,
+        {
+          pending: "Wait, Sending Mail",
+          success:
+            "Reset password mail has been sent to registered email successfully!",
+          error: (data) => {
+            if (data?.response?.data?.message === "Email is required") {
+              return "User Is Not Logged In";
+            }
+            if (data?.response?.data?.message === "Email is not registered") {
+              return "User doesn't exists";
+            } else {
+              return "Something Went Wrong";
+            }
+          },
         },
-      }, {
-        theme : 'dark',
-        hideProgressBar : true,
-        autoClose : 3000
-      });
+        {
+          theme: "dark",
+          hideProgressBar: true,
+          autoClose: 3000,
+        }
+      );
 
       const response = await res;
 
@@ -160,15 +172,15 @@ function ForgotPassword({ hideForgotPass, toggle }) {
     >
       <label
         htmlFor="email"
-        className="font-slab text-gray-300 mt-4 mb-4 pl-1 sm:text-xl tracking-wide"
+        className="font-Nova  text-gray-200 font-bold mt-4 mb-6 pl-1 sm:text-xl tracking-wide"
       >
         Enter Your Registered Email
       </label>
 
-      <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-green-600 rounded-xl ">
+      <div className="w-full px-3 bg-white flex justify-center items-center border-[4px] border-sky-500 focus-within:border-green-600">
         <input
           onChange={handleChange}
-          className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full text-white font-semibold my-2 sm:text-xl"
+          className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full font-semibold my-2 sm:text-xl"
           type="email"
           name="email"
           id="email"
@@ -218,12 +230,12 @@ function ForgotPassword({ hideForgotPass, toggle }) {
         style={{
           userSelect: "none",
         }}
-        className="w-full flex items-center gap-3 sm:gap-5 mt-6"
+        className="w-full flex items-center gap-4 sm:gap-5 mt-8"
       >
         <button
           aria-label="Send Mail to Registered Email Address"
           onClick={handleSubmit}
-          className="text-white px-4 sm:px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
+          className="text-white px-4 sm:px-10 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
         >
           CONTINUE
         </button>
@@ -236,7 +248,7 @@ function ForgotPassword({ hideForgotPass, toggle }) {
             });
             hideForgotPass();
           }}
-          className="text-white px-4 sm:px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-red-800 via-red-600 to-red-400 hover:bg-gradient-to-t hover:from-red-400 hover:via-red-600 hover:to-red-800 hover:scale-110 transition-all duration-300"
+          className="text-white px-4 sm:px-10 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-red-800 via-red-600 to-red-400 hover:bg-gradient-to-t hover:from-red-400 hover:via-red-600 hover:to-red-800 hover:scale-110 transition-all duration-300"
         >
           CANCEL
         </button>

@@ -166,8 +166,8 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
-          state.networkRequest = true;
         }
+        state.networkRequest = true;
       })
       .addCase(createUser.fulfilled, (state, action) => {
         if (action.payload) {

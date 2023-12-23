@@ -8,9 +8,9 @@ function ForgottenPassword() {
     <div className="flex flex-col items-center w-full h-[700px] lg:h-auto">
       <header
         style={{ userSelect: "none" }}
-        className="flex justify-center items-center shadow-headershadow w-full h-[10%] lg:h-auto"
+        className="flex justify-center items-center shadow-headershadow w-full h-[10%] mt-2 lg:h-auto"
       >
-        <div className="w-[160px] aspect-auto">
+        <div className="w-[230px] aspect-auto">
           <img
             className="w-full aspect-auto"
             src={"/assets/MyStoreLogo.svg"}
@@ -18,7 +18,7 @@ function ForgottenPassword() {
           />
         </div>
       </header>
-      <div className="w-full flex justify-center items-center h-[563px]">
+      <div className="w-full flex justify-center items-center mt-24">
         <ForgotPassword
           hideForgotPass={() => {
             navigate(-1);
