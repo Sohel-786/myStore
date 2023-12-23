@@ -4,6 +4,7 @@ import AppError from "../utils/appError.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
 import sendEmail from "../utils/sendMail.js";
+import crypto from "crypto";
 
 const cookieOptions = {
   secure: true,

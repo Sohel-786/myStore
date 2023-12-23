@@ -85,15 +85,12 @@ function ResetPassword() {
     }
 
     try {
-      const res = axiosInstance.post(`/user/reset/${resetToken}`, password);
+      const res = axiosInstance.put(`/user/reset/${resetToken}`, password);
       toast.promise(res, {
-        loading: "Wait, Changing your password",
-        success: (data) => {
-          return data?.data?.message;
-        },
+        pending: "Wait, Changing your password",
+        success: "Password changed successfully",
         error: (data) => {
-          const msg = data?.response?.data?.message;
-          if (msg === "Token in invalid or expired, please try again") {
+          if (data?.response?.data?.message === "Token in invalid or expired, please try again") {
             return "Provide email again and generate new token";
           }
           return "Something Went Wrong";
@@ -107,7 +104,8 @@ function ResetPassword() {
           password: "",
           confirmPassword: "",
         });
-        navigate("/signin");
+        navigate("/");
+
       }
     } catch (err) {
       toast.error(err.response?.data?.message);
@@ -119,7 +117,7 @@ function ResetPassword() {
           password: "",
           confirmPassword: "",
         });
-        navigate("/signin");
+        navigate("/");
       }
     }
   }
@@ -145,12 +143,12 @@ function ResetPassword() {
         <div className="flex flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-gradient-to-r from-slate-950 via-slate-800 to-slate-700 rounded-xl py-5 px-6">
           <label
             htmlFor="newPassword"
-            className="font-slab tracking-wider text-gray-300 mt-4 mb-2 sm:mb-4 pl-1"
+            className="font-Nova tracking-wider text-xl font-black text-gray-200 mt-4 mb-2 sm:mb-6"
           >
             Create New Password
           </label>
 
-          <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-green-400 rounded-xl text-white">
+          <div className="w-full px-3 bg-transparent flex justify-center items-center border-[4px] border-sky-500 focus-within:border-green-400 bg-white py-2">
             <input
               onChange={handleChange}
               className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold "
@@ -178,14 +176,14 @@ function ResetPassword() {
           </div>
           <label
             htmlFor="confirmPassword"
-            className="font-slab tracking-wider text-gray-300 mt-4 mb-2 sm:mb-4 pl-1"
+            className="font-Nova tracking-wider text-xl font-black text-gray-200 mt-4 mb-2 sm:mb-4 pl-1"
           >
             Confirm New Password
           </label>
 
           <div
             id="confirm"
-            className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-green-400 rounded-xl text-white"
+            className="w-full px-3 bg-transparent flex justify-center items-center border-[4px] border-sky-500 focus-within:border-green-400 bg-white py-2"
           >
             <input
               onChange={handleChange}
@@ -217,15 +215,15 @@ function ResetPassword() {
             style={{
               userSelect: "none",
             }}
-            className="w-full flex items-center justify-center gap-5 mt-5"
+            className="w-full flex items-center justify-center gap-5 mt-8"
           >
             <button
               aria-label="Change Password"
               type="submit"
               onClick={handleSubmit}
-              className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-green-800 via-green-600 to-green-400 hover:bg-gradient-to-t hover:from-green-400 hover:via-green-600 hover:to-green-800 hover:scale-110 transition-all duration-300"
+              className="border-2 flex bg-white hover:text-white items-center gap-2 relative shadow-logBtn border-black rounded-[5px] cursor-pointer px-3 py-2 font-bold text-xs before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gradient-to-tr before:from-cyan-400 before:via-cyan-600 before:to-cyan-800 hover:border-white before:z-[4] before:transition-all before:ease-in-out hover:before:right-0 lg:py-[5px] lg:px-8 lg:text-lg overflow-hidden"
             >
-              CHANGE PASSWORD
+              <span className="z-[5] font-Nova">CHANGE PASSWORD</span>
             </button>
           </div>
         </div>

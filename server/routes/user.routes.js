@@ -28,9 +28,9 @@ userRoutes.put('/update', IsLoggedIn, upload.single("avatar"), updateProfile);
 
 userRoutes.post("/reset", forgotPassword);
 
-userRoutes.post("/reset/:resetToken", resetPassword);
+userRoutes.put("/reset/:resetToken", resetPassword);
 
-userRoutes.post("/changepassword", IsLoggedIn, changePassword);
+userRoutes.put("/changepassword", IsLoggedIn, changePassword);
 
 userRoutes
   .route("/address")

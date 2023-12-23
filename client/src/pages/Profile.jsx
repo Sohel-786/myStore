@@ -130,7 +130,7 @@ function Profile() {
     }
 
     try {
-      const res = axiosInstance.post("/user/changepassword", passwordData);
+      const res = axiosInstance.put("/user/changepassword", passwordData);
       toast.promise(res, {
         pending: "Wait! Changing your password",
         success: "Password Chnaged",
