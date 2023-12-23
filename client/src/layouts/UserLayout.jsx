@@ -3,7 +3,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { BiSolidUser } from "react-icons/bi";
-import { IoLogOut, IoBagHandleSharp  } from "react-icons/io5";
+import { IoLogOut, IoBagHandleSharp } from "react-icons/io5";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
 import Drawer from "react-modern-drawer";
@@ -71,25 +71,33 @@ function UserLayout({ children }) {
 
   return (
     <section className="w-full max-w-[1480px] mx-auto">
-      <header className={`flex z-30 max-w-[1480px] sticky ${location.pathname === '/profile' ? 'justify-end' : 'justify-between' } items-center w-full px-5 py-2 shadow-header`}>
-        {location.pathname !== '/profile' && <div className="flex items-center gap-3 w-[60%]">
-          <img
-            onClick={() => {
-              navigate('/')
-            }}
-            src="/assets/MyStoreLogo.svg"
-            alt="logo"
-            className="w-40 aspect-auto rounded-md cursor-pointer"
-          />
-          <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
-            <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />
-            <input
-              className="bg-transparent w-[95%] text-white border-none outline-none"
-              type="text"
-              placeholder="Search for Products, Brands and More"
+      <header
+        className={`flex z-30 max-w-[1480px] sticky ${
+          location.pathname === "/profile" ? "justify-end" : "justify-between"
+        } ${
+          location.pathname !== "/" && "bg-white"
+        } items-center w-full px-5 py-2 shadow-header`}
+      >
+        {location.pathname !== "/profile" && (
+          <div className="flex items-center gap-3 w-[60%]">
+            <img
+              onClick={() => {
+                navigate("/");
+              }}
+              src="/assets/MyStoreLogo.svg"
+              alt="logo"
+              className="w-40 aspect-auto rounded-md cursor-pointer"
             />
+            <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
+              <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />
+              <input
+                className="bg-transparent w-[95%] text-white border-none outline-none"
+                type="text"
+                placeholder="Search for Products, Brands and More"
+              />
+            </div>
           </div>
-        </div>}
+        )}
 
         <div className={`flex gap-2 items-center text-white`}>
           <Button onclick={toggleDrawerSignUp} text={"Bag"}>
@@ -112,7 +120,9 @@ function UserLayout({ children }) {
 
         {isLoggedIn ? (
           <div
-            className={`${location.pathname === '/profile' ? 'hidden' : 'flex'} flex-col justify-center items-center`}
+            className={`${
+              location.pathname === "/profile" ? "hidden" : "flex"
+            } flex-col justify-center items-center`}
             ref={wrapperRef}
           >
             <div
@@ -171,6 +181,56 @@ function UserLayout({ children }) {
           </div>
         )}
       </header>
+
+      {location.pathname === "/all-products" && (
+        <div className="w-full flex justify-center items-center h-[250px] relative">
+          <img
+            className="w-full h-[92%] top absolute top-[-55px]"
+            src="/assets/productpage.jpg"
+            alt="productPage"
+          />
+          <div className="w-[70%] py-4 mx-auto absolute bottom-[50px] bg-white rounded-t-3xl">
+            <ul className="flex justify-center items-center gap-8 font-Roboto font-semibold tracking-wide">
+              <li onClick={() => {
+                  navigate("/");
+                }} className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+                Home
+              </li>
+
+              <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
+                |
+              </li>
+
+              <li
+                onClick={() => {
+                  navigate("/all-products");
+                }}
+                className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in ${location.pathname === '/all-products' && `before:w-full scale-110`} before:duration-300 hover:scale-110 transition-all duration-200`}
+              >
+                All Products
+              </li>
+              <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
+                |
+              </li>
+              <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+                Men
+              </li>
+              <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
+                |
+              </li>
+              <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+                Women
+              </li>
+              <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
+                |
+              </li>
+              <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+                Kids
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
       <Drawer
         open={isOpenSingUp}
         onClose={toggleDrawerSignUp}

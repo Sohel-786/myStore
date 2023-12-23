@@ -7,7 +7,7 @@ function AllProducts() {
 
   return (
     <UserLayout>
-      <ul className="flex px-12 py-7">
+      <ul className="flex px-12">
         {Allproducts && (
           <>
             {" "}
