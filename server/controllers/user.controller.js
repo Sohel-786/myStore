@@ -3,6 +3,7 @@ import User from "../models/user.model.js";
 import AppError from "../utils/appError.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
+import sendEmail from "../utils/sendMail.js";
 
 const cookieOptions = {
   secure: true,
@@ -145,36 +146,36 @@ export const updateProfile = async (req, res, next) => {
   try {
     const { fullname } = req.body;
     const { id } = req.user;
-  
+
     const user = await User.findById(id);
-  
+
     if (!user) {
       return next(new AppError("User does not exist", 400));
     }
-  
+
     if (fullname) {
       user.fullname = fullname;
       console.log(user.fullname);
     }
-  
+
     if (req.file) {
       await cloudinary.v2.uploader.destroy(user.avatar.public_id);
-  
+
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
         folder: "lms",
       });
-  
+
       if (result) {
         user.avatar.public_id = result.public_id;
         user.avatar.secure_url = result.secure_url;
-  
+
         // remove file from local server
         fs.rm(`uploads/${req.file.filename}`);
       }
     }
-  
+
     await user.save();
-  
+
     res.status(200).json({
       success: true,
       message: "User details updated successfully",
@@ -182,7 +183,7 @@ export const updateProfile = async (req, res, next) => {
   } catch (e) {
     return res.status(400).send(e.message);
   }
-}
+};
 
 export const changePassword = async function (req, res, next) {
   const { oldPassword, newPassword } = req.body;
@@ -259,7 +260,7 @@ export const forgotPassword = async (req, res, next) => {
   <div style="width: 100%; height:250px">
     <img
       style="width: 100%; height: 100%"
-      src="https://res.cloudinary.com/da3zef4f0/image/upload/v1696837273/lms/classroomlogo_n9974k.png"
+      src="https://res.cloudinary.com/da3zef4f0/image/upload/v1703326607/mystore/LogoEmail_jvnnrk.png"
       alt="classroom"
     />
   </div>
@@ -510,4 +511,3 @@ export const deleteAddress = async (req, res, next) => {
     return res.status(400).send(e.message);
   }
 };
-

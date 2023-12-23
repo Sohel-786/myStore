@@ -9,6 +9,8 @@ import { getAllProducts } from "./redux/slices/productSlice";
 import ManageProducts from "./pages/Admin/ManageProducts";
 import Profile from "./pages/Profile";
 import Loading from "./components/Loading";
+import ForgotPassword from "./components/Profile/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +32,12 @@ function App() {
           path="/profile"
           element={networkRequest ? <Profile /> : <Loading />}
         />
+
+        <Route
+          path="/reset-password/:resetToken"
+          element={<ResetPassword />}
+        />
+
         <Route
           path="/admin-view"
           element={networkRequest ? <AdminFront /> : <Loading />}

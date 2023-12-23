@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { isEmail } from "../../helpers/RegexMatcher";
 import { MdEmail } from "react-icons/md";
 
-function ForgotPassword({ hideForgotPass }) {
+function ForgotPassword({ hideForgotPass, toggle }) {
   const { isLoggedIn, data } = useSelector((s) => s?.auth);
   const navigate = useNavigate();
 
@@ -51,10 +51,8 @@ function ForgotPassword({ hideForgotPass }) {
     try {
       const res = axiosInstance.post("/user/reset", registeredEmail);
       toast.promise(res, {
-        loading: "Wait, Sending Mail",
-        success: (data) => {
-          return data?.data?.message;
-        },
+        pending: "Wait, Sending Mail",
+        success: "Reset password mail has been sent to registered email successfully!",
         error: "Something Went Wrong",
       });
 
@@ -80,10 +78,8 @@ function ForgotPassword({ hideForgotPass }) {
     try {
       const res = axiosInstance.post("/user/reset", { email: data.email });
       toast.promise(res, {
-        loading: "Wait, Sending Mail",
-        success: (data) => {
-          return data?.data?.message;
-        },
+        pending: "Wait, Sending Mail",
+        success: "Reset password mail has been sent to registered email successfully!",
         error: (data) => {
           const msg = data?.response?.data?.message;
 
@@ -96,12 +92,17 @@ function ForgotPassword({ hideForgotPass }) {
             return "Something Went Wrong";
           }
         },
+      }, {
+        theme : 'dark',
+        hideProgressBar : true,
+        autoClose : 3000
       });
 
       const response = await res;
 
       if (response?.data?.success) {
         hideForgotPass();
+        toggle();
       }
     } catch (err) {
       toast.error(err.response?.data?.message);

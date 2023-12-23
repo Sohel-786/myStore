@@ -487,7 +487,7 @@ function Profile() {
 
                   {/* forgot password container */}
 
-                  <ForgotPassword hideForgotPass={hideForgotPass} />
+                  <ForgotPassword hideForgotPass={hideForgotPass} toggle={toggleDrawerPassword} />
                 </div>
               </Drawer>
               <button
