@@ -42,7 +42,7 @@ function Product({ data }) {
       }}
       onClick={(e) => {
         if (bagRef.current && !bagRef.current.contains(e.target) && wishRef.current && !wishRef.current.contains(e.target)) {
-          navigate(`/product-details/${_id}`);
+          navigate(`/product-details/${_id}`, { state : data});
         }
       }}
     >

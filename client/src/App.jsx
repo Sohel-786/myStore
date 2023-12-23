@@ -45,6 +45,7 @@ function App() {
         />
 
         <Route path="/all-products" element={<AllProducts />} />
+        <Route path="/product-details/:id" element={<AllProducts />} />
         <Route
           path="/add-product"
           element={networkRequest ? <AddProduct /> : <Loading />}
