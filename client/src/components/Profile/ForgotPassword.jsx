@@ -61,7 +61,7 @@ function ForgotPassword({ hideForgotPass, toggle }) {
         {
           theme: "dark",
           hideProgressBar: true,
-          autoClose: 3000,
+          autoClose: 3500,
         }
       );
 
@@ -106,7 +106,7 @@ function ForgotPassword({ hideForgotPass, toggle }) {
         {
           theme: "dark",
           hideProgressBar: true,
-          autoClose: 3000,
+          autoClose: 3500,
         }
       );
 
