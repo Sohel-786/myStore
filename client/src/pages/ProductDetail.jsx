@@ -38,18 +38,20 @@ function ProductDetail() {
 
   return (
     <UserLayout>
-      <div className="grid grid-cols-2 px-28 py-8 w-full">
+      <div className="flex px-28 py-8 max-w-[1280px]">
         <div
           onMouseOver={handleBlur}
           onMouseOut={handleBlurRemove}
-          className="px-5 relative flex justify-center items-center"
+          className="px-5 w-[50%] relative flex justify-center items-center"
         >
-          <div id="profileImage" className="w-full"></div>
-          <img
-            src={state.thumbnail.secure_url}
-            alt="Product Image"
-            className="rounded-md max-w-full max-h-[577.089px]"
-          />
+          <div id="profileImage" className="w-full">
+            <img
+              src={state.thumbnail.secure_url}
+              alt="Product Image"
+              className="rounded-md max-w-full max-h-[577.089px]"
+            />
+          </div>
+
           <div id="profileBtn" className="hidden absolute flex-col gap-2">
             <button
               aria-label="See the Image on Full Screen"
@@ -77,7 +79,7 @@ function ProductDetail() {
           </div>
         </div>
 
-        <div className="flex flex-col pl-3 pt-2">
+        <div className="flex w-[50%] flex-col pl-3 pt-2">
           <h1 className="capitalize font-Nova text-2xl font-bold">
             {state.brand}
           </h1>
@@ -124,12 +126,12 @@ function ProductDetail() {
             </ul>
 
             <div className="w-full flex mt-8 gap-5">
-              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[12px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white">
+              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[10px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white">
                 <span className="z-[5] flex justify-center items-center gap-3">
                   <PiHandbagFill size={"22px"} /> ADD TO BAG
                 </span>
               </button>
-              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[40%] bg-white py-[12px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white">
+              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[40%] bg-white py-[10px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white">
                 <span className="z-[5] flex justify-center items-center gap-3">
                   <IoHeartSharp size={"22px"} />
                   WISHLIST
