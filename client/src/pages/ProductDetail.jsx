@@ -46,10 +46,7 @@ function ProductDetail() {
             alt="Product Image"
             className="rounded-md"
           />
-          <div
-            id="profileBtn"
-            className="hidden absolute flex-col gap-2"
-          >
+          <div id="profileBtn" className="hidden absolute flex-col gap-2">
             <button
               aria-label="See the Image on Full Screen"
               onClick={handleFullImageView}
@@ -74,6 +71,30 @@ function ProductDetail() {
               alt="Preview Profile Image"
             />
           </div>
+        </div>
+
+        <div className="flex flex-col pl-3 pt-2">
+          <h1 className="capitalize font-Nova text-2xl font-bold">
+            {state.brand}
+          </h1>
+          <h1 className="capitalize font-Roboto mt-2 text-xl tracking-wide text-gray-500">
+            {state.name}
+          </h1>
+          <hr className="mt-3 border-[0.9px]" />
+          <p className="mt-2 text-2xl">
+            <span className="font-Slab">
+            ₹{Math.floor(state.price - (state.pricedrop / 100) * state.price)}
+            </span>
+            <span className="font-Roboto ml-3 text-[20px] text-gray-500">
+               MRP <span className="line-through">₹{state.price}</span>
+            </span>
+
+            <span className="font-bold text-xl font-Slab tracking-wide ml-3 text-orange-400">
+                ({state.pricedrop}% OFF)
+            </span>
+          </p>
+
+          <p className="mt-1 text-green-600 font-bold text-sm">inclusive of all taxes</p>
         </div>
       </div>
     </UserLayout>
