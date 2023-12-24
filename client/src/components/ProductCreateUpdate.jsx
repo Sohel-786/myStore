@@ -161,7 +161,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
     const formData = new FormData();
 
     formData.append("name", productDetails.name);
-    formData.append("description", productDetails.description);
+    formData.append("description", (productDetails.description).replaceAll('\n', '$'));
     formData.append("brand", productDetails.brand);
     formData.append("category", productDetails.category);
     formData.append("price", productDetails.price);

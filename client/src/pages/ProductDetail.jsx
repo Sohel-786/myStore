@@ -6,6 +6,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { nanoid } from "nanoid";
 import { PiHandbagFill } from "react-icons/pi";
 import { IoHeartSharp } from "react-icons/io5";
+import { BiDetail } from "react-icons/bi";
 
 function ProductDetail() {
   const { state } = useLocation();
@@ -138,6 +139,22 @@ function ProductDetail() {
                 </span>
               </button>
             </div>
+
+            <hr className="mt-6 border-[0.9px]" />
+
+            <h1 className="font-bold font-Mukta text-lg flex items-center gap-2 mt-3">
+              PRODUCT DETAILS <BiDetail />
+            </h1>
+
+            <p className="flex flex-col capitalize font-OpenSans text-base mt-5 leading-6">
+              {state.description.split("$").map((el) => (
+                <span>{el}</span>
+              ))}
+            </p>
+
+            <h1 className="font-bold font-Mukta text-lg flex items-center gap-2 mt-3">
+              DELIVERY OPTIONS <BiDetail />
+            </h1>
           </div>
         </div>
       </div>
