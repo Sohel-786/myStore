@@ -2,6 +2,11 @@ import { useLocation } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { FaChevronRight } from "react-icons/fa";
+import { nanoid } from "nanoid";
+import { PiHandbagFill } from "react-icons/pi";
+import { IoMdHeartEmpty } from "react-icons/io";
+
 
 function ProductDetail() {
   const { state } = useLocation();
@@ -83,18 +88,49 @@ function ProductDetail() {
           <hr className="mt-3 border-[0.9px]" />
           <p className="mt-2 text-2xl">
             <span className="font-Slab">
-            ₹{Math.floor(state.price - (state.pricedrop / 100) * state.price)}
+              ₹{Math.floor(state.price - (state.pricedrop / 100) * state.price)}
             </span>
             <span className="font-Roboto ml-3 text-[20px] text-gray-500">
-               MRP <span className="line-through">₹{state.price}</span>
+              MRP <span className="line-through">₹{state.price}</span>
             </span>
 
             <span className="font-bold text-xl font-Slab tracking-wide ml-3 text-orange-400">
-                ({state.pricedrop}% OFF)
+              ({state.pricedrop}% OFF)
             </span>
           </p>
 
-          <p className="mt-1 text-green-600 font-bold text-sm">inclusive of all taxes</p>
+          <p className="mt-1 text-green-600 font-bold text-sm">
+            inclusive of all taxes
+          </p>
+
+          <div className="mt-5 flex flex-col w-full">
+            <h1 className="font-bold tracking-wide font-Mukta text-lg flex items-center">
+              AVAILABLE SIZES{" "}
+              <span className="ml-1 text-pink-500">
+                <FaChevronRight size={'14px'} />
+              </span>
+            </h1>
+
+            <ul className="w-full flex mt-3 gap-5 pl-1">
+                {
+                    state.availableSizes.map((el) => {
+                        return <li key={nanoid(5)} className="w-[50px] uppercase h-[48px] hover:border-pink-500 flex justify-center items-center text-sm font-bold rounded-full border-[1px] border-slate-400">
+                            {el}
+                        </li>
+                    })
+                }
+            </ul>
+
+            <div className="w-full flex mt-8">
+                <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[12px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white">
+                  <span className="z-[5] flex justify-center items-center gap-3"><PiHandbagFill size={'22px'} /> ADD TO BAG</span>
+                </button>
+
+                <button className="flex items-center justify-center w-[40%]">
+                  <IoMdHeartEmpty size={'22px'} />  WISHLIST
+                </button>
+            </div>
+          </div>
         </div>
       </div>
     </UserLayout>
