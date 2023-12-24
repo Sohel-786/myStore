@@ -7,7 +7,6 @@ import { nanoid } from "nanoid";
 import { PiHandbagFill } from "react-icons/pi";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-
 function ProductDetail() {
   const { state } = useLocation();
 
@@ -49,7 +48,7 @@ function ProductDetail() {
           <img
             src={state.thumbnail.secure_url}
             alt="Product Image"
-            className="rounded-md"
+            className="rounded-md max-w-full max-h-[577.089px]"
           />
           <div id="profileBtn" className="hidden absolute flex-col gap-2">
             <button
@@ -107,28 +106,35 @@ function ProductDetail() {
             <h1 className="font-bold tracking-wide font-Mukta text-lg flex items-center">
               AVAILABLE SIZES{" "}
               <span className="ml-1 text-pink-500">
-                <FaChevronRight size={'14px'} />
+                <FaChevronRight size={"14px"} />
               </span>
             </h1>
 
             <ul className="w-full flex mt-3 gap-5 pl-1">
-                {
-                    state.availableSizes.map((el) => {
-                        return <li key={nanoid(5)} className="w-[50px] uppercase h-[48px] hover:border-pink-500 flex justify-center items-center text-sm font-bold rounded-full border-[1px] border-slate-400">
-                            {el}
-                        </li>
-                    })
-                }
+              {state.availableSizes.map((el) => {
+                return (
+                  <li
+                    key={nanoid(5)}
+                    className="w-[50px] uppercase h-[48px] hover:border-pink-500 flex justify-center items-center text-sm font-bold rounded-full border-[1px] border-slate-400"
+                  >
+                    {el}
+                  </li>
+                );
+              })}
             </ul>
 
-            <div className="w-full flex mt-8">
-                <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[12px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white">
-                  <span className="z-[5] flex justify-center items-center gap-3"><PiHandbagFill size={'22px'} /> ADD TO BAG</span>
-                </button>
-
-                <button className="flex items-center justify-center w-[40%]">
-                  <IoMdHeartEmpty size={'22px'} />  WISHLIST
-                </button>
+            <div className="w-full flex mt-8 gap-5">
+              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[12px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white">
+                <span className="z-[5] flex justify-center items-center gap-3">
+                  <PiHandbagFill size={"22px"} /> ADD TO BAG
+                </span>
+              </button>
+              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-gray-600 w-[40%] bg-white py-[12px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#3effdc] hover:border-white">
+                <span className="z-[5] flex justify-center items-center gap-3">
+                  <IoMdHeartEmpty size={"22px"} />
+                  WISHLIST
+                </span>
+              </button>
             </div>
           </div>
         </div>
