@@ -5,7 +5,7 @@ import { RiCloseCircleFill } from "react-icons/ri";
 import { FaChevronRight } from "react-icons/fa";
 import { nanoid } from "nanoid";
 import { PiHandbagFill } from "react-icons/pi";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { IoHeartSharp } from "react-icons/io5";
 
 function ProductDetail() {
   const { state } = useLocation();
@@ -129,9 +129,9 @@ function ProductDetail() {
                   <PiHandbagFill size={"22px"} /> ADD TO BAG
                 </span>
               </button>
-              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-gray-600 w-[40%] bg-white py-[12px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#3effdc] hover:border-white">
+              <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[40%] bg-white py-[12px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white">
                 <span className="z-[5] flex justify-center items-center gap-3">
-                  <IoMdHeartEmpty size={"22px"} />
+                  <IoHeartSharp size={"22px"} />
                   WISHLIST
                 </span>
               </button>
