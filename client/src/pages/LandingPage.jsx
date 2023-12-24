@@ -68,9 +68,12 @@ function LandingPage() {
               |
             </li>
 
-            <li onClick={() => {
-              navigate('/all-products')
-            }} className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+            <li
+              onClick={() => {
+                navigate("/all-products");
+              }}
+              className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200"
+            >
               All Products
             </li>
             <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
@@ -125,8 +128,6 @@ function LandingPage() {
           </div>
         </div>
       </div>
-
-      
     </UserLayout>
   );
 }

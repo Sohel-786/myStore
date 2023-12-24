@@ -191,9 +191,12 @@ function UserLayout({ children }) {
           />
           <div className="w-[70%] py-4 mx-auto absolute bottom-[50px] bg-white rounded-t-3xl">
             <ul className="flex justify-center items-center gap-8 font-Roboto font-semibold tracking-wide">
-              <li onClick={() => {
+              <li
+                onClick={() => {
                   navigate("/");
-                }} className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+                }}
+                className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200"
+              >
                 Home
               </li>
 
@@ -205,7 +208,10 @@ function UserLayout({ children }) {
                 onClick={() => {
                   navigate("/all-products");
                 }}
-                className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in ${location.pathname === '/all-products' && `before:w-full scale-110`} before:duration-300 hover:scale-110 transition-all duration-200`}
+                className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in ${
+                  location.pathname === "/all-products" &&
+                  `before:w-full scale-110`
+                } before:duration-300 hover:scale-110 transition-all duration-200`}
               >
                 All Products
               </li>
