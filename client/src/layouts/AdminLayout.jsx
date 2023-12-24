@@ -13,7 +13,9 @@ function AdminLayout({ children }) {
   return (
     <section>
       <header className="px-7 py-2 shadow-header border-b-[1px] border-gray-300 flex items-center justify-between select-none">
-        <div className="flex items-center">
+        <div onClick={() => {
+          navigate('/')
+        }} className="flex items-center cursor-pointer">
           <img
             src="/assets/MyLogo2.svg"
             alt="logo"

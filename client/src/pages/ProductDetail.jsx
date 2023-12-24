@@ -7,6 +7,7 @@ import { nanoid } from "nanoid";
 import { PiHandbagFill } from "react-icons/pi";
 import { IoHeartSharp } from "react-icons/io5";
 import { BiDetail } from "react-icons/bi";
+import { BsTruck } from "react-icons/bs";
 
 function ProductDetail() {
   const { state } = useLocation();
@@ -43,13 +44,13 @@ function ProductDetail() {
         <div
           onMouseOver={handleBlur}
           onMouseOut={handleBlurRemove}
-          className="px-5 w-[50%] relative flex justify-center items-center"
+          className="px-5 w-[50%] relative flex justify-center items-center max-h-[577.089px]"
         >
-          <div id="profileImage" className="w-full">
+          <div id="profileImage" className="w-full h-full">
             <img
               src={state.thumbnail.secure_url}
               alt="Product Image"
-              className="rounded-md max-w-full max-h-[577.089px]"
+              className="rounded-md max-w-full max-h-full"
             />
           </div>
 
@@ -152,9 +153,13 @@ function ProductDetail() {
               ))}
             </p>
 
-            <h1 className="font-bold font-Mukta text-lg flex items-center gap-2 mt-3">
-              DELIVERY OPTIONS <BiDetail />
+            <h1 className="font-bold font-Mukta text-lg flex items-center gap-2 mt-5">
+              DELIVERY OPTIONS <BsTruck />
             </h1>
+
+            <p className="capitalize mt-2 text-blue-400 font-bold">
+                {state.deliveryInfo}
+            </p>
           </div>
         </div>
       </div>

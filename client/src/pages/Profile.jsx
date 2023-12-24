@@ -220,7 +220,9 @@ function Profile() {
     <UserLayout>
       <div className="flex flex-col items-center w-full h-[900px] lg:h-[320px] mt-2 relative">
         {/* Logo */}
-        <div className="w-[200px] aspect-auto absolute top-[-60px] left-3 z-40 ">
+        <div onClick={() => {
+          navigate('/')
+        }} className="w-[200px] aspect-auto absolute top-[-60px] left-3 z-40 cursor-pointer">
           <img
             className="w-full aspect-auto"
             src={"/assets/MyLogo2.svg"}
