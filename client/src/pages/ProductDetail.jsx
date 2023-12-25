@@ -85,10 +85,13 @@ function ProductDetail() {
           </div>
         </div>
 
-        <div onClick={() => {
-          setBackDrawer(!backDrawer)
-        }} className="absolute w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8">
-          <FaAngleRight size={'22px'} className="text-gray-500" />
+        <div
+          onClick={() => {
+            setBackDrawer(!backDrawer);
+          }}
+          className="absolute w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8"
+        >
+          <FaAngleRight size={"22px"} className="text-gray-500" />
         </div>
         <Drawer
           open={backDrawer}
@@ -97,9 +100,41 @@ function ProductDetail() {
           }}
           direction="left"
           size={"120px"}
-          className="bg-transparent"
           overlayOpacity={0}
-        ></Drawer>
+        >
+          <div className="h-full w-full flex justify-center items-center">
+            <ul className="flex flex-col">
+              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+                <img
+                  src="/assets/man.jpg"
+                  alt="Man"
+                  className="max-w-full max-h-full"
+                />
+              </li>
+              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+                <img
+                  src="/assets/man.jpg"
+                  alt="Man"
+                  className="max-w-full max-h-full"
+                />
+              </li>
+              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+                <img
+                  src="/assets/man.jpg"
+                  alt="Man"
+                  className="max-w-full max-h-full"
+                />
+              </li>
+              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+                <img
+                  src="/assets/man.jpg"
+                  alt="Man"
+                  className="max-w-full max-h-full"
+                />
+              </li>
+            </ul>
+          </div>
+        </Drawer>
 
         <div className="flex w-[50%] flex-col pl-3 pt-2">
           <h1 className="capitalize font-Nova text-2xl font-bold">
