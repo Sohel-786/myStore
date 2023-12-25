@@ -1,8 +1,9 @@
 import { toast } from "react-toastify";
 import axiosInstance from "../config/axiosInstance";
 import { useDispatch } from "react-redux";
+import { getUserDetails } from "../redux/slices/authSlice";
 
-export async function addToBag(id) {
+export async function addToBag(id, bagToggle) {
    const dispatch = useDispatch();
 
   let res = axiosInstance.post(`/user/bag/${id}`);
@@ -23,6 +24,8 @@ export async function addToBag(id) {
   res = await res;
 
   if(res?.data?.success){
-    dis
+    await dispatch(getUserDetails());
+
+    bagToggle();
   }
 }
