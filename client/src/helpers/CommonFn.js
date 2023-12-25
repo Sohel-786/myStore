@@ -1,3 +1,3 @@
-export function addToBag(id){
+export async function addToBag(id){
     
 }

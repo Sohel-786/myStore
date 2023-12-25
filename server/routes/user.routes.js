@@ -33,6 +33,10 @@ userRoutes.put("/reset/:resetToken", resetPassword);
 userRoutes.put("/changepassword", IsLoggedIn, changePassword);
 
 userRoutes
+  .route('/bag/:productId')
+  .post(IsLoggedIn, )
+
+userRoutes
   .route("/address")
   .post(IsLoggedIn, addAddress)
   .put(IsLoggedIn, updateAddress);
