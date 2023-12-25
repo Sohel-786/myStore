@@ -512,3 +512,29 @@ export const deleteAddress = async (req, res, next) => {
     return res.status(400).send(e.message);
   }
 };
+
+export const addToBag = async (req, res, next) => {
+  try {
+    const { productId } = req.body;
+
+    if (!productId) {
+      return next(AppError("The ProductId is required", 400));
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    user.cartItems.push({ productId });
+
+    user.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Successfully Added Product to the Bag",
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
