@@ -1,5 +1,5 @@
 function BagProduct(data){
-
+    
     return (
         <>
 

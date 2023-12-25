@@ -14,6 +14,7 @@ import SignIn from "../components/SignIn";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice";
+import Bag from "../components/Bag";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
@@ -292,7 +293,7 @@ function UserLayout({ children }) {
         direction="right"
         size={"450px"}
       >
-
+        <Bag />
       </Drawer>
       {children}
     </section>
