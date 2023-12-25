@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoBagHandleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { addToBag } from "../../helpers/CommonFn";
 
 function Product({ data }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -66,7 +67,7 @@ function Product({ data }) {
               ref={bagRef}
               type="button"
               onClick={() => {
-                
+                addToBag(_id);
               }}
               className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
             >

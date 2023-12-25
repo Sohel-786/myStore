@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addAddress,
+  addToBag,
   changePassword,
   deleteAddress,
   forgotPassword,
@@ -8,6 +9,7 @@ import {
   login,
   logout,
   register,
+  removeFromBag,
   resetPassword,
   updateAddress,
   updateProfile,
@@ -34,7 +36,8 @@ userRoutes.put("/changepassword", IsLoggedIn, changePassword);
 
 userRoutes
   .route('/bag/:productId')
-  .post(IsLoggedIn, )
+  .post(IsLoggedIn, addToBag)
+  .delete(IsLoggedIn, removeFromBag)
 
 userRoutes
   .route("/address")
