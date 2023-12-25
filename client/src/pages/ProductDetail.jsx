@@ -8,9 +8,13 @@ import { PiHandbagFill } from "react-icons/pi";
 import { IoHeartSharp } from "react-icons/io5";
 import { BiDetail } from "react-icons/bi";
 import { BsTruck } from "react-icons/bs";
+import Drawer from "react-modern-drawer";
+import { useState } from "react";
+import { FaAngleRight } from "react-icons/fa6";
 
 function ProductDetail() {
   const { state } = useLocation();
+  const [backDrawer, setBackDrawer] = useState(false);
 
   function handleFullImageView() {
     disableBodyScroll(document);
@@ -40,7 +44,7 @@ function ProductDetail() {
 
   return (
     <UserLayout>
-      <div className="flex px-28 py-8 max-w-[1280px]">
+      <div className="flex px-28 py-8 max-w-[1280px] relative">
         <div
           onMouseOver={handleBlur}
           onMouseOut={handleBlurRemove}
@@ -80,6 +84,18 @@ function ProductDetail() {
             />
           </div>
         </div>
+
+        <div className="absolute w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out">
+          <FaAngleRight size={'22px'} className="text-gray-500" />
+        </div>
+        <Drawer
+          open={backDrawer}
+          onClose={() => {
+            setBackDrawer(!backDrawer);
+          }}
+          direction="left"
+          size={"450px"}
+        ></Drawer>
 
         <div className="flex w-[50%] flex-col pl-3 pt-2">
           <h1 className="capitalize font-Nova text-2xl font-bold">
@@ -158,7 +174,7 @@ function ProductDetail() {
             </h1>
 
             <p className="capitalize mt-2 text-blue-400 font-bold">
-                {state.deliveryInfo}
+              {state.deliveryInfo}
             </p>
           </div>
         </div>
