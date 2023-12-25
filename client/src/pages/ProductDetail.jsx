@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
@@ -15,6 +15,7 @@ import { FaAngleRight } from "react-icons/fa6";
 function ProductDetail() {
   const { state } = useLocation();
   const [backDrawer, setBackDrawer] = useState(false);
+  const navigate = useNavigate();
 
   function handleFullImageView() {
     disableBodyScroll(document);
@@ -89,7 +90,7 @@ function ProductDetail() {
           onClick={() => {
             setBackDrawer(!backDrawer);
           }}
-          className="absolute w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8"
+          className="fixed w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8"
         >
           <FaAngleRight size={"22px"} className="text-gray-500" />
         </div>
@@ -104,36 +105,36 @@ function ProductDetail() {
         >
           <div className="h-full w-full flex justify-center items-center">
             <ul className="flex flex-col gap-6">
-              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li onClick={() => {
+                  navigate('/products/man')
+              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
                 <img
                   src="/assets/man.jpg"
                   alt="Man"
                   className="max-w-full max-h-full"
                 />
               </li>
-              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li onClick={() => {
+                  navigate('/products/woman')
+              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
                 <img
                   src="/assets/women.jpg"
                   alt="Man"
                   className="w-full max-h-full"
                 />
               </li>
-              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li onClick={() => {
+                  navigate('/products/kids')
+              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
                 <img
                   src="/assets/kids.jpg"
                   alt="Man"
                   className="max-w-full max-h-full"
                 />
               </li>
-              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black">
-                <img
-                  src="/assets/all.jpg"
-                  alt="Man"
-                  className="max-w-[75%] max-h-[75%]"
-                />
-              </li>
-              
-              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black">
+              <li onClick={() => {
+                  navigate('/all-products')
+              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black">
                 <img
                   src="/assets/all.jpg"
                   alt="Man"
