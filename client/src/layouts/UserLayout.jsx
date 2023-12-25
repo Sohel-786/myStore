@@ -18,6 +18,8 @@ import { logout } from "../redux/slices/authSlice";
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
+
+  const [isOpenBag, setIsOpenBag ]= useState(false);
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
   const name = useSelector((s) => s?.auth?.data?.fullname);
@@ -30,6 +32,10 @@ function UserLayout({ children }) {
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
   };
+
+  const toggleDrawerBag = () => {
+    setIsOpenBag(!isOpenBag);
+  }
 
   const toggleDrawerSignUp = () => {
     setOpenSignUp((prevState) => !prevState);
@@ -279,6 +285,14 @@ function UserLayout({ children }) {
             setOpenSignIn(false);
           }}
         />
+      </Drawer>
+      <Drawer
+        open={isOpenBag}
+        onClose={toggleDrawerBag}
+        direction="right"
+        size={"450px"}
+      >
+
       </Drawer>
       {children}
     </section>
