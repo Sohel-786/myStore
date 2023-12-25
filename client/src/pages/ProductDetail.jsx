@@ -85,7 +85,9 @@ function ProductDetail() {
           </div>
         </div>
 
-        <div className="absolute w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out">
+        <div onClick={() => {
+          setBackDrawer(!backDrawer)
+        }} className="absolute w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8">
           <FaAngleRight size={'22px'} className="text-gray-500" />
         </div>
         <Drawer
@@ -94,7 +96,9 @@ function ProductDetail() {
             setBackDrawer(!backDrawer);
           }}
           direction="left"
-          size={"450px"}
+          size={"120px"}
+          className="bg-transparent"
+          overlayOpacity={0}
         ></Drawer>
 
         <div className="flex w-[50%] flex-col pl-3 pt-2">
