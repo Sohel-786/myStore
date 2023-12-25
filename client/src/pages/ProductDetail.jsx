@@ -103,7 +103,7 @@ function ProductDetail() {
           overlayOpacity={0}
         >
           <div className="h-full w-full flex justify-center items-center">
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-6">
               <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
                 <img
                   src="/assets/man.jpg"
@@ -113,23 +113,31 @@ function ProductDetail() {
               </li>
               <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
                 <img
-                  src="/assets/man.jpg"
+                  src="/assets/women.jpg"
                   alt="Man"
-                  className="max-w-full max-h-full"
+                  className="w-full max-h-full"
                 />
               </li>
               <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
                 <img
-                  src="/assets/man.jpg"
+                  src="/assets/kids.jpg"
                   alt="Man"
                   className="max-w-full max-h-full"
                 />
               </li>
-              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black">
                 <img
-                  src="/assets/man.jpg"
+                  src="/assets/all.jpg"
                   alt="Man"
-                  className="max-w-full max-h-full"
+                  className="max-w-[75%] max-h-[75%]"
+                />
+              </li>
+              
+              <li className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black">
+                <img
+                  src="/assets/all.jpg"
+                  alt="Man"
+                  className="max-w-[75%] max-h-[75%]"
                 />
               </li>
             </ul>
