@@ -5,6 +5,7 @@ import cloudinary from "cloudinary";
 import fs from "fs/promises";
 import sendEmail from "../utils/sendMail.js";
 import crypto from "crypto";
+import Product from "../models/product.model.js";
 
 const cookieOptions = {
   secure: true,
@@ -559,6 +560,33 @@ export const removeFromBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
+
+export const getBagProducts = async (req, res, next) => {
+  try {
+    const { data } = req.body;
+
+    if (!data) {
+      return next(
+        AppError("Provide required Data to get the bag products"),
+        400
+      );
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    const products = await Product.find({ _id: { $in: data } });
+
+    res.status(200).json({
+      success: true,
+      products,
     });
   } catch (e) {
     return res.status(400).send(e.message);

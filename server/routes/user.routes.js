@@ -5,6 +5,7 @@ import {
   changePassword,
   deleteAddress,
   forgotPassword,
+  getBagProducts,
   getUser,
   login,
   logout,
@@ -38,6 +39,8 @@ userRoutes
   .route('/bag/:productId')
   .post(IsLoggedIn, addToBag)
   .delete(IsLoggedIn, removeFromBag)
+
+userRoutes.post('/getBag', IsLoggedIn, getBagProducts);
 
 userRoutes
   .route("/address")
