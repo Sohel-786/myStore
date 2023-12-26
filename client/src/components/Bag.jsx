@@ -10,10 +10,7 @@ function Bag() {
   const { cartItems } = useSelector((s) => s?.auth?.data);
 
   useState(() => {
-    if (cartItems.length > 0) {
-      console.log("check");
-      getCartProducts(cartItems);
-    }
+    getCartProducts(cartItems);
   }, [cartItems]);
 
   async function getCartProducts(arr) {
@@ -22,14 +19,18 @@ function Bag() {
       temp.push(el.productId);
     });
 
-    const res = await axiosInstance.post("/user/getBag", {
-      data: temp,
-    });
+    if (temp.length > 0) {
+      const res = await axiosInstance.post("/user/getBag", {
+        data: temp,
+      });
 
-    console.log(res);
+      console.log(res);
 
-    if (res?.data?.products) {
-      setBagItems([...res.data.products]);
+      if (res?.data?.products) {
+        setBagItems([...res.data.products]);
+      }
+    } else {
+      setBagItems([]);
     }
   }
 
@@ -41,9 +42,17 @@ function Bag() {
           <BiSolidShoppingBags size={"28px"} />
         </li>
         {bagItems ? (
-          bagItems.map((el) => {
-            return <BagProduct key={nanoid(4)} data={el} />;
-          })
+          <>
+            {bagItems.length === 0 ? (
+              <div className="w-full h-full flex justify-center items-center text-xl font-semibold">
+                <h1 className="text-gray-400">Empty</h1>
+              </div>
+            ) : (
+              bagItems.map((el) => {
+                return <BagProduct key={nanoid(4)} data={el} />;
+              })
+            )}
+          </>
         ) : (
           <div className="h-full w-full flex justify-center items-center">
             <img
@@ -55,14 +64,16 @@ function Bag() {
         )}
       </ul>
 
-      <div className="w-full flex flex-col justify-center items-center">
-        <button className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-zinc-500 via-zinc-800 to-zinc-900 rounded-md mt-2 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-slate-600">
-          <span className="z-[10]">OPEN BAG</span>{" "}
-        </button>
-        <button className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-slate-500 via-slate-800 to-slate-900 rounded-md mt-1 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-zinc-600">
-          <span className="z-[10]">CHECKOUT</span>{" "}
-        </button>
-      </div>
+      {bagItems && (
+        <div className="w-full flex flex-col justify-center items-center">
+          <button className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-zinc-500 via-zinc-800 to-zinc-900 rounded-md mt-2 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-slate-600">
+            <span className="z-[10]">OPEN BAG</span>{" "}
+          </button>
+          <button className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-slate-500 via-slate-800 to-slate-900 rounded-md mt-1 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-zinc-600">
+            <span className="z-[10]">CHECKOUT</span>{" "}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

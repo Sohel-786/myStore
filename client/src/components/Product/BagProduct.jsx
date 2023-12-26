@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { removeFromBag } from "../../redux/slices/productSlice";
+import { getUserDetails } from "../../redux/slices/authSlice";
+
 function BagProduct({ data }) {
+    const dispatch = useDispatch();
   let {
     _id,
     name,
@@ -12,6 +17,14 @@ function BagProduct({ data }) {
     pricedrop,
     thumbnail,
   } = data;
+
+  async function handleRemove(){
+    const res = await dispatch(removeFromBag(_id));
+
+    if(res?.payload?.data?.success){
+        await dispatch(getUserDetails()); 
+    }
+  }
   return (
     <div className="w-full flex h-[105px] select-none shadow-product pl-2">
       <div className="w-[25%] h-full">
@@ -53,7 +66,7 @@ function BagProduct({ data }) {
           )}
         </div>
 
-        <button className="w-fit text-sm px-4 flex bg-red-100 rounded-md font-Mukta mt-2 text-[#db4040] relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-[#d53c3c]">
+        <button onClick={handleRemove} className="w-fit text-sm px-4 flex bg-red-100 rounded-md font-Mukta mt-2 text-[#db4040] relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-[#d53c3c]">
           <span className="z-10">- Remove</span>
         </button>
       </div>

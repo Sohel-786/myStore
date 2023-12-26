@@ -74,6 +74,29 @@ export const addToBag = createAsyncThunk("/product/addToBag", async (id) => {
   }
 });
 
+export const removeFromBag = createAsyncThunk("/product/removeFromBag", async (id) => {
+  try {
+    let res = axiosInstance.delete(`/user/bag/${id}`);
+    toast.promise(
+      res,
+      {
+        pending: "Wait!, Removing product from the bag",
+        success: "Product Removed",
+        error: "Something Went Wrong",
+      },
+      {
+        hideProgressBar: true,
+        autoClose: 2000,
+        theme: "dark",
+      }
+    );
+
+    return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
 const productSlice = createSlice({
   name: "products",
   reducers: {},

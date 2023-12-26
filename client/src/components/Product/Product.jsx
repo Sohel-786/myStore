@@ -45,7 +45,7 @@ function Product({ data }) {
     for(let i = 0; i< cartItems.length ; i++){
       if(cartItems[i].productId === _id){
         toast.success('Product Is Already In Bag', {
-          theme : "dark",
+          theme : "colored",
           autoClose : 1500,
           hideProgressBar : true
         });
