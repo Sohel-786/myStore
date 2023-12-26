@@ -58,7 +58,7 @@ export const addToBag = createAsyncThunk("/product/addToBag", async (id) => {
       res,
       {
         pending: "Wait!, Adding product to the bag",
-        success: "Bag Updated",
+        success: "Product Added To The Bag!",
         error: "Something Went Wrong",
       },
       {

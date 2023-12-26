@@ -21,7 +21,7 @@ function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
 
-  const { handleBag, isOpenBag } = useContext(BagContext)
+  const { handleBag, isOpenBag } = useContext(BagContext);
 
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
@@ -285,14 +285,16 @@ function UserLayout({ children }) {
           }}
         />
       </Drawer>
-      <Drawer
-        open={isOpenBag}
-        onClose={handleBag}
-        direction="right"
-        size={"450px"}
-      >
-        <Bag />
-      </Drawer>
+      {isOpenBag && (
+        <Drawer
+          open={isOpenBag}
+          onClose={handleBag}
+          direction="right"
+          size={"450px"}
+        >
+          <Bag />
+        </Drawer>
+      )}
       {children}
     </section>
   );

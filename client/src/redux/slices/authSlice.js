@@ -50,13 +50,8 @@ export const getUserDetails = createAsyncThunk(
   "/auth/getUserDetails",
   async () => {
     try {
-      const res = axiosInstance.get("/user/me");
-      toast.promise(res, {
-        pending: "Wait! Getting Profile Data",
-        success: "Done",
-        error: "Failed to Load Profile Data",
-      });
-      return await res;
+      const res = await axiosInstance.get("/user/me");
+      return res;
     } catch (err) {
       toast.error(err?.response?.data?.message);
     }

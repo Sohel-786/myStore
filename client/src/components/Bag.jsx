@@ -3,48 +3,56 @@ import { useSelector } from "react-redux";
 import axiosInstance from "../config/axiosInstance";
 import Product from "./Product/Product";
 import { nanoid } from "@reduxjs/toolkit";
-import { BagContext } from "../Context/BagContext";
+import { BiSolidShoppingBags } from "react-icons/bi";
 
 function Bag() {
   const [bagItems, setBagItems] = useState(null);
-  const { data } = useSelector((s) => s?.auth);
-  const { isOpenBag } = useContext(BagContext);
+  const { cartItems } = useSelector((s) => s?.auth?.data);
 
   useState(() => {
-    if(data.cartItems){
-      getCartProducts(data.cartItems);
+    if (cartItems.length > 0) {
+      console.log("check");
+      getCartProducts(cartItems);
     }
-  }, [data]);
+  }, [cartItems]);
 
-  async function getCartProducts(arr){
-     const temp = [];
-     arr.forEach((el) => {
-        temp.push(el.productId);
-     });
+  async function getCartProducts(arr) {
+    const temp = [];
+    arr.forEach((el) => {
+      temp.push(el.productId);
+    });
 
+    const res = await axiosInstance.post("/user/getBag", {
+      data: temp,
+    });
 
-     console.log('check');
+    console.log(res);
 
-     const res = await axiosInstance.post('/user/getBag', {
-        data : temp
-     });
-
-     if(res?.data?.products){
-        console.log(res.data.products);
-        setBagItems([...res.data.products]);
-     }
+    if (res?.data?.products) {
+      setBagItems([...res.data.products]);
+    }
   }
 
   return (
-    <div className="w-full h-full flex mt-5">
-      <ul>
-        {
-            bagItems && bagItems.map((el) => {
-                return <Product key={nanoid(4)}  data={el} />
-            })
-        }
-      </ul>
-    </div>
+    <ul className="w-full h-full flex pt-[60px] relative">
+      <li className="w-full flex gap-2 justify-center absolute top-0 py-3 text-white text-center bg-black">
+        <h1 className="text-2xl font-Nova tracking-wide font-bold">MY BAG</h1>
+        <BiSolidShoppingBags size={"28px"} />
+      </li>
+      {bagItems ? (
+        bagItems.map((el) => {
+          return <Product key={nanoid(4)} data={el} />;
+        })
+      ) : (
+        <div className="h-full w-full flex justify-center items-center">
+          <img
+            src="/assets/loadingGif.gif"
+            alt="Loading..."
+            className="w-[60px] max-h-[60px]"
+          />
+        </div>
+      )}
+    </ul>
   );
 }
 
