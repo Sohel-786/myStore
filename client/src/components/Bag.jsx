@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../config/axiosInstance";
 import Product from "./Product/Product";
 import { nanoid } from "@reduxjs/toolkit";
+import { BagContext } from "../Context/BagContext";
 
 function Bag() {
   const [bagItems, setBagItems] = useState(null);
-  const { cartItems } = useSelector((s) => s?.auth?.data);
+  const { data } = useSelector((s) => s?.auth);
+  const { isOpenBag } = useContext(BagContext);
 
   useState(() => {
-    if(cartItems){
-      getCartProducts(cartItems);
+    if(data.cartItems){
+      getCartProducts(data.cartItems);
     }
-  }, [cartItems]);
+  }, [data]);
 
   async function getCartProducts(arr){
      const temp = [];
      arr.forEach((el) => {
         temp.push(el.productId);
      });
+
+
+     console.log('check');
 
      const res = await axiosInstance.post('/user/getBag', {
         data : temp

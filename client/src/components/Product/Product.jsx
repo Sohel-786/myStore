@@ -4,9 +4,9 @@ import { IoBagHandleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
-import { BagContext } from "../Context/BagContext";
 import { getUserDetails } from "../../redux/slices/authSlice";
 import { addToBag } from "../../redux/slices/productSlice";
+import { BagContext } from "../../Context/BagContext";
 
 function Product({ data }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -42,7 +42,7 @@ function Product({ data }) {
   async function handleBagAdd(){
     const res = await dispatch(addToBag(_id));
 
-    if(res?.data?.success){
+    if(res?.payload?.data?.success){
       await dispatch(getUserDetails());
       handleBag();
     }
