@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../config/axiosInstance";
 import { nanoid } from "@reduxjs/toolkit";
@@ -8,15 +8,16 @@ import BagProduct from "./Product/BagProduct";
 function Bag() {
   const [bagItems, setBagItems] = useState(null);
   const { cartItems } = useSelector((s) => s?.auth?.data);
+  const { data } = useSelector((s) => s?.auth);
 
   useState(() => {
-    console.log('check')
+    console.log("checks");
     getCartProducts(cartItems);
-  }, [cartItems]);
+  }, [cartItems, data]);
 
   async function getCartProducts(arr) {
     let temp = [];
-    
+
     if (arr.length > 0) {
       arr.forEach((el) => {
         temp.push(el.productId);
@@ -24,7 +25,7 @@ function Bag() {
       const res = await axiosInstance.post("/user/getBag", {
         data: temp,
       });
-      
+
       if (res?.data?.products) {
         setBagItems([...res.data.products]);
       }

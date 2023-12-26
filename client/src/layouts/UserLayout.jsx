@@ -285,15 +285,16 @@ function UserLayout({ children }) {
           }}
         />
       </Drawer>
-
-      <Drawer
-        open={isOpenBag}
-        onClose={handleBag}
-        direction="right"
-        size={"380px"}
-      >
-        <Bag />
-      </Drawer>
+      {isOpenBag && (
+        <Drawer
+          open={isOpenBag}
+          onClose={handleBag}
+          direction="right"
+          size={"380px"}
+        >
+          <Bag />
+        </Drawer>
+      )}
       {children}
     </section>
   );
