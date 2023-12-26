@@ -9,18 +9,20 @@ import Button from "../components/Button";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import SignUp from "../components/SignUp";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import SignIn from "../components/SignIn";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice";
 import Bag from "../components/Bag";
+import { BagContext } from "../Context/BagContext";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
 
-  const [isOpenBag, setIsOpenBag ]= useState(false);
+  const { handleBag, isOpenBag } = useContext(BagContext)
+
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
   const name = useSelector((s) => s?.auth?.data?.fullname);
@@ -33,10 +35,6 @@ function UserLayout({ children }) {
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
   };
-
-  const toggleDrawerBag = () => {
-    setIsOpenBag(!isOpenBag);
-  }
 
   const toggleDrawerSignUp = () => {
     setOpenSignUp((prevState) => !prevState);
@@ -289,7 +287,7 @@ function UserLayout({ children }) {
       </Drawer>
       <Drawer
         open={isOpenBag}
-        onClose={toggleDrawerBag}
+        onClose={handleBag}
         direction="right"
         size={"450px"}
       >

@@ -2,11 +2,17 @@ import { useRef, useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoBagHandleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { addToBag } from "../../helpers/CommonFn";
+import { useDispatch } from "react-redux";
+import { useContext } from "react";
+import { BagContext } from "../Context/BagContext";
+import { getUserDetails } from "../../redux/slices/authSlice";
+import { addToBag } from "../../redux/slices/productSlice";
 
-function Product({ data, bagToggle }) {
+function Product({ data }) {
   const [showDetails, setShowDetails] = useState(false);
+  const { handleBag } = useContext(BagContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const bagRef = useRef([]);
   const wishRef = useRef([]);
 
@@ -31,6 +37,15 @@ function Product({ data, bagToggle }) {
   function handleSalePrice(price, off) {
     let temp = (off / 100) * price;
     return Math.floor(price - temp);
+  }
+
+  async function handleBagAdd(){
+    const res = await dispatch(addToBag(_id));
+
+    if(res?.data?.success){
+      await dispatch(getUserDetails());
+      handleBag();
+    }
   }
   return (
     <li
@@ -66,9 +81,7 @@ function Product({ data, bagToggle }) {
             <span
               ref={bagRef}
               type="button"
-              onClick={() => {
-                addToBag(_id, bagToggle);
-              }}
+              onClick={handleBagAdd}
               className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
             >
               <span className="flex items-center justify-center gap-[6px] z-10">

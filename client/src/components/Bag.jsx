@@ -2,13 +2,16 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../config/axiosInstance";
 import Product from "./Product/Product";
+import { nanoid } from "@reduxjs/toolkit";
 
 function Bag() {
   const [bagItems, setBagItems] = useState(null);
   const { cartItems } = useSelector((s) => s?.auth?.data);
 
   useState(() => {
-    getCartProducts(cartItems);
+    if(cartItems){
+      getCartProducts(cartItems);
+    }
   }, [cartItems]);
 
   async function getCartProducts(arr){
@@ -32,7 +35,7 @@ function Bag() {
       <ul>
         {
             bagItems && bagItems.map((el) => {
-                return <Product  data={el} />
+                return <Product key={nanoid(4)}  data={el} />
             })
         }
       </ul>

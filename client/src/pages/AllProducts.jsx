@@ -3,7 +3,7 @@ import UserLayout from "../layouts/UserLayout";
 import Product from "../components/Product/Product";
 import { nanoid } from "nanoid";
 
-function AllProducts(toggle) {
+function AllProducts() {
   const { Allproducts } = useSelector((s) => s?.products);
 
   return (
@@ -13,7 +13,7 @@ function AllProducts(toggle) {
           <>
             {" "}
             {Allproducts.map((el) => {
-              return <Product bagToggle={toggle} key={nanoid(4)} data={el} />;
+              return <Product key={nanoid(4)} data={el} />;
             })}{" "}
           </>
         )}

@@ -7,12 +7,15 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
 import { ToastContainer } from "react-toastify";
+import { ContextProvider } from "./Context/BagContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
-      <ToastContainer />
+      <ContextProvider>
+        <App />
+        <ToastContainer />
+      </ContextProvider>
     </BrowserRouter>
   </Provider>
 );

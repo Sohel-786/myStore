@@ -20,21 +20,24 @@ export const addProduct = createAsyncThunk("/product/add", async (data) => {
     toast.error(e?.response?.data?.message);
   }
 });
-export const updateProduct = createAsyncThunk("/product/update", async (data) => {
-  try {
-    console.log(data.id, typeof data.id)
-    const res = axiosInstance.put(`/product/${data.id}`, data.data);
-    toast.promise(res, {
-      pending: "Wait, Updating Product",
-      success: res?.data?.message,
-      error: "Something Went Wrong",
-    });
+export const updateProduct = createAsyncThunk(
+  "/product/update",
+  async (data) => {
+    try {
+      console.log(data.id, typeof data.id);
+      const res = axiosInstance.put(`/product/${data.id}`, data.data);
+      toast.promise(res, {
+        pending: "Wait, Updating Product",
+        success: res?.data?.message,
+        error: "Something Went Wrong",
+      });
 
-    return await res;
-  } catch (e) {
-    toast.error(e?.response?.data?.message);
+      return await res;
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
   }
-});
+);
 
 export const getAllProducts = createAsyncThunk(
   "/product/getAllProducts",
@@ -47,6 +50,29 @@ export const getAllProducts = createAsyncThunk(
     }
   }
 );
+
+export const addToBag = createAsyncThunk("/product/addToBag", async (id) => {
+  try {
+    let res = axiosInstance.post(`/user/bag/${id}`);
+    toast.promise(
+      res,
+      {
+        pending: "Wait!, Adding product to the bag",
+        success: "Bag Updated",
+        error: "Something Went Wrong",
+      },
+      {
+        hideProgressBar: true,
+        autoClose: 2000,
+        theme: "dark",
+      }
+    );
+
+    return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
 
 const productSlice = createSlice({
   name: "products",
