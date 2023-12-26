@@ -290,7 +290,7 @@ function UserLayout({ children }) {
           open={isOpenBag}
           onClose={handleBag}
           direction="right"
-          size={"450px"}
+          size={"330px"}
         >
           <Bag />
         </Drawer>

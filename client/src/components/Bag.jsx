@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../config/axiosInstance";
-import Product from "./Product/Product";
 import { nanoid } from "@reduxjs/toolkit";
 import { BiSolidShoppingBags } from "react-icons/bi";
+import BagProduct from "./Product/BagProduct";
 
 function Bag() {
   const [bagItems, setBagItems] = useState(null);
@@ -41,7 +41,7 @@ function Bag() {
       </li>
       {bagItems ? (
         bagItems.map((el) => {
-          return <Product key={nanoid(4)} data={el} />;
+          return <BagProduct key={nanoid(4)} data={el} />;
         })
       ) : (
         <div className="h-full w-full flex justify-center items-center">
