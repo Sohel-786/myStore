@@ -13,12 +13,12 @@ function BagProduct({ data }) {
     thumbnail,
   } = data;
   return (
-    <div className="w-full flex h-[100px]">
+    <div className="w-full flex h-[105px]">
       <div className="w-[25%] h-full">
         <img
           src={thumbnail.secure_url}
           alt={name}
-          className="h-full aspect-auto max-w-full"
+          className="h-full aspect-auto max-w-full rounded-md"
         />
       </div>
 
@@ -32,6 +32,30 @@ function BagProduct({ data }) {
             On Sale
           </p>
         )}
+
+        <div className="text-[#282c3f]">
+          {sale === "YES" ? (
+            <span>
+              <span className="text-[14px] font-bold leading-[15px] ">
+                Rs. {Math.floor(price - (pricedrop / 100) * price)}
+              </span>
+              <span className="ml-[5px] text-[#7e818c] text-[11px] leading-[12px] line-through">
+                Rs. {price}
+              </span>{" "}
+              <span className="text-[red] text-[11px] ml-[5px]">
+                ({pricedrop}% OFF)
+              </span>{" "}
+            </span>
+          ) : (
+            <span className="text-[14px] font-bold leading-[15px] ">
+              Rs. {price}
+            </span>
+          )}
+        </div>
+
+        <button className="w-fit text-sm px-4 bg-red-100 rounded-md font-Mukta mt-2 text-[#db4040]">
+          - Remove
+        </button>
       </div>
     </div>
   );
