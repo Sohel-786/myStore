@@ -290,8 +290,7 @@ function UserLayout({ children }) {
           open={isOpenBag}
           onClose={handleBag}
           direction="right"
-          size={"330px"}
-          lockBackgroundScroll = {true}
+          size={"380px"}
         >
           <Bag />
         </Drawer>

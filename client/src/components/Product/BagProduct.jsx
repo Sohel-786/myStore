@@ -13,7 +13,7 @@ function BagProduct({ data }) {
     thumbnail,
   } = data;
   return (
-    <div className="w-full flex h-[105px] select-none shadow-product">
+    <div className="w-full flex h-[105px] select-none shadow-product pl-2">
       <div className="w-[25%] h-full">
         <img
           src={thumbnail.secure_url}
