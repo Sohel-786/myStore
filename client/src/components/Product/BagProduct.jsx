@@ -20,7 +20,7 @@ function BagProduct({ data }) {
 
   async function handleRemove(){
     const res = await dispatch(removeFromBag(_id));
-
+    console.log(res);
     if(res?.payload?.data?.success){
         await dispatch(getUserDetails()); 
     }

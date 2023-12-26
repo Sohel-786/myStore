@@ -10,22 +10,21 @@ function Bag() {
   const { cartItems } = useSelector((s) => s?.auth?.data);
 
   useState(() => {
+    console.log('check')
     getCartProducts(cartItems);
   }, [cartItems]);
 
   async function getCartProducts(arr) {
-    const temp = [];
-    arr.forEach((el) => {
-      temp.push(el.productId);
-    });
-
-    if (temp.length > 0) {
+    let temp = [];
+    
+    if (arr.length > 0) {
+      arr.forEach((el) => {
+        temp.push(el.productId);
+      });
       const res = await axiosInstance.post("/user/getBag", {
         data: temp,
       });
-
-      console.log(res);
-
+      
       if (res?.data?.products) {
         setBagItems([...res.data.products]);
       }
