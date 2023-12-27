@@ -16,18 +16,17 @@ function Bag() {
   }, [data]);
 
   async function getCartProducts(arr) {
-      let temp = [];
-      arr.forEach((el) => {
-        temp.push(el.productId);
-      });
-      const res = await axiosInstance.post("/user/getBag", {
-        data: temp,
-      });
+    let temp = [];
+    arr.forEach((el) => {
+      temp.push(el.productId);
+    });
+    const res = await axiosInstance.post("/user/getBag", {
+      data: temp,
+    });
 
-      if (res?.data?.products) {
-        setBagItems([...res.data.products]);
-      }
-
+    if (res?.data?.products) {
+      setBagItems([...res.data.products]);
+    }
   }
 
   return (
