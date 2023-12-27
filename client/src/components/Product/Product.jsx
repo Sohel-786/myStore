@@ -16,7 +16,7 @@ function Product({ data }) {
   const dispatch = useDispatch();
   const bagRef = useRef([]);
   const wishRef = useRef([]);
-  const { bag } = useSelector((s) => s?.products)
+  const { cartItems } = useSelector((s) => s?.auth?.data)
 
   let {
     _id,
@@ -42,8 +42,8 @@ function Product({ data }) {
   }
 
   async function handleBagAdd(){
-    for(let i = 0; i< bag.length ; i++){
-      if(bag[i].productId === _id){
+    for(let i = 0; i< cartItems.length ; i++){
+      if(cartItems[i].productId === _id){
         toast.success('Product Is Already In Bag', {
           theme : "colored",
           autoClose : 1500,
