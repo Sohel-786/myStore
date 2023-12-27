@@ -56,7 +56,7 @@ function Product({ data }) {
     const res = await dispatch(addToBag(_id));
 
     if(res?.payload?.data?.success){
-        dispatch(getUserDetails());
+       await dispatch(getUserDetails());
         handleBag();
     }
   }

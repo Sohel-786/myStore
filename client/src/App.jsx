@@ -20,9 +20,13 @@ function App() {
   const { networkRequest } = useSelector((s) => s?.auth);
 
   useEffect(() => {
-    dispatch(checkIsLoggedIn());
-    dispatch(getAllProducts());
+    runOnce();
   }, []);
+
+  async function runOnce(){
+    await dispatch(checkIsLoggedIn());
+    await dispatch(getAllProducts());
+  }
 
   return (
     <>

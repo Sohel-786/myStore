@@ -16,7 +16,6 @@ function Bag() {
   }, [data]);
 
   async function getCartProducts(arr) {
-    if (arr.length > 0) {
       let temp = [];
       arr.forEach((el) => {
         temp.push(el.productId);
@@ -28,9 +27,7 @@ function Bag() {
       if (res?.data?.products) {
         setBagItems([...res.data.products]);
       }
-    } else {
-      setBagItems([]);
-    }
+
   }
 
   return (
