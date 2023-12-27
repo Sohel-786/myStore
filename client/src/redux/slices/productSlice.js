@@ -106,7 +106,7 @@ const productSlice = createSlice({
       if (action.payload) {
         state.Allproducts = action?.payload?.data?.products;
       }
-    });
+    })
   },
 });
 

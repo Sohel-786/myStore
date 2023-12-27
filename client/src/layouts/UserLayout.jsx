@@ -292,7 +292,7 @@ function UserLayout({ children }) {
           direction="right"
           size={"380px"}
         >
-          <Bag />
+          <Bag/>
         </Drawer>
       )}
       {children}

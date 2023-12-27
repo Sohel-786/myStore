@@ -534,6 +534,7 @@ export const addToBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
+      bag: user.cartItems,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -548,29 +549,26 @@ export const removeFromBag = async (req, res, next) => {
       return next(AppError("The ProductId is required", 400));
     }
 
-    const userCheck = await User.findById(req.user.id);
-    if (!userCheck) {
-      return next(new AppError("Unauthenticated, please login", 400));
-    }
-
-    const user = await User.updateOne(
-      {
-        _id: req.user.id,
-      },
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
       {
         $pull: {
-          cartItems: { productId : productId },
+          cartItems: { productId: productId },
         },
-      }
+      },
+      { new: true }
     );
 
-    if (user?.matchedCount === 0) {
-      return next(new AppError("Such Product Doesn't Exist In Bag", 400));
+    console.log(user);
+
+    if(!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
     }
 
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the Bag",
+      bag : user.cartItems
     });
   } catch (e) {
     return res.status(400).send(e.message);

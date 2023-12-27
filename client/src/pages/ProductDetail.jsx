@@ -182,7 +182,7 @@ function ProductDetail() {
               {state.availableSizes.map((el) => {
                 return (
                   <li
-                    key={nanoid(5)}
+                    key={nanoid(4)}
                     className="w-[50px] uppercase h-[48px] hover:border-pink-500 flex justify-center items-center text-sm font-bold rounded-full border-[1px] border-slate-400"
                   >
                     {el}
@@ -213,7 +213,7 @@ function ProductDetail() {
 
             <p className="flex flex-col capitalize font-OpenSans text-base mt-5 leading-6">
               {state.description.split("$").map((el) => (
-                <span>{el}</span>
+                <span key={nanoid(5)}>{el}</span>
               ))}
             </p>
 
