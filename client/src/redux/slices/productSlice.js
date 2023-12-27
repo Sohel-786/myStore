@@ -20,6 +20,7 @@ export const addProduct = createAsyncThunk("/product/add", async (data) => {
     toast.error(e?.response?.data?.message);
   }
 });
+
 export const updateProduct = createAsyncThunk(
   "/product/update",
   async (data) => {

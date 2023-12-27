@@ -24,6 +24,7 @@ function BagProduct({ data }) {
       dispatch(getUserDetails());
     }
   }
+  
   return (
     <div className="w-full flex h-[105px] select-none shadow-product pl-2">
       <div className="w-[25%] h-full">

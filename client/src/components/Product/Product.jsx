@@ -42,7 +42,7 @@ function Product({ data }) {
   }
 
   async function handleBagAdd(){
-    for(let i = 0; i< cartItems.length ; i++){
+    for(let i = 0; i < cartItems.length ; i++){
       if(cartItems[i].productId === _id){
         toast.success('Product Is Already In Bag', {
           theme : "colored",

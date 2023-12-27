@@ -527,6 +527,12 @@ export const addToBag = async (req, res, next) => {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
+    for(let i = 0 ; i < user.cartItems.length ; i++){
+      if(user.cartItems[i].productId === productId){
+        return next(new AppError('The Bag already have this product'), 400);
+      }
+    }
+
     user.cartItems.push({ productId });
 
     user.save();
@@ -534,7 +540,6 @@ export const addToBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
-      bag: user.cartItems,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -568,7 +573,6 @@ export const removeFromBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the Bag",
-      bag : user.cartItems
     });
   } catch (e) {
     return res.status(400).send(e.message);
