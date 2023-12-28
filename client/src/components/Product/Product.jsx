@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { MdBookmarkRemove } from "react-icons/md";
 import { IoBagHandleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -123,7 +123,7 @@ function Product({ data, wish }) {
                 ADD TO BAG
               </span>
             </span>
-            {!wish && (
+            {!wish ? (
               <span
                 ref={wishRef}
                 type="button"
@@ -136,6 +136,21 @@ function Product({ data, wish }) {
                     size={"18px"}
                   />
                   WISHLIST
+                </span>
+              </span>
+            ) : (
+              <span
+                ref={wishRef}
+                type="button"
+                onClick={handleWishlistAdd}
+                className="border-[1px] py-2 flex items-center justify-center gap-[6px] relative border-[red] cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs text-[red] hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-red-600 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+              >
+                <span className="flex items-center justify-center gap-[6px] z-10">
+                  <MdBookmarkRemove
+                    className="relative top-[-1px]"
+                    size={"18px"}
+                  />
+                  REMOVE
                 </span>
               </span>
             )}
