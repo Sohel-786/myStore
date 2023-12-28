@@ -39,7 +39,7 @@ function WishList() {
         <FaThList size={"24px"} />
       </div>
 
-      <div className="flex items-center relative">
+      <div className="flex items-center relative h-full">
         <ul className="w-full flex pt-[60px] gap-4 px-5 mt-2">
           {wishlist ? (
             <>
@@ -64,10 +64,10 @@ function WishList() {
           )}
         </ul>
 
-        <div className="h-full flex justify-center items-center absolute right-0 top-14 px-1 bottom-0 bg-black">
+        <div className="h-full flex justify-center items-center absolute right-0 top-14 px-1 bottom-0 shadow-md">
           <div
             onClick={() => {}}
-            className="w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out"
+            className="w-[50px] h-[48px] relative left-[-30px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out"
           >
             <FaAngleRight size={"22px"} className="text-gray-500" />
           </div>

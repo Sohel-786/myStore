@@ -4,7 +4,11 @@ import { IoBagHandleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useContext } from "react";
-import { addToBag, addToWishlist } from "../../redux/slices/productSlice";
+import {
+  addToBag,
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/slices/productSlice";
 import { BagContext } from "../../Context/BagContext";
 import { toast } from "react-toastify";
 import { getUserDetails } from "../../redux/slices/authSlice";
@@ -44,7 +48,7 @@ function Product({ data, wish }) {
     return Math.floor(price - temp);
   }
 
-  async function handleBagAdd() {
+  async function handleBagAdd(fromWish) {
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].productId === _id) {
         toast.success("Product Is Already In Bag", {
@@ -59,6 +63,11 @@ function Product({ data, wish }) {
     const res = await dispatch(addToBag(_id));
 
     await dispatch(getUserDetails());
+
+    if(fromWish) {
+      await dispatch(removeFromWishlist(_id));
+      handleWishList();
+    }
     handleBag();
   }
 
@@ -79,6 +88,14 @@ function Product({ data, wish }) {
     await dispatch(getUserDetails());
     handleWishList();
   }
+
+  async function handleWishlistRemove() {
+    const res = await dispatch(removeFromWishlist(_id));
+    if (res?.payload?.data?.success) {
+      dispatch(getUserDetails());
+    }
+  }
+
   return (
     <li
       className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]"
@@ -110,20 +127,44 @@ function Product({ data, wish }) {
       {showDetails && (
         <div className="mb-3 px-[10px] min-h-[83.9873px] absolute w-full bg-white bottom-[40px] z-[4]">
           <div className="flex flex-col py-4 gap-2">
-            <span
-              ref={bagRef}
-              type="button"
-              onClick={handleBagAdd}
-              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
-            >
-              <span className="flex items-center justify-center gap-[6px] z-10">
-                <IoBagHandleSharp
-                  size={"18px"}
-                  className="relative top-[-3px]"
-                />
-                ADD TO BAG
+            {!wish && (
+              <span
+                ref={bagRef}
+                type="button"
+                onClick={() =>{
+                  handleBagAdd(false);
+                }}
+                className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+              >
+                <span className="flex items-center justify-center gap-[6px] z-10">
+                  <IoBagHandleSharp
+                    size={"18px"}
+                    className="relative top-[-3px]"
+                  />
+                  ADD TO BAG
+                </span>
               </span>
-            </span>
+            )}
+
+            {wish && (
+              <span
+                ref={bagRef}
+                type="button"
+                onClick={() => {
+                  handleBagAdd(true);
+                }}
+                className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+              >
+                <span className="flex items-center justify-center gap-[6px] z-10">
+                  <IoBagHandleSharp
+                    size={"18px"}
+                    className="relative top-[-3px]"
+                  />
+                  ADD TO BAG
+                </span>
+              </span>
+            )}
+
             {!wish && (
               <span
                 ref={wishRef}
@@ -144,7 +185,7 @@ function Product({ data, wish }) {
               <span
                 ref={wishRef}
                 type="button"
-                onClick={handleWishlistAdd}
+                onClick={handleWishlistRemove}
                 className="border-[1px] py-2 flex items-center justify-center gap-[6px] relative border-[red] cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs text-[red] hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-red-600 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
               >
                 <span className="flex items-center justify-center gap-[6px] z-10">
