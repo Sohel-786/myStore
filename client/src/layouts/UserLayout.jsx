@@ -303,7 +303,7 @@ function UserLayout({ children }) {
           open={IsOpenWishlist}
           onClose={handleWishList}
           direction="bottom"
-          size={"380px"}
+          size={"480px"}
         >
           <WishList />
         </Drawer>

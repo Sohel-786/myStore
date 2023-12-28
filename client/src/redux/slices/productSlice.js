@@ -98,6 +98,52 @@ export const removeFromBag = createAsyncThunk("/product/removeFromBag", async (i
   }
 });
 
+export const addToWishlist = createAsyncThunk("/product/addToWishlist", async (id) => {
+  try {
+    let res = axiosInstance.post(`/user/wishlist/${id}`);
+    toast.promise(
+      res,
+      {
+        pending: "Wait!, Adding product to the Wishlist",
+        success: "Product Added To The Wishlist!",
+        error: "Something Went Wrong",
+      },
+      {
+        hideProgressBar: true,
+        autoClose: 2000,
+        theme: "dark",
+      }
+    );
+
+    return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
+export const removeFromWishlist = createAsyncThunk("/product/removeFromWishlist", async (id) => {
+  try {
+    let res = axiosInstance.delete(`/user/wishlist/${id}`);
+    toast.promise(
+      res,
+      {
+        pending: "Wait!, Removing product from the Wishlist",
+        success: "Product Removed",
+        error: "Something Went Wrong",
+      },
+      {
+        hideProgressBar: true,
+        autoClose: 2000,
+        theme: "dark",
+      }
+    );
+
+    return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
 const productSlice = createSlice({
   name: "products",
   reducers: {},
