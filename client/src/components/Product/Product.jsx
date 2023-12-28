@@ -64,7 +64,7 @@ function Product({ data, wish }) {
 
     await dispatch(getUserDetails());
 
-    if(fromWish) {
+    if (fromWish) {
       await dispatch(removeFromWishlist(_id));
       handleWishList();
     }
@@ -131,7 +131,7 @@ function Product({ data, wish }) {
               <span
                 ref={bagRef}
                 type="button"
-                onClick={() =>{
+                onClick={() => {
                   handleBagAdd(false);
                 }}
                 className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
