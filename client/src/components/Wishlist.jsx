@@ -37,7 +37,7 @@ function WishList() {
         </h1>
         <FaThList size={"24px"} />
       </div>
-      <ul className="w-full flex pt-[60px] relative gap-2 px-5 mt-2">
+      <ul className="w-full flex pt-[60px] relative gap-4 px-5 mt-2">
         {wishlist ? (
           <>
             {wishlist.length === 0 ? (
@@ -60,6 +60,17 @@ function WishList() {
           </div>
         )}
       </ul>
+
+      <div className="h-full flex justify-center items-center absolute">
+      <div
+          onClick={() => {
+            setBackDrawer(!backDrawer);
+          }}
+          className="relative w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8"
+        >
+          <FaAngleRight size={"22px"} className="text-gray-500" />
+        </div>
+      </div>
     </div>
   );
 }

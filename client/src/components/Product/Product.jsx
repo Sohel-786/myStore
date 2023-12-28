@@ -9,6 +9,7 @@ import { BagContext } from "../../Context/BagContext";
 import { toast } from "react-toastify";
 import { getUserDetails } from "../../redux/slices/authSlice";
 import { WishlistContext } from "../../Context/WishListContext";
+import { IoMdHeartEmpty } from "react-icons/io";
 
 function Product({ data, wish }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -123,7 +124,7 @@ function Product({ data, wish }) {
                 ADD TO BAG
               </span>
             </span>
-            {!wish ? (
+            {!wish && (
               <span
                 ref={wishRef}
                 type="button"
@@ -138,7 +139,8 @@ function Product({ data, wish }) {
                   WISHLIST
                 </span>
               </span>
-            ) : (
+            )}
+            {wish && (
               <span
                 ref={wishRef}
                 type="button"
