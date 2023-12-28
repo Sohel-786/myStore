@@ -58,6 +58,24 @@ function Product({ data }) {
     await dispatch(getUserDetails());
     handleBag();
   }
+
+  async function handleWishlistAdd() {
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].productId === _id) {
+        toast.success("Product Is Already In Bag", {
+          theme: "colored",
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
+        handleBag();
+        return;
+      }
+    }
+    const res = await dispatch(addToBag(_id));
+
+    await dispatch(getUserDetails());
+    handleBag();
+  }
   return (
     <li
       className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]"
