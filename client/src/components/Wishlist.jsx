@@ -4,6 +4,7 @@ import axiosInstance from "../config/axiosInstance";
 import { nanoid } from "@reduxjs/toolkit";
 import { FaThList } from "react-icons/fa";
 import Product from "./Product/Product";
+import { FaAngleRight } from "react-icons/fa6";
 
 function WishList() {
   const [wishlist, setWishlist] = useState(null);
@@ -37,38 +38,39 @@ function WishList() {
         </h1>
         <FaThList size={"24px"} />
       </div>
-      <ul className="w-full flex pt-[60px] relative gap-4 px-5 mt-2">
-        {wishlist ? (
-          <>
-            {wishlist.length === 0 ? (
-              <div className="w-full h-full flex justify-center items-center text-xl font-semibold">
-                <h1 className="text-gray-400">Empty</h1>
-              </div>
-            ) : (
-              wishlist.map((el) => {
-                return <Product key={nanoid(4)} data={el} wish={true} />;
-              })
-            )}
-          </>
-        ) : (
-          <div className="h-full w-full flex justify-center items-center">
-            <img
-              src="/assets/loadingGif.gif"
-              alt="Loading..."
-              className="w-[60px] max-h-[60px]"
-            />
-          </div>
-        )}
-      </ul>
 
-      <div className="h-full flex justify-center items-center absolute">
-      <div
-          onClick={() => {
-            setBackDrawer(!backDrawer);
-          }}
-          className="relative w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8"
-        >
-          <FaAngleRight size={"22px"} className="text-gray-500" />
+      <div className="flex items-center relative">
+        <ul className="w-full flex pt-[60px] gap-4 px-5 mt-2">
+          {wishlist ? (
+            <>
+              {wishlist.length === 0 ? (
+                <div className="w-full h-full flex justify-center items-center text-xl font-semibold">
+                  <h1 className="text-gray-400">Empty</h1>
+                </div>
+              ) : (
+                wishlist.map((el) => {
+                  return <Product key={nanoid(4)} data={el} wish={true} />;
+                })
+              )}
+            </>
+          ) : (
+            <div className="h-full w-full flex justify-center items-center">
+              <img
+                src="/assets/loadingGif.gif"
+                alt="Loading..."
+                className="w-[60px] max-h-[60px]"
+              />
+            </div>
+          )}
+        </ul>
+
+        <div className="h-full flex justify-center items-center absolute right-0 top-14 px-1 bottom-0 bg-black">
+          <div
+            onClick={() => {}}
+            className="w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out"
+          >
+            <FaAngleRight size={"22px"} className="text-gray-500" />
+          </div>
         </div>
       </div>
     </div>
