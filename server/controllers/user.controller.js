@@ -540,6 +540,7 @@ export const addToBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
+      user
     });
   } catch (e) {
     return res.status(400).send(e.message);

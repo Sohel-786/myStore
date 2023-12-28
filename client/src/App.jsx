@@ -23,7 +23,7 @@ function App() {
     runOnce();
   }, []);
 
-  async function runOnce(){
+  async function runOnce() {
     await dispatch(checkIsLoggedIn());
     await dispatch(getAllProducts());
   }
@@ -49,8 +49,14 @@ function App() {
           element={networkRequest ? <AdminFront /> : <Loading />}
         />
 
-        <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/product-details/:id" element={<ProductDetail />} />
+        <Route
+          path="/all-products"
+          element={networkRequest ? <AllProducts /> : <Loading />}
+        />
+        <Route
+          path="/product-details/:id"
+          element={networkRequest ? <ProductDetail /> : <Loading />}
+        />
         <Route
           path="/add-product"
           element={networkRequest ? <AddProduct /> : <Loading />}

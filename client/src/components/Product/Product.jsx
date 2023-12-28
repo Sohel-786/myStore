@@ -16,7 +16,7 @@ function Product({ data }) {
   const dispatch = useDispatch();
   const bagRef = useRef([]);
   const wishRef = useRef([]);
-  const { cartItems } = useSelector((s) => s?.auth?.data)
+  const { cartItems } = useSelector((s) => s?.auth?.data);
 
   let {
     _id,
@@ -41,13 +41,13 @@ function Product({ data }) {
     return Math.floor(price - temp);
   }
 
-  async function handleBagAdd(){
-    for(let i = 0; i < cartItems.length ; i++){
-      if(cartItems[i].productId === _id){
-        toast.success('Product Is Already In Bag', {
-          theme : "colored",
-          autoClose : 1500,
-          hideProgressBar : true
+  async function handleBagAdd() {
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].productId === _id) {
+        toast.success("Product Is Already In Bag", {
+          theme: "colored",
+          autoClose: 1500,
+          hideProgressBar: true,
         });
         handleBag();
         return;
@@ -55,10 +55,8 @@ function Product({ data }) {
     }
     const res = await dispatch(addToBag(_id));
 
-    if(res?.payload?.data?.success){
-       await dispatch(getUserDetails());
-        handleBag();
-    }
+    await dispatch(getUserDetails());
+    handleBag();
   }
   return (
     <li
