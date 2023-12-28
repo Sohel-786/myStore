@@ -29,7 +29,7 @@ userRoutes.get("/logout", IsLoggedIn, logout);
 
 userRoutes.get("/me", IsLoggedIn, getUser);
 
-userRoutes.put('/update', IsLoggedIn, upload.single("avatar"), updateProfile);
+userRoutes.put("/update", IsLoggedIn, upload.single("avatar"), updateProfile);
 
 userRoutes.post("/reset", forgotPassword);
 
@@ -38,16 +38,16 @@ userRoutes.put("/reset/:resetToken", resetPassword);
 userRoutes.put("/changepassword", IsLoggedIn, changePassword);
 
 userRoutes
-  .route('/bag/:productId')
+  .route("/bag/:productId")
   .post(IsLoggedIn, addToBag)
-  .delete(IsLoggedIn, removeFromBag)
+  .delete(IsLoggedIn, removeFromBag);
 
 userRoutes
-  .route('/wishlist/:productId')
+  .route("/wishlist/:productId")
   .post(IsLoggedIn, addToWishlist)
-  .delete(IsLoggedIn, removeFromWishlist)
+  .delete(IsLoggedIn, removeFromWishlist);
 
-userRoutes.post('/getBag', IsLoggedIn, getBagProducts);
+userRoutes.post("/getBag", IsLoggedIn, getBagProducts);
 
 userRoutes
   .route("/address")

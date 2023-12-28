@@ -641,7 +641,6 @@ export const addToWishlist = async (req, res, next) => {
   }
 };
 
-
 export const removeFromWishlist = async (req, res, next) => {
   try {
     const { productId } = req.params;
