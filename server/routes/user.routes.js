@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   addAddress,
   addToBag,
+  addToWishlist,
   changePassword,
   deleteAddress,
   forgotPassword,
@@ -11,6 +12,7 @@ import {
   logout,
   register,
   removeFromBag,
+  removeFromWishlist,
   resetPassword,
   updateAddress,
   updateProfile,

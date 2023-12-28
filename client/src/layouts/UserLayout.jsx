@@ -16,12 +16,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice";
 import Bag from "../components/Bag";
 import { BagContext } from "../Context/BagContext";
+import WishList from "../components/Wishlist";
+import { WishlistContext } from "../Context/WishListContext";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
   const [isOpenSingIn, setOpenSignIn] = useState(false);
 
   const { handleBag, isOpenBag } = useContext(BagContext);
+  const { IsOpenWishlist, handleWishList} = useContext(WishlistContext);
 
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
@@ -293,6 +296,16 @@ function UserLayout({ children }) {
           size={"380px"}
         >
           <Bag/>
+        </Drawer>
+      )}
+      {IsOpenWishlist && (
+        <Drawer
+          open={IsOpenWishlist}
+          onClose={handleWishList}
+          direction="bottom"
+          size={"380px"}
+        >
+          <WishList/>
         </Drawer>
       )}
       {children}
