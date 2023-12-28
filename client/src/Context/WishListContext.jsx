@@ -1,6 +1,9 @@
 import { createContext, useState } from "react";
 
-const WishlistContext = createContext({ IsOpenWishlist: false, handleWishList: () => {} });
+const WishlistContext = createContext({
+  IsOpenWishlist: false,
+  handleWishList: () => {},
+});
 
 const WishlistContextProvider = ({ children }) => {
   const [IsOpenWishlist, setIsOpenWishlist] = useState(false);
@@ -14,6 +17,6 @@ const WishlistContextProvider = ({ children }) => {
       {children}
     </WishlistContext.Provider>
   );
-}
+};
 
-export { WishlistContext , WishlistContextProvider };
+export { WishlistContext, WishlistContextProvider };

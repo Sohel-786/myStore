@@ -24,7 +24,7 @@ function UserLayout({ children }) {
   const [isOpenSingIn, setOpenSignIn] = useState(false);
 
   const { handleBag, isOpenBag } = useContext(BagContext);
-  const { IsOpenWishlist, handleWishList} = useContext(WishlistContext);
+  const { IsOpenWishlist, handleWishList } = useContext(WishlistContext);
 
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
@@ -295,7 +295,7 @@ function UserLayout({ children }) {
           direction="right"
           size={"380px"}
         >
-          <Bag/>
+          <Bag />
         </Drawer>
       )}
       {IsOpenWishlist && (
@@ -305,7 +305,7 @@ function UserLayout({ children }) {
           direction="bottom"
           size={"380px"}
         >
-          <WishList/>
+          <WishList />
         </Drawer>
       )}
       {children}
