@@ -6,7 +6,7 @@ const initialState = {
   isLoggedIn: false,
   role: "",
   data: {},
-  networkRequest : false
+  networkRequest: false,
 };
 
 export const checkIsLoggedIn = createAsyncThunk("/auth/user", async () => {
@@ -58,25 +58,31 @@ export const getUserDetails = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk('/auth/update-user', async (data) => {
-  try {
-      const res = axiosInstance.put('/user/update', data);
-      toast.promise(res, {
-        pending : 'Wait, Updating Your Profile',
-        success : 'Profile Updated',
-        error : 'Something Went Wrong'
-      }, {
-        theme : 'dark',
-        autoClose : 1000,
-        hideProgressBar : true
-      })
+export const updateUser = createAsyncThunk(
+  "/auth/update-user",
+  async (data) => {
+    try {
+      const res = axiosInstance.put("/user/update", data);
+      toast.promise(
+        res,
+        {
+          pending: "Wait, Updating Your Profile",
+          success: "Profile Updated",
+          error: "Something Went Wrong",
+        },
+        {
+          theme: "dark",
+          autoClose: 1000,
+          hideProgressBar: true,
+        }
+      );
 
       return await res;
-  } catch (e) {
-    toast.error(e?.response?.data?.message);
-
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
   }
-});
+);
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
   try {
@@ -149,7 +155,6 @@ export const deleteAddress = createAsyncThunk("/delete/address", async (id) => {
     toast.error(err?.response?.data?.message);
   }
 });
-
 
 const authSlice = createSlice({
   name: "auth",

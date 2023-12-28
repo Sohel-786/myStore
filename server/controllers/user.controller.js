@@ -527,9 +527,9 @@ export const addToBag = async (req, res, next) => {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
-    for(let i = 0 ; i < user.cartItems.length ; i++){
-      if(user.cartItems[i].productId === productId){
-        return next(new AppError('The Bag already have this product'), 400);
+    for (let i = 0; i < user.cartItems.length; i++) {
+      if (user.cartItems[i].productId === productId) {
+        return next(new AppError("The Bag already have this product"), 400);
       }
     }
 
@@ -540,7 +540,7 @@ export const addToBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
-      user
+      user,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -565,9 +565,7 @@ export const removeFromBag = async (req, res, next) => {
       { new: true }
     );
 
-    console.log(user);
-
-    if(!user) {
+    if (!user) {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
@@ -601,6 +599,74 @@ export const getBagProducts = async (req, res, next) => {
     res.status(200).json({
       success: true,
       products,
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
+
+export const addToWishlist = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+
+    if (!productId) {
+      return next(AppError("The ProductId is required", 400));
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    for (let i = 0; i < user.wishlist.length; i++) {
+      if (user.wishlist[i].productId === productId) {
+        return next(
+          new AppError("The WishList already have this product"),
+          400
+        );
+      }
+    }
+
+    user.wishlist.push({ productId });
+
+    user.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Successfully Added Product to the WishList",
+      user,
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
+
+
+export const removeFromWishlist = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+
+    if (!productId) {
+      return next(AppError("The ProductId is required", 400));
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        $pull: {
+          wishlist: { productId: productId },
+        },
+      },
+      { new: true }
+    );
+
+    if (!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Successfully removed product from the WishList",
     });
   } catch (e) {
     return res.status(400).send(e.message);

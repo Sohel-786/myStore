@@ -40,6 +40,11 @@ userRoutes
   .post(IsLoggedIn, addToBag)
   .delete(IsLoggedIn, removeFromBag)
 
+userRoutes
+  .route('/wishlist/:productId')
+  .post(IsLoggedIn, addToWishlist)
+  .delete(IsLoggedIn, removeFromWishlist)
+
 userRoutes.post('/getBag', IsLoggedIn, getBagProducts);
 
 userRoutes

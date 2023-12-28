@@ -77,6 +77,14 @@ const userSchema = new Schema(
         },
       },
     ],
+    wishlist: [
+      {
+        productId: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     purchased: [
       {
         productId: {
