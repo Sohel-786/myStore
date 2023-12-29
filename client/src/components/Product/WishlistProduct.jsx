@@ -126,21 +126,21 @@ function WishlistProduct({ data }) {
 
         <div className="my-3 px-[10px]">
           <div>
-            <h1 className="capitalize text-[#282c3f] mb-[6px] font-black font-Nova ">
+            <h1 className="capitalize text-xl text-[#282c3f] mb-[4px] font-black font-Nova ">
               {brand}
             </h1>
             <p
-              className="capitalize text-[#535766] text-[14px] leading-[14px] "
+              className="capitalize text-[#6f7899] text-[16px] font-semibold leading-[20px] "
               title={name}
             >
-              {name.slice(0, 27)}..
+              {name.slice(0, 50)}..
             </p>
           </div>
 
           <div className="mt-[10px] mb-[6px] text-[#282c3f]">
             {sale === "YES" ? (
               <span>
-                <span className="text-[14px] font-bold leading-[15px] ">
+                <span className="text-[15px] font-bold leading-[16px] ">
                   Rs. {finalprice}
                 </span>
                 <span className="ml-[5px] text-[#7e818c] text-[12px] leading-[15px] line-through">
@@ -158,14 +158,25 @@ function WishlistProduct({ data }) {
           </div>
         </div>
 
-        <div className="mb-3 px-[10px] min-h-[83.9873px] w-full bg-white bottom-[40px] z-[4]">
+        <div className="mb-3 px-[10px] w-full bg-white">
+          <div>
+            <p
+              className="capitalize text-[#535766] text-[13px] leading-[14px]"
+              title={name}
+            >
+              Sizes:{" "}
+              <span className="uppercase ml-[2px] font-Roboto font-bold">
+                {availableSizes.join(" , ")}
+              </span>
+            </p>
+          </div>
           <div className="flex flex-col py-4 gap-2">
             <span
               type="button"
               onClick={() => {
                 handleBagAdd(true);
               }}
-              className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+              className="border-[1px] bg-gray-900 text-white border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
             >
               <span className="flex items-center justify-center gap-[6px] z-10">
                 <IoBagHandleSharp
@@ -189,17 +200,6 @@ function WishlistProduct({ data }) {
                 REMOVE
               </span>
             </span>
-          </div>
-          <div>
-            <p
-              className="capitalize text-[#535766] text-[13px] leading-[14px]"
-              title={name}
-            >
-              Sizes:{" "}
-              <span className="uppercase ml-[2px] font-Roboto">
-                {availableSizes.join(" , ")}
-              </span>
-            </p>
           </div>
         </div>
       </div>
