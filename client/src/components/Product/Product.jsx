@@ -57,15 +57,17 @@ function Product({ data, wish }) {
           hideProgressBar: true,
         });
         handleBag();
+
+        if(fromWish){
+          handleWishList();
+        }
         return;
       }
     }
-    const res = await dispatch(addToBag(_id));
-
-    await dispatch(getUserDetails());
+    const res = await dispatch(addToBag({_id, handleUserData}));
 
     if (fromWish) {
-      await dispatch(removeFromWishlist(_id));
+      await dispatch(removeFromWishlist({_id, handleUserData}));
       handleWishList();
     }
     handleBag();
@@ -83,17 +85,19 @@ function Product({ data, wish }) {
         return;
       }
     }
-    const res = await dispatch(addToWishlist(_id));
-
-    await dispatch(getUserDetails());
+    const res = await dispatch(addToWishlist({_id, handleUserData}));
     handleWishList();
   }
 
+  async function handleUserData(){
+    console.log(
+      'Got User data Ran'
+    )
+     await dispatch(getUserDetails());
+  }
+
   async function handleWishlistRemove() {
-    const res = await dispatch(removeFromWishlist(_id));
-    if (res?.payload?.data?.success) {
-      dispatch(getUserDetails());
-    }
+    const res = await dispatch(removeFromWishlist({_id, handleUserData}));
   }
 
   return (

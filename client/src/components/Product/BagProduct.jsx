@@ -18,11 +18,12 @@ function BagProduct({ data }) {
     thumbnail,
   } = data;
 
+  function handleUserData(){
+    dispatch(getUserDetails());
+  }
+
   async function handleRemove() {
-    const res = await dispatch(removeFromBag(_id));
-    if (res?.payload?.data?.success) {
-      dispatch(getUserDetails());
-    }
+    const res = await dispatch(removeFromBag({_id, handleUserData}));
   }
 
   return (
