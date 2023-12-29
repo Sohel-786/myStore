@@ -33,14 +33,14 @@ function WishlistPage() {
   }
   return (
     <UserLayout>
-      <div className="flex px-28 py-8 max-w-[1280px] relative">
+      <div className="flex px-28 py-8 max-w-[1280px] relative mx-auto">
         <CommonDrawer />
 
         <ul className="w-full flex gap-4 mt-2">
           {wishlist ? (
             <>
               {wishlist.length === 0 ? (
-                <div className="w-full h-full flex justify-center items-center text-xl font-semibold">
+                <div className="w-full h-[70vh] flex justify-center items-center text-xl font-semibold">
                   <h1 className="text-gray-400">Empty</h1>
                 </div>
               ) : (

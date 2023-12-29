@@ -54,36 +54,13 @@ function WishlistProduct({ data }) {
           hideProgressBar: true,
         });
         handleBag();
-
-        if (fromWish) {
-          handleWishList();
-        }
         return;
       }
     }
     const res = await dispatch(addToBag({ _id, handleUserData }));
 
-    if (fromWish) {
-      await dispatch(removeFromWishlist({ _id, handleUserData }));
-      handleWishList();
-    }
+    await dispatch(removeFromWishlist({ _id, handleUserData }));
     handleBag();
-  }
-
-  async function handleWishlistAdd() {
-    for (let i = 0; i < wishlist.length; i++) {
-      if (wishlist[i].productId === _id) {
-        toast.success("Product Is Already In WishList", {
-          theme: "colored",
-          autoClose: 1500,
-          hideProgressBar: true,
-        });
-        handleWishList();
-        return;
-      }
-    }
-    const res = await dispatch(addToWishlist({ _id, handleUserData }));
-    handleWishList();
   }
 
   async function handleUserData() {
