@@ -12,11 +12,11 @@ function WishList() {
 
   useEffect(() => {
     if (data.wishlist) {
-      getCartProducts(data.wishlist);
+      getWishlistProducts(data.wishlist);
     }
   }, [data]);
 
-  async function getCartProducts(arr) {
+  async function getWishlistProducts(arr) {
     let temp = [];
     arr.forEach((el) => {
       temp.push(el.productId);
