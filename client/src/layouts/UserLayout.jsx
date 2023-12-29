@@ -119,10 +119,20 @@ function UserLayout({ children }) {
         </div>
 
         <div className={`flex gap-2 items-center text-white`}>
-          <Button onclick={toggleDrawerSignUp} text={"Bag"}>
+          <Button
+            onclick={() => {
+              navigate("/user/bag");
+            }}
+            text={"Bag"}
+          >
             <IoBagHandleSharp size={"18px"} />
           </Button>
-          <Button onclick={toggleDrawerSignUp} text={"Wishlist"}>
+          <Button
+            onclick={() => {
+              navigate("/user/wishlist");
+            }}
+            text={"Wishlist"}
+          >
             <FaHeart size={"18px"} />
           </Button>
           {role === "ADMIN" && (

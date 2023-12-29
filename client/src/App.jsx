@@ -14,6 +14,7 @@ import ResetPassword from "./pages/ResetPassword";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import AllProducts from "./pages/AllProducts";
 import ProductDetail from "./pages/ProductDetail";
+import WishlistPage from "./pages/WishlistPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,22 +54,32 @@ function App() {
           path="/all-products"
           element={networkRequest ? <AllProducts /> : <Loading />}
         />
+
+        <Route
+          path="/user/wishlist"
+          element={networkRequest ? <WishlistPage /> : <Loading />}
+        />
+
         <Route
           path="/product-details/:id"
           element={networkRequest ? <ProductDetail /> : <Loading />}
         />
+
         <Route
           path="/add-product"
           element={networkRequest ? <AddProduct /> : <Loading />}
         />
+
         <Route
           path="/manage-products"
           element={networkRequest ? <ManageProducts /> : <Loading />}
         />
+
         <Route
           path="/history"
           element={networkRequest ? <AddProduct /> : <Loading />}
         />
+
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </>
