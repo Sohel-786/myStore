@@ -87,7 +87,7 @@ export const removeFromBag = createAsyncThunk(
         res,
         {
           pending: "Wait!, Removing product from the bag",
-          success: "Product Removed",
+          success: "Product Removed From Bag",
           error: "Something Went Wrong",
         },
         {
@@ -141,7 +141,7 @@ export const removeFromWishlist = createAsyncThunk(
         res,
         {
           pending: "Wait!, Removing product from the Wishlist",
-          success: "Product Removed",
+          success: "Product Removed From Wishlist",
           error: "Something Went Wrong",
         },
         {

@@ -90,9 +90,6 @@ function Product({ data, wish }) {
   }
 
   async function handleUserData(){
-    console.log(
-      'Got User data Ran'
-    )
      await dispatch(getUserDetails());
   }
 
