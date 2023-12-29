@@ -58,16 +58,16 @@ function Product({ data, wish }) {
         });
         handleBag();
 
-        if(fromWish){
+        if (fromWish) {
           handleWishList();
         }
         return;
       }
     }
-    const res = await dispatch(addToBag({_id, handleUserData}));
+    const res = await dispatch(addToBag({ _id, handleUserData }));
 
     if (fromWish) {
-      await dispatch(removeFromWishlist({_id, handleUserData}));
+      await dispatch(removeFromWishlist({ _id, handleUserData }));
       handleWishList();
     }
     handleBag();
@@ -85,16 +85,16 @@ function Product({ data, wish }) {
         return;
       }
     }
-    const res = await dispatch(addToWishlist({_id, handleUserData}));
+    const res = await dispatch(addToWishlist({ _id, handleUserData }));
     handleWishList();
   }
 
-  async function handleUserData(){
-     await dispatch(getUserDetails());
+  async function handleUserData() {
+    await dispatch(getUserDetails());
   }
 
   async function handleWishlistRemove() {
-    const res = await dispatch(removeFromWishlist({_id, handleUserData}));
+    const res = await dispatch(removeFromWishlist({ _id, handleUserData }));
   }
 
   return (

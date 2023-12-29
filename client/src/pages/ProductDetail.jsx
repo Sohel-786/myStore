@@ -114,36 +114,48 @@ function ProductDetail() {
         >
           <div className="h-full w-full flex justify-center items-center">
             <ul className="flex flex-col gap-6">
-              <li onClick={() => {
-                  navigate('/products/man')
-              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li
+                onClick={() => {
+                  navigate("/products/man");
+                }}
+                className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
+              >
                 <img
                   src="/assets/man.jpg"
                   alt="Man"
                   className="max-w-full max-h-full"
                 />
               </li>
-              <li onClick={() => {
-                  navigate('/products/woman')
-              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li
+                onClick={() => {
+                  navigate("/products/woman");
+                }}
+                className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
+              >
                 <img
                   src="/assets/women.jpg"
                   alt="Man"
                   className="w-full max-h-full"
                 />
               </li>
-              <li onClick={() => {
-                  navigate('/products/kids')
-              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300">
+              <li
+                onClick={() => {
+                  navigate("/products/kids");
+                }}
+                className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
+              >
                 <img
                   src="/assets/kids.jpg"
                   alt="Man"
                   className="max-w-full max-h-full"
                 />
               </li>
-              <li onClick={() => {
-                  navigate('/all-products')
-              }} className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black">
+              <li
+                onClick={() => {
+                  navigate("/all-products");
+                }}
+                className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black"
+              >
                 <img
                   src="/assets/all.jpg"
                   alt="Man"
