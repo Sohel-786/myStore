@@ -8,7 +8,7 @@ import {
   addToBag,
   addToWishlist,
   removeFromWishlist,
-} from "../../redux/slices/productSlice";
+} from "../../redux/slices/authSlice";
 import { BagContext } from "../../Context/BagContext";
 import { toast } from "react-toastify";
 import { getUserDetails } from "../../redux/slices/authSlice";
@@ -23,7 +23,7 @@ function Product({ data, wish }) {
   const dispatch = useDispatch();
   const bagRef = useRef([]);
   const wishRef = useRef([]);
-  const { cartItems, wishlist } = useSelector((s) => s?.auth?.data);
+  const { bag, wishList } = useSelector((s) => s?.auth);
 
   let {
     _id,
@@ -49,8 +49,8 @@ function Product({ data, wish }) {
   }
 
   async function handleBagAdd(fromWish) {
-    for (let i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].productId === _id) {
+    for (let i = 0; i < bag.length; i++) {
+      if (bag[i].productId === _id) {
         toast.success("Product Is Already In Bag", {
           theme: "colored",
           autoClose: 1500,
@@ -64,18 +64,18 @@ function Product({ data, wish }) {
         return;
       }
     }
-    const res = await dispatch(addToBag({ _id, handleUserData }));
+    const res = await dispatch(addToBag(_id));
 
     if (fromWish) {
-      await dispatch(removeFromWishlist({ _id, handleUserData }));
+      await dispatch(removeFromWishlist(_id));
       handleWishList();
     }
     handleBag();
   }
 
   async function handleWishlistAdd() {
-    for (let i = 0; i < wishlist.length; i++) {
-      if (wishlist[i].productId === _id) {
+    for (let i = 0; i < wishList.length; i++) {
+      if (wishList[i].productId === _id) {
         toast.success("Product Is Already In WishList", {
           theme: "colored",
           autoClose: 1500,
@@ -85,16 +85,12 @@ function Product({ data, wish }) {
         return;
       }
     }
-    const res = await dispatch(addToWishlist({ _id, handleUserData }));
+    const res = await dispatch(addToWishlist(_id));
     handleWishList();
   }
 
-  async function handleUserData() {
-    await dispatch(getUserDetails());
-  }
-
   async function handleWishlistRemove() {
-    const res = await dispatch(removeFromWishlist({ _id, handleUserData }));
+    const res = await dispatch(removeFromWishlist(_id));
   }
 
   return (

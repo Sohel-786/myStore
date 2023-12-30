@@ -540,7 +540,7 @@ export const addToBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
-      user,
+      bag : user.cartItems
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -572,6 +572,7 @@ export const removeFromBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the Bag",
+      bag : user.cartItems
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -634,7 +635,7 @@ export const addToWishlist = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the WishList",
-      user,
+      wishlist : user.wishlist
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -666,6 +667,7 @@ export const removeFromWishlist = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the WishList",
+      wishlist : user.wishlist
     });
   } catch (e) {
     return res.status(400).send(e.message);

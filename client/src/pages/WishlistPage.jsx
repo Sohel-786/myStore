@@ -10,13 +10,11 @@ import { nanoid } from "nanoid";
 function WishlistPage() {
   const navigate = useNavigate();
   const [wishlist, setWishlist] = useState(null);
-  const { data } = useSelector((s) => s?.auth);
+  const { wishList } = useSelector((s) => s?.auth);
 
   useEffect(() => {
-    if (data.wishlist) {
-      getWishlistProducts(data.wishlist);
-    }
-  }, [data]);
+      getWishlistProducts(wishList);
+  }, [wishList]);
 
   async function getWishlistProducts(arr) {
     let temp = [];

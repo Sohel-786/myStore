@@ -7,6 +7,8 @@ const initialState = {
   role: "",
   data: {},
   networkRequest: false,
+  bag : [],
+  wishList : []
 };
 
 export const checkIsLoggedIn = createAsyncThunk("/auth/user", async () => {
@@ -156,6 +158,107 @@ export const deleteAddress = createAsyncThunk("/delete/address", async (id) => {
   }
 });
 
+export const addToBag = createAsyncThunk("/product/addToBag", async (id) => {
+  try {
+    let res = axiosInstance.post(`/user/bag/${id}`);
+    toast.promise(
+      res,
+      {
+        pending: "Wait!, Adding product to the bag",
+        success: "Product Added To The Bag!",
+        error: "Something Went Wrong",
+      },
+      {
+        hideProgressBar: true,
+        autoClose: 2000,
+        theme: "dark",
+      }
+    );
+
+    return await res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
+export const removeFromBag = createAsyncThunk(
+  "/product/removeFromBag",
+  async (id) => {
+    try {
+      let res = axiosInstance.delete(`/user/bag/${id}`);
+      toast.promise(
+        res,
+        {
+          pending: "Wait!, Removing product from the bag",
+          success: "Product Removed From Bag",
+          error: "Something Went Wrong",
+        },
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          theme: "dark",
+        }
+      );
+
+      return await res;
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  }
+);
+
+export const addToWishlist = createAsyncThunk(
+  "/product/addToWishlist",
+  async (id) => {
+    try {
+      let res = axiosInstance.post(`/user/wishlist/${id}`);
+      toast.promise(
+        res,
+        {
+          pending: "Wait!, Adding product to the Wishlist",
+          success: "Product Added To The Wishlist!",
+          error: "Something Went Wrong",
+        },
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          theme: "dark",
+        }
+      );
+
+      return await res;
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  }
+);
+
+export const removeFromWishlist = createAsyncThunk(
+  "/product/removeFromWishlist",
+  async (id) => {
+    try {
+      let res = axiosInstance.delete(`/user/wishlist/${id}`);
+      toast.promise(
+        res,
+        {
+          pending: "Wait!, Removing product from the Wishlist",
+          success: "Product Removed From Wishlist",
+          error: "Something Went Wrong",
+        },
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          theme: "dark",
+        }
+      );
+
+      return await res;
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   reducers: {},
@@ -167,6 +270,8 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
+          state.bag = action?.payload?.data?.user?.cartItems
+          state.wishList = action?.payload?.data?.user?.wishlist
         }
         state.networkRequest = true;
       })
@@ -194,6 +299,26 @@ const authSlice = createSlice({
           state.isLoggedIn = false;
           state.role = "";
           state.data = {};
+        }
+      })
+      .addCase(addToBag.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.bag = action?.payload?.data?.bag;
+        }
+      })
+      .addCase(removeFromBag.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.bag = action?.payload?.data?.bag;
+        }
+      })
+      .addCase(addToWishlist.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.wishList = action?.payload?.data?.wishlist;
+        }
+      })
+      .addCase(removeFromWishlist.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.wishList = action?.payload?.data?.wishlist;
         }
       });
   },

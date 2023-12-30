@@ -7,16 +7,15 @@ import { useContext } from "react";
 import {
   addToBag,
   removeFromWishlist,
-} from "../../redux/slices/productSlice";
+} from "../../redux/slices/authSlice";
 import { BagContext } from "../../Context/BagContext";
 import { toast } from "react-toastify";
-import { getUserDetails } from "../../redux/slices/authSlice";
 
 function WishlistProduct({ data }) {
   const { handleBag } = useContext(BagContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { cartItems, wishlist } = useSelector((s) => s?.auth?.data);
+  const { bag } = useSelector((s) => s?.auth);
   const bagRef = useRef([]);
   const removeRef = useRef([]);
 
@@ -44,8 +43,8 @@ function WishlistProduct({ data }) {
   }
 
   async function handleBagAdd(fromWish) {
-    for (let i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].productId === _id) {
+    for (let i = 0; i < bag.length; i++) {
+      if (bag[i].productId === _id) {
         toast.success("Product Is Already In Bag", {
           theme: "colored",
           autoClose: 1500,
@@ -55,18 +54,14 @@ function WishlistProduct({ data }) {
         return;
       }
     }
-    const res = await dispatch(addToBag({ _id, handleUserData }));
+    const res = await dispatch(addToBag(_id));
 
-    await dispatch(removeFromWishlist({ _id, handleUserData }));
+    await dispatch(removeFromWishlist(_id));
     handleBag();
   }
 
-  async function handleUserData() {
-    await dispatch(getUserDetails());
-  }
-
   async function handleWishlistRemove() {
-    const res = await dispatch(removeFromWishlist({ _id, handleUserData }));
+    const res = await dispatch(removeFromWishlist(_id));
   }
   return (
     <li
@@ -108,7 +103,7 @@ function WishlistProduct({ data }) {
               className="capitalize text-[#6f7899] text-[16px] font-semibold leading-[20px] "
               title={name}
             >
-              {name.slice(0, 50)}..
+              {name.slice(0, 45)}..
             </p>
           </div>
 

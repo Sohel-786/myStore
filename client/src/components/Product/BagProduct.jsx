@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
-import { removeFromBag } from "../../redux/slices/productSlice";
-import { getUserDetails } from "../../redux/slices/authSlice";
+import { removeFromBag } from "../../redux/slices/authSlice";
 
 function BagProduct({ data }) {
   const dispatch = useDispatch();
@@ -18,12 +17,8 @@ function BagProduct({ data }) {
     thumbnail,
   } = data;
 
-  function handleUserData(){
-    dispatch(getUserDetails());
-  }
-
   async function handleRemove() {
-    const res = await dispatch(removeFromBag({_id, handleUserData}));
+    const res = await dispatch(removeFromBag(_id));
   }
 
   return (

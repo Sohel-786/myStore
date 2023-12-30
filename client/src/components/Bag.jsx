@@ -7,13 +7,11 @@ import BagProduct from "./Product/BagProduct";
 
 function Bag() {
   const [bagItems, setBagItems] = useState(null);
-  const { data } = useSelector((s) => s?.auth);
+  const { bag } = useSelector((s) => s?.auth);
 
   useEffect(() => {
-    if (data.cartItems) {
-      getCartProducts(data.cartItems);
-    }
-  }, [data]);
+      getCartProducts(bag);
+  }, [bag]);
 
   async function getCartProducts(arr) {
     let temp = [];

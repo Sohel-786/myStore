@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../config/axiosInstance";
 import { nanoid } from "@reduxjs/toolkit";
 import { FaThList } from "react-icons/fa";
 import Product from "./Product/Product";
 import { FaAngleRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { WishlistContext } from "../Context/WishListContext";
 
 function WishList() {
   const [wishlist, setWishlist] = useState(null);
-  const { data } = useSelector((s) => s?.auth);
+  const { wishList } = useSelector((s) => s?.auth);
+  const { handleWishList } = useContext(WishlistContext)
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (data.wishlist) {
-      getWishlistProducts(data.wishlist);
-    }
-  }, [data]);
+      getWishlistProducts(wishList);
+  }, [wishList]);
 
   async function getWishlistProducts(arr) {
     let temp = [];
@@ -66,7 +68,10 @@ function WishList() {
 
         <div className="h-full flex justify-center items-center absolute right-0 top-14 px-1 bottom-0 shadow-md">
           <div
-            onClick={() => {}}
+            onClick={() => {
+              handleWishList();
+              navigate('/user/wishlist');
+            }}
             className="w-[50px] h-[48px] relative left-[-30px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out"
           >
             <FaAngleRight size={"22px"} className="text-gray-500" />

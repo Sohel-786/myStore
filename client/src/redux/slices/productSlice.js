@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { getUserDetails } from "./authSlice";
 
 const initialState = {
-  Allproducts: [],
+  Allproducts: []
 };
 
 export const addProduct = createAsyncThunk("/product/add", async (data) => {
@@ -47,112 +47,6 @@ export const getAllProducts = createAsyncThunk(
     try {
       const res = await axiosInstance.get("/product/");
       return res;
-    } catch (e) {
-      toast.error(e?.response?.data?.message);
-    }
-  }
-);
-
-export const addToBag = createAsyncThunk("/product/addToBag", async (data) => {
-  try {
-    let res = axiosInstance.post(`/user/bag/${data._id}`);
-    toast.promise(
-      res,
-      {
-        pending: "Wait!, Adding product to the bag",
-        success: "Product Added To The Bag!",
-        error: "Something Went Wrong",
-      },
-      {
-        hideProgressBar: true,
-        autoClose: 2000,
-        theme: "dark",
-      }
-    );
-
-    await res;
-    console.log(res);
-    data.handleUserData();
-  } catch (e) {
-    toast.error(e?.response?.data?.message);
-  }
-});
-
-export const removeFromBag = createAsyncThunk(
-  "/product/removeFromBag",
-  async (data) => {
-    try {
-      let res = axiosInstance.delete(`/user/bag/${data._id}`);
-      toast.promise(
-        res,
-        {
-          pending: "Wait!, Removing product from the bag",
-          success: "Product Removed From Bag",
-          error: "Something Went Wrong",
-        },
-        {
-          hideProgressBar: true,
-          autoClose: 2000,
-          theme: "dark",
-        }
-      );
-
-      await res;
-      data.handleUserData();
-    } catch (e) {
-      toast.error(e?.response?.data?.message);
-    }
-  }
-);
-
-export const addToWishlist = createAsyncThunk(
-  "/product/addToWishlist",
-  async (data) => {
-    try {
-      let res = axiosInstance.post(`/user/wishlist/${data._id}`);
-      toast.promise(
-        res,
-        {
-          pending: "Wait!, Adding product to the Wishlist",
-          success: "Product Added To The Wishlist!",
-          error: "Something Went Wrong",
-        },
-        {
-          hideProgressBar: true,
-          autoClose: 2000,
-          theme: "dark",
-        }
-      );
-
-      await res;
-      data.handleUserData();
-    } catch (e) {
-      toast.error(e?.response?.data?.message);
-    }
-  }
-);
-
-export const removeFromWishlist = createAsyncThunk(
-  "/product/removeFromWishlist",
-  async (data) => {
-    try {
-      let res = axiosInstance.delete(`/user/wishlist/${data._id}`);
-      toast.promise(
-        res,
-        {
-          pending: "Wait!, Removing product from the Wishlist",
-          success: "Product Removed From Wishlist",
-          error: "Something Went Wrong",
-        },
-        {
-          hideProgressBar: true,
-          autoClose: 2000,
-          theme: "dark",
-        }
-      );
-
-      await res;
-      data.handleUserData();
     } catch (e) {
       toast.error(e?.response?.data?.message);
     }
