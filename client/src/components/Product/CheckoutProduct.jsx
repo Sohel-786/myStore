@@ -16,7 +16,11 @@ function CheckoutProduct({ data }) {
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
       <div className="w-[110px] h-[150px] flex justify-center items-center">
-        <img src={thumbnail.secure_url} alt={name} className="w-full aspect-auto max-h-full" />
+        <img
+          src={thumbnail.secure_url}
+          alt={name}
+          className="w-full aspect-auto max-h-full"
+        />
       </div>
 
       <div className="max-h-[150px] relative ml-3 border-r-[0.8px] border-gray-300 w-[40%]">
@@ -63,9 +67,7 @@ function CheckoutProduct({ data }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap w-[15%] ml-3 border-r-[0.8px] border-gray-300">
-        
-      </div>
+      <div className="flex flex-wrap w-[15%] ml-3 border-r-[0.8px] border-gray-300"></div>
     </div>
   );
 }
