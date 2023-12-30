@@ -37,9 +37,9 @@ function Bag() {
         {bagItems ? (
           <>
             {bagItems.length === 0 ? (
-              <div className="w-full h-full flex justify-center items-center text-xl font-semibold">
+              <li className="w-full h-full flex justify-center items-center text-xl font-semibold">
                 <h1 className="text-gray-400">Empty</h1>
-              </div>
+              </li>
             ) : (
               bagItems.map((el) => {
                 return <BagProduct key={nanoid(4)} data={el} />;

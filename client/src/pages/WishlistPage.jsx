@@ -38,9 +38,9 @@ function WishlistPage() {
           {wishlist ? (
             <>
               {wishlist.length === 0 ? (
-                <div className="w-full h-[70vh] flex justify-center items-center text-xl font-semibold">
+                <li className="w-full h-[70vh] flex justify-center items-center text-xl font-semibold">
                   <h1 className="text-gray-400">Empty</h1>
-                </div>
+                </li>
               ) : (
                 wishlist.map((el) => {
                   return <WishlistProduct key={nanoid(4)} data={el} />;
