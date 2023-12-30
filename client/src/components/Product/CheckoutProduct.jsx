@@ -14,15 +14,15 @@ function CheckoutProduct({ data }) {
   } = data;
 
   return (
-    <div className="w-full flex ">
-      <div className="w-[110px] h-[150px]">
+    <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
+      <div className="w-[110px] h-[150px] flex justify-center items-center">
         <img src={thumbnail.secure_url} alt={name} className="w-full aspect-auto max-h-full" />
       </div>
 
-      <div className="">
-        <div className="max-h-[280px] w-[50%]">
+      <div className="max-h-[150px] relative ml-3 border-r-[0.8px] border-gray-300 w-[40%]">
+        <div className="">
           {sale === "YES" && (
-            <div className="absolute bg-black text-white px-[6px] py-[2px] rounded-xl text-[8px] tracking-wider font-Roboto font-semibold top-1 left-1">
+            <div className="absolute bg-black text-white px-[6px] py-[2px] rounded-xl text-[8px] tracking-wider font-Roboto font-semibold bottom-3 left-2">
               <p>SALE</p>
             </div>
           )}
@@ -36,7 +36,7 @@ function CheckoutProduct({ data }) {
                 className="capitalize text-[#6f7899] text-[16px] font-semibold leading-[20px] "
                 title={name}
               >
-                {name.slice(0, 45)}..
+                {name}
               </p>
             </div>
 
@@ -61,6 +61,10 @@ function CheckoutProduct({ data }) {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="flex flex-wrap w-[15%] ml-3 border-r-[0.8px] border-gray-300">
+        
       </div>
     </div>
   );
