@@ -6,21 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext } from "react";
 import {
   addToBag,
-  addToWishlist,
   removeFromWishlist,
 } from "../../redux/slices/productSlice";
 import { BagContext } from "../../Context/BagContext";
 import { toast } from "react-toastify";
 import { getUserDetails } from "../../redux/slices/authSlice";
-import { WishlistContext } from "../../Context/WishListContext";
-import { IoMdHeartEmpty } from "react-icons/io";
 
 function WishlistProduct({ data }) {
   const { handleBag } = useContext(BagContext);
-  const { handleWishList } = useContext(WishlistContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cartItems, wishlist } = useSelector((s) => s?.auth?.data);
+  const bagRef = useRef([]);
+  const removeRef = useRef([]);
 
   let {
     _id,
@@ -83,8 +81,8 @@ function WishlistProduct({ data }) {
         if (
           bagRef.current &&
           !bagRef.current.contains(e.target) &&
-          wishRef.current &&
-          !wishRef.current.contains(e.target)
+          removeRef.current &&
+          !removeRef.current.contains(e.target)
         ) {
           navigate(`/product-details/${_id}`, { state: data });
         }
@@ -103,7 +101,7 @@ function WishlistProduct({ data }) {
 
         <div className="my-3 px-[10px]">
           <div>
-            <h1 className="capitalize text-xl text-[#282c3f] mb-[4px] font-black font-Nova ">
+            <h1 className="capitalize text-xl text-blue-500 mb-[4px] font-black font-Nova ">
               {brand}
             </h1>
             <p
@@ -149,6 +147,7 @@ function WishlistProduct({ data }) {
           </div>
           <div className="flex flex-col py-4 gap-2">
             <span
+              ref={bagRef}
               type="button"
               onClick={() => {
                 handleBagAdd(true);
@@ -165,6 +164,7 @@ function WishlistProduct({ data }) {
             </span>
 
             <span
+              ref={removeRef}
               type="button"
               onClick={handleWishlistRemove}
               className="border-[1px] py-2 flex items-center justify-center gap-[6px] relative border-[red] cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs text-[red] hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-red-600 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
