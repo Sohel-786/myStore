@@ -12,11 +12,11 @@ function CheckoutProduct({ data }) {
     pricedrop,
     thumbnail,
   } = data;
-  
+
   return (
     <div className="w-full flex ">
-      <div>
-        <img src={thumbnail.secure_url} alt={name} className="w-full h-full" />
+      <div className="w-[110px] h-[150px]">
+        <img src={thumbnail.secure_url} alt={name} className="w-full aspect-auto max-h-full" />
       </div>
 
       <div className="">
@@ -44,7 +44,7 @@ function CheckoutProduct({ data }) {
               {sale === "YES" ? (
                 <span>
                   <span className="text-[15px] font-bold leading-[16px] ">
-                    Rs. {finalprice}
+                    Rs. {Math.floor(price - (pricedrop / 100) * price)}
                   </span>
                   <span className="ml-[5px] text-[#7e818c] text-[12px] leading-[15px] line-through">
                     Rs. {price}

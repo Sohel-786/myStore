@@ -4,6 +4,7 @@ import UserLayout from "../layouts/UserLayout";
 import { useEffect, useState } from "react";
 import axiosInstance from "../config/axiosInstance";
 import CheckoutProduct from "../components/Product/CheckoutProduct";
+import { nanoid } from "nanoid";
 
 function BagPage() {
   const [bagItems, setBagItems] = useState(null);
