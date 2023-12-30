@@ -15,6 +15,7 @@ import ForgottenPassword from "./pages/ForgottenPassword";
 import AllProducts from "./pages/AllProducts";
 import ProductDetail from "./pages/ProductDetail";
 import WishlistPage from "./pages/WishlistPage";
+import BagPage from "./pages/BagPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,11 @@ function App() {
         <Route
           path="/user/wishlist"
           element={networkRequest ? <WishlistPage /> : <Loading />}
+        />
+
+        <Route
+          path="/user/bag"
+          element={networkRequest ? <BagPage /> : <Loading />}
         />
 
         <Route
