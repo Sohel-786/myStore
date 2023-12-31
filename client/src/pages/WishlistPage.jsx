@@ -13,7 +13,7 @@ function WishlistPage() {
   const { wishList } = useSelector((s) => s?.auth);
 
   useEffect(() => {
-      getWishlistProducts(wishList);
+    getWishlistProducts(wishList);
   }, [wishList]);
 
   async function getWishlistProducts(arr) {
@@ -57,7 +57,6 @@ function WishlistPage() {
             </div>
           )}
         </ul>
-
       </div>
     </UserLayout>
   );

@@ -10,7 +10,7 @@ function Bag() {
   const { bag } = useSelector((s) => s?.auth);
 
   useEffect(() => {
-      getCartProducts(bag);
+    getCartProducts(bag);
   }, [bag]);
 
   async function getCartProducts(arr) {

@@ -4,10 +4,7 @@ import { IoBagHandleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useContext } from "react";
-import {
-  addToBag,
-  removeFromWishlist,
-} from "../../redux/slices/authSlice";
+import { addToBag, removeFromWishlist } from "../../redux/slices/authSlice";
 import { BagContext } from "../../Context/BagContext";
 import { toast } from "react-toastify";
 
