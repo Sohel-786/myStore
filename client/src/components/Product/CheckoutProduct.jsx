@@ -67,7 +67,13 @@ function CheckoutProduct({ data }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap w-[15%] ml-3 border-r-[0.8px] border-gray-300"></div>
+      <div className=" flex flex-col w-[18%] border-r-[0.8px] border-gray-300 items-center pt-2">
+        <h1 className="font-Nova text-sm font-bold text-gray-600">Select Size</h1>
+
+        <div className="w-full flex flex-wrap">
+              
+        </div>
+      </div>
     </div>
   );
 }
