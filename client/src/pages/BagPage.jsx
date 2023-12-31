@@ -11,10 +11,9 @@ function BagPage() {
   const [finalProducts, setFinalProducts] = useState();
   const { bag } = useSelector((s) => s?.auth);
 
-  const [ priceTotal, setPriceTotal ] = useState({
-    subtotal : 0,
-    total : 0
-  })
+  const [priceTotal, setPriceTotal] = useState({
+    total: 0,
+  });
 
   useEffect(() => {
     getCartProducts(bag);
@@ -66,6 +65,23 @@ function BagPage() {
     setFinalProducts([...arr]);
   }
 
+  useEffect(() => {
+    if(finalProducts){
+      handleTotal(finalProducts);
+    }
+  }, [finalProducts]);
+
+  function handleTotal(arr) {
+    let subtotal = 0;
+    arr.forEach((el) => {
+      subtotal += el.price;
+    });
+
+    setPriceTotal({
+      total : subtotal
+    })
+  }
+
   return (
     <UserLayout>
       <div className="flex flex-col px-28 py-8 max-w-[1280px] relative mx-auto">
@@ -102,10 +118,10 @@ function BagPage() {
         </div>
 
         <div className="w-full border-t-[1px] border-gray-500 bg-slate-50 px-3 pt-3 mt-3 font-Roboto">
-            <div className="flex justify-between items-center">
-              <p>SubTotal</p>
-              <p>{}</p>
-            </div>
+          <div className="flex justify-between items-center">
+            <p>SubTotal</p>
+            <p>{priceTotal.total}</p>
+          </div>
         </div>
       </div>
     </UserLayout>

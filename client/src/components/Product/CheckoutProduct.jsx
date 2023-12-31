@@ -119,17 +119,12 @@ function CheckoutProduct({ data, handleFinalProducts }) {
           <button
             disabled={productData.quantity === 1}
             onClick={() => {
-              setProductData(function (s) {
-                return {
-                  ...s,
-                  quantity: s.quantity - 1,
-                };
-              });
-              setProductData(function (s) {
-                return {
-                  ...s,
-                  price: handleSalePrice(price, pricedrop) * s.quantity,
-                };
+              setProductData({
+                ...productData,
+                quantity: productData.quantity - 1,
+                price:
+                  handleSalePrice(price, pricedrop) *
+                  (productData.quantity - 1),
               });
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
@@ -143,17 +138,12 @@ function CheckoutProduct({ data, handleFinalProducts }) {
 
           <button
             onClick={() => {
-              setProductData(function (s) {
-                return {
-                  ...s,
-                  quantity: s.quantity + 1,
-                };
-              });
-              setProductData(function (s) {
-                return {
-                  ...s,
-                  price: handleSalePrice(price, pricedrop) * s.quantity,
-                };
+              setProductData({
+                ...productData,
+                quantity: productData.quantity + 1,
+                price:
+                  handleSalePrice(price, pricedrop) *
+                  (productData.quantity + 1),
               });
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
