@@ -1,3 +1,6 @@
+import { nanoid } from "nanoid";
+import { useState } from "react";
+
 function CheckoutProduct({ data }) {
   let {
     _id,
@@ -12,6 +15,17 @@ function CheckoutProduct({ data }) {
     pricedrop,
     thumbnail,
   } = data;
+
+  function handleSalePrice(price, off) {
+    let temp = (off / 100) * price;
+    return Math.floor(price - temp);
+  }
+
+  const [productData, setProductData] = useState({
+    quantity: 1,
+    size: availableSizes[0],
+    price: handleSalePrice(price, pricedrop),
+  });
 
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
@@ -68,10 +82,80 @@ function CheckoutProduct({ data }) {
       </div>
 
       <div className=" flex flex-col w-[18%] border-r-[0.8px] border-gray-300 items-center pt-2">
-        <h1 className="font-Nova text-sm font-bold text-gray-600">Select Size</h1>
+        <h1 className="font-Nova text-sm font-bold text-gray-600">
+          Select Size
+        </h1>
 
-        <div className="w-full flex flex-wrap">
-              
+        <ul className="w-full flex flex-wrap gap-2 mt-2 items-center justify-center">
+          {availableSizes.map((el) => {
+            return (
+              <li
+                key={nanoid(4)}
+                className="w-[45px] uppercase h-[43px] hover:border-red-600 flex justify-center items-center text-sm font-bold rounded-md border-[1px] border-slate-400 cursor-pointer bg-white"
+              >
+                {el}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <div className="flex w-[15%] border-r-[0.8px] border-gray-300 items-center flex-col pt-2">
+        <h1 className="font-Nova text-sm font-bold text-gray-600">Quantity</h1>
+
+        <div className="flex justify-center items-center w-full h-[80%]">
+          <button
+            onClick={() => {
+              setProductData(function (s){
+                return {
+                  ...s,
+                  quantity : s.quantity + 1
+                }
+              })
+              setProductData(function (s){
+                return {
+                  ...s,
+                  price : handleSalePrice(price, pricedrop) * s.quantity
+                }
+              })
+            }}
+            className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
+          >
+            +
+          </button>
+
+          <div className="w-[30%] h-8 bg-white mx-3 border-[0.8px] border-black flex justify-center items-center text-sm">
+            {productData.quantity}
+          </div>
+
+          <button
+            disabled={productData.quantity === 1}
+            onClick={() => {
+              setProductData(function (s){
+                return {
+                  ...s,
+                  quantity : s.quantity - 1
+                }
+              })
+              setProductData(function (s){
+                return {
+                  ...s,
+                  price : handleSalePrice(price, pricedrop) * s.quantity
+                }
+              })
+            }}
+            className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
+          >
+            -
+          </button>
+        </div>
+      </div>
+
+      <div className="flex w-[14.5%] items-center flex-col pt-2">
+        <h1 className="font-Nova text-sm font-bold text-gray-600">Price</h1>
+
+        <div className="flex justify-center items-center w-full h-[80%] font-Slab">
+          Rs. {(handleSalePrice(price, pricedrop)) * productData.quantity}
         </div>
       </div>
     </div>
