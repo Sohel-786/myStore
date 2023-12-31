@@ -90,8 +90,16 @@ function CheckoutProduct({ data }) {
           {availableSizes.map((el) => {
             return (
               <li
+                onClick={() => {
+                  setProductData({
+                    ...productData,
+                    size: el,
+                  });
+                }}
                 key={nanoid(4)}
-                className="w-[45px] uppercase h-[43px] hover:border-red-600 flex justify-center items-center text-sm font-bold rounded-md border-[1px] border-slate-400 cursor-pointer bg-white"
+                className={`w-[45px] uppercase h-[43px] hover:border-red-600 flex justify-center items-center text-sm font-bold rounded-md border-[1px] border-slate-400 cursor-pointer ${
+                  productData.size === el ? `bg-black text-white` : `bg-white`
+                }`}
               >
                 {el}
               </li>
@@ -106,18 +114,18 @@ function CheckoutProduct({ data }) {
         <div className="flex justify-center items-center w-full h-[80%]">
           <button
             onClick={() => {
-              setProductData(function (s){
+              setProductData(function (s) {
                 return {
                   ...s,
-                  quantity : s.quantity + 1
-                }
-              })
-              setProductData(function (s){
+                  quantity: s.quantity + 1,
+                };
+              });
+              setProductData(function (s) {
                 return {
                   ...s,
-                  price : handleSalePrice(price, pricedrop) * s.quantity
-                }
-              })
+                  price: handleSalePrice(price, pricedrop) * s.quantity,
+                };
+              });
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
           >
@@ -131,18 +139,18 @@ function CheckoutProduct({ data }) {
           <button
             disabled={productData.quantity === 1}
             onClick={() => {
-              setProductData(function (s){
+              setProductData(function (s) {
                 return {
                   ...s,
-                  quantity : s.quantity - 1
-                }
-              })
-              setProductData(function (s){
+                  quantity: s.quantity - 1,
+                };
+              });
+              setProductData(function (s) {
                 return {
                   ...s,
-                  price : handleSalePrice(price, pricedrop) * s.quantity
-                }
-              })
+                  price: handleSalePrice(price, pricedrop) * s.quantity,
+                };
+              });
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
           >
@@ -155,7 +163,7 @@ function CheckoutProduct({ data }) {
         <h1 className="font-Nova text-sm font-bold text-gray-600">Price</h1>
 
         <div className="flex justify-center items-center w-full h-[80%] font-Slab">
-          Rs. {(handleSalePrice(price, pricedrop)) * productData.quantity}
+          Rs. {handleSalePrice(price, pricedrop) * productData.quantity}
         </div>
       </div>
     </div>
