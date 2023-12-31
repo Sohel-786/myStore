@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
-function CheckoutProduct({ data }) {
+function CheckoutProduct({ data, handleFinalProducts }) {
   let {
     _id,
     name,
@@ -28,8 +28,8 @@ function CheckoutProduct({ data }) {
   });
 
   useEffect(() => {
-
-  }, [productData.quantity, productData.size])
+    handleFinalProducts(_id, productData);
+  }, [productData]);
 
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
@@ -117,30 +117,6 @@ function CheckoutProduct({ data }) {
 
         <div className="flex justify-center items-center w-full h-[80%]">
           <button
-            onClick={() => {
-              setProductData(function (s) {
-                return {
-                  ...s,
-                  quantity: s.quantity + 1,
-                };
-              });
-              setProductData(function (s) {
-                return {
-                  ...s,
-                  price: handleSalePrice(price, pricedrop) * s.quantity,
-                };
-              });
-            }}
-            className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
-          >
-            +
-          </button>
-
-          <div className="w-[30%] h-8 bg-white mx-3 border-[0.8px] border-black flex justify-center items-center text-sm">
-            {productData.quantity}
-          </div>
-
-          <button
             disabled={productData.quantity === 1}
             onClick={() => {
               setProductData(function (s) {
@@ -159,6 +135,30 @@ function CheckoutProduct({ data }) {
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
           >
             -
+          </button>
+
+          <div className="w-[30%] h-8 bg-white mx-3 border-[0.8px] border-black flex justify-center items-center text-sm">
+            {productData.quantity}
+          </div>
+
+          <button
+            onClick={() => {
+              setProductData(function (s) {
+                return {
+                  ...s,
+                  quantity: s.quantity + 1,
+                };
+              });
+              setProductData(function (s) {
+                return {
+                  ...s,
+                  price: handleSalePrice(price, pricedrop) * s.quantity,
+                };
+              });
+            }}
+            className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
+          >
+            +
           </button>
         </div>
       </div>

@@ -48,6 +48,19 @@ function BagPage() {
     }
   }
 
+  function handleFinalProducts(id, data) {
+    let arr = finalProducts;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].productId === id) {
+        arr[i].size = data.size;
+        arr[i].quantity = data.quantity;
+        arr[i].price = data.price;
+        return;
+      }
+    }
+    setFinalProducts([...arr]);
+  }
+
   return (
     <UserLayout>
       <div className="flex px-28 py-8 max-w-[1280px] relative mx-auto">
@@ -62,7 +75,13 @@ function BagPage() {
                 </li>
               ) : (
                 bagItems.map((el) => {
-                  return <CheckoutProduct key={nanoid(4)} data={el} />;
+                  return (
+                    <CheckoutProduct
+                      key={nanoid(4)}
+                      data={el}
+                      handleFinalProducts={handleFinalProducts}
+                    />
+                  );
                 })
               )}
             </>
