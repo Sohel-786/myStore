@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function CheckoutProduct({ data }) {
   let {
@@ -26,6 +26,10 @@ function CheckoutProduct({ data }) {
     size: availableSizes[0],
     price: handleSalePrice(price, pricedrop),
   });
+
+  useEffect(() => {
+
+  }, [productData.quantity, productData.size])
 
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">

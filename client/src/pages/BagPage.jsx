@@ -8,6 +8,7 @@ import { nanoid } from "nanoid";
 
 function BagPage() {
   const [bagItems, setBagItems] = useState(null);
+  const [finalProducts, setFinalProducts] = useState([]);
   const { bag } = useSelector((s) => s?.auth);
 
   useEffect(() => {
@@ -29,6 +30,19 @@ function BagPage() {
 
     if (res?.data?.products) {
       setBagItems([...res.data.products]);
+      let temp = [];
+      res.data.products.forEach((el) => {
+        let obj = {
+          productId: el._id,
+          size: el.availableSizes[0],
+          quantity: 1,
+          price: Math.floor(el.price - (el.pricedrop / 100) * el.price),
+        };
+
+        temp.push(obj);
+      });
+
+      setFinalProducts([...temp]);
     }
   }
 
