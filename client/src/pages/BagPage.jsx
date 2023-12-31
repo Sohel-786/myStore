@@ -11,6 +11,11 @@ function BagPage() {
   const [finalProducts, setFinalProducts] = useState();
   const { bag } = useSelector((s) => s?.auth);
 
+  const [ priceTotal, setPriceTotal ] = useState({
+    subtotal : 0,
+    total : 0
+  })
+
   useEffect(() => {
     getCartProducts(bag);
   }, [bag]);
@@ -63,7 +68,7 @@ function BagPage() {
 
   return (
     <UserLayout>
-      <div className="flex px-28 py-8 max-w-[1280px] relative mx-auto">
+      <div className="flex flex-col px-28 py-8 max-w-[1280px] relative mx-auto">
         <CommonDrawer />
 
         <div className="w-full flex flex-col">
@@ -94,6 +99,13 @@ function BagPage() {
               />
             </li>
           )}
+        </div>
+
+        <div className="w-full border-t-[1px] border-gray-500 bg-slate-50 px-3 pt-3 mt-3 font-Roboto">
+            <div className="flex justify-between items-center">
+              <p>SubTotal</p>
+              <p>{}</p>
+            </div>
         </div>
       </div>
     </UserLayout>
