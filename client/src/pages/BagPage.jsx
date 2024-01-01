@@ -15,9 +15,22 @@ function BagPage() {
   });
 
   useEffect(() => {
-    +console.log("bag");
-    getCartProducts(bag);
+    if (!finalProducts) {
+      getCartProducts(bag);
+    }
   }, [bag]);
+
+  async function handleRemove(id) {
+    const res = await dispatch(removeFromBag(id));
+
+    let arr = finalProducts.filter((el) => {
+      if (el.productId !== id) {
+        return el;
+      }
+    });
+
+    setFinalProducts([...arr]);
+  }
 
   async function getCartProducts(arr) {
     let temp = [];
@@ -152,7 +165,10 @@ function BagPage() {
                 <hr />
 
                 <div className="w-full my-2 flex justify-center items-center">
-                  <button className="w-[98%] border-[2px] py-2 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-lg text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5]">
+                  <button
+                    disabled={finalProducts.length === 0 ? true : false}
+                    className="w-[98%] border-[2px] py-2 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-lg text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5] disabled:cursor-not-allowed disabled:bg-slate-500 disabled:before:z-[-1] disabled:hover:text-white"
+                  >
                     <span className="z-[10]">CHECKOUT</span>
                   </button>
                 </div>
