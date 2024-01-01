@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-function CheckoutProduct({ data, handleFinalProducts }) {
+function CheckoutProduct({ data, handle }) {
   let {
     _id,
     name,
@@ -26,10 +26,6 @@ function CheckoutProduct({ data, handleFinalProducts }) {
     size: availableSizes[0],
     price: handleSalePrice(price, pricedrop),
   });
-
-  useEffect(() => {
-    handleFinalProducts(_id, productData);
-  }, [productData]);
 
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
@@ -99,6 +95,8 @@ function CheckoutProduct({ data, handleFinalProducts }) {
                     ...productData,
                     size: el,
                   });
+
+                  handle(_id, productData)
                 }}
                 key={nanoid(4)}
                 className={`w-[45px] uppercase h-[43px] hover:border-red-600 flex justify-center items-center text-sm font-bold rounded-md border-[1px] border-slate-400 cursor-pointer ${
@@ -119,6 +117,7 @@ function CheckoutProduct({ data, handleFinalProducts }) {
           <button
             disabled={productData.quantity === 1}
             onClick={() => {
+
               setProductData({
                 ...productData,
                 quantity: productData.quantity - 1,
@@ -126,6 +125,9 @@ function CheckoutProduct({ data, handleFinalProducts }) {
                   handleSalePrice(price, pricedrop) *
                   (productData.quantity - 1),
               });
+
+              handle(_id, productData)
+
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
           >
@@ -138,6 +140,7 @@ function CheckoutProduct({ data, handleFinalProducts }) {
 
           <button
             onClick={() => {
+
               setProductData({
                 ...productData,
                 quantity: productData.quantity + 1,
@@ -145,6 +148,9 @@ function CheckoutProduct({ data, handleFinalProducts }) {
                   handleSalePrice(price, pricedrop) *
                   (productData.quantity + 1),
               });
+
+              handle(_id, productData)
+
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
           >

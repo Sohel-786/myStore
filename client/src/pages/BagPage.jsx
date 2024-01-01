@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import CommonDrawer from "../components/CommonDrawer";
 import UserLayout from "../layouts/UserLayout";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axiosInstance from "../config/axiosInstance";
 import CheckoutProduct from "../components/Product/CheckoutProduct";
 import { nanoid } from "nanoid";
 
 function BagPage() {
   const [bagItems, setBagItems] = useState(null);
-  const [finalProducts, setFinalProducts] = useState();
+  const [finalProducts, setFinalProducts] = useState(null);
   const { bag } = useSelector((s) => s?.auth);
 
   const [priceTotal, setPriceTotal] = useState({
@@ -52,24 +52,47 @@ function BagPage() {
     }
   }
 
-  function handleFinalProducts(id, data) {
-    let arr = finalProducts;
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].productId === id) {
-        arr[i].size = data.size;
-        arr[i].quantity = data.quantity;
-        arr[i].price = data.price;
-        return;
-      }
-    }
-    setFinalProducts([...arr]);
-  }
+  // function handleFinalProducts(id, data) {
+  //   let arr = [];
+  //   for (let i = 0; i < finalProducts.length; i++) {
+  //     if (finalProducts[i].productId === id) {
+  //       arr.push({
+  //         productId: finalProducts[i].productId,
+  //         size: data.size,
+  //         quantity: data.quantity,
+  //         price: data.price,
+  //       });
+  //     }else{
+  //       arr.push(finalProducts[i]);
+  //     }
+  //   }
+  //   setFinalProducts(arr);
+  // }
 
-  useEffect(() => {
-    if(finalProducts){
-      handleTotal(finalProducts);
-    }
-  }, [finalProducts]);
+  // const handleFinalProducts = useCallback((id, data) => {
+  //   let arr = [];
+  //   console.log(finalProducts, bagItems, bag)
+  //   for (let i = 0; i < finalProducts.length; i++) {
+  //     if (finalProducts[i].productId === id) {
+  //       arr.push({
+  //         productId: finalProducts[i].productId,
+  //         size: data.size,
+  //         quantity: data.quantity,
+  //         price: data.price,
+  //       });
+  //     }else{
+  //       arr.push(finalProducts[i]);
+  //     }
+  //   }
+  //   setFinalProducts([...arr]);
+  // }, [])
+
+  // useEffect(() => {
+  //   console.log("run");
+  //   if (finalProducts) {
+  //     handleTotal(finalProducts);
+  //   }
+  // }, [finalProducts]);
 
   function handleTotal(arr) {
     let subtotal = 0;
@@ -78,8 +101,8 @@ function BagPage() {
     });
 
     setPriceTotal({
-      total : subtotal
-    })
+      total: subtotal,
+    });
   }
 
   return (
@@ -100,7 +123,7 @@ function BagPage() {
                     <CheckoutProduct
                       key={nanoid(4)}
                       data={el}
-                      handleFinalProducts={handleFinalProducts}
+                      handle={handleFinalProducts}
                     />
                   );
                 })
