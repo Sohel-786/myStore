@@ -7,7 +7,6 @@ import CheckoutProduct from "../components/Product/CheckoutProduct";
 import { nanoid } from "nanoid";
 
 function BagPage() {
-  const [bagItems, setBagItems] = useState(null);
   const [finalProducts, setFinalProducts] = useState(null);
   const { bag } = useSelector((s) => s?.auth);
 
@@ -15,7 +14,8 @@ function BagPage() {
     total: 0,
   });
 
-  useEffect(() => {
+  useEffect(() => {+
+    console.log('bag')
     getCartProducts(bag);
   }, [bag]);
 
@@ -25,7 +25,7 @@ function BagPage() {
       temp.push(el.productId);
     });
     if (temp.length === 0) {
-      setBagItems([]);
+      setFinalProducts([]);
       return;
     }
     const res = await axiosInstance.post("/user/getBag", {
@@ -33,7 +33,6 @@ function BagPage() {
     });
 
     if (res?.data?.products) {
-      setBagItems([...res.data.products]);
       if (!finalProducts) {
         let temp = [];
         res.data.products.forEach((el) => {
@@ -41,37 +40,39 @@ function BagPage() {
             productId: el._id,
             size: el.availableSizes[0],
             quantity: 1,
-            price: Math.floor(el.price - (el.pricedrop / 100) * el.price),
+            price: el.price,
+            product : el
           };
-
+          
           temp.push(obj);
         });
-
+        
         setFinalProducts([...temp]);
       }
     }
   }
 
-  // function handleFinalProducts(id, data) {
-  //   let arr = [];
-  //   for (let i = 0; i < finalProducts.length; i++) {
-  //     if (finalProducts[i].productId === id) {
-  //       arr.push({
-  //         productId: finalProducts[i].productId,
-  //         size: data.size,
-  //         quantity: data.quantity,
-  //         price: data.price,
-  //       });
-  //     }else{
-  //       arr.push(finalProducts[i]);
-  //     }
-  //   }
-  //   setFinalProducts(arr);
-  // }
+  function handleFinalProducts(id, data) {
+    let arr = [];
+    for (let i = 0; i < finalProducts.length; i++) {
+      if (finalProducts[i].productId === id) {
+        arr.push({
+          productId: finalProducts[i].productId,
+          size: data.size,
+          quantity: data.quantity,
+          price: data.price,
+          product : finalProducts[i].product
+        });
+      }else{
+        arr.push(finalProducts[i]);
+      }
+    }
+    setFinalProducts(arr);
+  }
 
   // const handleFinalProducts = useCallback((id, data) => {
   //   let arr = [];
-  //   console.log(finalProducts, bagItems, bag)
+  //   console.log(finalProducts, bag)
   //   for (let i = 0; i < finalProducts.length; i++) {
   //     if (finalProducts[i].productId === id) {
   //       arr.push({
@@ -85,14 +86,14 @@ function BagPage() {
   //     }
   //   }
   //   setFinalProducts([...arr]);
-  // }, [])
+  // }, [finalProducts, priceTotal])
 
-  // useEffect(() => {
-  //   console.log("run");
-  //   if (finalProducts) {
-  //     handleTotal(finalProducts);
-  //   }
-  // }, [finalProducts]);
+  useEffect(() => {
+    console.log("run");
+    if (finalProducts) {
+      handleTotal(finalProducts);
+    }
+  }, [finalProducts]);
 
   function handleTotal(arr) {
     let subtotal = 0;
@@ -111,18 +112,21 @@ function BagPage() {
         <CommonDrawer />
 
         <div className="w-full flex flex-col">
-          {bagItems ? (
+          {finalProducts ? (
             <>
-              {bagItems.length === 0 ? (
+              {finalProducts.length === 0 ? (
                 <li className="w-full flex justify-center items-center text-xl font-semibold">
                   <h1 className="text-gray-400">Empty</h1>
                 </li>
               ) : (
-                bagItems.map((el) => {
+                finalProducts.map((el) => {
                   return (
                     <CheckoutProduct
                       key={nanoid(4)}
-                      data={el}
+                      data={el.product}
+                      price = {el.price}
+                      quantity = {el.quantity}
+                      size = {el.size}
                       handle={handleFinalProducts}
                     />
                   );

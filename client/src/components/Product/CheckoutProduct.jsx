@@ -1,14 +1,14 @@
 import { nanoid } from "nanoid";
 import { memo, useEffect, useState } from "react";
 
-function CheckoutProduct({ data, handle }) {
+function CheckoutProduct({ data, handle, quantity , size }) {
   let {
     _id,
     name,
+    price,
     description,
     brand,
     category,
-    price,
     deliveryInfo,
     availableSizes,
     sale,
@@ -22,9 +22,9 @@ function CheckoutProduct({ data, handle }) {
   }
 
   const [productData, setProductData] = useState({
-    quantity: 1,
-    size: availableSizes[0],
-    price: handleSalePrice(price, pricedrop),
+    quantity: quantity,
+    size: size,
+    price: Math.floor(price - (pricedrop / 100) * price),
   });
 
   return (
@@ -96,7 +96,11 @@ function CheckoutProduct({ data, handle }) {
                     size: el,
                   });
 
-                  handle(_id, productData)
+                  handle(_id, {
+                    size : el,
+                    quantity : productData.quantity,
+                    price : productData.price
+                  })
                 }}
                 key={nanoid(4)}
                 className={`w-[45px] uppercase h-[43px] hover:border-red-600 flex justify-center items-center text-sm font-bold rounded-md border-[1px] border-slate-400 cursor-pointer ${
@@ -126,7 +130,12 @@ function CheckoutProduct({ data, handle }) {
                   (productData.quantity - 1),
               });
 
-              handle(_id, productData)
+              handle(_id, {
+                size : productData.quantity,
+                quantity : productData.quantity - 1,
+                price :  handleSalePrice(price, pricedrop) *
+                (productData.quantity - 1),
+              })
 
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
@@ -149,7 +158,13 @@ function CheckoutProduct({ data, handle }) {
                   (productData.quantity + 1),
               });
 
-              handle(_id, productData)
+              
+              handle(_id, {
+                size : productData.quantity,
+                quantity : productData.quantity + 1,
+                price :  handleSalePrice(price, pricedrop) *
+                (productData.quantity + 1),
+              })
 
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
@@ -170,4 +185,4 @@ function CheckoutProduct({ data, handle }) {
   );
 }
 
-export default CheckoutProduct;
+export default memo(CheckoutProduct);
