@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { memo, useEffect, useState } from "react";
 
-function CheckoutProduct({ data, handle, quantity, size }) {
+function CheckoutProduct({ data, handle, quantity, size, remove }) {
   let {
     _id,
     name,
@@ -44,6 +44,17 @@ function CheckoutProduct({ data, handle, quantity, size }) {
               <p>SALE</p>
             </div>
           )}
+
+          <div className="absolute text-white rounded-xl text-[8px] tracking-wider font-Roboto font-semibold bottom-2 right-5">
+            <button
+              onClick={() => {
+                remove(_id);
+              }}
+              className="w-fit text-sm flex bg-red-100 rounded-md font-Mukta mt-2 text-[#db4040] relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-[#d53c3c] px-[20px] py-[2px]"
+            >
+              <span className="z-10">- Remove</span>
+            </button>
+          </div>
 
           <div className="my-3 px-[10px]">
             <div>

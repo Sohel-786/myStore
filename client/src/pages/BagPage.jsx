@@ -142,6 +142,7 @@ function BagPage() {
                       quantity={el.quantity}
                       size={el.size}
                       handle={handleFinalProducts}
+                      remove={handleRemove}
                     />
                   );
                 })
