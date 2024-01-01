@@ -40,7 +40,7 @@ function BagPage() {
             productId: el._id,
             size: el.availableSizes[0],
             quantity: 1,
-            price: el.price,
+            price: Math.floor(el.price - (el.pricedrop / 100) * el.price),
             product: el,
           };
 
@@ -111,13 +111,15 @@ function BagPage() {
       <div className="flex flex-col px-28 py-8 max-w-[1280px] relative mx-auto">
         <CommonDrawer />
 
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col shadow-bag">
           {finalProducts ? (
             <>
               {finalProducts.length === 0 ? (
-                <li className="w-full flex justify-center items-center text-xl font-semibold">
-                  <h1 className="text-gray-400">Empty</h1>
-                </li>
+                <div className="w-full flex text-xl font-semibold mb-2 mt-5">
+                  <h1 className="font-Roboto font-bold ml-2 capitalize">
+                    You haven't added anything to your bag!
+                  </h1>
+                </div>
               ) : (
                 finalProducts.map((el) => {
                   return (
@@ -131,6 +133,30 @@ function BagPage() {
                   );
                 })
               )}
+
+              <div className="w-full font-Mukta border-t-[1px] flex flex-col gap-2 border-gray-500 bg-slate-100 px-3 pt-3 mt-3">
+                <div className="flex justify-between items-center text-xl text-blue-700 font-semibold">
+                  <p className="text-gray-500 font-Nova">SubTotal</p>
+                  <p className="">Rs. {priceTotal.total}</p>
+                </div>
+                <hr />
+                <div className="flex justify-between items-center text-xl text-blue-700 font-semibold">
+                  <p className="text-gray-500 font-Nova">Shipping</p>
+                  <p className="">Rs. 0</p>
+                </div>
+                <hr />
+                <div className="flex justify-between items-center text-xl text-blue-700 font-semibold">
+                  <p className="text-gray-500 font-Nova">Total</p>
+                  <p className="">Rs. {priceTotal.total}</p>
+                </div>
+                <hr />
+
+                <div className="w-full my-2 flex justify-center items-center">
+                  <button className="w-[98%] border-[2px] py-2 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-lg text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5]">
+                    <span className="z-[10]">CHECKOUT</span>
+                  </button>
+                </div>
+              </div>
             </>
           ) : (
             <li className="h-[70vh] w-full flex justify-center items-center">
@@ -141,13 +167,6 @@ function BagPage() {
               />
             </li>
           )}
-        </div>
-
-        <div className="w-full border-t-[1px] border-gray-500 bg-slate-50 px-3 pt-3 mt-3 font-Roboto">
-          <div className="flex justify-between items-center">
-            <p>SubTotal</p>
-            <p>{priceTotal.total}</p>
-          </div>
         </div>
       </div>
     </UserLayout>
