@@ -124,7 +124,6 @@ function BagPage() {
                     <CheckoutProduct
                       key={nanoid(4)}
                       data={el.product}
-                      price = {el.price}
                       quantity = {el.quantity}
                       size = {el.size}
                       handle={handleFinalProducts}

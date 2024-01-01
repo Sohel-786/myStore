@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { memo, useEffect, useState } from "react";
 
-function CheckoutProduct({ data, handle, quantity , size }) {
+function CheckoutProduct({ data, handle, quantity, size }) {
   let {
     _id,
     name,
@@ -97,10 +97,11 @@ function CheckoutProduct({ data, handle, quantity , size }) {
                   });
 
                   handle(_id, {
-                    size : el,
-                    quantity : productData.quantity,
-                    price : productData.price
-                  })
+                    size: el,
+                    quantity: productData.quantity,
+                    price:  handleSalePrice(price, pricedrop) *
+                    (productData.quantity),
+                  });
                 }}
                 key={nanoid(4)}
                 className={`w-[45px] uppercase h-[43px] hover:border-red-600 flex justify-center items-center text-sm font-bold rounded-md border-[1px] border-slate-400 cursor-pointer ${
@@ -121,7 +122,6 @@ function CheckoutProduct({ data, handle, quantity , size }) {
           <button
             disabled={productData.quantity === 1}
             onClick={() => {
-
               setProductData({
                 ...productData,
                 quantity: productData.quantity - 1,
@@ -131,12 +131,12 @@ function CheckoutProduct({ data, handle, quantity , size }) {
               });
 
               handle(_id, {
-                size : productData.quantity,
-                quantity : productData.quantity - 1,
-                price :  handleSalePrice(price, pricedrop) *
-                (productData.quantity - 1),
-              })
-
+                size: productData.size,
+                quantity: productData.quantity - 1,
+                price:
+                  handleSalePrice(price, pricedrop) *
+                  (productData.quantity - 1),
+              });
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
           >
@@ -149,7 +149,6 @@ function CheckoutProduct({ data, handle, quantity , size }) {
 
           <button
             onClick={() => {
-
               setProductData({
                 ...productData,
                 quantity: productData.quantity + 1,
@@ -158,14 +157,13 @@ function CheckoutProduct({ data, handle, quantity , size }) {
                   (productData.quantity + 1),
               });
 
-              
               handle(_id, {
-                size : productData.quantity,
-                quantity : productData.quantity + 1,
-                price :  handleSalePrice(price, pricedrop) *
-                (productData.quantity + 1),
-              })
-
+                size: productData.size,
+                quantity: productData.quantity + 1,
+                price:
+                  handleSalePrice(price, pricedrop) *
+                  (productData.quantity + 1),
+              });
             }}
             className="w-[25px] h-[23px] hover:border-cyan-400 flex justify-center items-center font-bold  rounded-sm text-xl border-[1px] border-slate-400 cursor-pointer bg-white"
           >
