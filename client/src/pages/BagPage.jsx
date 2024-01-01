@@ -1,14 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CommonDrawer from "../components/CommonDrawer";
 import UserLayout from "../layouts/UserLayout";
 import { useCallback, useEffect, useState } from "react";
 import axiosInstance from "../config/axiosInstance";
 import CheckoutProduct from "../components/Product/CheckoutProduct";
 import { nanoid } from "nanoid";
+import { removeFromBag } from "../redux/slices/authSlice";
 
 function BagPage() {
   const [finalProducts, setFinalProducts] = useState(null);
   const { bag } = useSelector((s) => s?.auth);
+  const dispatch = useDispatch();
 
   const [priceTotal, setPriceTotal] = useState({
     total: 0,
