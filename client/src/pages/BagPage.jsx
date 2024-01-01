@@ -14,8 +14,8 @@ function BagPage() {
     total: 0,
   });
 
-  useEffect(() => {+
-    console.log('bag')
+  useEffect(() => {
+    +console.log("bag");
     getCartProducts(bag);
   }, [bag]);
 
@@ -41,12 +41,12 @@ function BagPage() {
             size: el.availableSizes[0],
             quantity: 1,
             price: el.price,
-            product : el
+            product: el,
           };
-          
+
           temp.push(obj);
         });
-        
+
         setFinalProducts([...temp]);
       }
     }
@@ -61,9 +61,9 @@ function BagPage() {
           size: data.size,
           quantity: data.quantity,
           price: data.price,
-          product : finalProducts[i].product
+          product: finalProducts[i].product,
         });
-      }else{
+      } else {
         arr.push(finalProducts[i]);
       }
     }
@@ -124,8 +124,8 @@ function BagPage() {
                     <CheckoutProduct
                       key={nanoid(4)}
                       data={el.product}
-                      quantity = {el.quantity}
-                      size = {el.size}
+                      quantity={el.quantity}
+                      size={el.size}
                       handle={handleFinalProducts}
                     />
                   );

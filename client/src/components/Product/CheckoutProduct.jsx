@@ -99,8 +99,8 @@ function CheckoutProduct({ data, handle, quantity, size }) {
                   handle(_id, {
                     size: el,
                     quantity: productData.quantity,
-                    price:  handleSalePrice(price, pricedrop) *
-                    (productData.quantity),
+                    price:
+                      handleSalePrice(price, pricedrop) * productData.quantity,
                   });
                 }}
                 key={nanoid(4)}
