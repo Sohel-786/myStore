@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommonDrawer from "../components/CommonDrawer";
 import { nanoid } from "nanoid";
 import { AddressContext } from "../Context/AddressContext";
@@ -14,12 +14,33 @@ function CheckoutPage() {
   const { address } = useSelector((s) => s?.auth?.data);
 
   console.log(state);
+  const [priceTotal, setPriceTotal] = useState({
+    total: 0,
+  });
 
   useEffect(() => {
     if (!state) {
       navigate("/user/bag");
     }
   });
+
+  useEffect(() => {
+    console.log("run");
+    if (state) {
+      handleTotal(state);
+    }
+  }, []);
+
+  function handleTotal(arr) {
+    let subtotal = 0;
+    arr.forEach((el) => {
+      subtotal += el.price;
+    });
+
+    setPriceTotal({
+      total: subtotal,
+    });
+  }
 
   return (
     <UserLayout>
@@ -142,6 +163,35 @@ function CheckoutPage() {
                 Add New Address
               </span>
             </button>
+          </div>
+
+          <div className="w-full font-Mukta border-t-[1px] flex flex-col gap-2 border-gray-500 bg-slate-100 px-3 pt-3 mt-3">
+            <div className="flex justify-between items-center text-blue-700 font-semibold">
+              <p className="text-gray-500 font-Nova">SubTotal</p>
+              <p className="">Rs. {priceTotal.total}</p>
+            </div>
+            <hr />
+            <div className="flex justify-between items-center text-blue-700 font-semibold">
+              <p className="text-gray-500 font-Nova">Shipping</p>
+              <p className="">Free</p>
+            </div>
+            <hr />
+            <div className="flex justify-between items-center text-blue-700 font-semibold">
+              <p className="text-gray-500 font-Nova">Total</p>
+              <p className="">Rs. {priceTotal.total}</p>
+            </div>
+            <hr />
+
+            <div className="w-full my-2 flex justify-center items-center">
+              <button
+                onClick={() => {
+                  navigate("/user/bag/checkout");
+                }}
+                className="w-[98%] border-[2px] py-1 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-base text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5] disabled:cursor-not-allowed disabled:bg-slate-500 disabled:before:z-[-1] disabled:hover:text-white"
+              >
+                <span className="z-[10]">CHECKOUT</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
