@@ -105,7 +105,7 @@ function CheckoutPage() {
 
                     <h1 className="font-Roboto font-semibold mt-1">
                       Total :{" "}
-                      <span className="capitalize font-Slab text-gray-500">
+                      <span className="capitalize font-Slab text-[#2d922d]">
                         Rs. {el.price}
                       </span>
                     </h1>
