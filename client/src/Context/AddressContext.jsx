@@ -1,6 +1,10 @@
 import { createContext, useState } from "react";
 
-const AddressContext = createContext({ Address: false, toggleAddressDrawer: () => {}, handleAddressChange: () => {}});
+const AddressContext = createContext({
+  Address: false,
+  toggleAddressDrawer: () => {},
+  handleAddressChange: () => {},
+});
 
 const AddressContextProvider = ({ children }) => {
   const [Address, setAddress] = useState(false);
@@ -16,10 +20,12 @@ const AddressContextProvider = ({ children }) => {
   }
 
   return (
-    <AddressContext.Provider value={{ Address, toggleAddressDrawer, addressData, handleAddressChange }}>
+    <AddressContext.Provider
+      value={{ Address, toggleAddressDrawer, addressData, handleAddressChange }}
+    >
       {children}
     </AddressContext.Provider>
   );
-}
+};
 
-export { AddressContext , AddressContextProvider };
+export { AddressContext, AddressContextProvider };

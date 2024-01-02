@@ -27,7 +27,8 @@ function UserLayout({ children }) {
 
   const { handleBag, isOpenBag } = useContext(BagContext);
   const { IsOpenWishlist, handleWishList } = useContext(WishlistContext);
-  const { Address, toggleAddressDrawer, addressData } = useContext(AddressContext);
+  const { Address, toggleAddressDrawer, addressData } =
+    useContext(AddressContext);
 
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);

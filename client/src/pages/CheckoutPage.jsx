@@ -1,14 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import CommonDrawer from "../components/CommonDrawer";
 import { nanoid } from "nanoid";
+import { AddressContext } from "../Context/AddressContext";
 
 function CheckoutPage() {
   const { state } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { toggleAddressDrawer } = useContext(AddressContext);
   const { address } = useSelector((s) => s?.auth?.data);
 
   console.log(state);
@@ -101,10 +103,10 @@ function CheckoutPage() {
             Complete your order by selecting address below
           </p>
 
-          <div className="flex w-full flex-col mt-5 border-[1px] border-black py-4 gap-3 bg-white">
+          <div className="flex w-full flex-col mt-5 border-[1px] border-black py-4 gap-7 bg-white">
             {address.map((el, i) => {
               return (
-                <lable className="flex items-start gap-2 px-3">
+                <label key={nanoid(5)} className="flex items-start gap-2 px-3">
                   <input
                     type="radio"
                     name={`address`}
@@ -122,7 +124,7 @@ function CheckoutPage() {
                     <br />
                     <span className="capitalize">{el.country}</span>
                   </h1>
-                </lable>
+                </label>
               );
             })}
           </div>
@@ -133,6 +135,7 @@ function CheckoutPage() {
               style={{
                 userSelect: "none",
               }}
+              onClick={toggleAddressDrawer}
               className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
             >
               <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">

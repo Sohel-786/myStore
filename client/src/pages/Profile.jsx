@@ -209,7 +209,6 @@ function Profile() {
     forgotPass.style.display = "none";
   }
 
-
   return (
     <UserLayout>
       <div className="flex flex-col items-center w-full h-[900px] lg:h-[320px] mt-2 relative">
@@ -570,7 +569,7 @@ function Profile() {
           <div className="w-fit flex justify-center items-center">
             <div
               onClick={() => {
-                handleAddressChange(null)
+                handleAddressChange(null);
               }}
               title="Add Address"
               className="p-5 rounded-full bg-blue-200 flex justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out hover:bg-blue-100 text-blue-500 hover:text-blue-600"
