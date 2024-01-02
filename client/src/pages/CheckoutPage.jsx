@@ -20,9 +20,9 @@ function CheckoutPage() {
 
   return (
     <UserLayout>
-      <div className="flex w-full mt-8 pl-32 pr-20">
+      <div className="flex w-full mt-8 pl-20 pr-14 gap-8">
         <CommonDrawer />
-        <div className="w-[50%] flex flex-col">
+        <div className="w-[49%] flex flex-col">
           <h1 className="text-xl font-OpenSans font-semibold tracking-wide text-gray-800">
             Bag Summary
           </h1>
@@ -34,7 +34,7 @@ function CheckoutPage() {
                   key={nanoid(5)}
                   className="flex rounded-md overflow-hidden w-full"
                 >
-                  <div className="w-[16%] h-[120px]">
+                  <div className="w-[18%] h-[120px]">
                     <img
                       src={el.product.thumbnail.secure_url}
                       alt={el.product.name}
@@ -42,7 +42,7 @@ function CheckoutPage() {
                     />
                   </div>
 
-                  <div className="w-[84%] flex flex-col px-5 py-1">
+                  <div className="w-[84%] flex flex-col pl-5 pr-2">
                     <h1 className="capitalize font-semibold text-blue-600">
                       {el.product.name}
                     </h1>
@@ -65,7 +65,7 @@ function CheckoutPage() {
                       </h1>
 
                       <h1>
-                        Price :{" "}
+                        Price/1pc :{" "}
                         <span className="capitalize font-Slab text-gray-500">
                           Rs.
                           {el.product.sale === "YES"
@@ -79,7 +79,7 @@ function CheckoutPage() {
                       </h1>
                     </div>
 
-                    <h1 className="font-Roboto font-semibold">
+                    <h1 className="font-Roboto font-semibold mt-1">
                       Total :{" "}
                       <span className="capitalize font-Slab text-gray-500">
                         Rs. {el.price}
@@ -90,6 +90,13 @@ function CheckoutPage() {
               );
             })}
           </ul>
+        </div>
+
+        <div className="w-[51%] flex flex-col p-3 bg-blue-50">
+          <h1 className="text-xl font-Roboto font-semibold tracking-wide text-gray-800">
+            Shipping address details
+          </h1>
+          <p className="text-slate-500 font-semibold tracking-wide">Complete your order by selecting address below</p>
         </div>
       </div>
     </UserLayout>
