@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import CommonDrawer from "../components/CommonDrawer";
 import { nanoid } from "nanoid";
@@ -9,6 +9,7 @@ function CheckoutPage() {
   const { state } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { address } = useSelector((s) => s?.auth?.data);
 
   console.log(state);
 
@@ -92,11 +93,46 @@ function CheckoutPage() {
           </ul>
         </div>
 
-        <div className="w-[51%] flex flex-col p-3 bg-blue-50">
+        <div className="w-[51%] flex flex-col p-3 bg-[#f7f7ff]">
           <h1 className="text-xl font-Roboto font-semibold tracking-wide text-gray-800">
             Shipping address details
           </h1>
-          <p className="text-slate-500 font-semibold tracking-wide">Complete your order by selecting address below</p>
+          <p className="text-slate-500 font-semibold tracking-wide">
+            Complete your order by selecting address below
+          </p>
+
+          <div className="flex w-full flex-col mt-5 border-[1px] border-black py-4 gap-3 bg-white">
+            {address.map((el, i) => {
+              return (
+                <lable className='flex items-start gap-2 px-3'>
+                  <input type="radio" name={`address`} value={el} className="mt-1" />
+                  <h1 className="font-Nova font-black capitalize pr-2 w-full">
+                    <span className="capitalize break-words">{el.address}.</span>
+                    <br />
+                    <span>{el.state}</span>,{" "}
+                    <span className="capitalize">{el.city}</span>-
+                    <span>{el.postal}.</span>
+                    <br />
+                    <span className="capitalize">{el.country}</span>
+                  </h1>
+                </lable>
+              );
+            })}
+          </div>
+
+          <div className="w-full">
+          <button
+                aria-label="Add New Address"
+                style={{
+                  userSelect: "none",
+                }}
+                className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
+              >
+                <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">
+                  Add New Address
+                </span>
+              </button>
+          </div>
         </div>
       </div>
     </UserLayout>

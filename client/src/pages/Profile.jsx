@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { BiEdit } from "react-icons/bi";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdFreeCancellation, MdOutlineMonochromePhotos } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -18,6 +18,7 @@ import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
 import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 import { nanoid } from "nanoid";
 import { IoAdd } from "react-icons/io5";
+import { AddressContext } from "../Context/AddressContext";
 
 function Profile() {
   const navigate = useNavigate();
@@ -37,6 +38,8 @@ function Profile() {
   const [viewOldPassword, setViewOldpassword] = useState(false);
   const [viewNewPassword, setViewNewpassword] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(null);
+
+  const { toggleAddressDrawer } = useContext(AddressContext);
 
   const [formData, setFormdata] = useState({
     fullname: fullname,
@@ -116,7 +119,7 @@ function Profile() {
     const res = await dispatch(updateUser(data));
 
     if (res?.payload?.data?.success) {
-      console.log('check')
+      console.log("check");
       await dispatch(getUserDetails());
     }
 
@@ -205,10 +208,6 @@ function Profile() {
 
     const forgotPass = document.getElementById("forgotPass");
     forgotPass.style.display = "none";
-  }
-
-  function toggleAddressDrawer() {
-    setAddress(!Address);
   }
 
   function handleAddressChange(data) {
@@ -478,7 +477,10 @@ function Profile() {
 
                   {/* forgot password container */}
 
-                  <ForgotPassword hideForgotPass={hideForgotPass} toggle={toggleDrawerPassword} />
+                  <ForgotPassword
+                    hideForgotPass={hideForgotPass}
+                    toggle={toggleDrawerPassword}
+                  />
                 </div>
               </Drawer>
               <button
@@ -583,18 +585,6 @@ function Profile() {
             </div>
           </div>
         </div>
-
-        <Drawer
-          open={Address}
-          onClose={toggleAddressDrawer}
-          direction="right"
-          size={"450px"}
-        >
-          <AddressAddUpdate
-            Addressdata={addressData}
-            toggle={toggleAddressDrawer}
-          />
-        </Drawer>
       </div>
     </UserLayout>
   );

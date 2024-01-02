@@ -26,6 +26,8 @@ function UserLayout({ children }) {
   const { handleBag, isOpenBag } = useContext(BagContext);
   const { IsOpenWishlist, handleWishList } = useContext(WishlistContext);
 
+  const [addressData, setAddressData] = useState(null);
+
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);
   const name = useSelector((s) => s?.auth?.data?.fullname);
@@ -318,6 +320,18 @@ function UserLayout({ children }) {
           <WishList />
         </Drawer>
       )}
+
+      <Drawer
+        open={Address}
+        onClose={toggleAddressDrawer}
+        direction="right"
+        size={"450px"}
+      >
+        <AddressAddUpdate
+          Addressdata={addressData}
+          toggle={toggleAddressDrawer}
+        />
+      </Drawer>
       {children}
     </section>
   );
