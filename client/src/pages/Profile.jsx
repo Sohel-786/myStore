@@ -32,14 +32,13 @@ function Profile() {
 
   const [Address, setAddress] = useState(false);
   const [isPassChange, setIsPasschange] = useState(false);
-  const [addressData, setAddressData] = useState(null);
 
   const [viewPassChange, setViewPassChange] = useState(false);
   const [viewOldPassword, setViewOldpassword] = useState(false);
   const [viewNewPassword, setViewNewpassword] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(null);
 
-  const { toggleAddressDrawer } = useContext(AddressContext);
+  const { handleAddressChange } = useContext(AddressContext);
 
   const [formData, setFormdata] = useState({
     fullname: fullname,
@@ -210,10 +209,6 @@ function Profile() {
     forgotPass.style.display = "none";
   }
 
-  function handleAddressChange(data) {
-    setAddressData(data);
-    toggleAddressDrawer();
-  }
 
   return (
     <UserLayout>
@@ -575,8 +570,7 @@ function Profile() {
           <div className="w-fit flex justify-center items-center">
             <div
               onClick={() => {
-                setAddressData(null);
-                toggleAddressDrawer();
+                handleAddressChange(null)
               }}
               title="Add Address"
               className="p-5 rounded-full bg-blue-200 flex justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out hover:bg-blue-100 text-blue-500 hover:text-blue-600"

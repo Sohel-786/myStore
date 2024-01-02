@@ -18,6 +18,8 @@ import Bag from "../components/Bag";
 import { BagContext } from "../Context/BagContext";
 import WishList from "../components/Wishlist";
 import { WishlistContext } from "../Context/WishListContext";
+import { AddressContext } from "../Context/AddressContext";
+import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
@@ -25,8 +27,7 @@ function UserLayout({ children }) {
 
   const { handleBag, isOpenBag } = useContext(BagContext);
   const { IsOpenWishlist, handleWishList } = useContext(WishlistContext);
-
-  const [addressData, setAddressData] = useState(null);
+  const { Address, toggleAddressDrawer, addressData } = useContext(AddressContext);
 
   const { isLoggedIn, role } = useSelector((s) => s.auth);
   const [showProfile, setShowProfile] = useState(false);

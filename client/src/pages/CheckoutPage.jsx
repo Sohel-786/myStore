@@ -104,10 +104,17 @@ function CheckoutPage() {
           <div className="flex w-full flex-col mt-5 border-[1px] border-black py-4 gap-3 bg-white">
             {address.map((el, i) => {
               return (
-                <lable className='flex items-start gap-2 px-3'>
-                  <input type="radio" name={`address`} value={el} className="mt-1" />
+                <lable className="flex items-start gap-2 px-3">
+                  <input
+                    type="radio"
+                    name={`address`}
+                    value={el}
+                    className="mt-1"
+                  />
                   <h1 className="font-Nova font-black capitalize pr-2 w-full">
-                    <span className="capitalize break-words">{el.address}.</span>
+                    <span className="capitalize break-words">
+                      {el.address}.
+                    </span>
                     <br />
                     <span>{el.state}</span>,{" "}
                     <span className="capitalize">{el.city}</span>-
@@ -121,17 +128,17 @@ function CheckoutPage() {
           </div>
 
           <div className="w-full">
-          <button
-                aria-label="Add New Address"
-                style={{
-                  userSelect: "none",
-                }}
-                className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
-              >
-                <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">
-                  Add New Address
-                </span>
-              </button>
+            <button
+              aria-label="Add New Address"
+              style={{
+                userSelect: "none",
+              }}
+              className="bg-black w-[40%] relative mt-3 flex justify-center text-[16px] font-bold font-Nova text-white hover:text-black border-[2px] border-black before:absolute before:bg-white before:left-0 before:top-0 before:bottom-0 before:transition-all before:ease-in-out before:hover:right-0 before:rounded-md before:content-[''] before:right-[100%] before:z-[2]"
+            >
+              <span className="z-[6] border-2 border-black rounded-md w-full py-[3px] h-full">
+                Add New Address
+              </span>
+            </button>
           </div>
         </div>
       </div>
