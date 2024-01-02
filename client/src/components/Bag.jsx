@@ -4,10 +4,12 @@ import axiosInstance from "../config/axiosInstance";
 import { nanoid } from "@reduxjs/toolkit";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import BagProduct from "./Product/BagProduct";
+import { useNavigate } from "react-router-dom";
 
-function Bag() {
+function Bag({ close }) {
   const [bagItems, setBagItems] = useState(null);
   const { bag } = useSelector((s) => s?.auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCartProducts(bag);
@@ -59,7 +61,10 @@ function Bag() {
 
       {bagItems && (
         <div className="w-full flex flex-col justify-center items-center">
-          <button className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-zinc-500 via-zinc-800 to-zinc-900 rounded-md mt-2 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-slate-600">
+          <button onClick={() => {
+            navigate('/user/bag');
+            close();
+          }} className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-zinc-500 via-zinc-800 to-zinc-900 rounded-md mt-2 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-slate-600">
             <span className="z-[10]">OPEN BAG</span>{" "}
           </button>
           <button className="w-[95%] text-sm py-[6px] font-bold font-Slab justify-center items-center flex bg-gradient-to-r from-slate-500 via-slate-800 to-slate-900 rounded-md mt-1 text-white relative before:absolute before:top-0 before:right-full before:left-0 before:bottom-0 hover:before:right-0 before:transition-all before:ease-in-out overflow-hidden hover:text-white before:z-[5] before:bg-zinc-600">

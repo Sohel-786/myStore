@@ -6,11 +6,13 @@ import axiosInstance from "../config/axiosInstance";
 import CheckoutProduct from "../components/Product/CheckoutProduct";
 import { nanoid } from "nanoid";
 import { removeFromBag } from "../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function BagPage() {
   const [finalProducts, setFinalProducts] = useState(null);
   const { bag } = useSelector((s) => s?.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [priceTotal, setPriceTotal] = useState({
     total: 0,
@@ -169,6 +171,9 @@ function BagPage() {
 
                 <div className="w-full my-2 flex justify-center items-center">
                   <button
+                    onClick={() => {
+                      navigate('/user/bag/checkout', {state : finalProducts})
+                    }}
                     disabled={finalProducts.length === 0 ? true : false}
                     className="w-[98%] border-[2px] py-2 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-lg text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5] disabled:cursor-not-allowed disabled:bg-slate-500 disabled:before:z-[-1] disabled:hover:text-white"
                   >

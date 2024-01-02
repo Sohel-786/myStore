@@ -305,7 +305,7 @@ function UserLayout({ children }) {
           direction="right"
           size={"380px"}
         >
-          <Bag />
+          <Bag close={handleBag} />
         </Drawer>
       )}
       {IsOpenWishlist && (
