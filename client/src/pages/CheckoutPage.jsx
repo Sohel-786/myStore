@@ -1,27 +1,27 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import CommonDrawer from "../components/CommonDrawer";
 import { nanoid } from "nanoid";
 import { AddressContext } from "../Context/AddressContext";
 
 function CheckoutPage() {
+  const [checkedAddress, setCheckedAddress] = useState();
   const { state } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { toggleAddressDrawer } = useContext(AddressContext);
   const { address } = useSelector((s) => s?.auth?.data);
 
-  console.log(state);
   const [priceTotal, setPriceTotal] = useState({
     total: 0,
   });
 
-  const [ orderDetails, setOrderDetails ] = useState({
-    address : '',
-    products : state
-  })
+  const [orderDetails, setOrderDetails] = useState({
+    address: "",
+    products: state,
+  });
 
   useEffect(() => {
     if (!state) {
@@ -47,14 +47,44 @@ function CheckoutPage() {
     });
   }
 
-  function handleChange(e){
-    const { name, value, type, checked } = e.target;
-    console.log(value, type, checked)
+  function handleChange(e) {}
+
+  const handleAddress = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setCheckedAddress(value);
+      const temp = JSON.stringify({
+        address: address[value].address,
+        state: address[value].state,
+        city: address[value].city,
+        postal: address[value].postal,
+        country: address[value].country,
+      });
+      console.log(value, temp);
       setOrderDetails({
         ...orderDetails,
-        [name] : value
-    })
-  }
+        address: temp,
+      });
+    },
+    [checkedAddress]
+  );
+
+  // function handleAddress(e) {
+  //   const { name, value } = e.target;
+  //   setCheckedAddress(value);
+  //   const temp = JSON.stringify({
+  //     address: address[value].address,
+  //     state: address[value].state,
+  //     city: address[value].city,
+  //     postal: address[value].postal,
+  //     country: address[value].country,
+  //   })
+  //   console.log(value, temp)
+  //   setOrderDetails({
+  //     ...orderDetails,
+  //     address: temp,
+  //   });
+  // }
 
   return (
     <UserLayout>
@@ -145,16 +175,10 @@ function CheckoutPage() {
                   <input
                     type="radio"
                     name={`address`}
-                    value={JSON.stringify({
-                      address : el.address,
-                      state : el.state,
-                      city : el.city,
-                      postal : el.postal,
-                      country : el.country
-                    })}
+                    value={i}
                     className="mt-1"
-                    onChange={handleChange}
-                    checked={}
+                    onChange={handleAddress}
+                    checked={checkedAddress === i ? true : false}
                   />
                   <h1 className="font-Nova font-black capitalize pr-2 w-full">
                     <span className="capitalize break-words">
@@ -209,7 +233,7 @@ function CheckoutPage() {
                 onClick={() => {
                   navigate("/user/bag/checkout");
                 }}
-                disabled = {!orderDetails.address ? true : false}
+                disabled={!orderDetails.address ? true : false}
                 className="w-[98%] border-[2px] py-1 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-base text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5] disabled:cursor-not-allowed disabled:bg-slate-500 disabled:before:z-[-1] disabled:hover:text-white"
               >
                 <span className="z-[10]">CHECKOUT</span>
