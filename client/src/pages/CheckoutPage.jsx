@@ -154,6 +154,7 @@ function CheckoutPage() {
                     })}
                     className="mt-1"
                     onChange={handleChange}
+                    checked={}
                   />
                   <h1 className="font-Nova font-black capitalize pr-2 w-full">
                     <span className="capitalize break-words">
