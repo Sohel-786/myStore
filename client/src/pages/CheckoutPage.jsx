@@ -58,8 +58,8 @@ function CheckoutPage() {
       city: address[value].city,
       postal: address[value].postal,
       country: address[value].country,
-    })
-    console.log(value, temp)
+    });
+    console.log(value, temp);
     setOrderDetails({
       ...orderDetails,
       address: temp,
@@ -142,11 +142,51 @@ function CheckoutPage() {
 
         <div className="w-[51%] flex flex-col p-3 bg-[#f7f7ff]">
           <h1 className="text-xl font-Roboto font-semibold tracking-wide text-gray-800">
-            Shipping address details
+            Shipping details
           </h1>
           <p className="text-slate-500 font-semibold tracking-wide">
-            Complete your order by selecting address below
+            Complete your order by entering your name, phone number & selecting
+            address below
           </p>
+
+          <div className="w-full flex gap-3 mt-5">
+            <div className="w-[50%]">
+              <label
+                htmlFor="name"
+                className="block font-Roboto font-semibold leading-6"
+              >
+                Name
+              </label>
+              <div className="mt-2.5">
+                <input
+                  value={orderDetails.name}
+                  onChange={handleChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div className="w-[50%]">
+              <label
+                htmlFor="phone"
+                className="block font-Roboto font-semibold leading-6"
+              >
+                Phone Number
+              </label>
+              <div className="mt-2.5">
+                <input
+                  value={orderDetails.phone}
+                  onChange={handleChange}
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+          </div>
 
           <div className="flex w-full flex-col mt-5 border-[1px] border-black py-4 gap-7 bg-white">
             {address.map((el, i) => {
