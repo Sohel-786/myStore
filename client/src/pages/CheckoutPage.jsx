@@ -49,42 +49,22 @@ function CheckoutPage() {
 
   function handleChange(e) {}
 
-  const handleAddress = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setCheckedAddress(value);
-      const temp = JSON.stringify({
-        address: address[value].address,
-        state: address[value].state,
-        city: address[value].city,
-        postal: address[value].postal,
-        country: address[value].country,
-      });
-      console.log(value, temp);
-      setOrderDetails({
-        ...orderDetails,
-        address: temp,
-      });
-    },
-    [checkedAddress]
-  );
-
-  // function handleAddress(e) {
-  //   const { name, value } = e.target;
-  //   setCheckedAddress(value);
-  //   const temp = JSON.stringify({
-  //     address: address[value].address,
-  //     state: address[value].state,
-  //     city: address[value].city,
-  //     postal: address[value].postal,
-  //     country: address[value].country,
-  //   })
-  //   console.log(value, temp)
-  //   setOrderDetails({
-  //     ...orderDetails,
-  //     address: temp,
-  //   });
-  // }
+  function handleAddress(e) {
+    const { name, value } = e.target;
+    setCheckedAddress(value);
+    const temp = JSON.stringify({
+      address: address[value].address,
+      state: address[value].state,
+      city: address[value].city,
+      postal: address[value].postal,
+      country: address[value].country,
+    })
+    console.log(value, temp)
+    setOrderDetails({
+      ...orderDetails,
+      address: temp,
+    });
+  }
 
   return (
     <UserLayout>
@@ -178,7 +158,7 @@ function CheckoutPage() {
                     value={i}
                     className="mt-1"
                     onChange={handleAddress}
-                    checked={checkedAddress === i ? true : false}
+                    checked={checkedAddress == i ? true : false}
                   />
                   <h1 className="font-Nova font-black capitalize pr-2 w-full">
                     <span className="capitalize break-words">
