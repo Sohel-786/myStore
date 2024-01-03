@@ -19,6 +19,8 @@ function CheckoutPage() {
   });
 
   const [orderDetails, setOrderDetails] = useState({
+    name: "",
+    phone: "",
     address: "",
     products: state,
   });
@@ -47,7 +49,13 @@ function CheckoutPage() {
     });
   }
 
-  function handleChange(e) {}
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setOrderDetails({
+      ...orderDetails,
+      [name]: value,
+    });
+  }
 
   function handleAddress(e) {
     const { name, value } = e.target;
@@ -253,7 +261,15 @@ function CheckoutPage() {
                 onClick={() => {
                   navigate("/user/bag/checkout");
                 }}
-                disabled={!orderDetails.address ? true : false}
+                disabled={
+                  !orderDetails.address
+                    ? true
+                    : !orderDetails.name
+                    ? true
+                    : !orderDetails.phone
+                    ? true
+                    : false
+                }
                 className="w-[98%] border-[2px] py-1 flex items-center justify-center gap-[6px] relative border-[black] bg-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-base text-white hover:text-black before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-white before:transition-all before:duration-300 before:ease-in-out hover:before:right-0 before:z-[5] disabled:cursor-not-allowed disabled:bg-slate-500 disabled:before:z-[-1] disabled:hover:text-white"
               >
                 <span className="z-[10]">CHECKOUT</span>
