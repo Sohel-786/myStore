@@ -9,6 +9,7 @@ import errMiddleware from "./middlewares/error.middleware.js";
 import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import router from "./routes/miscellaneous.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/country-data", router);
+app.use("/payment", paymentRoutes);
 
 app.use("/ping", (req, res) => {
   res.send("Pong");

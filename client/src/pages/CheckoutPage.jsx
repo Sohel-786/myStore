@@ -14,6 +14,8 @@ function CheckoutPage() {
   const { toggleAddressDrawer } = useContext(AddressContext);
   const { address } = useSelector((s) => s?.auth?.data);
 
+  console.log(state);
+
   const [priceTotal, setPriceTotal] = useState({
     total: 0,
   });
