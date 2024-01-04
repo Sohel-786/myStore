@@ -1,4 +1,6 @@
-import { stripe } from "../server";
+import User from "../models/user.model.js";
+import { stripe } from "../server.js";
+import AppError from "../utils/appError.js";
 
 export const createCheckoutSession = async (req, res, next) => {
   const { products } = req.body;
@@ -19,17 +21,17 @@ export const createCheckoutSession = async (req, res, next) => {
         product_data: {
           name: el.product.name,
           images: [el.product.thumbnail.secure_url],
-          unit_amount: Math.floor(
-            el.product.price - (el.product.pricedrop / 100) * el.product.price
-          ) * 100,
         },
+        unit_amount: Math.floor(
+          el.product.price - (el.product.pricedrop / 100) * el.product.price
+        ) * 100,
       },
       quantity : el.quantity
     };
   });
 
   const session = await stripe.checkout.sessions.create({
-    payment_methods_types: ["card"],
+    payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
     success_url: `${process.env.FRONTEND_URL}/success`,

@@ -16,7 +16,7 @@ import AllProducts from "./pages/AllProducts";
 import ProductDetail from "./pages/ProductDetail";
 import WishlistPage from "./pages/WishlistPage";
 import BagPage from "./pages/BagPage";
-import CheckoutPage from "./pages/CheckoutPage";
+import CheckoutPage from "./pages/Checkout/CheckoutPage";
 
 function App() {
   const dispatch = useDispatch();

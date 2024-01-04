@@ -1,10 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import UserLayout from "../layouts/UserLayout";
+import UserLayout from "../../layouts/UserLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useContext, useEffect, useState } from "react";
-import CommonDrawer from "../components/CommonDrawer";
+import CommonDrawer from "../../components/CommonDrawer";
 import { nanoid } from "nanoid";
-import { AddressContext } from "../Context/AddressContext";
+import { AddressContext } from "../../Context/AddressContext";
+import { toast } from "react-toastify";
+import { loadStripe } from "@stripe/stripe-js";
+import axiosInstance from "../../config/axiosInstance";
+import { isValidPhoneNumber } from "../../helpers/RegexMatcher";
 
 function CheckoutPage() {
   const [checkedAddress, setCheckedAddress] = useState();
@@ -74,6 +78,48 @@ function CheckoutPage() {
       ...orderDetails,
       address: temp,
     });
+  }
+
+  async function handleCheckout() {
+    if (!orderDetails.name || !orderDetails.address || !orderDetails.phone) {
+      toast.error(
+        "Please Provide all required shipping details to complete your order"
+      );
+      return;
+    }
+
+    if (!orderDetails.products) {
+      toast.error("There are no product details available");
+      return;
+    }
+
+    if(!isValidPhoneNumber(orderDetails.phone)){
+      toast.error("Please Provide Valid Phone Number");
+      return;
+    }
+
+    try {
+      const stripe = await loadStripe(
+        "pk_test_51OUR81SHWLQBaZSK3uSop9lqjgYqpOlSJERQAoxqucVXSC3dOV7Gnm5oH1lnloUlMPEv9axwRUINetGoyo2KvGHx00ysSf6NYs"
+      );
+
+      const res = await axiosInstance.post('/payment/create-checkout-session', orderDetails)
+
+      console.log(res);
+
+      const result = stripe.redirectToCheckout({
+        sessionId : res.data.session_id
+      })
+
+      if((await result).error){
+        console.log(result.error);
+      }
+
+    } catch (e) {
+      console.log(e);
+      toast.error('Something Went Wrong');
+      return;
+    }
   }
 
   return (
@@ -260,9 +306,7 @@ function CheckoutPage() {
 
             <div className="w-full my-2 flex justify-center items-center">
               <button
-                onClick={() => {
-                  
-                }}
+                onClick={handleCheckout}
                 disabled={
                   !orderDetails.address
                     ? true
