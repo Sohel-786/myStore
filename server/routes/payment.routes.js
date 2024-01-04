@@ -5,7 +5,7 @@ import { createCheckoutSession } from "../controllers/payment.controller.js";
 const paymentRoutes = Router();
 
 paymentRoutes
-.route('/create-checkout-session')
-.post(IsLoggedIn, createCheckoutSession);
+  .route("/create-checkout-session")
+  .post(IsLoggedIn, createCheckoutSession);
 
 export default paymentRoutes;

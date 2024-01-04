@@ -22,11 +22,12 @@ export const createCheckoutSession = async (req, res, next) => {
           name: el.product.name,
           images: [el.product.thumbnail.secure_url],
         },
-        unit_amount: Math.floor(
-          el.product.price - (el.product.pricedrop / 100) * el.product.price
-        ) * 100,
+        unit_amount:
+          Math.floor(
+            el.product.price - (el.product.pricedrop / 100) * el.product.price
+          ) * 100,
       },
-      quantity : el.quantity
+      quantity: el.quantity,
     };
   });
 
@@ -38,8 +39,8 @@ export const createCheckoutSession = async (req, res, next) => {
     cancel_url: `${process.env.FRONTEND_URL}/cancel`,
   });
 
-  return  res.status(200).json({
-    success : true,
-    session_id : session.id
-  })
+  return res.status(200).json({
+    success: true,
+    session_id: session.id,
+  });
 };

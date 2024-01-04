@@ -93,7 +93,7 @@ function CheckoutPage() {
       return;
     }
 
-    if(!isValidPhoneNumber(orderDetails.phone)){
+    if (!isValidPhoneNumber(orderDetails.phone)) {
       toast.error("Please Provide Valid Phone Number");
       return;
     }
@@ -103,21 +103,23 @@ function CheckoutPage() {
         "pk_test_51OUR81SHWLQBaZSK3uSop9lqjgYqpOlSJERQAoxqucVXSC3dOV7Gnm5oH1lnloUlMPEv9axwRUINetGoyo2KvGHx00ysSf6NYs"
       );
 
-      const res = await axiosInstance.post('/payment/create-checkout-session', orderDetails)
+      const res = await axiosInstance.post(
+        "/payment/create-checkout-session",
+        orderDetails
+      );
 
       console.log(res);
 
       const result = stripe.redirectToCheckout({
-        sessionId : res.data.session_id
-      })
+        sessionId: res.data.session_id,
+      });
 
-      if((await result).error){
+      if ((await result).error) {
         console.log(result.error);
       }
-
     } catch (e) {
       console.log(e);
-      toast.error('Something Went Wrong');
+      toast.error("Something Went Wrong");
       return;
     }
   }
