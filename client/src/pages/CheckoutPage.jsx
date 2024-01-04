@@ -148,7 +148,7 @@ function CheckoutPage() {
           </ul>
         </div>
 
-        <div className="w-[51%] flex flex-col p-3 bg-[#f7f7ff]">
+        <div className="w-[51%] flex flex-col p-3 bg-[#eeeeff]">
           <h1 className="text-xl font-Roboto font-semibold tracking-wide text-gray-800">
             Shipping details
           </h1>
@@ -259,7 +259,7 @@ function CheckoutPage() {
             <div className="w-full my-2 flex justify-center items-center">
               <button
                 onClick={() => {
-                  navigate("/user/bag/checkout");
+                  
                 }}
                 disabled={
                   !orderDetails.address

@@ -4,6 +4,9 @@ import app from "./app.js";
 import connect from './config/db.js';
 
 import cloudinary from "cloudinary";
+import Stripe from "stripe";
+
+export const stripe = Stripe(process.env.STRIPE_API_KEY)
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
