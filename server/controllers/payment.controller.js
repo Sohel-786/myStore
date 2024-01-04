@@ -14,12 +14,22 @@ export const createCheckoutSession = async (req, res, next) => {
     return next(new AppError("Unauthenticated, please login", 400));
   }
 
+  function handleName(name){
+    let temp = name.split(" ");
+    temp = temp.map((el) => {
+        return (el[0].toUpperCase()+ el.slice(1))
+    })
+
+    let str = temp.join(" ");
+    return str;
+  }
+
   const lineItems = products.map((el) => {
     return {
       price_data: {
-        currency: "inr",
+        currency: 'INR',
         product_data: {
-          name: el.product.name,
+          name: handleName(el.product.name),
           images: [el.product.thumbnail.secure_url],
         },
         unit_amount:
@@ -32,7 +42,7 @@ export const createCheckoutSession = async (req, res, next) => {
   });
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
+    payment_method_types: ['card'],
     line_items: lineItems,
     mode: "payment",
     success_url: `${process.env.FRONTEND_URL}/success`,
