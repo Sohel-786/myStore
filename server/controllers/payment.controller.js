@@ -3,10 +3,11 @@ import { stripe } from "../server.js";
 import AppError from "../utils/appError.js";
 
 export const createCheckoutSession = async (req, res, next) => {
-  const { products } = req.body;
+  const { products, address, name, phone, email } = req.body;
+  console.log(address);
 
-  if (!products) {
-    return next(new AppError("The Products data is not provided", 400));
+  if (!products || !address || !name || !phone || !email) {
+    return next(new AppError("All Fileds are required", 400));
   }
 
   const userCheck = await User.findById(req.user.id);
@@ -14,11 +15,11 @@ export const createCheckoutSession = async (req, res, next) => {
     return next(new AppError("Unauthenticated, please login", 400));
   }
 
-  function handleName(name){
+  function handleName(name) {
     let temp = name.split(" ");
     temp = temp.map((el) => {
-        return (el[0].toUpperCase()+ el.slice(1))
-    })
+      return el[0].toUpperCase() + el.slice(1);
+    });
 
     let str = temp.join(" ");
     return str;
@@ -27,7 +28,7 @@ export const createCheckoutSession = async (req, res, next) => {
   const lineItems = products.map((el) => {
     return {
       price_data: {
-        currency: 'INR',
+        currency: "inr",
         product_data: {
           name: handleName(el.product.name),
           images: [el.product.thumbnail.secure_url],
@@ -41,12 +42,33 @@ export const createCheckoutSession = async (req, res, next) => {
     };
   });
 
+  const customer = await stripe.customers.create({
+    address: {
+      city: address.city,
+      country: address.country,
+      line1: address.address,
+      postal_code: address.postal_code,
+      state: address.state,
+    },
+    name: name,
+    phone: phone,
+    email : email
+  });
+
+  console.log(customer.id)
+
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
+    customer : customer.id,
+    customer_email : customer.email,
+    payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
     success_url: `${process.env.FRONTEND_URL}/success`,
     cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+    customer_creation: "always",
+    // customer_details : {
+    //
+    // }
   });
 
   return res.status(200).json({
