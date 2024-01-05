@@ -9,7 +9,7 @@ function AddressCart({ data, handleChange }) {
 
   async function handleDelete() {
     const res = await dispatch(deleteAddress(_id));
-    if(res?.payload?.data?.success){
+    if (res?.payload?.data?.success) {
       dispatch(getUserDetails());
     }
   }

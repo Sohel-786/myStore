@@ -314,7 +314,7 @@ function CheckoutPage() {
             <div className="w-full my-2 flex flex-col justify-center items-center">
               <h1 className="font-OpenSans font-semibold tracking-wide text-[#1a0080] leading-8 pl-2 mb-5 relative">
                 This will be a <span className="text-green-600">Test Mode</span>{" "}
-                checkout form, Please use only the card number provided below
+                checkout form, Please only use the card number provided below
                 for successfull payment.{" "}
                 <span className="bg-[#242222] flex justify-center items-center gap-4 py-1 px-3 rounded-sm text-[#cbcbcb] italic">
                   4000 0035 6000 0123{" "}
