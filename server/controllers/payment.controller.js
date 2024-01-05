@@ -52,23 +52,30 @@ export const createCheckoutSession = async (req, res, next) => {
     },
     name: name,
     phone: phone,
-    email : email
+    email: email,
+    shipping: {
+      address: {
+        city: address.city,
+        country: address.country,
+        line1: address.address,
+        postal_code: address.postal_code,
+        state: address.state,
+      },
+      name: name,
+      phone: phone,
+    },
   });
 
-  console.log(customer.id)
+  console.log(customer.id);
 
   const session = await stripe.checkout.sessions.create({
-    customer : customer.id,
-    customer_email : customer.email,
+    customer: customer.id,
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
+    currency: "INR",
     success_url: `${process.env.FRONTEND_URL}/success`,
     cancel_url: `${process.env.FRONTEND_URL}/cancel`,
-    customer_creation: "always",
-    // customer_details : {
-    //
-    // }
   });
 
   return res.status(200).json({

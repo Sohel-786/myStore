@@ -109,8 +109,6 @@ function CheckoutPage() {
         orderDetails
       );
 
-      console.log(res);
-
       const result = stripe.redirectToCheckout({
         sessionId: res.data.session_id,
       });
