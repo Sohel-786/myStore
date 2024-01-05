@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import axiosInstance from "../../config/axiosInstance";
 import { isValidPhoneNumber } from "../../helpers/RegexMatcher";
+import { MdCopyAll } from "react-icons/md";
 
 function CheckoutPage() {
   const [checkedAddress, setCheckedAddress] = useState();
@@ -29,7 +30,7 @@ function CheckoutPage() {
     phone: "",
     address: "",
     products: state,
-    email: email
+    email: email,
   });
 
   useEffect(() => {
@@ -82,7 +83,12 @@ function CheckoutPage() {
   }
 
   async function handleCheckout() {
-    if (!orderDetails.name || !orderDetails.address || !orderDetails.phone || !orderDetails.email) {
+    if (
+      !orderDetails.name ||
+      !orderDetails.address ||
+      !orderDetails.phone ||
+      !orderDetails.email
+    ) {
       toast.error(
         "Please Provide all required shipping details to complete your order"
       );
@@ -101,7 +107,7 @@ function CheckoutPage() {
 
     try {
       const stripe = await loadStripe(
-        "pk_test_51OUR81SHWLQBaZSK3uSop9lqjgYqpOlSJERQAoxqucVXSC3dOV7Gnm5oH1lnloUlMPEv9axwRUINetGoyo2KvGHx00ysSf6NYs"
+        "pk_test_51OVG8QSDl3fPhZfkYiYb41l9BKFY27d0bylewRlNjnAPaoIaKYb2FG4UDkaPFLR4kf1ZLWy4IHy6LkbehxPxxWqa00ogvVeugJ"
       );
 
       const res = await axiosInstance.post(
@@ -125,7 +131,7 @@ function CheckoutPage() {
 
   return (
     <UserLayout>
-      <div className="flex w-full mt-8 pl-20 pr-14 gap-8">
+      <div className="flex w-full mt-8 pl-20 pr-14 gap-8 mb-10">
         <CommonDrawer />
         <div className="w-[49%] flex flex-col">
           <h1 className="text-xl font-OpenSans font-semibold tracking-wide text-gray-800">
@@ -305,7 +311,29 @@ function CheckoutPage() {
             </div>
             <hr />
 
-            <div className="w-full my-2 flex justify-center items-center">
+            <div className="w-full my-2 flex flex-col justify-center items-center">
+              <h1 className="font-OpenSans font-semibold tracking-wide text-[#1a0080] leading-8 pl-2 mb-5 relative">
+                This will be a <span className="text-green-600">Test Mode</span>{" "}
+                checkout form, Please use only the card number provided below
+                for successfull payment.{" "}
+                <span className="bg-[#242222] flex justify-center items-center gap-4 py-1 px-3 rounded-sm text-[#cbcbcb] italic">
+                  4000 0035 6000 0123{" "}
+                  <MdCopyAll
+                    title="Copy"
+                    className="cursor-pointer hover:bg-white hover:text-black rounded-full px-1 absolute right-3"
+                    size={"30px"}
+                    onClick={() => {
+                      navigator.clipboard.writeText("4000003560000123");
+                      toast.success(`Card Number Copied To clipboard`, {
+                        position: "bottom-right",
+                        autoClose: 900,
+                        theme: "colored",
+                        hideProgressBar: true,
+                      });
+                    }}
+                  />
+                </span>
+              </h1>
               <button
                 onClick={handleCheckout}
                 disabled={

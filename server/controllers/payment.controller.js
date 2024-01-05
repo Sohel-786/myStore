@@ -3,9 +3,9 @@ import { stripe } from "../server.js";
 import AppError from "../utils/appError.js";
 
 export const createCheckoutSession = async (req, res, next) => {
-  const { products, address, name, phone, email } = req.body;
-  console.log(address);
+  let { products, address, name, phone, email } = req.body;
 
+  address = JSON.parse(address);
   if (!products || !address || !name || !phone || !email) {
     return next(new AppError("All Fileds are required", 400));
   }
@@ -42,38 +42,36 @@ export const createCheckoutSession = async (req, res, next) => {
     };
   });
 
-  const customer = await stripe.customers.create({
-    address: {
-      city: address.city,
-      country: address.country,
-      line1: address.address,
-      postal_code: address.postal_code,
-      state: address.state,
-    },
-    name: name,
-    phone: phone,
-    email: email,
-    shipping: {
-      address: {
-        city: address.city,
-        country: address.country,
-        line1: address.address,
-        postal_code: address.postal_code,
-        state: address.state,
-      },
-      name: name,
-      phone: phone,
-    },
-  });
+  // const customer = await stripe.customers.create({
+  //   address: {
+  //     city: address.city,
+  //     country: 'IN',
+  //     line1: address.address,
+  //     postal_code: address.postal_code,
+  //     state: address.state,
+  //   },
+  //   name: name,
+  //   phone: phone,
+  //   email: email,
+  //   shipping: {
+  //     address: {
+  //       city: address.city,
+  //       country: 'IN',
+  //       line1: address.address,
+  //       postal_code: address.postal_code,
+  //       state: address.state,
+  //     },
+  //     name: name,
+  //     phone: phone,
+  //   },
+  // });
 
-  console.log(customer.id);
+  // console.log(customer.id);
 
   const session = await stripe.checkout.sessions.create({
-    customer: customer.id,
-    payment_method_types: ["card"],
+    payment_method_types : ['card'],
     line_items: lineItems,
     mode: "payment",
-    currency: "INR",
     success_url: `${process.env.FRONTEND_URL}/success`,
     cancel_url: `${process.env.FRONTEND_URL}/cancel`,
   });
