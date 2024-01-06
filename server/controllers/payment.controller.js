@@ -3,10 +3,10 @@ import { stripe } from "../server.js";
 import AppError from "../utils/appError.js";
 
 export const createCheckoutSession = async (req, res, next) => {
-  let { products, address, name, phone} = req.body;
+  let { products, address, name, phone } = req.body;
 
   address = JSON.parse(address);
-  if (!products || !address || !name || !phone ) {
+  if (!products || !address || !name || !phone) {
     return next(new AppError("All Fileds are required", 400));
   }
 
@@ -41,32 +41,6 @@ export const createCheckoutSession = async (req, res, next) => {
       quantity: el.quantity,
     };
   });
-
-  // const customer = await stripe.customers.create({
-  //   address: {
-  //     city: address.city,
-  //     country: 'IN',
-  //     line1: address.address,
-  //     postal_code: address.postal_code,
-  //     state: address.state,
-  //   },
-  //   name: name,
-  //   phone: phone,
-  //   email: email,
-  //   shipping: {
-  //     address: {
-  //       city: address.city,
-  //       country: 'IN',
-  //       line1: address.address,
-  //       postal_code: address.postal_code,
-  //       state: address.state,
-  //     },
-  //     name: name,
-  //     phone: phone,
-  //   },
-  // });
-
-  // console.log(customer.id);
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
