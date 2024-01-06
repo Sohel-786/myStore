@@ -17,7 +17,7 @@ const orderSchema = new Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "Products",
         },
-        currentPrice: {
+        purchasePrice: {
           type: String,
           required: true,
         },
@@ -25,6 +25,7 @@ const orderSchema = new Schema(
     ],
     shippingAddress: {
       name: { type: String, required: true },
+      phone: { type: String, required: true },
       address: { type: String, required: true },
       city: { type: String, required: true },
       state: { type: String, required: true },
@@ -35,9 +36,9 @@ const orderSchema = new Schema(
     isPaid: { type: Boolean, required: true },
     isProcessing: { type: Boolean, required: true },
     expireAt: {
-        type: Date,
-        expires: "3m", 
-        default: Date.now()
+      type: Date,
+      expires: "3m",
+      default: Date.now(),
     },
   },
   {
