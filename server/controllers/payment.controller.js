@@ -3,10 +3,10 @@ import { stripe } from "../server.js";
 import AppError from "../utils/appError.js";
 
 export const createCheckoutSession = async (req, res, next) => {
-  let { products, address, name, phone, email } = req.body;
+  let { products, address, name, phone} = req.body;
 
   address = JSON.parse(address);
-  if (!products || !address || !name || !phone || !email) {
+  if (!products || !address || !name || !phone ) {
     return next(new AppError("All Fileds are required", 400));
   }
 

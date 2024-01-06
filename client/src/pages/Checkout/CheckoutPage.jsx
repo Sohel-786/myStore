@@ -17,7 +17,7 @@ function CheckoutPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { toggleAddressDrawer } = useContext(AddressContext);
-  const { address, email } = useSelector((s) => s?.auth?.data);
+  const { address } = useSelector((s) => s?.auth?.data);
 
   console.log(state);
 
@@ -30,7 +30,6 @@ function CheckoutPage() {
     phone: "",
     address: "",
     products: state,
-    email: email,
   });
 
   useEffect(() => {
@@ -83,12 +82,7 @@ function CheckoutPage() {
   }
 
   async function handleCheckout() {
-    if (
-      !orderDetails.name ||
-      !orderDetails.address ||
-      !orderDetails.phone ||
-      !orderDetails.email
-    ) {
+    if (!orderDetails.name || !orderDetails.address || !orderDetails.phone) {
       toast.error(
         "Please Provide all required shipping details to complete your order"
       );
