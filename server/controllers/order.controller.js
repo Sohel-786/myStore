@@ -21,7 +21,9 @@ export const createOrder = async (req, res, next) => {
     user : req.user.id,
     orderItems,
     shippingAddress : address,
-
+    totalPrice,
+    isPaid : false,
+    
   })
 };
 
