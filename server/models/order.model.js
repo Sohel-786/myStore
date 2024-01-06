@@ -34,8 +34,17 @@ const orderSchema = new Schema(
     totalPrice: { type: Number, required: true },
     isPaid: { type: Boolean, required: true },
     isProcessing: { type: Boolean, required: true },
+    expireAt: {
+        type: Date,
+        expires: "3m", 
+        default: Date.now()
+    },
   },
   {
     timestamps: true,
   }
 );
+
+const Order = model("order", orderSchema);
+
+export default Order;

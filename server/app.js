@@ -10,6 +10,7 @@ import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import router from "./routes/miscellaneous.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import orderRoutes from "./routes/order.routes.js";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/country-data", router);
 app.use("/payment", paymentRoutes);
+app.use("/order", orderRoutes);
 
 app.use("/ping", (req, res) => {
   res.send("Pong");

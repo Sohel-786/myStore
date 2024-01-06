@@ -5,7 +5,7 @@ const productSchema = new Schema(
     name: {
       type: String,
       required: ["true", "Product Name is Required"],
-      minLength: [5, "Product Name must be at least 5 characters"],
+      minLength: [3, "Product Name must be at least 5 characters"],
       maxLength: [50, "Product Name must be less than 50 charcters"],
       trim: true,
       lowercase: true,
