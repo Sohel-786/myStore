@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { IsLoggedIn } from "../middlewares/auth.middleware";
-import { createOrder } from "../controllers/order.controller";
+import { IsLoggedIn } from "../middlewares/auth.middleware.js";
+import { createOrder } from "../controllers/order.controller.js";
 const orderRoutes = Router();
 
 orderRoutes

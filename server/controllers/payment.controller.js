@@ -1,3 +1,5 @@
+import { isValidPhoneNumber } from "../helpers/RegexMatcher.js";
+import Order from "../models/order.model.js";
 import User from "../models/user.model.js";
 import { stripe } from "../server.js";
 import AppError from "../utils/appError.js";
@@ -10,9 +12,35 @@ export const createCheckoutSession = async (req, res, next) => {
     return next(new AppError("All Fileds are required", 400));
   }
 
+  if (!isValidPhoneNumber(phone)) {
+    return next(new AppError("Provide a valid phone number", 400));
+  }
+
   const userCheck = await User.findById(req.user.id);
   if (!userCheck) {
     return next(new AppError("Unauthenticated, please login", 400));
+  }
+
+  function handleTotal(arr){
+    let temp = 0;
+    arr.forEach((el) => {
+      temp += el.price;
+    });
+
+    return temp;
+  }
+
+  const order = await Order.create({
+    user: req.user.id,
+    orderItems : products,
+    shippingAddress: address,
+    totalPrice : handleTotal(products),
+    isPaid: false,
+    isProcessing: true,
+  });
+
+  if (!order) {
+    return next(new AppError("Something Went Wrong, order creation failed"));
   }
 
   function handleName(name) {
@@ -42,12 +70,14 @@ export const createCheckoutSession = async (req, res, next) => {
     };
   });
 
+
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.FRONTEND_URL}/success`,
-    cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+    success_url: `${process.env.FRONTEND_URL}/${order._id}?success=true`,
+    cancel_url: `${process.env.FRONTEND_URL}/${order._id}?success=false`,
   });
 
   return res.status(200).json({
