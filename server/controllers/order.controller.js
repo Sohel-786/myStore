@@ -1,20 +1,68 @@
-import { isValidPhoneNumber } from "../helpers/RegexMatcher.js";
 import Order from "../models/order.model.js";
 import AppError from "../utils/appError.js";
 
-export const createOrder = async (req, res, next) => {
-  // try {
+export const confirmOrder = async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
 
-  //   return res.status(200).json({
-  //     success: true,
-  //     message: "Order Created Successfully",
-  //     order,
-  //   });
-  // } catch (e) {
-  //   return next(new AppError("Something went wrong, please try again", 500));
-  // }
+    if (!orderId) {
+      return next(new AppError("Provide a valid order Id", 400));
+    }
+
+    const userCheck = await User.findById(req.user.id);
+    if (!userCheck) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    const order = await Order.findByIdAndUpdate(orderId, {
+      $set: { isPaid: true, expireAt: {} },
+    });
+
+    console.log(order);
+
+    return res.status(200).json({
+      success: true,
+      message: "Payment Success",
+    });
+  } catch (e) {
+    return next(new AppError("Something went wrong, please try again", 500));
+  }
 };
 
-export const getAllOrders = async (req, res, next) => {};
+export const getAllOrders = async (req, res, next) => {
+  try {
+    const userCheck = await User.findById(req.user.id);
+    if (!userCheck) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
 
-export const orderDetails = async (req, res, next) => {};
+    const orders = await Order.find({ user: req.user.id, isPaid : true });
+
+    return res.status(200).json({
+      success: true,
+      message: "Fetched All Orders Successfully",
+      orders,
+    });
+  } catch (e) {
+    return next(new AppError("Something went wrong, please try again", 500));
+  }
+};
+
+export const deleteOrder = async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+
+    if (!orderId) {
+      return next(new AppError("Provide a valid order Id", 400));
+    }
+
+    const order = await Order.findByIdAndDelete(orderId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Order Deleted Successfully",
+    });
+  } catch (e) {
+    return next(new AppError("Something went wrong, please try again", 500));
+  }
+};

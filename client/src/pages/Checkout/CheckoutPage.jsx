@@ -36,7 +36,7 @@ function CheckoutPage() {
     if (!state) {
       navigate("/user/bag");
     }
-  });
+  }, []);
 
   useEffect(() => {
     console.log("run");

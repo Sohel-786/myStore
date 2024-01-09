@@ -1,9 +1,26 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Result() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [result, setResult] = useState(searchParams.get("success"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+        
+    }, 4000);
+  },[])
+
+
+  function handleRemoveOrder(){
+
+  }
+
+  function handleAddOrder(){
+    
+  }
+
   return (
     result && (
       <>
@@ -21,7 +38,7 @@ function Result() {
               Thank you for shopping from Us
             </p>
 
-            <div className="w-fit px-3 gap-1 flex justify-center items-center font-bold bg-[#ffd500] py-1 mt-3">
+            <div className="w-fit px-3 gap-1 flex items-center font-bold bg-[#ffd500] py-1 mt-3">
               <h1>Redirecting you to the Order page...</h1>
               <img
                 src="/assets/loadingGif.gif"
@@ -43,7 +60,7 @@ function Result() {
             <p className="font-bold font-Roboto tracking-wider text-gray-500">
               Your payment failed
             </p>
-            <div className="w-fit px-3 gap-1 flex justify-center items-center font-bold bg-[#ffd500] py-1 mt-3">
+            <div className="w-fit px-3 gap-1 flex items-center font-bold bg-[#ffd500] py-1 mt-3">
               <h1>Redirecting you to the bag page...</h1>
               <img
                 src="/assets/loadingGif.gif"
