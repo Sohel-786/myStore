@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { AddOrder, deleteOrder } from "../../redux/slices/orderSlice";
 
 function Result() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [result, setResult] = useState(searchParams.get("success"));
   const navigate = useNavigate();
   const { orderId } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!orderId) {
       navigate("/");
+    }
+
+    if(result === 'true'){
+        handleAddOrder();
+    }else{
+        handleRemoveOrder();
     }
 
     let id = setTimeout(() => {
@@ -25,9 +34,13 @@ function Result() {
     };
   }, []);
 
-  function handleRemoveOrder() {}
+  function handleRemoveOrder() {
+    dispatch(deleteOrder(orderId));
+  }
 
-  function handleAddOrder() {}
+  function handleAddOrder() {
+    dispatch(AddOrder(orderId));
+  }
 
   return (
     result && (

@@ -6,7 +6,7 @@ const initialState = {
   orders: [],
 };
 
-const AddOrder = createAsyncThunk("/order/add", async (id) => {
+export const AddOrder = createAsyncThunk("/order/add", async (id) => {
   try {
     const res = await axiosInstance.put(`/order/${id}`);
     return res;
@@ -15,7 +15,16 @@ const AddOrder = createAsyncThunk("/order/add", async (id) => {
   }
 });
 
-const getAllOrders = createAsyncThunk("/order/getallOrders", async () => {
+export const deleteOrder = createAsyncThunk("/order/add", async (id) => {
+  try {
+    const res = await axiosInstance.delete(`/order/${id}`);
+    return res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
+export const getAllOrders = createAsyncThunk("/order/getallOrders", async () => {
   try {
     const res = await axiosInstance.get("/order/getAllOrders");
     return res;
