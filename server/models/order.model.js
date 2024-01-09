@@ -9,18 +9,22 @@ const orderSchema = new Schema(
     },
     orderItems: [
       {
-        qty: {
+        quantity: {
           type: Number,
           required: true,
         },
-        product: {
+        productId: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Products",
         },
-        purchasePrice: {
-          type: String,
+        product: {
+          type: Object,
           required: true,
         },
+        size : {
+          type : String,
+          required :true
+        }
       },
     ],
     shippingAddress: {

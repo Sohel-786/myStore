@@ -21,7 +21,7 @@ export const createCheckoutSession = async (req, res, next) => {
     return next(new AppError("Unauthenticated, please login", 400));
   }
 
-  function handleTotal(arr){
+  function handleTotal(arr) {
     let temp = 0;
     arr.forEach((el) => {
       temp += el.price;
@@ -32,9 +32,9 @@ export const createCheckoutSession = async (req, res, next) => {
 
   const order = await Order.create({
     user: req.user.id,
-    orderItems : products,
-    shippingAddress: address,
-    totalPrice : handleTotal(products),
+    orderItems: products,
+    shippingAddress: { ...address, name, phone },
+    totalPrice: handleTotal(products),
     isPaid: false,
     isProcessing: true,
   });
@@ -70,14 +70,12 @@ export const createCheckoutSession = async (req, res, next) => {
     };
   });
 
-
-
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.FRONTEND_URL}/${order._id}?success=true`,
-    cancel_url: `${process.env.FRONTEND_URL}/${order._id}?success=false`,
+    success_url: `${process.env.FRONTEND_URL}/checkout/${order._id}?success=true`,
+    cancel_url: `${process.env.FRONTEND_URL}/checkout/${order._id}?success=false`,
   });
 
   return res.status(200).json({

@@ -17,6 +17,7 @@ import ProductDetail from "./pages/ProductDetail";
 import WishlistPage from "./pages/WishlistPage";
 import BagPage from "./pages/BagPage";
 import CheckoutPage from "./pages/Checkout/CheckoutPage";
+import Result from "./pages/Checkout/Result";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,11 @@ function App() {
         <Route
           path="/user/bag/checkout"
           element={networkRequest ? <CheckoutPage /> : <Loading />}
+        />
+
+        <Route
+          path="/checkout/:orderId"
+          element={networkRequest ? <Result /> : <Loading />}
         />
 
         <Route
