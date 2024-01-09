@@ -7,8 +7,8 @@ const initialState = {
   role: "",
   data: {},
   networkRequest: false,
-  bag : [],
-  wishList : []
+  bag: [],
+  wishList: [],
 };
 
 export const checkIsLoggedIn = createAsyncThunk("/auth/user", async () => {
@@ -207,6 +207,15 @@ export const removeFromBag = createAsyncThunk(
   }
 );
 
+export const emptyBag = createAsyncThunk("/product/emptyBag", async (id) => {
+  try {
+    let res = await axiosInstance.put(`/user/emptyBag`);
+    return res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
 export const addToWishlist = createAsyncThunk(
   "/product/addToWishlist",
   async (id) => {
@@ -270,8 +279,8 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
-          state.bag = action?.payload?.data?.user?.cartItems
-          state.wishList = action?.payload?.data?.user?.wishlist
+          state.bag = action?.payload?.data?.user?.cartItems;
+          state.wishList = action?.payload?.data?.user?.wishlist;
         }
         state.networkRequest = true;
       })
@@ -307,6 +316,11 @@ const authSlice = createSlice({
         }
       })
       .addCase(removeFromBag.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.bag = action?.payload?.data?.bag;
+        }
+      })
+      .addCase(emptyBag.fulfilled, (state, action) => {
         if (action.payload) {
           state.bag = action?.payload?.data?.bag;
         }
