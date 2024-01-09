@@ -9,13 +9,14 @@ const initialState = {
 export const AddOrder = createAsyncThunk("/order/add", async (id) => {
   try {
     const res = await axiosInstance.put(`/order/${id}`);
+    console.log(res);
     return res;
   } catch (e) {
     toast.error(e?.response?.data?.message);
   }
 });
 
-export const deleteOrder = createAsyncThunk("/order/add", async (id) => {
+export const deleteOrder = createAsyncThunk("/order/delete", async (id) => {
   try {
     const res = await axiosInstance.delete(`/order/${id}`);
     return res;

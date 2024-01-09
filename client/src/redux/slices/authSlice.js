@@ -207,7 +207,7 @@ export const removeFromBag = createAsyncThunk(
   }
 );
 
-export const emptyBag = createAsyncThunk("/product/emptyBag", async (id) => {
+export const emptyBag = createAsyncThunk("/product/emptyBag", async () => {
   try {
     let res = await axiosInstance.put(`/user/emptyBag`);
     return res;

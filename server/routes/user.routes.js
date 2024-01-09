@@ -5,6 +5,7 @@ import {
   addToWishlist,
   changePassword,
   deleteAddress,
+  emptyBag,
   forgotPassword,
   getBagProducts,
   getUser,
@@ -48,6 +49,7 @@ userRoutes
   .delete(IsLoggedIn, removeFromWishlist);
 
 userRoutes.post("/getBag", IsLoggedIn, getBagProducts);
+userRoutes.put("/emptyBag", IsLoggedIn, emptyBag);
 
 userRoutes
   .route("/address")

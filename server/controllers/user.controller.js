@@ -579,6 +579,32 @@ export const removeFromBag = async (req, res, next) => {
   }
 };
 
+export const emptyBag = async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        $set : {
+          cartItems : []
+        }
+      },
+      { new: true }
+    );
+
+    if (!user) {
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Successfully removed product from the Bag",
+      bag : user.cartItems
+    });
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
+
 export const getBagProducts = async (req, res, next) => {
   try {
     const { data } = req.body;

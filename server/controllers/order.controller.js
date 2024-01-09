@@ -15,7 +15,7 @@ export const confirmOrder = async (req, res, next) => {
     }
 
     const order = await Order.findByIdAndUpdate(orderId, {
-      $set: { isPaid: true, expireAt: {} },
+      $set: { isPaid: true }, $unset : {expireAt : 1}
     });
 
     console.log(order);

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AddOrder, deleteOrder } from "../../redux/slices/orderSlice";
+import { emptyBag } from "../../redux/slices/authSlice";
 
 function Result() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,8 +39,9 @@ function Result() {
     dispatch(deleteOrder(orderId));
   }
 
-  function handleAddOrder() {
-    dispatch(AddOrder(orderId));
+  async function handleAddOrder() {
+    await dispatch(AddOrder(orderId));
+    dispatch(emptyBag());
   }
 
   return (
