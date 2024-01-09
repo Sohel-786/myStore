@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 function Result() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [result, setResult] = useState(searchParams.get("success"));
   const navigate = useNavigate();
+  const { orderId } = useParams();
 
   useEffect(() => {
-    setTimeout(() => {
-        
+    if (!orderId) {
+      navigate("/");
+    }
+
+    let id = setTimeout(() => {
+      if (result === "true") {
+        navigate("/user/orders");
+      } else {
+        navigate("/user/bag");
+      }
     }, 4000);
-  },[])
 
+    return () => {
+      clearTimeout(id);
+    };
+  }, []);
 
-  function handleRemoveOrder(){
+  function handleRemoveOrder() {}
 
-  }
-
-  function handleAddOrder(){
-    
-  }
+  function handleAddOrder() {}
 
   return (
     result && (

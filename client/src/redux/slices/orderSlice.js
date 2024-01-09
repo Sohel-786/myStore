@@ -17,7 +17,7 @@ const AddOrder = createAsyncThunk("/order/add", async (id) => {
 
 const getAllOrders = createAsyncThunk("/order/getallOrders", async () => {
   try {
-    const res = await axiosInstance.get('/order/getAllOrders');
+    const res = await axiosInstance.get("/order/getAllOrders");
     return res;
   } catch (e) {
     toast.error(e?.response?.data?.message);

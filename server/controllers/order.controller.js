@@ -36,7 +36,7 @@ export const getAllOrders = async (req, res, next) => {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
-    const orders = await Order.find({ user: req.user.id, isPaid : true });
+    const orders = await Order.find({ user: req.user.id, isPaid: true });
 
     return res.status(200).json({
       success: true,
