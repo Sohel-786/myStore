@@ -1,4 +1,5 @@
 import Order from "../models/order.model.js";
+import User from "../models/user.model.js";
 import AppError from "../utils/appError.js";
 
 export const confirmOrder = async (req, res, next) => {
@@ -15,10 +16,9 @@ export const confirmOrder = async (req, res, next) => {
     }
 
     const order = await Order.findByIdAndUpdate(orderId, {
-      $set: { isPaid: true }, $unset : {expireAt : 1}
+      $set: { isPaid: true },
+      $unset: { expireAt: "" },
     });
-
-    console.log(order);
 
     return res.status(200).json({
       success: true,

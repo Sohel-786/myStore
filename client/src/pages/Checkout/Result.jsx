@@ -16,10 +16,10 @@ function Result() {
       navigate("/");
     }
 
-    if(result === 'true'){
-        handleAddOrder();
-    }else{
-        handleRemoveOrder();
+    if (result === "true") {
+      handleAddOrder();
+    } else {
+      handleRemoveOrder();
     }
 
     let id = setTimeout(() => {
