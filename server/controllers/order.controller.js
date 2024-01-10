@@ -20,11 +20,17 @@ export const confirmOrder = async (req, res, next) => {
       $unset: { expireAt: "" },
     });
 
+    if (!order) {
+      return next(new AppError("The Provided orderId Is not valid", 400));
+    }
+
+    const orders = await Order.find({ user: req.user.id, isPaid: true });
+
     return res.status(200).json({
       success: true,
       message: "Payment Success",
+      orders,
     });
-    
   } catch (e) {
     return next(new AppError("Something went wrong, please try again", 500));
   }
@@ -57,9 +63,9 @@ export const deleteOrder = async (req, res, next) => {
       return next(new AppError("Provide a valid order Id", 400));
     }
 
-    const order = await Order.findOneAndDelete({_id : orderId, isPaid : false});
+    const order = await Order.findOneAndDelete({ _id: orderId, isPaid: false });
 
-    if(!order){
+    if (!order) {
       return next(new AppError("Something Went Wrong", 400));
     }
 

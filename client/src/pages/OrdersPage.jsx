@@ -1,9 +1,10 @@
+import { useSelector } from "react-redux";
 import UserLayout from "../layouts/UserLayout";
 
 function Orders() {
-  return <UserLayout>
-    
-  </UserLayout>;
+    const { orders } = useSelector((s) => s?.orderData);
+
+  return <UserLayout></UserLayout>;
 }
 
 export default Orders;

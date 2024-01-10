@@ -43,7 +43,12 @@ const orderSlice = createSlice({
       if (action.payload) {
         state.orders = action?.payload?.data?.orders;
       }
-    });
+    })
+    .addCase(AddOrder.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.orders = action?.payload?.data?.orders;
+      }
+    })
   },
 });
 
