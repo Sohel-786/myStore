@@ -18,6 +18,7 @@ import WishlistPage from "./pages/WishlistPage";
 import BagPage from "./pages/BagPage";
 import CheckoutPage from "./pages/Checkout/CheckoutPage";
 import Result from "./pages/Checkout/Result";
+import Orders from "./pages/OrdersPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,8 +70,8 @@ function App() {
         />
 
         <Route
-          path="/user/bag"
-          element={networkRequest ? <BagPage /> : <Loading />}
+          path="/user/orders"
+          element={networkRequest ? <Orders /> : <Loading />}
         />
 
         <Route

@@ -24,6 +24,7 @@ export const confirmOrder = async (req, res, next) => {
       success: true,
       message: "Payment Success",
     });
+    
   } catch (e) {
     return next(new AppError("Something went wrong, please try again", 500));
   }
@@ -56,7 +57,11 @@ export const deleteOrder = async (req, res, next) => {
       return next(new AppError("Provide a valid order Id", 400));
     }
 
-    const order = await Order.findByIdAndDelete(orderId);
+    const order = await Order.findOneAndDelete({_id : orderId, isPaid : false});
+
+    if(!order){
+      return next(new AppError("Something Went Wrong", 400));
+    }
 
     return res.status(200).json({
       success: true,
