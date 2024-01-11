@@ -19,6 +19,7 @@ import BagPage from "./pages/BagPage";
 import CheckoutPage from "./pages/Checkout/CheckoutPage";
 import Result from "./pages/Checkout/Result";
 import Orders from "./pages/OrdersPage";
+import { getAllOrders } from "./redux/slices/orderSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
   async function runOnce() {
     await dispatch(checkIsLoggedIn());
     await dispatch(getAllProducts());
+    dispatch(getAllOrders());
   }
 
   return (

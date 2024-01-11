@@ -24,7 +24,7 @@ export const confirmOrder = async (req, res, next) => {
       return next(new AppError("The Provided orderId Is not valid", 400));
     }
 
-    const orders = await Order.find({ user: req.user.id, isPaid: true });
+    const orders = await Order.find({ user: req.user.id, isPaid: true }, {expireAt : 0});
 
     return res.status(200).json({
       success: true,
@@ -43,7 +43,7 @@ export const getAllOrders = async (req, res, next) => {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
-    const orders = await Order.find({ user: req.user.id, isPaid: true });
+    const orders = await Order.find({ user: req.user.id, isPaid: true }, {expireAt : 0});
 
     return res.status(200).json({
       success: true,
