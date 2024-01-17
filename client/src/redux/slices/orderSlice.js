@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../config/axiosInstance";
 
 const initialState = {
-  orders: [],
+  orders: null,
 };
 
 export const AddOrder = createAsyncThunk("/order/add", async (id) => {

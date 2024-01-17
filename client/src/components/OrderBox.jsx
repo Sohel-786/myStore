@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 function OrderBox({ data }) {
   return (
     <div className="w-[50%] rounded-[10px] bg-slate-200 px-5 py-4">
@@ -8,6 +10,7 @@ function OrderBox({ data }) {
         {data.orderItems.map((el) => {
           return (
             <div
+            key={nanoid(4)}
               className="w-[20%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
               style={{
                 backgroundImage: `url(${el.product.thumbnail.secure_url})`,
@@ -36,7 +39,7 @@ function OrderBox({ data }) {
           </span>
         </button>
 
-        <h1 className="absolute right-3 text-sm font-Nova font-bold tracking-wide text-sky-500">Total Paid - Rs.<span className="text-green-700 font-Nova text-xl font-black">{data.totalPrice}</span> </h1>
+        <h1 className="absolute right-3 text-sm font-Nova font-bold tracking-wide text-sky-500">Total Paid: Rs.<span className="text-green-700 font-Nova text-xl font-black">{data.totalPrice}</span> </h1>
       </div>
     </div>
   );
