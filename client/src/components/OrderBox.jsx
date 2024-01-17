@@ -10,7 +10,7 @@ function OrderBox({ data }) {
         {data.orderItems.map((el) => {
           return (
             <div
-            key={nanoid(4)}
+              key={nanoid(4)}
               className="w-[20%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
               style={{
                 backgroundImage: `url(${el.product.thumbnail.secure_url})`,
@@ -23,10 +23,8 @@ function OrderBox({ data }) {
         })}
       </div>
       <div className="w-full flex items-center px-2 gap-5 relative">
-        <span
-          className="border-[1px] bg-black py-2 flex items-center justify-center gap-[6px] relative border-white cursor-wait px-3 font-semibold font-Mukta tracking-wide text-sm text-white"
-        >
-            In Process
+        <span className="border-[1px] bg-black py-2 flex items-center justify-center gap-[6px] relative border-white cursor-wait px-3 font-semibold font-Mukta tracking-wide text-sm text-white">
+          In Process
         </span>
 
         <button
@@ -39,7 +37,12 @@ function OrderBox({ data }) {
           </span>
         </button>
 
-        <h1 className="absolute right-3 text-sm font-Nova font-bold tracking-wide text-sky-500">Total Paid: Rs.<span className="text-green-700 font-Nova text-xl font-black">{data.totalPrice}</span> </h1>
+        <h1 className="absolute right-3 text-sm font-Nova font-bold tracking-wide text-sky-500">
+          Total Paid: Rs.
+          <span className="text-green-700 font-Nova text-xl font-black">
+            {data.totalPrice}
+          </span>{" "}
+        </h1>
       </div>
     </div>
   );

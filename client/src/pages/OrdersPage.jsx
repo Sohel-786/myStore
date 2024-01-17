@@ -9,10 +9,15 @@ import Loading from "../components/Loading";
 function Orders() {
   const { orders } = useSelector((s) => s?.orderData);
   const [data, setData] = useState();
+  const [showDetails, setShowDetails] = useState(true);
+
+  function toggleDetails() {
+    setShowDetails(!showDetails);
+  }
 
   useEffect(() => {
-    if(orders) {
-      console.log('check')
+    if (orders) {
+      console.log("check");
       let temp = orders.filter((el) => {
         if (el.isProcessing) {
           return el;
@@ -38,7 +43,13 @@ function Orders() {
             </div>
           )}
         </div>
-      ) : <Loading />}
+      ) : (
+        <Loading />
+      )}
+
+      {showDetails && <div className="">
+        
+        </div>}
     </UserLayout>
   );
 }
