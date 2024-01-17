@@ -20,6 +20,7 @@ import WishList from "../components/Wishlist";
 import { WishlistContext } from "../Context/WishListContext";
 import { AddressContext } from "../Context/AddressContext";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
+import { LuFileSignature } from "react-icons/lu";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
@@ -134,7 +135,7 @@ function UserLayout({ children }) {
               }}
               text={"Orders"}
             >
-              <IoBagHandleSharp size={"18px"} />
+              <LuFileSignature size={"18px"} />
             </Button>
           )}
           <Button

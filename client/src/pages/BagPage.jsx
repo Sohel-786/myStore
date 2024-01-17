@@ -87,24 +87,6 @@ function BagPage() {
     setFinalProducts(arr);
   }
 
-  // const handleFinalProducts = useCallback((id, data) => {
-  //   let arr = [];
-  //   console.log(finalProducts, bag)
-  //   for (let i = 0; i < finalProducts.length; i++) {
-  //     if (finalProducts[i].productId === id) {
-  //       arr.push({
-  //         productId: finalProducts[i].productId,
-  //         size: data.size,
-  //         quantity: data.quantity,
-  //         price: data.price,
-  //       });
-  //     }else{
-  //       arr.push(finalProducts[i]);
-  //     }
-  //   }
-  //   setFinalProducts([...arr]);
-  // }, [finalProducts, priceTotal])
-
   useEffect(() => {
     console.log("run");
     if (finalProducts) {
