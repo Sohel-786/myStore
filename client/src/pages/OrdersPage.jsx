@@ -47,9 +47,7 @@ function Orders() {
         <Loading />
       )}
 
-      {showDetails && <div className="">
-        
-        </div>}
+      {showDetails && <div className=""></div>}
     </UserLayout>
   );
 }
