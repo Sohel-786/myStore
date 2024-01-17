@@ -90,7 +90,7 @@ function UserLayout({ children }) {
           location.pathname !== "/" && "bg-white"
         } items-center w-full px-5 py-2 shadow-header sticky top-0`}
       >
-        <div className="flex items-center gap-3 w-[60%] relative">
+        <div className={`flex items-center gap-3 ${location.pathname === "/profile" ? "w-[50%]" : "w-[60%]"} relative`}>
           {location.pathname === "/profile" ? (
             <img
               src={"/assets/MyLogo2.svg"}
@@ -123,6 +123,16 @@ function UserLayout({ children }) {
         </div>
 
         <div className={`flex gap-2 items-center text-white`}>
+          {location.pathname === "/profile" && (
+            <Button
+              onclick={() => {
+                navigate("/user/orders");
+              }}
+              text={"Orders"}
+            >
+              <IoBagHandleSharp size={"18px"} />
+            </Button>
+          )}
           <Button
             onclick={() => {
               navigate("/user/bag");

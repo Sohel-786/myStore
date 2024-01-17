@@ -30,7 +30,7 @@ export const getAllOrders = createAsyncThunk("/order/getallOrders", async () => 
     const res = await axiosInstance.get("/order/getAllOrders");
     return res;
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    console.log(e?.response?.data?.message);
   }
 });
 
