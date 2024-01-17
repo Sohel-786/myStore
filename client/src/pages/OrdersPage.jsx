@@ -7,7 +7,7 @@ function Orders() {
 
   return (
     <UserLayout>
-      <div className="flex w-full">
+      <div className="flex w-[95%] gap-[20px] py-[30px] px-[40px] mx-auto border-[1px] border-black">
         {orders.map((el) => {
           return <OrderBox data={el} />;
         })}
