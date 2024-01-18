@@ -107,6 +107,8 @@ function Orders() {
                   <span className="capitalize">{details.shippingAddress.country}</span>
                 </span>
               </h1>
+
+              <h1 className="mt-3 font-Slab text-red-700">Total Paid : <span className="text-blue-600 text-2xl ml-1 font-serif font-black ">₹{details.totalPrice}</span></h1>
             </div>
           </div>
         </div>

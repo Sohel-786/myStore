@@ -46,7 +46,13 @@ function SummaryProduct({ el }) {
         <h1 className="font-Roboto font-semibold mt-1">
           Total :{" "}
           <span className="capitalize font-Slab text-[#2d922d]">
-            Rs. {el.price}
+            Rs.{" "}
+            {(el.product.sale === "YES"
+              ? Math.floor(
+                  el.product.price -
+                    (el.product.pricedrop / 100) * el.product.price
+                )
+              : el.product.price) * el.quantity}
           </span>
         </h1>
       </div>
