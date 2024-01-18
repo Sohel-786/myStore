@@ -20,6 +20,7 @@ import Result from "./pages/Checkout/Result";
 import Orders from "./pages/OrdersPage";
 import { getAllOrders } from "./redux/slices/orderSlice";
 import Dashboard from "./pages/Admin/Dashboard";
+import History from "./pages/Admin/History";
 
 function App() {
   const dispatch = useDispatch();
@@ -103,7 +104,7 @@ function App() {
 
         <Route
           path="/history"
-          element={networkRequest ? <AddProduct /> : <Loading />}
+          element={networkRequest ? <History /> : <Loading />}
         />
 
         <Route path="*" element={<h1>Not Found</h1>} />
