@@ -118,9 +118,12 @@ export const updateOrderStatus = async ( req, res, next ) => {
       return next(new AppError("Something Went Wrong", 400));
     }
 
+    const orders = await Order.find({});
+
     return res.status(200).json({
       success: true,
-      message: "Fetched All Orders Successfully"
+      message: "Fetched All Orders Successfully",
+      orders
     });
   } catch (e) {
     return next(new AppError("Something went wrong, please try again", 500));
