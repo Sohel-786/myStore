@@ -7,21 +7,27 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
       <h1 className="font-Slab font-bold text-base mb-[10px] text-gray-700 tracking-wide">
         #Order : {data._id}
       </h1>
-      <div className="w-full overflow-hidden flex ml-2 mb-3">
-        {data.orderItems.map((el) => {
-          return (
-            <div
-              key={nanoid(4)}
-              className="w-[10%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
-              style={{
-                backgroundImage: `url(${el.product.thumbnail.secure_url})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-              }}
-            ></div>
-          );
-        })}
+      <div className="w-full flex gap-3">
+        <div className="w-[60%] overflow-hidden flex ml-2 mb-3">
+          {data.orderItems.map((el) => {
+            return (
+              <div
+                key={nanoid(4)}
+                className="w-[13%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
+                style={{
+                  backgroundImage: `url(${el.product.thumbnail.secure_url})`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
+              ></div>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-col py-1 px-3">
+
+        </div>
       </div>
       <div className="w-full flex items-center px-2 gap-5 relative">
         <span className="border-[1px] bg-black py-2 flex items-center justify-center gap-[6px] relative border-white cursor-wait px-3 font-semibold font-Mukta tracking-wide text-sm text-white">

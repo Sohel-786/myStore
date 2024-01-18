@@ -3,11 +3,11 @@ import UserLayout from "../layouts/UserLayout";
 import OrderBox from "../components/OrderBox";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import { RiH1 } from "react-icons/ri";
 import Loading from "../components/Loading";
 import { enableBodyScroll } from "body-scroll-lock";
 import { IoClose } from "react-icons/io5";
 import SummaryProduct from "../components/Product/SummaryProduct";
+
 
 function Orders() {
   const { orders } = useSelector((s) => s?.orderData);
