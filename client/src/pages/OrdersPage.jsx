@@ -13,13 +13,13 @@ function Orders() {
   const { orders } = useSelector((s) => s?.orderData);
   const [data, setData] = useState();
   const [showDetails, setShowDetails] = useState(false);
-  const [details, setDetails]= useState();
+  const [details, setDetails] = useState();
 
   function toggleDetails() {
     setShowDetails(!showDetails);
   }
 
-  function handleDetails(data){
+  function handleDetails(data) {
     setDetails(data);
   }
 
@@ -64,24 +64,50 @@ function Orders() {
       {showDetails && (
         <div className="absolute flex justify-center items-center top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.32)] z-[60]">
           <div className="w-[80%] h-[90%] bg-white relative flex py-4 px-5">
-            <IoClose size={'40px'} className="absolute right-1 top-1 cursor-pointer" onClick={() => {
-              enableBodyScroll(document);
-              setDetails(null);
-              toggleDetails();
-            }} />
+            <IoClose
+              size={"40px"}
+              className="absolute right-1 top-1 cursor-pointer"
+              onClick={() => {
+                enableBodyScroll(document);
+                setDetails(null);
+                toggleDetails();
+              }}
+            />
 
-              <ul className="w-[55%] border-r-[1.5px] border-slate-200">
-                  {
-                    details.orderItems.map((el) => {
-                      return <SummaryProduct key={nanoid(5)} el={el}/>
-                    })
-                  }
-              </ul>
+            <ul className="w-[55%] border-r-[1.5px] border-slate-300 pt-3 overflow-y-scroll">
+              {details.orderItems.map((el) => {
+                return <SummaryProduct key={nanoid(5)} el={el} />;
+              })}
+            </ul>
 
-              <div className="w-[45%]">
+            <div className="w-[45%] flex justify-center flex-col px-4 font-Nova">
+              <h1 className="flex flex-col">
+                Name :
+                <span className="font-Slab text-sky-600 mt-2">
+                  {details.shippingAddress.name}
+                </span>
+              </h1>
 
-              </div>
+              <h1 className="mt-3 flex flex-col">
+                Phone :
+                <span className="font-Slab text-sky-600 tracking-wider mt-2">
+                  {details.shippingAddress.phone}
+                </span>{" "}
+              </h1>
 
+              <h1 className="mt-3 flex flex-col">
+                <span>Address :</span>
+                <span className="font-Slab text-green-800 tracking-wider mt-2">
+                  <span className="capitalize break-words">{details.shippingAddress.address}.</span>
+                  <br />
+                  <span>{details.shippingAddress.state}</span>,{" "}
+                  <span className="capitalize">{details.shippingAddress.city}</span>-
+                  <span>{details.shippingAddress.postal}.</span>
+                  <br />
+                  <span className="capitalize">{details.shippingAddress.country}</span>
+                </span>
+              </h1>
+            </div>
           </div>
         </div>
       )}
