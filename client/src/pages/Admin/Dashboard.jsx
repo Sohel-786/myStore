@@ -39,12 +39,12 @@ function Dashboard() {
     }
   }, [adminOrders]);
 
-  function toggleDetails(){
-
+  function toggleDetails() {
+    setShowDetails(!showDetails);
   }
 
-  function handleDetails(){
-
+  function handleDetails(data) {
+    setDetails(data);
   }
 
   return (
@@ -75,7 +75,7 @@ function Dashboard() {
       </div>
 
       {showDetails && (
-        <div className="absolute flex justify-center items-center top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.32)] z-[60]">
+        <div className="flex justify-center items-center fixed top-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,0.32)] z-[60]">
           <div className="w-[80%] h-[90%] bg-white relative flex py-4 px-5">
             <div className="p-2 absolute right-[-40px] top-[-0.2px] cursor-pointer bg-white">
               <IoClose

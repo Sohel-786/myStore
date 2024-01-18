@@ -72,6 +72,18 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
         <button
           type="button"
           onClick={() => {
+     
+          }}
+          className="border-[1px] border-[#d4d5d9] py-2 bg-white flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-sm hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
+        >
+          <span className="flex items-center justify-center gap-[6px] z-10">
+            Update Status
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
             disableBodyScroll(document);
             handleDetails(data);
             toggle();
@@ -79,7 +91,7 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
           className="border-[1px] border-[#d4d5d9] py-2 bg-white flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-sm hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"
         >
           <span className="flex items-center justify-center gap-[6px] z-10">
-            Update Status
+            View Details
           </span>
         </button>
 
