@@ -13,7 +13,7 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
             return (
               <div
                 key={nanoid(4)}
-                className="w-[13%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
+                className="w-[13%] h-[80px] flex justify-center items-center rounded-[5px] overflow-hidden flex-wrap"
                 style={{
                   backgroundImage: `url(${el.product.thumbnail.secure_url})`,
                   backgroundPosition: "center",
@@ -25,8 +25,43 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
           })}
         </div>
 
-        <div className="flex flex-col py-1 px-3">
+        <div className="flex flex-col px-3 relative">
+          <p className="text-right font-black absolute right-0 top-[-35px]">
+            Ordered On :{" "}
+            <span className="text-pink-700 font-Mukta text-lg">
+              {data.createdAt.slice(0, 10)}
+            </span>
+          </p>
 
+          <h1 className="flex items-center">
+            Name : <span className="font-bold text-sky-600 ml-1">
+              {data.shippingAddress.name}
+            </span>
+          </h1>
+
+          <h1 className="mt-1">
+            Phone :
+            <span className="font-bold text-sky-600 tracking-wider ml-1">
+              {data.shippingAddress.phone}
+            </span>{" "}
+          </h1>
+
+          <h1 className="mt-1 flex flex-col">
+            <span>Address :</span>
+            <span className="font-Slab text-green-800 tracking-wider mt-1">
+              <span className="capitalize break-words">
+                {data.shippingAddress.address}.
+              </span>
+              <br />
+              <span>{data.shippingAddress.state}</span>,{" "}
+              <span className="capitalize">{data.shippingAddress.city}</span>
+              -<span>{data.shippingAddress.postal}.</span>
+              <br />
+              <span className="capitalize">
+                {data.shippingAddress.country}
+              </span>
+            </span>
+          </h1>
         </div>
       </div>
       <div className="w-full flex items-center px-2 gap-5 relative">
@@ -49,7 +84,7 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
         </button>
 
         <h1 className="absolute right-3 text-sm font-Nova font-bold tracking-wide text-sky-500">
-          Total Paid: Rs.
+          Total Received: Rs.
           <span className="text-green-700 font-Nova text-xl font-black">
             {data.totalPrice}
           </span>{" "}
