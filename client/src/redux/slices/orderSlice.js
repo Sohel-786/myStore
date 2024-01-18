@@ -4,6 +4,7 @@ import axiosInstance from "../../config/axiosInstance";
 
 const initialState = {
   orders: null,
+  adminOrders : null
 };
 
 export const AddOrder = createAsyncThunk("/order/add", async (id) => {
@@ -34,6 +35,15 @@ export const getAllOrders = createAsyncThunk("/order/getallOrders", async () => 
   }
 });
 
+export const getOrdersforAdmin = createAsyncThunk("/order/getOrdersforAdmin", async () => {
+  try {
+    const res = await axiosInstance.get("/order/getOrdersforAdmin");
+    return res;
+  } catch (e) {
+    console.log(e?.response?.data?.message);
+  }
+});
+
 const orderSlice = createSlice({
   name: "order",
   reducers: {},
@@ -42,6 +52,11 @@ const orderSlice = createSlice({
     builder.addCase(getAllOrders.fulfilled, (state, action) => {
       if (action.payload) {
         state.orders = action?.payload?.data?.orders;
+      }
+    })
+    builder.addCase(getOrdersforAdmin.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.adminOrders = action?.payload?.data?.orders;
       }
     })
     .addCase(AddOrder.fulfilled, (state, action) => {
