@@ -3,7 +3,7 @@ import { disableBodyScroll } from "body-scroll-lock";
 
 function OrderBoxAdmin({ data, handleDetails, toggle }) {
   return (
-    <div className="w-[50%] rounded-[10px] bg-slate-200 px-5 py-4">
+    <div className="w-full rounded-[10px] bg-slate-200 px-5 py-4">
       <h1 className="font-Slab font-bold text-base mb-[10px] text-gray-700 tracking-wide">
         #Order : {data._id}
       </h1>
@@ -12,7 +12,7 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
           return (
             <div
               key={nanoid(4)}
-              className="w-[20%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
+              className="w-[10%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
               style={{
                 backgroundImage: `url(${el.product.thumbnail.secure_url})`,
                 backgroundPosition: "center",
