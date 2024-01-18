@@ -64,15 +64,17 @@ function Orders() {
       {showDetails && (
         <div className="absolute flex justify-center items-center top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.32)] z-[60]">
           <div className="w-[80%] h-[90%] bg-white relative flex py-4 px-5">
-            <IoClose
-              size={"40px"}
-              className="absolute right-1 top-1 cursor-pointer"
-              onClick={() => {
-                enableBodyScroll(document);
-                setDetails(null);
-                toggleDetails();
-              }}
-            />
+            <div className="p-2 absolute right-[-30px] top-[-0.2px] cursor-pointer bg-white">
+              <IoClose
+                size={"40px"}
+                className=""
+                onClick={() => {
+                  enableBodyScroll(document);
+                  setDetails(null);
+                  toggleDetails();
+                }}
+              />
+            </div>
 
             <ul className="w-[55%] border-r-[1.5px] border-slate-300 pt-3 overflow-y-scroll">
               {details.orderItems.map((el) => {
@@ -81,7 +83,19 @@ function Orders() {
             </ul>
 
             <div className="w-[45%] flex justify-center flex-col px-4 font-Nova">
-              <h1 className="flex flex-col">
+              <h1 className="font-Roboto font-black tracking-wider text-right">
+                #Order :{" "}
+                <span className="font-Slab text-stone-600">{details._id}</span>
+              </h1>
+
+              <p className="text-right mt-2 font-black">
+                Ordered On :{" "}
+                <span className="text-pink-700 font-Mukta text-lg">
+                  {details.createdAt.slice(0, 10)}
+                </span>
+              </p>
+
+              <h1 className="flex flex-col mt-3">
                 Name :
                 <span className="font-Slab text-sky-600 mt-2">
                   {details.shippingAddress.name}
@@ -98,17 +112,28 @@ function Orders() {
               <h1 className="mt-3 flex flex-col">
                 <span>Address :</span>
                 <span className="font-Slab text-green-800 tracking-wider mt-2">
-                  <span className="capitalize break-words">{details.shippingAddress.address}.</span>
+                  <span className="capitalize break-words">
+                    {details.shippingAddress.address}.
+                  </span>
                   <br />
                   <span>{details.shippingAddress.state}</span>,{" "}
-                  <span className="capitalize">{details.shippingAddress.city}</span>-
-                  <span>{details.shippingAddress.postal}.</span>
+                  <span className="capitalize">
+                    {details.shippingAddress.city}
+                  </span>
+                  -<span>{details.shippingAddress.postal}.</span>
                   <br />
-                  <span className="capitalize">{details.shippingAddress.country}</span>
+                  <span className="capitalize">
+                    {details.shippingAddress.country}
+                  </span>
                 </span>
               </h1>
 
-              <h1 className="mt-3 font-Slab text-red-700">Total Paid : <span className="text-blue-600 text-2xl ml-1 font-serif font-black ">₹{details.totalPrice}</span></h1>
+              <h1 className="mt-3 font-Slab text-red-700">
+                Total Paid :{" "}
+                <span className="text-blue-600 text-2xl ml-1 font-serif font-black ">
+                  ₹{details.totalPrice}
+                </span>
+              </h1>
             </div>
           </div>
         </div>
