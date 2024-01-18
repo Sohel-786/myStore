@@ -64,7 +64,7 @@ function Orders() {
       {showDetails && (
         <div className="absolute flex justify-center items-center top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.32)] z-[60]">
           <div className="w-[80%] h-[90%] bg-white relative flex py-4 px-5">
-            <div className="p-2 absolute right-[-30px] top-[-0.2px] cursor-pointer bg-white">
+            <div className="p-2 absolute right-[-40px] top-[-0.2px] cursor-pointer bg-white">
               <IoClose
                 size={"40px"}
                 className=""

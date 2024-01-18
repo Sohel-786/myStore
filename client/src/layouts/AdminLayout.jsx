@@ -11,7 +11,7 @@ function AdminLayout({ children }) {
   const { pathname } = useLocation();
 
   return (
-    <section>
+    <section  className="w-full max-w-[1480px] mx-auto">
       <header className="px-7 py-2 shadow-header border-b-[1px] border-gray-300 flex items-center justify-between select-none">
         <div onClick={() => {
           navigate('/')

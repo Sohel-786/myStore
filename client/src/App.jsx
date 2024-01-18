@@ -3,7 +3,6 @@ import LandingPage from "./pages/LandingPage";
 import { useDispatch, useSelector } from "react-redux";
 import { checkIsLoggedIn } from "./redux/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
-import AdminFront from "./pages/Admin/AdminFront";
 import AddProduct from "./pages/Admin/AddProduct";
 import { getAllProducts } from "./redux/slices/productSlice";
 import ManageProducts from "./pages/Admin/ManageProducts";
@@ -20,6 +19,7 @@ import CheckoutPage from "./pages/Checkout/CheckoutPage";
 import Result from "./pages/Checkout/Result";
 import Orders from "./pages/OrdersPage";
 import { getAllOrders } from "./redux/slices/orderSlice";
+import Dashboard from "./pages/Admin/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function App() {
 
         <Route
           path="/admin-view"
-          element={networkRequest ? <AdminFront /> : <Loading />}
+          element={networkRequest ? <Dashboard /> : <Loading />}
         />
 
         <Route
