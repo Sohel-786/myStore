@@ -91,7 +91,11 @@ function UserLayout({ children }) {
       >
         <div
           className={`flex items-center gap-3 ${
-            location.pathname === "/profile" ? "w-[40%]" : "w-[60%]"
+            location.pathname === "/profile" ||
+            location.pathname === "/user/orders" ||
+            location.pathname === "/user/purchased"
+              ? "w-[40%]"
+              : "w-[60%]"
           } relative`}
         >
           {location.pathname === "/profile" ? (
@@ -113,20 +117,27 @@ function UserLayout({ children }) {
               className="w-40 aspect-auto rounded-md cursor-pointer"
             />
           )}
-          {location.pathname !== "/profile" && (
-            <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
-              <IoIosSearch size={"20px"} className="text-white mx-1 mt-[2px]" />
-              <input
-                className="bg-transparent w-[95%] text-white border-none outline-none"
-                type="text"
-                placeholder="Search for Products, Brands and More"
-              />
-            </div>
-          )}
+          {location.pathname !== "/profile" &&
+            location.pathname !== "/user/orders" &&
+            location.pathname !== "/user/purchased" && (
+              <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
+                <IoIosSearch
+                  size={"20px"}
+                  className="text-white mx-1 mt-[2px]"
+                />
+                <input
+                  className="bg-transparent w-[95%] text-white border-none outline-none"
+                  type="text"
+                  placeholder="Search for Products, Brands and More"
+                />
+              </div>
+            )}
         </div>
 
         <div className={`flex gap-2 items-center text-white`}>
-          {location.pathname === "/profile" && (
+          {(location.pathname === "/profile" ||
+            location.pathname === "/user/orders" ||
+            location.pathname === "/user/purchased") && (
             <>
               <Button
                 onclick={() => {
@@ -134,7 +145,7 @@ function UserLayout({ children }) {
                 }}
                 text={"Purchased"}
               >
-                <BiSolidPurchaseTag  size={"18px"} />
+                <BiSolidPurchaseTag size={"18px"} />
               </Button>
 
               <Button

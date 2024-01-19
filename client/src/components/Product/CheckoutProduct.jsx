@@ -1,7 +1,9 @@
 import { nanoid } from "nanoid";
 import { memo, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CheckoutProduct({ data, handle, quantity, size, remove }) {
+  const navigate = useNavigate();
   let {
     _id,
     name,
@@ -29,7 +31,9 @@ function CheckoutProduct({ data, handle, quantity, size, remove }) {
 
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
-      <div className="w-[110px] h-[150px] flex justify-center items-center">
+      <div onClick={() => {
+        navigate(`/product-details/${_id}` , {state : data})
+      }} className="w-[110px] h-[150px] flex justify-center items-center cursor-pointer">
         <img
           src={thumbnail.secure_url}
           alt={name}
