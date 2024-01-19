@@ -39,6 +39,16 @@ function UserLayout({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      window.scrollY > 358 ? setIsVisible(true) : setIsVisible(false);
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  });
 
   const toggleDrawerSignIn = () => {
     setOpenSignIn((prevState) => !prevState);
@@ -86,7 +96,11 @@ function UserLayout({ children }) {
     <section className="w-full max-w-[1480px] mx-auto">
       <header
         className={`flex z-30 max-w-[1480px] sticky justify-between ${
-          location.pathname !== "/" && "bg-white"
+          location.pathname !== "/"
+            ? "bg-white"
+            : isVisible
+            ? "bg-white"
+            : "bg-transparent"
         } items-center w-full px-5 py-2 shadow-header sticky top-0`}
       >
         <div
@@ -120,13 +134,22 @@ function UserLayout({ children }) {
           {location.pathname !== "/profile" &&
             location.pathname !== "/user/orders" &&
             location.pathname !== "/user/purchased" && (
-              <div className="bg-black rounded-[5px] flex items-center px-1 py-[6px] w-[80%]">
+              <div
+                id="searchBox"
+                className={`${
+                  location.pathname === "/"
+                    ? isVisible
+                      ? "flex"
+                      : "hidden"
+                    : "flex"
+                } bg-sky-100 rounded-[5px] items-center gap-1 px-1 py-[6px] w-[80%]`}
+              >
                 <IoIosSearch
                   size={"20px"}
-                  className="text-white mx-1 mt-[2px]"
+                  className="text-blue-500 mx-1 mt-[2px]"
                 />
                 <input
-                  className="bg-transparent w-[95%] text-white border-none outline-none"
+                  className="bg-transparent w-[95%] text-blue-500 border-none outline-none placeholder-blue-600"
                   type="text"
                   placeholder="Search for Products, Brands and More"
                 />
