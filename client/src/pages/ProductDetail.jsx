@@ -8,7 +8,7 @@ import { PiHandbagFill } from "react-icons/pi";
 import { IoHeartSharp } from "react-icons/io5";
 import { BiDetail } from "react-icons/bi";
 import { BsTruck } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommonDrawer from "../components/CommonDrawer";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -16,13 +16,18 @@ import { getOneProduct } from "../redux/slices/productSlice";
 import Loading from "../components/Loading";
 import { MdBookmarkRemove } from "react-icons/md";
 import { IoMdRemove } from "react-icons/io";
+import { addToBag, addToWishlist, removeFromBag, removeFromWishlist } from "../redux/slices/authSlice";
+import { BagContext } from "../Context/BagContext";
+import { WishlistContext } from "../Context/WishListContext";
 
 function ProductDetail() {
+  const { id } = useParams();
   const { state: data } = useLocation();
   const [state, setState] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { handleBag } = useContext(BagContext);
+  const { handleWishList } = useContext(WishlistContext);
   const { bag, wishList } = useSelector((s) => s?.auth);
   const [bagWishlist, setBagWishlist] = useState({
     bag: false,
@@ -44,7 +49,7 @@ function ProductDetail() {
   }, []);
 
   useEffect(() => {
-    if (bag) {
+    if(bag || bag.length === 0) {
       for (let i = 0; i < bag.length; i++) {
         if (bag[i].productId === id) {
           setBagWishlist((s) => {
@@ -56,7 +61,23 @@ function ProductDetail() {
         }
       }
     }
-    if (wishList) {
+    if(wishList.length === 0){
+      setBagWishlist((s) => {
+        return {
+          ...s,
+          wishlist: false,
+        };
+      });
+    }
+    if(bag.length === 0){
+      setBagWishlist((s) => {
+        return {
+          ...s,
+          bag: false,
+        };
+      });
+    }
+    if(wishList) {
       for (let i = 0; i < wishList.length; i++) {
         if (wishList[i].productId === id) {
           setBagWishlist((s) => {
@@ -101,6 +122,55 @@ function ProductDetail() {
     const profileImage = document.querySelector("#profileImage");
     profileImage.style.filter = "blur(0)";
     profileBtn.style.display = "none";
+  }
+
+  async function handleBagAdd(fromWish) {
+    for (let i = 0; i < bag.length; i++) {
+      if (bag[i].productId === id) {
+        toast.success("Product Is Already In Bag", {
+          theme: "colored",
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
+        handleBag();
+
+        if (fromWish) {
+          handleWishList();
+        }
+        return;
+      }
+    }
+    const res = await dispatch(addToBag(id));
+
+    if (fromWish) {
+      await dispatch(removeFromWishlist(id));
+      handleWishList();
+    }
+    handleBag();
+  }
+
+  async function handleWishlistAdd() {
+    for (let i = 0; i < wishList.length; i++) {
+      if (wishList[i].productId === id) {
+        toast.success("Product Is Already In WishList", {
+          theme: "colored",
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
+        handleWishList();
+        return;
+      }
+    }
+    const res = await dispatch(addToWishlist(id));
+    handleWishList();
+  }
+
+  async function handleWishlistRemove() {
+    const res = await dispatch(removeFromWishlist(id));
+  }
+
+  async function handleRemove() {
+    const res = await dispatch(removeFromBag(id));
   }
 
   return (
@@ -200,13 +270,21 @@ function ProductDetail() {
 
               <div className="w-full flex mt-8 gap-5">
                 {bagWishlist.bag ? (
-                  <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[45%] bg-[#e54031] py-[10px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ff953ed8] hover:border-white">
+                  <button
+                    onClick={handleRemove}
+                    className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[45%] bg-[#e54031] py-[10px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ff953ed8] hover:border-white"
+                  >
                     <span className="z-[5] flex justify-center items-center gap-3">
                       <MdBookmarkRemove size={"22px"} /> Remove From BAG
                     </span>
                   </button>
                 ) : (
-                  <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[10px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white">
+                  <button
+                    onClick={() => {
+                      handleBagAdd(false);
+                    }}
+                    className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-white text-lg w-[60%] bg-[#ff3e6c] py-[10px] border-[1px] border-[#ff3e6c] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[#ab3effd8] hover:border-white"
+                  >
                     <span className="z-[5] flex justify-center items-center gap-3">
                       <PiHandbagFill size={"22px"} /> ADD TO BAG
                     </span>
@@ -214,14 +292,20 @@ function ProductDetail() {
                 )}
 
                 {bagWishlist.wishlist ? (
-                  <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[50%] bg-white py-[10px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white">
+                  <button
+                    onClick={handleWishlistRemove}
+                    className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[50%] bg-white py-[10px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white"
+                  >
                     <span className="z-[5] flex justify-center items-center gap-1">
                       <IoMdRemove size={"20px"} />
                       Remove From Wishlist
                     </span>
                   </button>
                 ) : (
-                  <button className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[40%] bg-white py-[10px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white">
+                  <button
+                    onClick={handleWishlistAdd}
+                    className="flex justify-center font-semibold overflow-hidden shadow-logBtn font-Roboto tracking-wide text-lg text-black hover:text-white w-[40%] bg-white py-[10px] border-[1px] border-[#3effdc] rounded-md relative before:absolute before:right-full before:top-0 before:bottom-0 before:left-0 hover:before:right-0 before:transition-all before:ease-in-out before:z-[3] before:bg-[black] hover:border-white"
+                  >
                     <span className="z-[5] flex justify-center items-center gap-3">
                       <IoHeartSharp size={"22px"} />
                       WISHLIST
