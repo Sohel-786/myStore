@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import { enableBodyScroll } from "body-scroll-lock";
 import { IoClose } from "react-icons/io5";
 import SummaryProduct from "../components/Product/SummaryProduct";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 function Purchased() {
   const { orders } = useSelector((s) => s?.orderData);
@@ -15,6 +15,7 @@ function Purchased() {
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState();
   const location = useLocation();
+  const navigate = useNavigate();
 
   function toggleDetails() {
     setShowDetails(!showDetails);
@@ -80,7 +81,16 @@ function Purchased() {
             <ul className="w-[55%] border-r-[1.5px] border-slate-300 pt-3 overflow-y-scroll">
               {details.orderItems.map((el) => {
                 return location.pathname === "/user/purchased" ? (
-                  <Link  key={nanoid(5)} to={`/product-details/${el.productId}`}><SummaryProduct el={el} /></Link>
+                  <div
+                    key={nanoid(5)}
+                    onClick={() => {
+                      enableBodyScroll(document);
+                      navigate(`/product-details/${el.productId}`);
+                    }}
+                    className="cursor-pointer select-none rounded-[8px] overflow-hidden border-[1.5px] hover:border-sky-400"
+                  >
+                    <SummaryProduct el={el} />
+                  </div>
                 ) : (
                   <SummaryProduct key={nanoid(5)} el={el} />
                 );

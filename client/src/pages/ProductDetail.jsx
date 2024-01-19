@@ -13,6 +13,7 @@ import CommonDrawer from "../components/CommonDrawer";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { getOneProduct } from "../redux/slices/productSlice";
+import Loading from "../components/Loading";
 
 function ProductDetail() {
   const { state : data } = useLocation();
@@ -70,7 +71,7 @@ function ProductDetail() {
 
   return (
     <UserLayout>
-      <div className="flex px-28 py-8 max-w-[1280px] relative">
+      {state ? <div className="flex px-28 py-8 max-w-[1280px] relative">
         <div
           onMouseOver={handleBlur}
           onMouseOut={handleBlurRemove}
@@ -194,7 +195,7 @@ function ProductDetail() {
             </p>
           </div>
         </div>
-      </div>
+      </div> : <Loading />}
     </UserLayout>
   );
 }

@@ -1,9 +1,11 @@
 import { nanoid } from "nanoid";
 import { disableBodyScroll } from "body-scroll-lock";
+import { useLocation } from "react-router-dom";
 
 function OrderBox({ data, handleDetails, toggle }) {
+  const location = useLocation();
   return (
-    <div className="w-[50%] rounded-[10px] bg-slate-200 px-5 py-4">
+    <div className={`w-[50%] rounded-[10px] ${location.pathname === '/user/purchased' ? "bg-green-200" : "bg-slate-200" }  px-5 py-4`}>
       <h1 className="font-Slab font-bold text-base mb-[10px] text-gray-700 tracking-wide">
         #Order : {data._id}
       </h1>
@@ -24,9 +26,15 @@ function OrderBox({ data, handleDetails, toggle }) {
         })}
       </div>
       <div className="w-full flex items-center px-2 gap-5 relative">
-        <span className="border-[1px] bg-black py-2 flex items-center justify-center gap-[6px] relative border-white cursor-wait px-3 font-semibold font-Mukta tracking-wide text-sm text-white">
-          In Process
-        </span>
+        {location.pathname === "/user/purchased" ? (
+          <span className="border-[1px] bg-black py-2 flex items-center justify-center gap-[6px] relative border-white px-3 font-semibold font-Mukta tracking-wide text-sm text-white">
+            Deliverd
+          </span>
+        ) : (
+          <span className="border-[1px] bg-black py-2 flex items-center justify-center gap-[6px] relative border-white cursor-wait px-3 font-semibold font-Mukta tracking-wide text-sm text-white">
+            In Process
+          </span>
+        )}
 
         <button
           type="button"
