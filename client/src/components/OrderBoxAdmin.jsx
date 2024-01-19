@@ -9,8 +9,14 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
   const location = useLocation();
 
   return (
-    <div className="w-full rounded-[10px] bg-slate-200 px-5 py-4">
-      <h1 className="font-Slab font-bold text-base mb-[10px] text-gray-700 tracking-wide">
+    <div
+      className={`w-full rounded-[10px] ${
+        location.pathname === "/history" ? "bg-green-100" : "bg-slate-200"
+      } px-5 py-4`}
+    >
+      <h1
+        className={`font-Slab font-bold text-base mb-[10px] text-gray-700 tracking-wide`}
+      >
         #Order : {data._id}
       </h1>
       <div className="w-full flex gap-3">
@@ -36,7 +42,15 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
             Ordered On :{" "}
             <span className="text-pink-700 font-Mukta text-lg">
               {data.createdAt.slice(0, 10)}
-            </span>
+            </span>{" "}
+            {location.pathname === "/history" && (
+              <>
+                &nbsp;&nbsp; Delivered On :{" "}
+                <span className="text-pink-700 font-Mukta text-lg">
+                  {data.updatedAt.slice(0, 10)}
+                </span>
+              </>
+            )}
           </p>
 
           <h1 className="flex items-center">
