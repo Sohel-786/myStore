@@ -21,6 +21,7 @@ import Orders from "./pages/OrdersPage";
 import { getAllOrders } from "./redux/slices/orderSlice";
 import Dashboard from "./pages/Admin/Dashboard";
 import History from "./pages/Admin/History";
+import Purchased from "./pages/Purchased";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,11 @@ function App() {
         <Route
           path="/user/orders"
           element={networkRequest ? <Orders /> : <Loading />}
+        />
+
+        <Route
+          path="/user/purchased"
+          element={networkRequest ? <Purchased /> : <Loading />}
         />
 
         <Route

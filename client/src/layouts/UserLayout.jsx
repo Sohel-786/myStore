@@ -2,7 +2,7 @@ import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
-import { BiSolidUser } from "react-icons/bi";
+import { BiSolidUser, BiSolidPurchaseTag } from "react-icons/bi";
 import { IoLogOut, IoBagHandleSharp } from "react-icons/io5";
 import { MdPersonAdd } from "react-icons/md";
 import Button from "../components/Button";
@@ -85,15 +85,13 @@ function UserLayout({ children }) {
   return (
     <section className="w-full max-w-[1480px] mx-auto">
       <header
-        className={`flex z-30 max-w-[1480px] sticky ${
-          location.pathname === "/profile" ? "justify-end" : "justify-between"
-        } ${
+        className={`flex z-30 max-w-[1480px] sticky justify-between ${
           location.pathname !== "/" && "bg-white"
         } items-center w-full px-5 py-2 shadow-header sticky top-0`}
       >
         <div
           className={`flex items-center gap-3 ${
-            location.pathname === "/profile" ? "w-[50%]" : "w-[60%]"
+            location.pathname === "/profile" ? "w-[40%]" : "w-[60%]"
           } relative`}
         >
           {location.pathname === "/profile" ? (
@@ -103,7 +101,7 @@ function UserLayout({ children }) {
               onClick={() => {
                 navigate("/");
               }}
-              className="w-[200px] absolute left-[-80px] aspect-auto rounded-md cursor-pointer"
+              className="w-[200px] absolute aspect-auto rounded-md cursor-pointer"
             />
           ) : (
             <img
@@ -129,14 +127,25 @@ function UserLayout({ children }) {
 
         <div className={`flex gap-2 items-center text-white`}>
           {location.pathname === "/profile" && (
-            <Button
-              onclick={() => {
-                navigate("/user/orders");
-              }}
-              text={"Orders"}
-            >
-              <LuFileSignature size={"18px"} />
-            </Button>
+            <>
+              <Button
+                onclick={() => {
+                  navigate("/user/purchased");
+                }}
+                text={"Purchased"}
+              >
+                <BiSolidPurchaseTag  size={"18px"} />
+              </Button>
+
+              <Button
+                onclick={() => {
+                  navigate("/user/orders");
+                }}
+                text={"Orders"}
+              >
+                <LuFileSignature size={"18px"} />
+              </Button>
+            </>
           )}
           <Button
             onclick={() => {
