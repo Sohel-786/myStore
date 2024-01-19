@@ -80,7 +80,7 @@ function Purchased() {
             <ul className="w-[55%] border-r-[1.5px] border-slate-300 pt-3 overflow-y-scroll">
               {details.orderItems.map((el) => {
                 return location.pathname === "/user/purchased" ? (
-                  <Link to={`/product-details/${el.productId}`}><SummaryProduct key={nanoid(5)} el={el} /></Link>
+                  <Link  key={nanoid(5)} to={`/product-details/${el.productId}`}><SummaryProduct el={el} /></Link>
                 ) : (
                   <SummaryProduct key={nanoid(5)} el={el} />
                 );

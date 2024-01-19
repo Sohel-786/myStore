@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
@@ -8,12 +8,39 @@ import { PiHandbagFill } from "react-icons/pi";
 import { IoHeartSharp } from "react-icons/io5";
 import { BiDetail } from "react-icons/bi";
 import { BsTruck } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommonDrawer from "../components/CommonDrawer";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { getOneProduct } from "../redux/slices/productSlice";
 
 function ProductDetail() {
-  const { state } = useLocation();
+  const { state : data } = useLocation();
+  const [state , setState] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if(!id){
+      toast.error('Invalid Request');
+      navigate('/');
+      return;
+    }
+
+    if(!data){
+        FetchProduct();
+    }else{
+      setState(data);
+    }
+  }, [])
+
+ async function FetchProduct(){
+    const res = await dispatch(getOneProduct(id));
+    if (res?.payload?.data?.success) {
+        setState(res.payload.data.product);
+    }
+  }
 
   function handleFullImageView() {
     disableBodyScroll(document);

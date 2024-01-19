@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   AddProduct,
   getAllProducts,
+  getOneProduct,
   updateProduct,
 } from "../controllers/product.controller.js";
 import upload from "../middlewares/multer.middleware.js";
@@ -25,6 +26,9 @@ productRoutes
     authorizedRoles("ADMIN"),
     upload.single("thumbnail"),
     updateProduct
-  );
+  )
+  .get(
+    getOneProduct
+  )
 
 export default productRoutes;

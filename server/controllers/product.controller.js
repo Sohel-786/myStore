@@ -87,6 +87,26 @@ export const AddProduct = async (req, res, next) => {
   });
 };
 
+export const getOneProduct = async (req, res, next) => {
+  const { productId } = req.params;
+
+  if(!productId){
+    return next(new AppError("ProductId is not provided", 400));
+  } 
+
+  const product = await Product.findById(productId);
+
+  if (!product) {
+    return next(new AppError("No Product exists with the given Id", 400));
+  }
+
+  res.status(200).json({
+    success: true,
+    product,
+    message: "Successfully fetched Product Data",
+  });
+};
+
 export const updateProduct = async (req, res, next) => {
   const { productId } = req.params;
 

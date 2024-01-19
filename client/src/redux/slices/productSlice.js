@@ -22,6 +22,15 @@ export const addProduct = createAsyncThunk("/product/add", async (data) => {
   }
 });
 
+export const getOneProduct = createAsyncThunk("/product/getOneProduct", async (id) => {
+  try {
+    const res = await axiosInstance.get(`/product/${id}`);
+    return res;
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+  }
+});
+
 export const updateProduct = createAsyncThunk(
   "/product/update",
   async (data) => {
