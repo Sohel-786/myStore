@@ -62,6 +62,18 @@ function App() {
           path="/all-products"
           element={networkRequest ? <AllProducts /> : <Loading />}
         />
+        <Route
+          path="/men"
+          element={networkRequest ? <AllProducts /> : <Loading />}
+        />
+        <Route
+          path="/women"
+          element={networkRequest ? <AllProducts /> : <Loading />}
+        />
+        <Route
+          path="/kids"
+          element={networkRequest ? <AllProducts /> : <Loading />}
+        />
 
         <Route
           path="/user/wishlist"
