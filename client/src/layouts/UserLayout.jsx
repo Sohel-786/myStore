@@ -312,19 +312,40 @@ function UserLayout({ children }) {
               <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
                 |
               </li>
-              <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+              <li
+                onClick={() => {
+                  navigate("/men");
+                }}
+                className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in ${
+                  location.pathname === "/men" && `before:w-full scale-110`
+                } before:duration-300 hover:scale-110 transition-all duration-200`}
+              >
                 Men
               </li>
               <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
                 |
               </li>
-              <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+              <li
+                onClick={() => {
+                  navigate("/women");
+                }}
+                className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0  ${
+                  location.pathname === "/women" && `before:w-full scale-110`
+                } before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200`}
+              >
                 Women
               </li>
               <li className="h-full text-gray-400 text-2xl relative top-[-2px]">
                 |
               </li>
-              <li className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200">
+              <li
+                onClick={() => {
+                  navigate("/kids");
+                }}
+                className={`relative  ${
+                  location.pathname === "/kids" && `before:w-full scale-110`
+                } font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200`}
+              >
                 Kids
               </li>
             </ul>

@@ -22,6 +22,9 @@ import { getAllOrders } from "./redux/slices/orderSlice";
 import Dashboard from "./pages/Admin/Dashboard";
 import History from "./pages/Admin/History";
 import Purchased from "./pages/Purchased";
+import MenPage from "./pages/menPage";
+import WomenPage from "./pages/WomenPage";
+import KidsPage from "./pages/KidsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,15 +67,15 @@ function App() {
         />
         <Route
           path="/men"
-          element={networkRequest ? <AllProducts /> : <Loading />}
+          element={networkRequest ? <MenPage /> : <Loading />}
         />
         <Route
           path="/women"
-          element={networkRequest ? <AllProducts /> : <Loading />}
+          element={networkRequest ? <WomenPage /> : <Loading />}
         />
         <Route
           path="/kids"
-          element={networkRequest ? <AllProducts /> : <Loading />}
+          element={networkRequest ? <KidsPage /> : <Loading />}
         />
 
         <Route
