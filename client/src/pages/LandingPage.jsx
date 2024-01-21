@@ -127,6 +127,23 @@ function LandingPage() {
             />
           </div>
         </div>
+
+        <div className="w-full flex px-20 gap-5 mt-20">
+          <div className="w-[50%] flex justify-center items-center">
+            <div className="overflow-hidden rounded-2xl">
+              <img src="/assets/kidsShop.jpg" alt="KidsShopping" />
+            </div>
+          </div>
+
+          <div className="w-[50%] flex flex-col gap-5">
+            <div className="overflow-hidden rounded-2xl">
+              <img src="/assets/manShop.jpeg" alt="ManShopping" />
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <img src="/assets/womenShop.jpg" alt="WomenShopping" />
+            </div>
+          </div>
+        </div>
       </div>
     </UserLayout>
   );
