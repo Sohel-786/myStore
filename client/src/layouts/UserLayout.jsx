@@ -273,7 +273,10 @@ function UserLayout({ children }) {
         )}
       </header>
 
-      {location.pathname === "/all-products" && (
+      {(location.pathname === "/men" ||
+        location.pathname === "/all-products" ||
+        location.pathname === "/kids" ||
+        location.pathname === "/women") && (
         <div className="w-full flex justify-center items-center h-[250px] relative">
           <img
             className="w-full h-[92%] top absolute top-[-55px]"
