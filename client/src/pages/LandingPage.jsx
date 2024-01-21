@@ -130,17 +130,45 @@ function LandingPage() {
 
         <div className="w-full flex px-20 gap-5 mt-20">
           <div className="w-[50%] flex justify-center items-center">
-            <div className="overflow-hidden rounded-2xl">
-              <img src="/assets/kidsShop.jpg" alt="KidsShopping" />
+            <div className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative h-[278.333px] w-full hover:scale-105 transition-all duration-200 ease-in-out">
+              <img
+                src="/assets/kidsShop.jpg"
+                alt="KidsShopping"
+                className="w-full aspect-auto"
+              />
+              <div className="absolute bg-[#00000034] top-0 right-0 bottom-0 left-0 flex items-end pb-3">
+                <h1 className="text-white w-full text-3xl font-Slab font-black pl-3 bg-[#00000074]">
+                  KIDS COLLECTION
+                </h1>
+              </div>
             </div>
           </div>
 
           <div className="w-[50%] flex flex-col gap-5">
-            <div className="overflow-hidden rounded-2xl">
-              <img src="/assets/manShop.jpeg" alt="ManShopping" />
+            <div className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative w-full h-[248.409px] hover:scale-105 transition-all duration-200 ease-in-out">
+              <img
+                src="/assets/manShop.jpeg"
+                alt="ManShopping"
+                className="w-full aspect-auto"
+              />
+              <div className="absolute bg-[#00000034] top-0 right-0 bottom-0 left-0 flex items-end pb-3">
+                <h1 className="text-white w-full text-3xl font-Slab font-black pl-3 bg-[#00000074]">
+                  MEN COLLECTION
+                </h1>
+              </div>
             </div>
-            <div className="overflow-hidden rounded-2xl">
-              <img src="/assets/womenShop.jpg" alt="WomenShopping" />
+
+            <div className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative w-full h-[329.757px] hover:scale-105 transition-all duration-200 ease-in-out">
+              <img
+                src="/assets/womenShop.jpg"
+                alt="WomenShopping"
+                className="w-full aspect-auto"
+              />
+              <div className="absolute bg-[#00000034] top-0 right-0 bottom-0 left-0 flex items-end pb-3">
+                <h1 className="text-white w-full text-3xl font-Slab font-black pl-3 bg-[#00000074]">
+                  WOMEN COLLECTION
+                </h1>
+              </div>
             </div>
           </div>
         </div>
