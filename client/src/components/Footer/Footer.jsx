@@ -25,7 +25,7 @@ function Footer() {
             src="/assets/storeLogo.png"
             alt="MyStoreLogo"
             style={{
-              width : '250px'
+              width: "250px",
             }}
           />
           <h1 className="text-white mt-2 font-mono font-bold text-[9px] lg:mt-0 lg:text-base">
@@ -83,11 +83,13 @@ function Footer() {
         <ul className="w-[100%] grid grid-cols-2 justify-center gap-2 text-gray-400 relative -top-4 font-mono font-bold lg:grid-cols-1 lg:w-full">
           <li className="cursor-pointer hover:text-white">Payments</li>
           <li className="cursor-pointer hover:text-white">Shipping</li>
-          <li className="cursor-pointer hover:text-white">Cancellation & Returns</li>
           <li className="cursor-pointer hover:text-white">
-            FAQ
+            Cancellation & Returns
           </li>
-          <li className="cursor-pointer hover:text-white">Report Infrigement</li>
+          <li className="cursor-pointer hover:text-white">FAQ</li>
+          <li className="cursor-pointer hover:text-white">
+            Report Infrigement
+          </li>
         </ul>
 
         <hr className="border-t-[0.4px] border-[#4f5961] lg:w-[95%] lg:self-center" />
