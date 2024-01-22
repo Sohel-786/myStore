@@ -21,6 +21,7 @@ import { WishlistContext } from "../Context/WishListContext";
 import { AddressContext } from "../Context/AddressContext";
 import AddressAddUpdate from "../components/Profile/AddressAddUpdate";
 import { LuFileSignature } from "react-icons/lu";
+import Footer from "../components/Footer/Footer";
 
 function UserLayout({ children }) {
   const [isOpenSingUp, setOpenSignUp] = useState(false);
@@ -417,6 +418,7 @@ function UserLayout({ children }) {
         />
       </Drawer>
       {children}
+      <Footer />
     </section>
   );
 }
