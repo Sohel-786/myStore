@@ -22,7 +22,7 @@ function ManageProducts() {
   }
   return (
     <AdminLayout>
-      <ul className="flex px-8 py-5">
+      <ul className="flex px-8 py-5 gap-6">
         {Allproducts.map((el) => {
           return (
             <ProductModification
