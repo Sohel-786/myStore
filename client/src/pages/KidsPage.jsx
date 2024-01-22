@@ -23,7 +23,7 @@ function KidsPage() {
   return (
     <UserLayout>
       {kidsProducts && (
-        <ul className="flex px-12">
+        <ul className="flex px-12 justify-between flex-wrap">
           <>
             {kidsProducts.map((el) => {
               return <Product key={nanoid(4)} data={el} />;

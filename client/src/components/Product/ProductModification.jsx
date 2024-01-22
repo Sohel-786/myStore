@@ -85,7 +85,7 @@ function ProductModification({ handleUpdate, data }) {
             className="capitalize text-[#535766] text-[14px] leading-[14px] "
             title={name}
           >
-            {name.slice(0, 27)}..
+            {name.slice(0, 24)}..
           </p>
         </div>
 

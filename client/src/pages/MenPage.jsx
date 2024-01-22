@@ -23,7 +23,7 @@ function MenPage() {
   return (
     <UserLayout>
       {menProducts && (
-        <ul className="flex px-12">
+        <ul className="flex px-12 justify-between flex-wrap">
           <>
             {menProducts.map((el) => {
               return <Product key={nanoid(4)} data={el} />;

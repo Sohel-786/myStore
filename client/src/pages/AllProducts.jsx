@@ -8,7 +8,7 @@ function AllProducts() {
 
   return (
     <UserLayout>
-      <ul className="flex px-12">
+      <ul className="flex px-12 justify-between flex-wrap">
         {Allproducts && (
           <>
             {" "}

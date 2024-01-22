@@ -22,7 +22,7 @@ function WomenPage() {
 
   return (
     <UserLayout>
-      <ul className="flex px-12">
+      <ul className="flex px-12 justify-between flex-wrap">
         {womenProducts && (
           <>
             {womenProducts.map((el) => {

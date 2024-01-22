@@ -534,7 +534,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
               className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y px-2 py-1"
               type="text"
               id="description"
-              value={productDetails?.description}
+              value={(productDetails?.description).replaceAll('$','\n')}
             />
           </div>
 
