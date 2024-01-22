@@ -33,51 +33,27 @@ function Footer() {
           </h1>
         </section>
 
-        <section className="flex flex-col justify-center w-[50%] lg:w-[55%] pl-4">
+        <section className="flex flex-col justify-center w-[50%] lg:w-[55%] pl-10">
           <h1 className="text-white text-base font-bold tracking-wider lg:text-2xl">
-            Courses
+            About
           </h1>
           <ul className="flex flex-col justify-center text-xs text-gray-400 font-bold tracking-wide mt-4 gap-2 lg:mt-8 lg:text-base">
-            <li>Full Stack Web Development</li>
-            <li>Data Analytics</li>
-            <li>Mobile Development</li>
-            <li>Software Testing & Automation</li>
-            <li>Backend Development</li>
+            <li>Contact Us</li>
+            <li>About Us</li>
+            <li>Careers</li>
+            <li>MyStore Stories</li>
+            <li>Press</li>
+            <li>MyStore WholeSale</li>
+            <li>Cleartrip</li>
+            <li>Corporate Information</li>
           </ul>
         </section>
       </div>
 
-        {/* this for small screen */}
-      {!(
-        location.pathname === "/courses" ||
-        location.pathname === "/course-description" ||
-        location.pathname === "/admin/dashboard"
-      ) && (
-        <div className="w-[95%] md:w-[70%] flex lg:hidden justify-center items-center bg-black mt-6 rounded-lg overflow-hidden md:h-[100px]">
-          <img alt='join' className="w-[17%] aspect-auto" src="/assets/arrow.gif" />
-          <div className="flex flex-col justify-center">
-            <h1 className="text-white font-semibold text-sm">Get Started</h1>
-            <p className="text-yellow-300 text-xs font-semibold">
-              Join the Program
-            </p>
-          </div>
-
-          <button
-            aria-label="Get your course"
-            onClick={() => {
-              navigate("/courses");
-            }}
-            className="text-white py-1 px-2 ml-2 rounded-md font-semibold text-sm bg-[#ed0331] hover:bg-[#ed0332eb] hover:scale-105 transition-all duration-200 hover:border-[1px] hover:border-white ease-in-out"
-          >
-            Get your course
-          </button>
-        </div>
-      )}
-
       <section className="w-[100%] px-3 mt-3 flex flex-col gap-8 min-h-[300px] lg:mt-0 lg:px-0 lg:w-[35%]">
         <div>
           <h1 className="text-gray-400 text-lg tracking-wider font-slab lg:tracking-normal lg:font-sans font-semibold lg:text-xl">
-            Follow Us
+            Social
           </h1>
           <ul className="flex items-center justify-between lg:gap-6 text-2xl my-4">
             <Li>
@@ -105,12 +81,13 @@ function Footer() {
         </div>
 
         <ul className="w-[100%] grid grid-cols-2 justify-center gap-2 text-gray-400 relative -top-4 font-mono font-bold lg:grid-cols-1 lg:w-full">
-          <li className="cursor-pointer hover:text-white">Blog</li>
-          <li className="cursor-pointer hover:text-white">Events</li>
-          <li className="cursor-pointer hover:text-white">Community</li>
+          <li className="cursor-pointer hover:text-white">Payments</li>
+          <li className="cursor-pointer hover:text-white">Shipping</li>
+          <li className="cursor-pointer hover:text-white">Cancellation & Returns</li>
           <li className="cursor-pointer hover:text-white">
-            Placement Statistics
+            FAQ
           </li>
+          <li className="cursor-pointer hover:text-white">Report Infrigement</li>
         </ul>
 
         <hr className="border-t-[0.4px] border-[#4f5961] lg:w-[95%] lg:self-center" />
