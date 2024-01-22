@@ -11,11 +11,18 @@ function AdminLayout({ children }) {
   const { pathname } = useLocation();
 
   return (
-    <section  className="w-full max-w-[1480px] mx-auto">
-      <header className="px-7 py-2 shadow-header border-b-[1px] border-gray-300 flex items-center justify-between select-none">
-        <div onClick={() => {
-          navigate('/')
-        }} className="flex items-center cursor-pointer">
+    <section className="w-full max-w-[1480px] mx-auto">
+      <header className="px-7 py-2 z-30 sticky top-0 bg-white shadow-header border-b-[1px] border-gray-300 flex items-center justify-between select-none">
+        <div
+          onClick={() => {
+            scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            navigate("/");
+          }}
+          className="flex items-center cursor-pointer"
+        >
           <img
             src="/assets/MyLogo2.svg"
             alt="logo"
@@ -26,6 +33,10 @@ function AdminLayout({ children }) {
         <ul className="flex justify-center items-center gap-4 font-Roboto font-semibold tracking-wide text-sm">
           <li
             onClick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/manage-products");
             }}
             className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 ${
@@ -43,6 +54,10 @@ function AdminLayout({ children }) {
 
           <li
             onClick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/add-product");
             }}
             className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 ${
@@ -58,6 +73,10 @@ function AdminLayout({ children }) {
           </li>
           <li
             onClick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/history");
             }}
             className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 ${
@@ -73,6 +92,10 @@ function AdminLayout({ children }) {
           </li>
           <li
             onClick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/admin-view");
             }}
             className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 ${
@@ -88,6 +111,10 @@ function AdminLayout({ children }) {
         <div className="flex items-center justify-center gap-3">
           <Button
             onclick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/");
             }}
             text={"Client View"}

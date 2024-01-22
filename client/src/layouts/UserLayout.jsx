@@ -102,7 +102,7 @@ function UserLayout({ children }) {
             : isVisible
             ? "bg-white"
             : "bg-transparent"
-        } items-center w-full px-5 py-2 shadow-header sticky top-0`}
+        } items-center w-full px-5 py-2 shadow-header top-0`}
       >
         <div
           className={`flex items-center gap-3 ${
