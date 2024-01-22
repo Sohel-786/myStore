@@ -5,11 +5,6 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// import {
-//   createCourse,
-//   getAllCourses,
-//   updateCourse,
-// } from "../../redux/slices/courseSlice";
 import { nanoid } from "nanoid";
 import {
   addProduct,

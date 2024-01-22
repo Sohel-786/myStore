@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import UserLayout from "../layouts/UserLayout";
 import Product from "../components/Product/Product";
 import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
 
 function KidsPage() {
   const { Allproducts } = useSelector((s) => s?.products);
@@ -10,7 +11,7 @@ function KidsPage() {
   useEffect(() => {
     if (Allproducts) {
       let temp = Allproducts.filter((el) => {
-        if (el.category === "men") {
+        if (el.category === "kids") {
           return el;
         }
       });
