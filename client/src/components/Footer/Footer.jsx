@@ -38,14 +38,18 @@ function Footer() {
             About
           </h1>
           <ul className="flex flex-col justify-center text-xs text-gray-400 font-bold tracking-wide mt-4 gap-2 lg:mt-8 lg:text-base">
-            <li>Contact Us</li>
-            <li>About Us</li>
-            <li>Careers</li>
-            <li>MyStore Stories</li>
-            <li>Press</li>
-            <li>MyStore WholeSale</li>
-            <li>Cleartrip</li>
-            <li>Corporate Information</li>
+            <li className="cursor-pointer hover:text-white">Contact Us</li>
+            <li className="cursor-pointer hover:text-white">About Us</li>
+            <li className="cursor-pointer hover:text-white">Careers</li>
+            <li className="cursor-pointer hover:text-white">MyStore Stories</li>
+            <li className="cursor-pointer hover:text-white">Press</li>
+            <li className="cursor-pointer hover:text-white">
+              MyStore WholeSale
+            </li>
+            <li className="cursor-pointer hover:text-white">Cleartrip</li>
+            <li className="cursor-pointer hover:text-white">
+              Corporate Information
+            </li>
           </ul>
         </section>
       </div>
