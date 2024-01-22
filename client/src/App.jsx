@@ -64,15 +64,18 @@ function App() {
         <Route
           path="/all-products"
           element={networkRequest ? <AllProducts /> : <Loading />}
-        />
+        /> 
+
         <Route
           path="/men"
           element={networkRequest ? <MenPage /> : <Loading />}
         />
+
         <Route
           path="/women"
           element={networkRequest ? <WomenPage /> : <Loading />}
         />
+        
         <Route
           path="/kids"
           element={networkRequest ? <KidsPage /> : <Loading />}

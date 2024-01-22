@@ -5,19 +5,31 @@ import { nanoid } from "nanoid";
 
 function KidsPage() {
   const { Allproducts } = useSelector((s) => s?.products);
+  const [kidsProducts, setKidsProducts] = useState();
+
+  useEffect(() => {
+    if (Allproducts) {
+      let temp = Allproducts.filter((el) => {
+        if (el.category === "men") {
+          return el;
+        }
+      });
+
+      setKidsProducts(temp);
+    }
+  }, [Allproducts]);
 
   return (
     <UserLayout>
-      <ul className="flex px-12">
-        {Allproducts && (
+      {kidsProducts && (
+        <ul className="flex px-12">
           <>
-            {" "}
-            {Allproducts.map((el) => {
+            {kidsProducts.map((el) => {
               return <Product key={nanoid(4)} data={el} />;
-            })}{" "}
+            })}
           </>
-        )}
-      </ul>
+        </ul>
+      )}
     </UserLayout>
   );
 }
