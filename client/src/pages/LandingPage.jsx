@@ -130,7 +130,16 @@ function LandingPage() {
 
         <div className="w-full flex px-20 gap-5 mt-20">
           <div className="w-[50%] flex justify-center items-center">
-            <div className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative h-[278.333px] w-full hover:scale-105 transition-all duration-200 ease-in-out">
+            <div
+              onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+                navigate("/kids");
+              }}
+              className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative h-[278.333px] w-full hover:scale-105 transition-all duration-200 ease-in-out"
+            >
               <img
                 src="/assets/kidsShop.jpg"
                 alt="KidsShopping"
@@ -145,7 +154,16 @@ function LandingPage() {
           </div>
 
           <div className="w-[50%] flex flex-col gap-5">
-            <div className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative w-full h-[248.409px] hover:scale-105 transition-all duration-200 ease-in-out">
+            <div
+              onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+                navigate("/men");
+              }}
+              className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative w-full h-[248.409px] hover:scale-105 transition-all duration-200 ease-in-out"
+            >
               <img
                 src="/assets/manShop.jpeg"
                 alt="ManShopping"
@@ -158,7 +176,16 @@ function LandingPage() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative w-full h-[329.757px] hover:scale-105 transition-all duration-200 ease-in-out">
+            <div
+              onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+                navigate("/women");
+              }}
+              className="overflow-hidden rounded-2xl hover:shadow-lg cursor-pointer relative w-full h-[329.757px] hover:scale-105 transition-all duration-200 ease-in-out"
+            >
               <img
                 src="/assets/womenShop.jpg"
                 alt="WomenShopping"

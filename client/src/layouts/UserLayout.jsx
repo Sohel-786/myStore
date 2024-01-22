@@ -118,6 +118,10 @@ function UserLayout({ children }) {
               src={"/assets/MyLogo2.svg"}
               alt="logo"
               onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/");
               }}
               className="w-[200px] absolute aspect-auto rounded-md cursor-pointer"
@@ -125,6 +129,10 @@ function UserLayout({ children }) {
           ) : (
             <img
               onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/");
               }}
               src="/assets/MyStoreLogo.svg"
@@ -165,6 +173,10 @@ function UserLayout({ children }) {
             <>
               <Button
                 onclick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/user/purchased");
                 }}
                 text={"Purchased"}
@@ -174,6 +186,10 @@ function UserLayout({ children }) {
 
               <Button
                 onclick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/user/orders");
                 }}
                 text={"Orders"}
@@ -184,6 +200,10 @@ function UserLayout({ children }) {
           )}
           <Button
             onclick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/user/bag");
             }}
             text={"Bag"}
@@ -192,6 +212,10 @@ function UserLayout({ children }) {
           </Button>
           <Button
             onclick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/user/wishlist");
             }}
             text={"Wishlist"}
@@ -201,6 +225,10 @@ function UserLayout({ children }) {
           {role === "ADMIN" && (
             <Button
               onclick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/admin-view");
               }}
               text={"Admin View"}
@@ -288,6 +316,10 @@ function UserLayout({ children }) {
             <ul className="flex justify-center items-center gap-8 font-Roboto font-semibold tracking-wide">
               <li
                 onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/");
                 }}
                 className="relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in before:duration-300 hover:scale-110 transition-all duration-200"
@@ -301,6 +333,10 @@ function UserLayout({ children }) {
 
               <li
                 onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/all-products");
                 }}
                 className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in ${
@@ -315,6 +351,10 @@ function UserLayout({ children }) {
               </li>
               <li
                 onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/men");
                 }}
                 className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0 before:bottom-0 before:bg-black hover:before:w-full focus:before:w-full hover:before:duration-200 before:ease-in ${
@@ -328,6 +368,10 @@ function UserLayout({ children }) {
               </li>
               <li
                 onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/women");
                 }}
                 className={`relative font-bold pb-1 cursor-pointer before:absolute before:h-1 before:w-0  ${
@@ -341,6 +385,10 @@ function UserLayout({ children }) {
               </li>
               <li
                 onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                   navigate("/kids");
                 }}
                 className={`relative  ${
