@@ -9,7 +9,6 @@ import { IoClose } from "react-icons/io5";
 import SummaryProduct from "../components/Product/SummaryProduct";
 import { useNavigate } from "react-router-dom";
 
-
 function Orders() {
   const { orders } = useSelector((s) => s?.orderData);
   const [data, setData] = useState();
@@ -85,6 +84,12 @@ function Orders() {
                     key={nanoid(5)}
                     onClick={() => {
                       enableBodyScroll(document);
+
+                      scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
+
                       navigate(`/product-details/${el.productId}`);
                     }}
                     className="cursor-pointer select-none rounded-[8px] overflow-hidden border-[1.5px] hover:border-pink-400"
@@ -93,7 +98,7 @@ function Orders() {
                   </div>
                 ) : (
                   <SummaryProduct key={nanoid(5)} el={el} />
-                );;
+                );
               })}
             </ul>
 

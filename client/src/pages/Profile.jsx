@@ -220,6 +220,11 @@ function Profile() {
             <div className="w-full p-3 h-[20%] lg:h-auto">
               <div
                 onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+
                   navigate(-1);
                 }}
                 className="cursor-pointer hover:bg-gray-100 rounded-xl transition-all duration-300 ease-in-out w-fit px-4 py-2 active:scale-90 active:duration-100 active:bg-stone-200"

@@ -37,6 +37,10 @@ function ProductDetail() {
   useEffect(() => {
     if (!id) {
       toast.error("Invalid Request");
+      scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
       navigate("/");
       return;
     }

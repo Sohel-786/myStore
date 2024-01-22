@@ -13,6 +13,11 @@ function Result() {
 
   useEffect(() => {
     if (!orderId) {
+      scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
       navigate("/");
     }
 
@@ -24,8 +29,18 @@ function Result() {
 
     let id = setTimeout(() => {
       if (result === "true") {
+        scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
         navigate("/user/orders");
       } else {
+        scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
         navigate("/user/bag");
       }
     }, 4000);

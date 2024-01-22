@@ -35,6 +35,11 @@ function CheckoutPage() {
 
   useEffect(() => {
     if (!state) {
+      scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
       navigate("/user/bag");
     }
   }, []);

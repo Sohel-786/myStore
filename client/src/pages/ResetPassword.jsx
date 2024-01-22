@@ -90,7 +90,10 @@ function ResetPassword() {
         pending: "Wait, Changing your password",
         success: "Password changed successfully",
         error: (data) => {
-          if (data?.response?.data?.message === "Token in invalid or expired, please try again") {
+          if (
+            data?.response?.data?.message ===
+            "Token in invalid or expired, please try again"
+          ) {
             return "Provide email again and generate new token";
           }
           return "Something Went Wrong";
@@ -104,8 +107,12 @@ function ResetPassword() {
           password: "",
           confirmPassword: "",
         });
-        navigate("/");
+        scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
 
+        navigate("/");
       }
     } catch (err) {
       toast.error(err.response?.data?.message);
@@ -117,6 +124,11 @@ function ResetPassword() {
           password: "",
           confirmPassword: "",
         });
+        scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
         navigate("/");
       }
     }
