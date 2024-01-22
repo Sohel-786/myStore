@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import AdminLayout from "../../layouts/AdminLayout";
 import { nanoid } from "@reduxjs/toolkit";
 import ProductModification from "../../components/Product/ProductModification";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCreateUpdate from "../../components/ProductCreateUpdate";
 import { IoClose } from "react-icons/io5";
 
@@ -10,6 +10,7 @@ function ManageProducts() {
   const { Allproducts } = useSelector((s) => s.products);
   const [showUpdateSection, setShowUpdateSection] = useState(false);
   const [productData, setProductData] = useState(null);
+  const [products, setProducts] = useState();
 
   function handleUpdate(data) {
     setProductData(data);
@@ -20,18 +21,41 @@ function ManageProducts() {
     setProductData(null);
     setShowUpdateSection(false);
   }
+
+  useEffect(() => {
+    if (Allproducts) {
+      let temp = Array.from(Allproducts).reverse();
+      setProducts([...temp]);
+    }
+  }, [Allproducts]);
+
   return (
     <AdminLayout>
-      <ul className="flex px-8 py-5 justify-between flex-wrap">
-        {Allproducts.map((el) => {
-          return (
-            <ProductModification
-              key={nanoid(4)}
-              data={el}
-              handleUpdate={handleUpdate}
-            />
-          );
-        })}
+      <div className="flex">
+        <ul className="flex py-5 px-6 gap-4 mx-auto flex-wrap gap-y-6">
+          {products &&
+            products.map((el) => {
+              return (
+                <ProductModification
+                  key={nanoid(4)}
+                  data={el}
+                  handleUpdate={handleUpdate}
+                />
+              );
+            })}
+        </ul>{" "}
+      </div>
+      <ul className="flex py-5 px-6 gap-4 mx-auto flex-wrap gap-y-6">
+        {products &&
+          products.map((el) => {
+            return (
+              <ProductModification
+                key={nanoid(4)}
+                data={el}
+                handleUpdate={handleUpdate}
+              />
+            );
+          })}
       </ul>
 
       {showUpdateSection && (

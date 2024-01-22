@@ -4,7 +4,7 @@ import AppError from "../utils/appError.js";
 import fs from "fs/promises";
 
 export const getAllProducts = async (req, res, next) => {
-  const allProducts = await Product.find({});
+  const allProducts = await Product.find({}).lean().exec();
 
   if (!allProducts) {
     return next(new AppError("Enable to get all product details", 400));
