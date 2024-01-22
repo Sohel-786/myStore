@@ -104,6 +104,10 @@ function SignIn({ CreateAccount, close }) {
         </div>
         <div className="w-[80%]">
           <h1 onClick={() => {
+             scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
             navigate('/forgot-password')
           }} className="font-Nova w-fit font-bold tracking-wide hover:underline cursor-pointer hover:text-sky-600">Forgotten Password ?</h1>
         </div>

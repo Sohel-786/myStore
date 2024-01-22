@@ -21,6 +21,10 @@ function CommonDrawer() {
 
       <div
         onClick={() => {
+          scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
           navigate(-1);
         }}
         className="fixed w-[50px] h-[48px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out left-8 rotate-180"
@@ -41,6 +45,10 @@ function CommonDrawer() {
           <ul className="flex flex-col gap-6">
             <li
               onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/products/man");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
@@ -53,6 +61,10 @@ function CommonDrawer() {
             </li>
             <li
               onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/products/woman");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
@@ -65,6 +77,10 @@ function CommonDrawer() {
             </li>
             <li
               onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/products/kids");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
@@ -77,6 +93,10 @@ function CommonDrawer() {
             </li>
             <li
               onClick={() => {
+                scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
                 navigate("/all-products");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300 bg-black"

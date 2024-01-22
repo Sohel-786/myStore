@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { HiPencilSquare } from "react-icons/hi2";
 import { useLocation, useNavigate } from "react-router-dom";
+import { disableBodyScroll }  from "body-scroll-lock";
 
 function ProductModification({ handleUpdate, data }) {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ function ProductModification({ handleUpdate, data }) {
           <span
             type="button"
             onClick={() => {
+              disableBodyScroll(document);
               handleUpdate(data);
             }}
             className="border-[1px] border-[#d4d5d9] py-2 flex items-center justify-center gap-[6px] relative hover:border-black cursor-pointer px-3 font-semibold font-Mukta tracking-wide text-xs hover:text-white before:content-[''] before:right-full before:absolute before:top-0 before:bottom-0 before:left-0 before:bg-gray-950 before:transition-all before:ease-in-out hover:before:right-0 before:z-[5]"

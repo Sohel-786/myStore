@@ -5,6 +5,7 @@ import ProductModification from "../../components/Product/ProductModification";
 import { useEffect, useState } from "react";
 import ProductCreateUpdate from "../../components/ProductCreateUpdate";
 import { IoClose } from "react-icons/io5";
+import { enableBodyScroll } from "body-scroll-lock";
 
 function ManageProducts() {
   const { Allproducts } = useSelector((s) => s.products);
@@ -18,23 +19,23 @@ function ManageProducts() {
   }
 
   function handleClose() {
+    enableBodyScroll(document);
     setProductData(null);
     setShowUpdateSection(false);
   }
 
   useEffect(() => {
     if (Allproducts) {
-      let temp = Array.from(Allproducts).reverse();
-      setProducts([...temp]);
+      setProducts([...Allproducts]);
     }
   }, [Allproducts]);
 
   return (
     <AdminLayout>
       <div className="flex">
-        <ul className="flex py-5 px-6 gap-4 mx-auto flex-wrap gap-y-6">
+        <ul className="flex py-5 px-6 gap-4 justify-center mx-auto flex-wrap gap-y-6">
           {products &&
-            products.map((el) => {
+            products.reverse().map((el) => {
               return (
                 <ProductModification
                   key={nanoid(4)}
@@ -45,21 +46,9 @@ function ManageProducts() {
             })}
         </ul>{" "}
       </div>
-      <ul className="flex py-5 px-6 gap-4 mx-auto flex-wrap gap-y-6">
-        {products &&
-          products.map((el) => {
-            return (
-              <ProductModification
-                key={nanoid(4)}
-                data={el}
-                handleUpdate={handleUpdate}
-              />
-            );
-          })}
-      </ul>
 
       {showUpdateSection && (
-        <section className="bg-white absolute top-0 left-0 right-0 z-50">
+        <section className="bg-white fixed top-0 left-0 right-0 bottom-0 overflow-x-scroll z-50">
           <IoClose
             className="absolute right-4 top-2 cursor-pointer"
             size={"38px"}

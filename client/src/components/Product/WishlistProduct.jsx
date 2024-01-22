@@ -76,6 +76,10 @@ function WishlistProduct({ data }) {
           removeRef.current &&
           !removeRef.current.contains(e.target)
         ) {
+          scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
           navigate(`/product-details/${_id}`, { state: data });
         }
       }}

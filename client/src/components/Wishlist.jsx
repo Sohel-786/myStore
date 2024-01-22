@@ -70,6 +70,10 @@ function WishList() {
           <div
             onClick={() => {
               handleWishList();
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate('/user/wishlist');
             }}
             className="w-[50px] h-[48px] relative left-[-30px] flex justify-center items-center cursor-pointer rounded-full bg-gray-200 hover:scale-110 transition-all duration-300 ease-in-out"

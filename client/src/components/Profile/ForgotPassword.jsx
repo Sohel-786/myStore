@@ -71,6 +71,10 @@ function ForgotPassword({ hideForgotPass, toggle }) {
         setRegisteredEmail({
           email: "",
         });
+        scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
         navigate("/");
       }
     } catch (err) {

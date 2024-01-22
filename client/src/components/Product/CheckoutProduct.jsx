@@ -32,6 +32,10 @@ function CheckoutProduct({ data, handle, quantity, size, remove }) {
   return (
     <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
       <div onClick={() => {
+         scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
         navigate(`/product-details/${_id}` , {state : data})
       }} className="w-[110px] h-[150px] flex justify-center items-center cursor-pointer">
         <img

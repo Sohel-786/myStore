@@ -219,7 +219,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
   }
   return (
     <section
-      className={`flex flex-col items-center w-full ${
+      className={`flex flex-col items-center ${
         location.pathname === "/add-product" ? "py-0" : "py-20"
       } pt-8 pb-10`}
     >

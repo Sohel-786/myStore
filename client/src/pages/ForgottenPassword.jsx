@@ -21,6 +21,10 @@ function ForgottenPassword() {
       <div className="w-full flex justify-center items-center mt-24">
         <ForgotPassword
           hideForgotPass={() => {
+            scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
             navigate(-1);
           }}
         />
