@@ -32,22 +32,25 @@ function Filter({ data }) {
       if (temp3[key3]) {
         temp3[key3] = temp3[key3] + 1;
       } else {
-        temp3[key3] = 1;
+        if (key3) {
+          temp3[key3] = 1;
+        }
       }
     }
 
     temp = Object.keys(temp).map((key) => [key, temp[key]]);
     temp2 = Object.keys(temp2);
     temp3 = Object.keys(temp3);
-    let minMax = [Math.min(...temp2), Math.max(...temp2)];
-    let discount = [Math.min(...temp3), Math.max(...temp3)];
 
     setBrand(temp);
     setPrice({
-      min: minMax[0],
-      max: minMax[1],
+      min: Math.min(...temp2),
+      max: Math.max(...temp2),
     });
-    setDiscount(discount);
+    setDiscount({
+      min: Math.min(...temp3),
+      max: Math.max(...temp3),
+    });
   }, [data]);
 
   return (
@@ -102,19 +105,19 @@ function Filter({ data }) {
       <div className="flex flex-col w-full">
         <h1 className="font-bold text-[12px]">DISCOUNT RANGE</h1>
         <div className="my-5 flex w-full gap-2 pr-2">
-          {price && (
+          {discount && (
             <>
               <input
                 type="Number"
                 className="w-[50%] outline-none py-1 px-1 text-sm border-[1.5px] border-gray-400 rounded-sm bg-blue-50 font-bold text-gray-600 font-Roboto"
-                value={price.min}
+                value={discount.min}
                 name="min"
                 id="min"
               />
               <input
                 type="Number"
                 className="w-[50%] outline-none py-1 px-1 text-sm border-[1.5px] border-gray-400 rounded-sm bg-blue-50 font-bold text-gray-600 font-Roboto"
-                value={price.max}
+                value={discount.max}
                 name="max"
                 id="max"
               />
