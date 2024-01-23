@@ -41,16 +41,21 @@ function Filter({ data }) {
     temp = Object.keys(temp).map((key) => [key, temp[key]]);
     temp2 = Object.keys(temp2);
     temp3 = Object.keys(temp3);
+    let arr = [];
+    for (let i = 10; i <= 90; i+=10) {
+      if (i < Math.max(...temp3)) {
+        arr.push(i);
+      } else {
+        break;
+      }
+    }
 
     setBrand(temp);
     setPrice({
       min: Math.min(...temp2),
       max: Math.max(...temp2),
     });
-    setDiscount({
-      min: Math.min(...temp3),
-      max: Math.max(...temp3),
-    });
+    setDiscount(arr);
   }, [data]);
 
   return (
@@ -104,25 +109,24 @@ function Filter({ data }) {
 
       <div className="flex flex-col w-full">
         <h1 className="font-bold text-[12px]">DISCOUNT RANGE</h1>
-        <div className="my-5 flex w-full gap-2 pr-2">
-          {discount && (
-            <>
-              <input
-                type="Number"
-                className="w-[50%] outline-none py-1 px-1 text-sm border-[1.5px] border-gray-400 rounded-sm bg-blue-50 font-bold text-gray-600 font-Roboto"
-                value={discount.min}
-                name="min"
-                id="min"
-              />
-              <input
-                type="Number"
-                className="w-[50%] outline-none py-1 px-1 text-sm border-[1.5px] border-gray-400 rounded-sm bg-blue-50 font-bold text-gray-600 font-Roboto"
-                value={discount.max}
-                name="max"
-                id="max"
-              />
-            </>
-          )}
+        <div className="my-5 flex flex-col w-full pr-2 text-sm gap-[1.5px] tracking-wide">
+          {discount &&
+            discount.map((el, i) => {
+              if (i === 0) {
+                return (
+                  <div key={nanoid(5)} className="flex w-full gap-1">
+                    <input type="radio" value={el} checked={true} name={el} />
+                    <label htmlFor={el}>{el}% and above</label>
+                  </div>
+                );
+              }else{
+                return (
+                    <div key={nanoid(5)} className="flex w-full gap-1">
+                      <input type="radio" value={el} name={el} />
+                      <label htmlFor={el}>{el}% and above</label>
+                    </div>)
+              }
+            })}
         </div>
       </div>
     </div>
