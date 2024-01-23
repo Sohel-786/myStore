@@ -81,7 +81,7 @@ function ProductModification({ handleUpdate, data }) {
       <div className="my-3 px-[10px]">
         <div>
           <h1 className="capitalize text-[#282c3f] mb-[6px] font-black font-Nova ">
-            {brand}
+            {brand.slice(0, 18)}{brand.length > 18 && '...'}
           </h1>
           <p
             className="capitalize text-[#535766] text-[14px] leading-[14px] "

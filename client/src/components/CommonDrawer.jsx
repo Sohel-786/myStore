@@ -49,7 +49,7 @@ function CommonDrawer() {
                   top: 0,
                   behavior: "smooth",
                 });
-                navigate("/products/man");
+                navigate("/men");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
             >
@@ -65,7 +65,7 @@ function CommonDrawer() {
                   top: 0,
                   behavior: "smooth",
                 });
-                navigate("/products/woman");
+                navigate("/women");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
             >
@@ -81,7 +81,7 @@ function CommonDrawer() {
                   top: 0,
                   behavior: "smooth",
                 });
-                navigate("/products/kids");
+                navigate("/kids");
               }}
               className="w-[80px] h-[78px] flex justify-center items-center overflow-hidden rounded-full border-[1px] cursor-pointer hover:border-pink-500 border-gray-300"
             >

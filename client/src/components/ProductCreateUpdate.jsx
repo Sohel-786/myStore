@@ -156,7 +156,10 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
     const formData = new FormData();
 
     formData.append("name", productDetails.name);
-    formData.append("description", (productDetails.description).replaceAll('\n', '$'));
+    formData.append(
+      "description",
+      productDetails.description.replaceAll("\n", "$")
+    );
     formData.append("brand", productDetails.brand);
     formData.append("category", productDetails.category);
     formData.append("price", productDetails.price);
@@ -421,8 +424,21 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
               <h1 className="text-black font-semibold tracking-wide mb-3 font-sans">
                 Available Sizes
               </h1>
-              <ul className="w-full flex gap-4 pl-1 items-center h-full">
-                {["s", "m", "l", "xl"].map((el) => {
+              <ul className="w-full flex flex-wrap gap-4 pl-1 items-center h-full">
+                {[
+                  "s",
+                  "m",
+                  "l",
+                  "xl",
+                  "2-3Y",
+                  "3-4Y",
+                  "4-5Y",
+                  "5-6Y",
+                  "6-7Y",
+                  "7-8Y",
+                  "8-9Y",
+                  "9-10Y",
+                ].map((el) => {
                   return (
                     <li
                       key={nanoid(4)}
@@ -534,7 +550,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
               className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y px-2 py-1"
               type="text"
               id="description"
-              value={(productDetails?.description).replaceAll('$','\n')}
+              value={(productDetails?.description).replaceAll("$", "\n")}
             />
           </div>
 
