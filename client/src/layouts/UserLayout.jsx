@@ -96,7 +96,7 @@ function UserLayout({ children }) {
   return (
     <section className="w-full max-w-[1480px] mx-auto">
       <header
-        className={`flex z-30 max-w-[1480px] sticky justify-between ${
+        className={`flex z-50 max-w-[1480px] sticky justify-between ${
           location.pathname !== "/"
             ? "bg-white"
             : isVisible
@@ -306,7 +306,7 @@ function UserLayout({ children }) {
         location.pathname === "/all-products" ||
         location.pathname === "/kids" ||
         location.pathname === "/women") && (
-        <div className="w-full flex justify-center items-center h-[250px] relative">
+        <div className="w-full flex justify-center items-center h-[250px] sticky z-30 top-[-80px] bg-white">
           <img
             className="w-full h-[92%] top absolute top-[-55px]"
             src="/assets/productpage.jpg"
