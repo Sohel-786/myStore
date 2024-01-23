@@ -23,7 +23,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
       ? {
           ...ProductData,
           previewImage: ProductData?.thumbnail?.secure_url,
-          pricedrop : ProductData.pricedrop === 0 ? "0" : ProductData.pricedrop,
+          pricedrop: ProductData.pricedrop === 0 ? "0" : ProductData.pricedrop,
         }
       : {
           name: "",
@@ -439,6 +439,10 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
                   "7-8Y",
                   "8-9Y",
                   "9-10Y",
+                  "10-11Y",
+                  "11-12Y",
+                  "12-13Y",
+                  "13-14Y",
                 ].map((el) => {
                   return (
                     <li

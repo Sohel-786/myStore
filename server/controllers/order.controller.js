@@ -24,7 +24,10 @@ export const confirmOrder = async (req, res, next) => {
       return next(new AppError("The Provided orderId Is not valid", 400));
     }
 
-    const orders = await Order.find({ user: req.user.id, isPaid: true }, {expireAt : 0});
+    const orders = await Order.find(
+      { user: req.user.id, isPaid: true },
+      { expireAt: 0 }
+    );
 
     return res.status(200).json({
       success: true,
@@ -43,7 +46,10 @@ export const getAllOrders = async (req, res, next) => {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
-    const orders = await Order.find({ user: req.user.id, isPaid: true }, {expireAt : 0});
+    const orders = await Order.find(
+      { user: req.user.id, isPaid: true },
+      { expireAt: 0 }
+    );
 
     return res.status(200).json({
       success: true,
@@ -78,14 +84,14 @@ export const deleteOrder = async (req, res, next) => {
   }
 };
 
-export const getAllOrdersAdmin = async ( req, res, next ) => {
+export const getAllOrdersAdmin = async (req, res, next) => {
   try {
     const userCheck = await User.findById(req.user.id);
     if (!userCheck) {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
-    const orders = await Order.find({isPaid : true});
+    const orders = await Order.find({ isPaid: true });
 
     return res.status(200).json({
       success: true,
@@ -95,9 +101,9 @@ export const getAllOrdersAdmin = async ( req, res, next ) => {
   } catch (e) {
     return next(new AppError("Something went wrong, please try again", 500));
   }
-}
+};
 
-export const updateOrderStatus = async ( req, res, next ) => {
+export const updateOrderStatus = async (req, res, next) => {
   try {
     const { orderId } = req.params;
 
@@ -110,11 +116,14 @@ export const updateOrderStatus = async ( req, res, next ) => {
       return next(new AppError("Unauthenticated, please login", 400));
     }
 
-    const order = await Order.findOneAndUpdate({ _id: orderId, isPaid: true }, {
-      $set: { isProcessing: false },
-    });
+    const order = await Order.findOneAndUpdate(
+      { _id: orderId, isPaid: true },
+      {
+        $set: { isProcessing: false },
+      }
+    );
 
-    if(!order){
+    if (!order) {
       return next(new AppError("Something Went Wrong", 400));
     }
 
@@ -123,9 +132,9 @@ export const updateOrderStatus = async ( req, res, next ) => {
     return res.status(200).json({
       success: true,
       message: "Fetched All Orders Successfully",
-      orders
+      orders,
     });
   } catch (e) {
     return next(new AppError("Something went wrong, please try again", 500));
   }
-}
+};

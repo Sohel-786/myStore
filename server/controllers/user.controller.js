@@ -540,7 +540,7 @@ export const addToBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the Bag",
-      bag : user.cartItems
+      bag: user.cartItems,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -572,7 +572,7 @@ export const removeFromBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the Bag",
-      bag : user.cartItems
+      bag: user.cartItems,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -584,9 +584,9 @@ export const emptyBag = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(
       req.user.id,
       {
-        $set : {
-          cartItems : []
-        }
+        $set: {
+          cartItems: [],
+        },
       },
       { new: true }
     );
@@ -598,7 +598,7 @@ export const emptyBag = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the Bag",
-      bag : user.cartItems
+      bag: user.cartItems,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -661,7 +661,7 @@ export const addToWishlist = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully Added Product to the WishList",
-      wishlist : user.wishlist
+      wishlist: user.wishlist,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -693,7 +693,7 @@ export const removeFromWishlist = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Successfully removed product from the WishList",
-      wishlist : user.wishlist
+      wishlist: user.wishlist,
     });
   } catch (e) {
     return res.status(400).send(e.message);

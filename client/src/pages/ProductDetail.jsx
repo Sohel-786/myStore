@@ -16,7 +16,12 @@ import { getOneProduct } from "../redux/slices/productSlice";
 import Loading from "../components/Loading";
 import { MdBookmarkRemove } from "react-icons/md";
 import { IoMdRemove } from "react-icons/io";
-import { addToBag, addToWishlist, removeFromBag, removeFromWishlist } from "../redux/slices/authSlice";
+import {
+  addToBag,
+  addToWishlist,
+  removeFromBag,
+  removeFromWishlist,
+} from "../redux/slices/authSlice";
 import { BagContext } from "../Context/BagContext";
 import { WishlistContext } from "../Context/WishListContext";
 
@@ -53,7 +58,7 @@ function ProductDetail() {
   }, []);
 
   useEffect(() => {
-    if(bag || bag.length === 0) {
+    if (bag || bag.length === 0) {
       for (let i = 0; i < bag.length; i++) {
         if (bag[i].productId === id) {
           setBagWishlist((s) => {
@@ -65,7 +70,7 @@ function ProductDetail() {
         }
       }
     }
-    if(wishList.length === 0){
+    if (wishList.length === 0) {
       setBagWishlist((s) => {
         return {
           ...s,
@@ -73,7 +78,7 @@ function ProductDetail() {
         };
       });
     }
-    if(bag.length === 0){
+    if (bag.length === 0) {
       setBagWishlist((s) => {
         return {
           ...s,
@@ -81,7 +86,7 @@ function ProductDetail() {
         };
       });
     }
-    if(wishList) {
+    if (wishList) {
       for (let i = 0; i < wishList.length; i++) {
         if (wishList[i].productId === id) {
           setBagWishlist((s) => {

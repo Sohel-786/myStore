@@ -90,9 +90,9 @@ export const AddProduct = async (req, res, next) => {
 export const getOneProduct = async (req, res, next) => {
   const { productId } = req.params;
 
-  if(!productId){
+  if (!productId) {
     return next(new AppError("ProductId is not provided", 400));
-  } 
+  }
 
   const product = await Product.findById(productId);
 
@@ -147,7 +147,7 @@ export const updateProduct = async (req, res, next) => {
   product.category = category;
   product.price = price;
   product.deliveryInfo = deliveryInfo;
-  product.availableSizes = availableSizes.split(',');
+  product.availableSizes = availableSizes.split(",");
   product.sale = sale;
   product.pricedrop = pricedrop;
   product.brand = brand;
