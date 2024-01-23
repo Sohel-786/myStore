@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ProductCreateUpdate from "../../components/ProductCreateUpdate";
 import { IoClose } from "react-icons/io5";
 import { enableBodyScroll } from "body-scroll-lock";
+import Loading from "../../components/Loading";
 
 function ManageProducts() {
   const { Allproducts } = useSelector((s) => s.products);
@@ -34,7 +35,7 @@ function ManageProducts() {
     <AdminLayout>
       <div className="flex">
         <ul className="flex py-5 px-6 gap-4 justify-center mx-auto flex-wrap gap-y-6">
-          {products &&
+          {products ?
             products.reverse().map((el) => {
               return (
                 <ProductModification
@@ -43,7 +44,7 @@ function ManageProducts() {
                   handleUpdate={handleUpdate}
                 />
               );
-            })}
+            }) : <Loading />}
         </ul>{" "}
       </div>
 

@@ -3,6 +3,7 @@ import UserLayout from "../layouts/UserLayout";
 import Product from "../components/Product/Product";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 
 function MenPage() {
   const { Allproducts } = useSelector((s) => s?.products);
@@ -22,7 +23,7 @@ function MenPage() {
 
   return (
     <UserLayout>
-      {menProducts && (
+      {menProducts ? (
         <ul className="flex px-12  gap-5 justify-center flex-wrap gap-y-6">
           <>
             {menProducts.map((el) => {
@@ -30,7 +31,7 @@ function MenPage() {
             })}
           </>
         </ul>
-      )}
+      ) : <Loading />}
     </UserLayout>
   );
 }
