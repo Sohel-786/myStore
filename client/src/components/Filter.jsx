@@ -42,7 +42,7 @@ function Filter({ data }) {
     temp2 = Object.keys(temp2);
     temp3 = Object.keys(temp3);
     let arr = [];
-    for (let i = 10; i <= 90; i+=10) {
+    for (let i = 10; i <= 90; i += 10) {
       if (i < Math.max(...temp3)) {
         arr.push(i);
       } else {
@@ -119,12 +119,13 @@ function Filter({ data }) {
                     <label htmlFor={el}>{el}% and above</label>
                   </div>
                 );
-              }else{
+              } else {
                 return (
-                    <div key={nanoid(5)} className="flex w-full gap-1">
-                      <input type="radio" value={el} name={el} />
-                      <label htmlFor={el}>{el}% and above</label>
-                    </div>)
+                  <div key={nanoid(5)} className="flex w-full gap-1">
+                    <input type="radio" value={el} name={el} />
+                    <label htmlFor={el}>{el}% and above</label>
+                  </div>
+                );
               }
             })}
         </div>
