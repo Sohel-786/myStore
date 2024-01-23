@@ -59,10 +59,10 @@ function Filter({ data }) {
   }, [data]);
 
   return (
-    <div className="flex flex-col w-[20%] top-0 pl-6">
+    <div className="flex flex-col w-full pl-6 ">
       <h1 className="font-bold text-[12px]">BRAND</h1>
       <hr className="mt-2" />
-      <div className="my-5 flex flex-col h-[300px] overflow-y-scroll ">
+      <div className="my-5 flex flex-col h-[300px] overflow-y-scroll">
         {brand &&
           brand.map(([el, value]) => {
             return (

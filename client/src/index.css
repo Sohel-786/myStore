@@ -13,3 +13,17 @@ color {
       margin: 0;
     }
   }
+
+  .scroll::-webkit-scrollbar{
+    width: 3px;
+  }
+  
+  .scroll::-webkit-scrollbar-thumb {
+    background: var(--clr-mode); 
+    border-radius: 10px;
+  }
+  
+  .scroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--project-points-scroll); 
+    border-radius: 10px;
+  }

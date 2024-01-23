@@ -12,7 +12,9 @@ function AllProducts() {
   return (
     <UserLayout>
       <div className="w-full flex">
-        <Filter data={Allproducts} />
+        <div className="w-[20%] scroll overflow-y-scroll sticky h-[80vh] top-[180px] border-t-[1px] pt-2 pb-12 border-gray-200">
+          <Filter data={Allproducts} />
+        </div>
         <ul className="flex w-[80%] gap-5 justify-center flex-wrap gap-y-6">
           {Allproducts ? (
             <>
