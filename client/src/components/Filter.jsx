@@ -58,6 +58,8 @@ function Filter({ data }) {
     setDiscount(arr);
   }, [data]);
 
+  
+
   return (
     <div className="flex flex-col w-full pl-6 ">
       <h1 className="font-bold text-[12px]">BRAND</h1>
