@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { HiPencilSquare } from "react-icons/hi2";
 import { useLocation, useNavigate } from "react-router-dom";
-import { disableBodyScroll }  from "body-scroll-lock";
+import { disableBodyScroll } from "body-scroll-lock";
 
 function ProductModification({ handleUpdate, data }) {
   const navigate = useNavigate();
@@ -73,7 +73,8 @@ function ProductModification({ handleUpdate, data }) {
           >
             Sizes:{" "}
             <span className="uppercase ml-[2px] font-Roboto">
-              {availableSizes.join(" , ")}
+              {availableSizes.join(" , ").slice(0, 60)}{" "}
+              {availableSizes.join(" , ").length > 60 && "..."}
             </span>
           </p>
         </div>
@@ -81,7 +82,8 @@ function ProductModification({ handleUpdate, data }) {
       <div className="my-3 px-[10px]">
         <div>
           <h1 className="capitalize text-[#282c3f] mb-[6px] font-black font-Nova ">
-            {brand.slice(0, 18)}{brand.length > 18 && '...'}
+            {brand.slice(0, 18)}
+            {brand.length > 18 && "..."}
           </h1>
           <p
             className="capitalize text-[#535766] text-[14px] leading-[14px] "

@@ -35,7 +35,6 @@ export const updateProduct = createAsyncThunk(
   "/product/update",
   async (data) => {
     try {
-      console.log(data.id, typeof data.id);
       const res = axiosInstance.put(`/product/${data.id}`, data.data);
       toast.promise(res, {
         pending: "Wait, Updating Product",

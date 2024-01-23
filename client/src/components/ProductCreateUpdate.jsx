@@ -23,6 +23,7 @@ function ProductCreateUpdate({ ProductData, closeProductUpdate }) {
       ? {
           ...ProductData,
           previewImage: ProductData?.thumbnail?.secure_url,
+          pricedrop : ProductData.pricedrop === 0 ? "0" : ProductData.pricedrop,
         }
       : {
           name: "",

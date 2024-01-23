@@ -259,7 +259,7 @@ function ProductDetail() {
                 </span>
               </h1>
 
-              <ul className="w-full flex mt-3 gap-5 pl-1">
+              <ul className="w-full flex flex-wrap mt-3 gap-5 pl-1">
                 {state.availableSizes.map((el) => {
                   return (
                     <li
