@@ -6,14 +6,39 @@ function Filter({ data, sort }) {
   const [price, setPrice] = useState();
   const [discount, setDiscount] = useState();
 
-  const [ sortingConditions, setSortingConditions ] = useState({
-    brand : [],
-    price : {
-      from : 0,
-      to : 0
+  const [sortingConditions, setSortingConditions] = useState({
+    brand: [],
+    price: {
+      from: 0,
+      to: 0,
     },
-    discount : 0
-  })
+    discount: 0,
+  });
+
+  useEffect(() => {
+    if (price) {
+      setSortingConditions(function (s) {
+        return {
+          ...s,
+          price: {
+            from: price.min,
+            to: price.max,
+          },
+        };
+      });
+    }
+  }, [price]);
+
+  useEffect(() => {
+    if (discount) {
+      setSortingConditions(function (s) {
+        return {
+          ...s,
+          discount: discount[0],
+        };
+      });
+    }
+  }, [discount]);
 
   useEffect(() => {
     let temp = {};
@@ -67,34 +92,50 @@ function Filter({ data, sort }) {
     setDiscount(arr);
   }, [data]);
 
-  function handleBrand(e){
+  function handleBrand(e) {
     const { name } = e.target;
-    if(sortingConditions.brand.includes(name)){
+    if (sortingConditions.brand.includes(name)) {
       let temp = sortingConditions.brand.filter((el) => {
-        if(name !== el){
+        if (name !== el) {
           return el;
         }
       });
-      setSortingConditions(function(s){
+      setSortingConditions(function (s) {
         return {
           ...sortingConditions,
-          brand : [...temp]
-        }
-      })
-    }else{
-      setSortingConditions(function(s){
+          brand: [...temp],
+        };
+      });
+    } else {
+      setSortingConditions(function (s) {
         return {
           ...sortingConditions,
-          brand : [...sortingConditions.brand, name]
-        }
-      })
+          brand: [...sortingConditions.brand, name],
+        };
+      });
     }
   }
 
-  function handlePriceChange(e){
-    const { value, name} = e.target;
+  function handleChnage(e) {
+    const { value, name } = e.target;
+    setSortingConditions(function (s) {
+      return {
+        ...sortingConditions,
+        price: {
+          ...s.price,
+          [name]: value,
+        },
+      };
+    });
+  }
 
-    console.log(value, name);
+  function handleDiscount(el){
+    setSortingConditions(function (s){
+      return {
+        ...s,
+        discount : el
+      }
+    })
   }
   return (
     <div className="flex flex-col w-full pl-6 ">
@@ -106,11 +147,13 @@ function Filter({ data, sort }) {
             return (
               <div key={nanoid(4)} className="w-full flex gap-2">
                 <input
-                  value={el}
+                  readOnly
                   type="checkbox"
                   name={el}
+                  id={el}
+                  value={el}
                   className="capitalize"
-                  onChange={handleBrand}
+                  onClick={handleBrand}
                   checked={sortingConditions.brand.includes(el) ? true : false}
                 />
                 <label htmlFor={el} className="capitalize text-sm">
@@ -129,16 +172,18 @@ function Filter({ data, sort }) {
               <input
                 type="Number"
                 className="w-[50%] outline-none py-1 px-1 text-sm border-[1.5px] border-gray-400 rounded-sm bg-blue-50 font-bold text-gray-600 font-Roboto"
-                value={price.min}
-                name="min"
+                value={sortingConditions.price.from}
+                name="from"
                 id="min"
+                onChange={handleChnage}
               />
               <input
                 type="Number"
                 className="w-[50%] outline-none py-1 px-1 text-sm border-[1.5px] border-gray-400 rounded-sm bg-blue-50 font-bold text-gray-600 font-Roboto"
-                value={price.max}
-                name="max"
+                value={sortingConditions.price.to}
+                name="to"
                 id="max"
+                onChange={handleChnage}
               />
             </>
           )}
@@ -152,21 +197,21 @@ function Filter({ data, sort }) {
         <div className="my-5 flex flex-col w-full pr-2 text-sm gap-[1.5px] tracking-wide">
           {discount &&
             discount.map((el, i) => {
-              if (i === 0) {
-                return (
-                  <div key={nanoid(5)} className="flex w-full gap-1">
-                    <input type="radio" value={el} checked={true} name={el} />
-                    <label htmlFor={el}>{el}% and above</label>
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={nanoid(5)} className="flex w-full gap-1">
-                    <input type="radio" value={el} name={el} />
-                    <label htmlFor={el}>{el}% and above</label>
-                  </div>
-                );
-              }
+              return (
+                <div key={nanoid(5)} className="flex w-full gap-1">
+                  <input
+                    type="radio"
+                    value={el}
+                    checked={sortingConditions.discount === el ? true : false}
+                    name={el}
+                    onChange={() => {
+                      handleDiscount(el);
+                    }}
+                    id={el}
+                  />
+                  <label htmlFor={el}>{el}% and above</label>
+                </div>
+              );
             })}
         </div>
       </div>
