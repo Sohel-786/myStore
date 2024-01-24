@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserLayout from "../layouts/UserLayout";
 import OrderBox from "../components/OrderBox";
 import { nanoid } from "nanoid";
@@ -8,6 +8,7 @@ import { enableBodyScroll } from "body-scroll-lock";
 import { IoClose } from "react-icons/io5";
 import SummaryProduct from "../components/Product/SummaryProduct";
 import { useNavigate } from "react-router-dom";
+import { getAllOrders } from "../redux/slices/orderSlice";
 
 function Orders() {
   const { orders } = useSelector((s) => s?.orderData);
@@ -15,6 +16,7 @@ function Orders() {
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function toggleDetails() {
     setShowDetails(!showDetails);
@@ -23,6 +25,10 @@ function Orders() {
   function handleDetails(data) {
     setDetails(data);
   }
+
+  useEffect(() => {
+    dispatch(getAllOrders());
+  }, [])
 
   useEffect(() => {
     if (orders) {
@@ -38,7 +44,7 @@ function Orders() {
   return (
     <UserLayout>
       {data ? (
-        <div className="flex w-[99%] gap-[20px] py-[30px] px-[40px] mx-auto">
+        <div className="flex w-full flex-wrap gap-[20px] py-[30px] px-[40px] mx-auto">
           {data.length > 0 ? (
             data.map((el) => {
               if (el.isProcessing) {

@@ -5,11 +5,11 @@ import { useLocation } from "react-router-dom";
 function OrderBox({ data, handleDetails, toggle }) {
   const location = useLocation();
   return (
-    <div className={`w-[50%] rounded-[10px] ${location.pathname === '/user/purchased' ? "bg-green-200" : "bg-slate-200" }  px-5 py-4`}>
+    <div className={`w-[48%] rounded-[10px] ${location.pathname === '/user/purchased' ? "bg-green-200" : "bg-slate-200" }  px-5 py-4`}>
       <h1 className="font-Slab font-bold text-base mb-[10px] text-gray-700 tracking-wide">
         #Order : {data._id}
       </h1>
-      <div className="w-full overflow-hidden flex ml-2 mb-3">
+      <div className="w-full overflow-hidden gap-2 flex ml-2 mb-3">
         {data.orderItems.map((el) => {
           return (
             <div

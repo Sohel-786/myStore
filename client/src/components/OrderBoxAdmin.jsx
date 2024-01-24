@@ -20,7 +20,7 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
         #Order : {data._id}
       </h1>
       <div className="w-full flex gap-3">
-        <div className="w-[60%] overflow-hidden flex ml-2 mb-3">
+        <div className="w-[60%] overflow-hidden gap-2 flex-wrap flex ml-2 mb-3">
           {data.orderItems.map((el) => {
             return (
               <div

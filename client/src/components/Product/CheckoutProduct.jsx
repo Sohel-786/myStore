@@ -30,7 +30,7 @@ function CheckoutProduct({ data, handle, quantity, size, remove }) {
   });
 
   return (
-    <div className="w-full flex rounded-lg bg-blue-50 overflow-hidden ">
+    <div className="w-full flex my-1 rounded-lg bg-blue-50 overflow-hidden ">
       <div onClick={() => {
          scrollTo({
           top: 0,

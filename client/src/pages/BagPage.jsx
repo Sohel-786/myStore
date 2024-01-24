@@ -154,6 +154,10 @@ function BagPage() {
                 <div className="w-full my-2 flex justify-center items-center">
                   <button
                     onClick={() => {
+                      scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
                       navigate("/user/bag/checkout", { state: finalProducts });
                     }}
                     disabled={finalProducts.length === 0 ? true : false}
