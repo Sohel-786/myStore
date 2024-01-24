@@ -117,7 +117,7 @@ function Product({ data, wish }) {
         }
       }}
     >
-      <div className="h-[280px] w-full">
+      <div className="h-[280px] bg-gray-400 w-full">
         <img src={thumbnail.secure_url} alt={name} className="w-full h-full" />
       </div>
       {sale === "YES" && (

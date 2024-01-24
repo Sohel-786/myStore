@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../config/axiosInstance";
 import { toast } from "react-toastify";
-import { getUserDetails } from "./authSlice";
 
 const initialState = {
-  Allproducts: []
+  Allproducts: null
 };
 
 export const addProduct = createAsyncThunk("/product/add", async (data) => {

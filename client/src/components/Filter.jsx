@@ -92,6 +92,37 @@ function Filter({ data, sort }) {
     setDiscount(arr);
   }, [data]);
 
+  useEffect(() => {
+    let temp = [];
+    if (sortingConditions.brand.length > 0) {
+      temp = data.filter((el) => {
+        if (sortingConditions.brand.includes(el)) {
+          if (
+            el.price >= sortingConditions.price.from &&
+            el.price <= sortingConditions.price.to
+          ) {
+            if (el.pricedrop >= sortingConditions.discount) {
+              return el;
+            }
+          }
+        }
+      });
+    } else {
+      temp = data.filter((el) => {
+        if (
+          el.price >= sortingConditions.price.from &&
+          el.price <= sortingConditions.price.to
+        ) {
+          if (el.pricedrop >= sortingConditions.discount) {
+            return el;
+          }
+        }
+      });
+    }
+
+    sort(temp);
+  }, [sortingConditions]);
+
   function handleBrand(e) {
     const { name } = e.target;
     if (sortingConditions.brand.includes(name)) {
@@ -129,13 +160,13 @@ function Filter({ data, sort }) {
     });
   }
 
-  function handleDiscount(el){
-    setSortingConditions(function (s){
+  function handleDiscount(el) {
+    setSortingConditions(function (s) {
       return {
         ...s,
-        discount : el
-      }
-    })
+        discount: el,
+      };
+    });
   }
   return (
     <div className="flex flex-col w-full pl-6 ">

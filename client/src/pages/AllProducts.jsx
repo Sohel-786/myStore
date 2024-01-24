@@ -9,15 +9,15 @@ import { useEffect, useState } from "react";
 
 function AllProducts() {
   const { Allproducts } = useSelector((s) => s?.products);
-  const [ sortedProducts, setSortedProducts ] = useState();
+  const [sortedProducts, setSortedProducts] = useState();
 
   useEffect(() => {
-      if(Allproducts){
-        handleSorting(Allproducts);
-      }
+    if (Allproducts) {
+      handleSorting(Allproducts);
+    }
   }, [Allproducts]);
 
-  function handleSorting(data){
+  function handleSorting(data) {
     setSortedProducts(data);
   }
 
@@ -25,16 +25,22 @@ function AllProducts() {
     <UserLayout>
       <div className="w-full flex">
         <div className="w-[20%] scroll overflow-y-scroll sticky h-[80vh] top-[180px] border-t-[1px] border-b-[1px] pt-2 pb-12 border-gray-200">
-          <Filter data={Allproducts} sort={handleSorting} />
+          {Allproducts && <Filter data={Allproducts} sort={handleSorting} />}
         </div>
         <ul className="flex w-[80%] gap-5 justify-center flex-wrap gap-y-6">
           {sortedProducts ? (
-            <>
-              {" "}
-              {sortedProducts.map((el) => {
-                return <Product key={nanoid(4)} data={el} />;
-              })}{" "}
-            </>
+            sortedProducts.length > 0 ? (
+              <>
+                {" "}
+                {sortedProducts.map((el) => {
+                  return <Product key={nanoid(4)} data={el} />;
+                })}{" "}
+              </>
+            ) : (
+              <div className="h-[50vh] w-full flex justify-center items-center">
+                <img src="/assets/Sorry.jpg" alt="Sorry No Product Found" className="max-w-full max-h-full" />
+              </div>
+            )
           ) : (
             <Loading />
           )}
