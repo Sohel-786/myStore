@@ -46,9 +46,7 @@ function Filter({ data, sort }) {
     let temp3 = {};
     for (let i = 0; i < data.length; i++) {
       let key = data[i].brand;
-      let key2 = Math.floor(
-        data[i].price - (data[i].pricedrop / 100) * data[i].price
-      );
+      let key2 = handleSalePrice(data[i].price, data[i].pricedrop);
       let key3 = data[i].pricedrop;
 
       if (temp[key]) {
@@ -92,14 +90,21 @@ function Filter({ data, sort }) {
     setDiscount(arr);
   }, [data]);
 
+  function handleSalePrice(price, off) {
+    let temp = (off / 100) * price;
+    return Math.floor(price - temp);
+  }
+
   useEffect(() => {
     let temp = [];
     if (sortingConditions.brand.length > 0) {
       temp = data.filter((el) => {
-        if (sortingConditions.brand.includes(el)) {
+        if (sortingConditions.brand.includes(el.brand)) {
           if (
-            el.price >= sortingConditions.price.from &&
-            el.price <= sortingConditions.price.to
+            handleSalePrice(el.price, el.pricedrop) >=
+              sortingConditions.price.from &&
+            handleSalePrice(el.price, el.pricedrop) <=
+              sortingConditions.price.to
           ) {
             if (el.pricedrop >= sortingConditions.discount) {
               return el;
