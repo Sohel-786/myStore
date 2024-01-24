@@ -1,10 +1,19 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
-function Filter({ data }) {
+function Filter({ data, sort }) {
   const [brand, setBrand] = useState();
   const [price, setPrice] = useState();
   const [discount, setDiscount] = useState();
+
+  const [ sortingConditions, setSortingConditions ] = useState({
+    brand : [],
+    price : {
+      from : 0,
+      to : 0
+    },
+    discount : 0
+  })
 
   useEffect(() => {
     let temp = {};
@@ -58,8 +67,35 @@ function Filter({ data }) {
     setDiscount(arr);
   }, [data]);
 
-  
+  function handleBrand(e){
+    const { name } = e.target;
+    if(sortingConditions.brand.includes(name)){
+      let temp = sortingConditions.brand.filter((el) => {
+        if(name !== el){
+          return el;
+        }
+      });
+      setSortingConditions(function(s){
+        return {
+          ...sortingConditions,
+          brand : [...temp]
+        }
+      })
+    }else{
+      setSortingConditions(function(s){
+        return {
+          ...sortingConditions,
+          brand : [...sortingConditions.brand, name]
+        }
+      })
+    }
+  }
 
+  function handlePriceChange(e){
+    const { value, name} = e.target;
+
+    console.log(value, name);
+  }
   return (
     <div className="flex flex-col w-full pl-6 ">
       <h1 className="font-bold text-[12px]">BRAND</h1>
@@ -74,6 +110,8 @@ function Filter({ data }) {
                   type="checkbox"
                   name={el}
                   className="capitalize"
+                  onChange={handleBrand}
+                  checked={sortingConditions.brand.includes(el) ? true : false}
                 />
                 <label htmlFor={el} className="capitalize text-sm">
                   {el} ({value})
