@@ -97,6 +97,10 @@ function Filter({ data, sort }) {
 
   useEffect(() => {
     let temp = [];
+    scrollTo({
+      top: 100,
+      behavior: "smooth",
+    });
     if (sortingConditions.brand.length > 0) {
       temp = data.filter((el) => {
         if (sortingConditions.brand.includes(el.brand)) {
@@ -106,7 +110,11 @@ function Filter({ data, sort }) {
             handleSalePrice(el.price, el.pricedrop) <=
               sortingConditions.price.to
           ) {
-            if (el.pricedrop >= sortingConditions.discount) {
+            if (
+              el.pricedrop >= sortingConditions.discount ||
+              el.pricedrop === 0 ||
+              (el.pricedrop > 0 && el.pricedrop < 10)
+            ) {
               return el;
             }
           }
@@ -118,7 +126,11 @@ function Filter({ data, sort }) {
           el.price >= sortingConditions.price.from &&
           el.price <= sortingConditions.price.to
         ) {
-          if (el.pricedrop >= sortingConditions.discount) {
+          if (
+            el.pricedrop >= sortingConditions.discount ||
+            el.pricedrop === 0 ||
+            (el.pricedrop > 0 && el.pricedrop < 10)
+          ) {
             return el;
           }
         }
@@ -231,6 +243,9 @@ function Filter({ data, sort }) {
       <div className="flex flex-col w-full">
         <h1 className="font-bold text-[12px]">DISCOUNT RANGE</h1>
         <div className="my-5 flex flex-col w-full pr-2 text-sm gap-[1.5px] tracking-wide">
+          <p className="font-mono text-xs font-bold mb-2 text-gray-500">
+            Product with 0% discount and below 10% is also included.
+          </p>
           {discount &&
             discount.map((el, i) => {
               return (

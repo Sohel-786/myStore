@@ -236,21 +236,27 @@ function ProductDetail() {
               {state.name}
             </h1>
             <hr className="mt-3 border-[0.9px]" />
-            <p className="mt-2 text-2xl">
-              <span className="font-Slab">
-                ₹
-                {Math.floor(
-                  state.price - (state.pricedrop / 100) * state.price
-                )}
-              </span>
-              <span className="font-Roboto ml-3 text-[20px] text-gray-500">
-                MRP <span className="line-through">₹{state.price}</span>
-              </span>
+            {state.pricedrop !== 0 ? (
+              <p className="mt-2 text-2xl">
+                <span className="font-Slab">
+                  ₹
+                  {Math.floor(
+                    state.price - (state.pricedrop / 100) * state.price
+                  )}
+                </span>
+                <span className="font-Roboto ml-3 text-[20px] text-gray-500">
+                  MRP <span className="line-through">₹{state.price}</span>
+                </span>
 
-              <span className="font-bold text-xl font-Slab tracking-wide ml-3 text-orange-400">
-                ({state.pricedrop}% OFF)
-              </span>
-            </p>
+                <span className="font-bold text-xl font-Slab tracking-wide ml-3 text-orange-400">
+                  ({state.pricedrop}% OFF)
+                </span>
+              </p>
+            ) : (
+              <p className="mt-2 text-2xl">
+                <span className="font-Slab">₹{state.price}</span>
+              </p>
+            )}
 
             <p className="mt-1 text-green-600 font-bold text-sm">
               inclusive of all taxes

@@ -31,7 +31,7 @@ function Bag({ close }) {
 
   return (
     <div className="w-full h-full">
-      <ul className="w-full h-[93%] flex pt-[60px] relative gap-2 overflow-y-scroll">
+      <ul className="w-full h-[93%] flex flex-col pt-[60px] relative gap-2 overflow-y-scroll">
         <li className="w-full flex gap-2 justify-center absolute top-0 py-3 text-white text-center bg-black">
           <h1 className="text-2xl font-Nova tracking-wide font-bold">MY BAG</h1>
           <BiSolidShoppingBags size={"28px"} />
@@ -63,6 +63,10 @@ function Bag({ close }) {
         <div className="w-full flex flex-col justify-center items-center">
           <button
             onClick={() => {
+              scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/user/bag");
               close();
             }}

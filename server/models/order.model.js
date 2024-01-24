@@ -41,7 +41,7 @@ const orderSchema = new Schema(
     isProcessing: { type: Boolean, required: true },
     expireAt: {
       type: Date,
-      expires: "5m",
+      expires: "1440m",
       default: Date.now(),
     },
   },
