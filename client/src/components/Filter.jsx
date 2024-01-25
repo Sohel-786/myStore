@@ -1,10 +1,12 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
+import { IoIosClose } from "react-icons/io";
 
 function Filter({ data, sort }) {
   const [brand, setBrand] = useState();
   const [price, setPrice] = useState();
   const [discount, setDiscount] = useState();
+  const [filter, setFilter] = useState(false);
 
   const [sortingConditions, setSortingConditions] = useState({
     brand: [],
@@ -185,8 +187,27 @@ function Filter({ data, sort }) {
       };
     });
   }
+
+  function handleClearFilter() {
+    sortingConditions({
+      brand: [],
+      price: {
+        from: price.min,
+        to: price.max,
+      },
+      discount: discount[0],
+    });
+
+    sort(data);
+  }
   return (
-    <div className="flex flex-col w-full pl-6 ">
+    <div className="flex flex-col w-full pl-6 relative">
+      {filter && (
+        <div className="absolute right-0 top-[-5px] hover:bg-gray-500 hover:text-white rounded-md px-2 font-Roboto bg-gray-200 flex cursor-pointer justify-center items-center">
+          <IoIosClose size={"25px"} />
+          Clear
+        </div>
+      )}
       <h1 className="font-bold text-[12px]">BRAND</h1>
       <hr className="mt-2" />
       <div className="my-5 flex flex-col max-h-[300px] overflow-y-scroll">
