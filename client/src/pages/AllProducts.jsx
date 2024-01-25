@@ -37,7 +37,11 @@ function AllProducts() {
               </ul>
             ) : (
               <div className="h-[50vh] w-[80%] flex justify-center items-center">
-                <img src="/assets/Sorry.jpg" alt="Sorry No Product Found" className="max-w-full max-h-full" />
+                <img
+                  src="/assets/Sorry.jpg"
+                  alt="Sorry No Product Found"
+                  className="max-w-full max-h-full"
+                />
               </div>
             )
           ) : (

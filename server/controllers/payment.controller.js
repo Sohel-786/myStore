@@ -76,7 +76,7 @@ export const createCheckoutSession = async (req, res, next) => {
     mode: "payment",
     success_url: `${process.env.FRONTEND_URL}/checkout/${order._id}?success=true`,
     cancel_url: `${process.env.FRONTEND_URL}/checkout/${order._id}?success=false`,
-    expires_at: new Date(Date.now() + 30 * 60 * 1000)
+    expires_at: new Date(Date.now() + 30 * 60 * 1000),
   });
 
   return res.status(200).json({

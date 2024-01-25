@@ -40,21 +40,25 @@ function MenPage() {
           {menProducts && <Filter data={menProducts} sort={handleSorting} />}
         </div>
         {sortedProducts ? (
-            sortedProducts.length > 0 ? (
-              <ul className="flex w-[80%] gap-5 justify-center flex-wrap gap-y-6">
-                {" "}
-                {sortedProducts.map((el) => {
-                  return <Product key={nanoid(4)} data={el} />;
-                })}{" "}
-              </ul>
-            ) : (
-              <div className="h-[50vh] w-[80%] flex justify-center items-center">
-                <img src="/assets/Sorry.jpg" alt="Sorry No Product Found" className="max-w-full max-h-full" />
-              </div>
-            )
+          sortedProducts.length > 0 ? (
+            <ul className="flex w-[80%] gap-5 justify-center flex-wrap gap-y-6">
+              {" "}
+              {sortedProducts.map((el) => {
+                return <Product key={nanoid(4)} data={el} />;
+              })}{" "}
+            </ul>
           ) : (
-            <Loading />
-          )}
+            <div className="h-[50vh] w-[80%] flex justify-center items-center">
+              <img
+                src="/assets/Sorry.jpg"
+                alt="Sorry No Product Found"
+                className="max-w-full max-h-full"
+              />
+            </div>
+          )
+        ) : (
+          <Loading />
+        )}
       </div>
     </UserLayout>
   );

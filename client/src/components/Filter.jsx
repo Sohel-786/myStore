@@ -17,31 +17,6 @@ function Filter({ data, sort }) {
   });
 
   useEffect(() => {
-    if (price) {
-      setSortingConditions(function (s) {
-        return {
-          ...s,
-          price: {
-            from: price.min,
-            to: price.max,
-          },
-        };
-      });
-    }
-  }, [price]);
-
-  useEffect(() => {
-    if (discount) {
-      setSortingConditions(function (s) {
-        return {
-          ...s,
-          discount: discount[0],
-        };
-      });
-    }
-  }, [discount]);
-
-  useEffect(() => {
     let temp = {};
     let temp2 = {};
     let temp3 = {};
@@ -89,6 +64,16 @@ function Filter({ data, sort }) {
       max: Math.max(...temp2),
     });
     setDiscount(arr);
+    setSortingConditions(function (s) {
+      return {
+        ...s,
+        price: {
+          from: Math.min(...temp2),
+          to: Math.max(...temp2),
+        },
+        discount: arr[0],
+      };
+    });
   }, [data]);
 
   function handleSalePrice(price, off) {
@@ -124,7 +109,8 @@ function Filter({ data, sort }) {
     } else {
       temp = data.filter((el) => {
         if (
-          handleSalePrice(el.price, el.pricedrop) >= sortingConditions.price.from &&
+          handleSalePrice(el.price, el.pricedrop) >=
+            sortingConditions.price.from &&
           handleSalePrice(el.price, el.pricedrop) <= sortingConditions.price.to
         ) {
           if (
