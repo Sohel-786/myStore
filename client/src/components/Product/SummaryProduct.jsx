@@ -1,6 +1,6 @@
 function SummaryProduct({ el }) {
   return (
-    <li className="flex rounded-md overflow-hidden w-full">
+    <li className="flex rounded-md overflow-hidden w-full bg-gray-100 my-2">
       <div className="w-[18%] h-[120px]">
         <img
           src={el.product.thumbnail.secure_url}

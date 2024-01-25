@@ -84,7 +84,7 @@ function Filter({ data, sort }) {
   useEffect(() => {
     let temp = [];
     scrollTo({
-      top: 100,
+      top: 70,
       behavior: "smooth",
     });
     if (sortingConditions.brand.length > 0) {
