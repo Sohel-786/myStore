@@ -124,8 +124,8 @@ function Filter({ data, sort }) {
     } else {
       temp = data.filter((el) => {
         if (
-          el.price >= sortingConditions.price.from &&
-          el.price <= sortingConditions.price.to
+          handleSalePrice(el.price, el.pricedrop) >= sortingConditions.price.from &&
+          handleSalePrice(el.price, el.pricedrop) <= sortingConditions.price.to
         ) {
           if (
             el.pricedrop >= sortingConditions.discount ||
