@@ -14,7 +14,7 @@ function OrderBox({ data, handleDetails, toggle }) {
           return (
             <div
               key={nanoid(4)}
-              className="w-[20%] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
+              className="w-[20%] min-w-[48.6377px] h-[90px] flex justify-center items-center rounded-[5px] overflow-hidden"
               style={{
                 backgroundImage: `url(${el.product.thumbnail.secure_url})`,
                 backgroundPosition: "center",

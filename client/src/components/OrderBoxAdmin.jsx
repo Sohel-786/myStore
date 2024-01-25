@@ -25,7 +25,7 @@ function OrderBoxAdmin({ data, handleDetails, toggle }) {
             return (
               <div
                 key={nanoid(4)}
-                className="w-[13%] h-[80px] flex justify-center items-center rounded-[5px] overflow-hidden flex-wrap"
+                className="w-[13%] min-w-[71.8461px] h-[80px] flex justify-center items-center rounded-[5px] overflow-hidden flex-wrap"
                 style={{
                   backgroundImage: `url(${el.product.thumbnail.secure_url})`,
                   backgroundPosition: "center",
