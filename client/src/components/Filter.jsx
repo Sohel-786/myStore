@@ -83,10 +83,6 @@ function Filter({ data, sort }) {
 
   useEffect(() => {
     let temp = [];
-    scrollTo({
-      top: 70,
-      behavior: "smooth",
-    });
     if (sortingConditions.brand.length > 0) {
       temp = data.filter((el) => {
         if (sortingConditions.brand.includes(el.brand)) {
@@ -129,6 +125,10 @@ function Filter({ data, sort }) {
 
   function handleBrand(e) {
     const { name } = e.target;
+    scrollTo({
+      top: 70,
+      behavior: "instant",
+    });
     if (sortingConditions.brand.includes(name)) {
       let temp = sortingConditions.brand.filter((el) => {
         if (name !== el) {
@@ -153,6 +153,10 @@ function Filter({ data, sort }) {
 
   function handleChnage(e) {
     const { value, name } = e.target;
+    scrollTo({
+      top: 70,
+      behavior: "instant",
+    });
     setSortingConditions(function (s) {
       return {
         ...sortingConditions,
@@ -165,6 +169,10 @@ function Filter({ data, sort }) {
   }
 
   function handleDiscount(el) {
+    scrollTo({
+      top: 70,
+      behavior: "smooth",
+    });
     setSortingConditions(function (s) {
       return {
         ...s,
@@ -176,7 +184,7 @@ function Filter({ data, sort }) {
   function handleClearFilter() {
     scrollTo({
       top: 100,
-      behavior: "smooth",
+      behavior: "instant",
     });
     setSortingConditions({
       brand: [],
