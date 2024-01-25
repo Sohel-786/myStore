@@ -188,6 +188,10 @@ function Filter({ data, sort }) {
   }
 
   function handleClearFilter() {
+    scrollTo({
+      top: 100,
+      behavior: "smooth",
+    });
     setSortingConditions({
       brand: [],
       price: {
@@ -203,10 +207,12 @@ function Filter({ data, sort }) {
         <div
           onClick={handleClearFilter}
           className={`absolute right-0 top-[-5px] hover:bg-gray-500 hover:text-white rounded-md px-2 font-Roboto bg-gray-200 ${
-           ( sortingConditions.brand.length !== 0 ||
+            sortingConditions.brand.length !== 0 ||
             sortingConditions.price.from !== price.min ||
             sortingConditions.price.to !== price.max ||
-            sortingConditions.discount !== discount[0]) ? 'flex' : 'hidden'
+            sortingConditions.discount !== discount[0]
+              ? "flex"
+              : "hidden"
           } cursor-pointer justify-center items-center`}
         >
           <IoIosClose size={"25px"} />
