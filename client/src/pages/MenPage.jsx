@@ -9,6 +9,7 @@ import Filter from "../components/Filter";
 function MenPage() {
   const { Allproducts } = useSelector((s) => s?.products);
   const [menProducts, setMenProducts] = useState();
+  const [sortedProducts, setSortedProducts] = useState();
 
   useEffect(() => {
     if (Allproducts) {
@@ -22,23 +23,38 @@ function MenPage() {
     }
   }, [Allproducts]);
 
+  useEffect(() => {
+    if (menProducts) {
+      handleSorting(menProducts);
+    }
+  }, [menProducts]);
+
+  function handleSorting(data) {
+    setSortedProducts(data);
+  }
+
   return (
     <UserLayout>
       <div className="flex w-full">
         <div className="w-[20%] scroll overflow-y-scroll sticky h-[80vh] top-[180px] border-t-[1px] border-b-[1px] pt-2 pb-12 border-gray-200">
-          {menProducts && <Filter data={menProducts} />}
+          {menProducts && <Filter data={menProducts} sort={handleSorting} />}
         </div>
-        {menProducts ? (
-          <ul className="flex w-[80%] gap-5 justify-center flex-wrap gap-y-6">
-            <>
-              {menProducts.map((el) => {
-                return <Product key={nanoid(4)} data={el} />;
-              })}
-            </>
-          </ul>
-        ) : (
-          <Loading />
-        )}
+        {sortedProducts ? (
+            sortedProducts.length > 0 ? (
+              <ul className="flex w-[80%] gap-5 justify-center flex-wrap gap-y-6">
+                {" "}
+                {sortedProducts.map((el) => {
+                  return <Product key={nanoid(4)} data={el} />;
+                })}{" "}
+              </ul>
+            ) : (
+              <div className="h-[50vh] w-[80%] flex justify-center items-center">
+                <img src="/assets/Sorry.jpg" alt="Sorry No Product Found" className="max-w-full max-h-full" />
+              </div>
+            )
+          ) : (
+            <Loading />
+          )}
       </div>
     </UserLayout>
   );

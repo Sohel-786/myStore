@@ -95,7 +95,7 @@ function Product({ data, wish }) {
 
   return (
     <li
-      className="w-[210px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]"
+      className="w-[210px] max-h-[401.975px] flex flex-col cursor-pointer hover:shadow-product relative z-[2]"
       onMouseEnter={() => {
         setShowDetails(true);
       }}

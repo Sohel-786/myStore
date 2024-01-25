@@ -3,7 +3,6 @@ import UserLayout from "../layouts/UserLayout";
 import Product from "../components/Product/Product";
 import { nanoid } from "nanoid";
 import Loading from "../components/Loading";
-import CommonDrawer from "../components/CommonDrawer";
 import Filter from "../components/Filter";
 import { useEffect, useState } from "react";
 
