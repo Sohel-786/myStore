@@ -6,7 +6,6 @@ function Filter({ data, sort }) {
   const [brand, setBrand] = useState();
   const [price, setPrice] = useState();
   const [discount, setDiscount] = useState();
-  const [filter, setFilter] = useState(false);
 
   const [sortingConditions, setSortingConditions] = useState({
     brand: [],
@@ -189,7 +188,7 @@ function Filter({ data, sort }) {
   }
 
   function handleClearFilter() {
-    sortingConditions({
+    setSortingConditions({
       brand: [],
       price: {
         from: price.min,
@@ -197,13 +196,19 @@ function Filter({ data, sort }) {
       },
       discount: discount[0],
     });
-
-    sort(data);
   }
   return (
     <div className="flex flex-col w-full pl-6 relative">
-      {filter && (
-        <div className="absolute right-0 top-[-5px] hover:bg-gray-500 hover:text-white rounded-md px-2 font-Roboto bg-gray-200 flex cursor-pointer justify-center items-center">
+      {sortingConditions && price && discount && (
+        <div
+          onClick={handleClearFilter}
+          className={`absolute right-0 top-[-5px] hover:bg-gray-500 hover:text-white rounded-md px-2 font-Roboto bg-gray-200 ${
+           ( sortingConditions.brand.length !== 0 ||
+            sortingConditions.price.from !== price.min ||
+            sortingConditions.price.to !== price.max ||
+            sortingConditions.discount !== discount[0]) ? 'flex' : 'hidden'
+          } cursor-pointer justify-center items-center`}
+        >
           <IoIosClose size={"25px"} />
           Clear
         </div>
