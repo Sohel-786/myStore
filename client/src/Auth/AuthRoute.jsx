@@ -9,7 +9,7 @@ function AuthRoute({ allowedRoles }) {
   ) : isLoggedIn ? (
     <Navigate to={"/denied"} replace={false} />
   ) : (
-    <Navigate to={"/"} />
+    <Navigate to={"/not-loggedIn"} />
   );
 }
 

@@ -29,6 +29,7 @@ import Notfound from "./pages/Notfound";
 import Denied from "./pages/Denied";
 import AuthRoute from "./Auth/AuthRoute";
 import CurrentActiveRoute from "./Auth/CurrentActiveRoute";
+import NotLoggedIn from "./pages/NotLoggedIn";
 
 function App() {
   const dispatch = useDispatch();
@@ -142,6 +143,7 @@ function App() {
           />
         </Route>
 
+        <Route path="/not-loggedIn" element={<NotLoggedIn />} />
         <Route path="/denied" element={<Denied />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
