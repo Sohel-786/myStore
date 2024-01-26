@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 function Notfound() {
   const navigate = useNavigate();
   return (
-    <div
-      className="h-screen w-full flex flex-col justify-center items-center"
-    >
+    <div className="h-screen w-full flex flex-col justify-center items-center">
       <h1 className="text-[200px] font-semibold">404</h1>
       <p className="relative text-xl text-white -top-36 font-bold bg-black font-mono -rotate-12">
         Page not found...

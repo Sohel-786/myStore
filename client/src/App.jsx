@@ -26,6 +26,9 @@ import MenPage from "./pages/MenPage";
 import WomenPage from "./pages/WomenPage";
 import KidsPage from "./pages/KidsPage";
 import Notfound from "./pages/Notfound";
+import Denied from "./pages/Denied";
+import AuthRoute from "./Auth/AuthRoute";
+import CurrentActiveRoute from "./Auth/CurrentActiveRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,24 +51,17 @@ function App() {
           path="/"
           element={networkRequest ? <LandingPage /> : <Loading />}
         />
-        <Route
-          path="/profile"
-          element={networkRequest ? <Profile /> : <Loading />}
-        />
 
-        <Route path="/forgot-password" element={<ForgottenPassword />} />
+        <Route element={<CurrentActiveRoute />}>
+          <Route path="/forgot-password" element={<ForgottenPassword />} />
+        </Route>
 
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
 
         <Route
-          path="/admin-view"
-          element={networkRequest ? <Dashboard /> : <Loading />}
-        />
-
-        <Route
           path="/all-products"
           element={networkRequest ? <AllProducts /> : <Loading />}
-        /> 
+        />
 
         <Route
           path="/men"
@@ -76,40 +72,10 @@ function App() {
           path="/women"
           element={networkRequest ? <WomenPage /> : <Loading />}
         />
-        
+
         <Route
           path="/kids"
           element={networkRequest ? <KidsPage /> : <Loading />}
-        />
-
-        <Route
-          path="/user/wishlist"
-          element={networkRequest ? <WishlistPage /> : <Loading />}
-        />
-
-        <Route
-          path="/user/bag"
-          element={networkRequest ? <BagPage /> : <Loading />}
-        />
-
-        <Route
-          path="/user/orders"
-          element={networkRequest ? <Orders /> : <Loading />}
-        />
-
-        <Route
-          path="/user/purchased"
-          element={networkRequest ? <Purchased /> : <Loading />}
-        />
-
-        <Route
-          path="/user/bag/checkout"
-          element={networkRequest ? <CheckoutPage /> : <Loading />}
-        />
-
-        <Route
-          path="/checkout/:orderId"
-          element={networkRequest ? <Result /> : <Loading />}
         />
 
         <Route
@@ -117,21 +83,66 @@ function App() {
           element={networkRequest ? <ProductDetail /> : <Loading />}
         />
 
-        <Route
-          path="/add-product"
-          element={networkRequest ? <AddProduct /> : <Loading />}
-        />
+        <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
+          <Route
+            path="/add-product"
+            element={networkRequest ? <AddProduct /> : <Loading />}
+          />
 
-        <Route
-          path="/manage-products"
-          element={networkRequest ? <ManageProducts /> : <Loading />}
-        />
+          <Route
+            path="/manage-products"
+            element={networkRequest ? <ManageProducts /> : <Loading />}
+          />
 
-        <Route
-          path="/history"
-          element={networkRequest ? <History /> : <Loading />}
-        />
+          <Route
+            path="/history"
+            element={networkRequest ? <History /> : <Loading />}
+          />
 
+          <Route
+            path="/admin-view"
+            element={networkRequest ? <Dashboard /> : <Loading />}
+          />
+        </Route>
+
+        <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
+          <Route
+            path="/profile"
+            element={networkRequest ? <Profile /> : <Loading />}
+          />
+
+          <Route
+            path="/checkout/:orderId"
+            element={networkRequest ? <Result /> : <Loading />}
+          />
+
+          <Route
+            path="/user/orders"
+            element={networkRequest ? <Orders /> : <Loading />}
+          />
+
+          <Route
+            path="/user/purchased"
+            element={networkRequest ? <Purchased /> : <Loading />}
+          />
+
+          <Route
+            path="/user/bag/checkout"
+            element={networkRequest ? <CheckoutPage /> : <Loading />}
+          />
+
+          <Route
+            path="/user/wishlist"
+            element={networkRequest ? <WishlistPage /> : <Loading />}
+          />
+
+          <Route
+            path="/user/bag"
+            element={networkRequest ? <BagPage /> : <Loading />}
+          />
+        </Route>
+
+        <Route path="/denied" element={<Denied />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
