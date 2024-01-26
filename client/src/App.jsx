@@ -25,6 +25,7 @@ import Purchased from "./pages/Purchased";
 import MenPage from "./pages/MenPage";
 import WomenPage from "./pages/WomenPage";
 import KidsPage from "./pages/KidsPage";
+import Notfound from "./pages/Notfound";
 
 function App() {
   const dispatch = useDispatch();
@@ -131,7 +132,7 @@ function App() {
           element={networkRequest ? <History /> : <Loading />}
         />
 
-        <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
     </>
   );

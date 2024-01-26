@@ -8,7 +8,7 @@ function Denied() {
       className="h-screen w-full flex flex-col justify-center items-center"
     >
       <h1 className="text-[200px] font-semibold">403</h1>
-      <p className=" text-xl relative -top-20 font-bold bg-black font-mono -rotate-12">
+      <p className=" text-xl relative text-white -top-20 font-bold bg-black font-mono -rotate-12">
         Access Denied
       </p>
       <button
