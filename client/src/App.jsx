@@ -22,7 +22,7 @@ import { getAllOrders } from "./redux/slices/orderSlice";
 import Dashboard from "./pages/Admin/Dashboard";
 import History from "./pages/Admin/History";
 import Purchased from "./pages/Purchased";
-import MenPage from "./pages/menPage";
+import MenPage from "./pages/MenPage";
 import WomenPage from "./pages/WomenPage";
 import KidsPage from "./pages/KidsPage";
 
