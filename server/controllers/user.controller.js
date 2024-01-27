@@ -114,11 +114,13 @@ export const login = async (req, res, next) => {
 };
 
 export const logout = (req, res) => {
-  res.cookie("token", null, {
+  res.cookie("token", null,  {
     secure: true,
     maxAge: 0,
     httpOnly: true,
   });
+
+  console.log('check', res.cookie)
 
   res.status(200).json({
     success: true,
