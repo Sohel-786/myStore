@@ -120,8 +120,6 @@ export const logout = (req, res) => {
     httpOnly: true,
   });
 
-  console.log('check', res.cookie)
-
   res.status(200).json({
     success: true,
     msg: "Successfully Logged Out",
