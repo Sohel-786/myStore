@@ -1,11 +1,11 @@
-import { useEffect , lazy, Suspense } from "react";
-import LandingPage from "./pages/LandingPage";
+import { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkIsLoggedIn } from "./redux/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
 import { getAllProducts } from "./redux/slices/productSlice";
 import { getAllOrders } from "./redux/slices/orderSlice";
 import Loading from "./components/Loading";
+import LandingPage from "./pages/LandingPage";
 const AddProduct = lazy(() => import("./pages/Admin/AddProduct"));
 const ManageProducts = lazy(() => import("./pages/Admin/ManageProducts"));
 const Profile = lazy(() => import("./pages/Profile"));
@@ -18,14 +18,13 @@ const BagPage = lazy(() => import("./pages/BagPage"));
 const CheckoutPage = lazy(() => import("./pages/Checkout/CheckoutPage"));
 const Result = lazy(() => import("./pages/Checkout/Result"));
 const Orders = lazy(() => import("./pages/OrdersPage"));
-const Orders = lazy(() => import("./pages/OrdersPage"));
+const Dashboard = lazy(() => import("./pages/Admin/Dashboard"));
+const History = lazy(() => import("./pages/Admin/History"));
+const Purchased = lazy(() => import("./pages/Purchased"));
+const MenPage = lazy(() => import("./pages/MenPage"));
+const WomenPage = lazy(() => import("./pages/WomenPage"));
+const KidsPage = lazy(() => import("./pages/KidsPage"));
 
-import Dashboard from "./pages/Admin/Dashboard";
-import History from "./pages/Admin/History";
-import Purchased from "./pages/Purchased";
-import MenPage from "./pages/MenPage";
-import WomenPage from "./pages/WomenPage";
-import KidsPage from "./pages/KidsPage";
 import Notfound from "./pages/Notfound";
 import Denied from "./pages/Denied";
 import AuthRoute from "./Auth/AuthRoute";
@@ -55,92 +54,234 @@ function App() {
         />
 
         <Route element={<CurrentActiveRoute />}>
-          <Route path="/forgot-password" element={<ForgottenPassword />} />
+          <Route
+            path="/forgot-password"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ForgottenPassword />
+              </Suspense>
+            }
+          />
         </Route>
 
-        <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+        <Route
+          path="/reset-password/:resetToken"
+          element={
+            <Suspense fallback={<Loading />}>
+              <ResetPassword />
+            </Suspense>
+          }
+        />
 
         <Route
           path="/all-products"
-          element={networkRequest ? <AllProducts /> : <Loading />}
+          element={
+            networkRequest ? (
+              <Suspense fallback={<Loading />}>
+                <AllProducts />
+              </Suspense>
+            ) : (
+              <Loading />
+            )
+          }
         />
 
         <Route
           path="/men"
-          element={networkRequest ? <MenPage /> : <Loading />}
+          element={
+            networkRequest ? (
+              <Suspense fallback={<Loading />}>
+                <MenPage />
+              </Suspense>
+            ) : (
+              <Loading />
+            )
+          }
         />
 
         <Route
           path="/women"
-          element={networkRequest ? <WomenPage /> : <Loading />}
+          element={
+            networkRequest ? (
+              <Suspense fallback={<Loading />}>
+                <WomenPage />
+              </Suspense>
+            ) : (
+              <Loading />
+            )
+          }
         />
 
         <Route
           path="/kids"
-          element={networkRequest ? <KidsPage /> : <Loading />}
+          element={
+            networkRequest ? (
+              <Suspense fallback={<Loading />}>
+                <KidsPage />
+              </Suspense>
+            ) : (
+              <Loading />
+            )
+          }
         />
 
         <Route
           path="/product-details/:id"
-          element={networkRequest ? <ProductDetail /> : <Loading />}
+          element={
+            networkRequest ? (
+              <Suspense fallback={<Loading />}>
+                <ProductDetail />
+              </Suspense>
+            ) : (
+              <Loading />
+            )
+          }
         />
 
         <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
           <Route
             path="/add-product"
-            element={networkRequest ? <AddProduct /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <AddProduct />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/manage-products"
-            element={networkRequest ? <ManageProducts /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <ManageProducts />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/history"
-            element={networkRequest ? <History /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <History />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/admin-view"
-            element={networkRequest ? <Dashboard /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <Dashboard />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
         </Route>
 
         <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
           <Route
             path="/profile"
-            element={networkRequest ? <Profile /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <Profile />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/checkout/:orderId"
-            element={networkRequest ? <Result /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <Result />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/user/orders"
-            element={networkRequest ? <Orders /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <Orders />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/user/purchased"
-            element={networkRequest ? <Purchased /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <Purchased />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/user/bag/checkout"
-            element={networkRequest ? <CheckoutPage /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <CheckoutPage />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/user/wishlist"
-            element={networkRequest ? <WishlistPage /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <WishlistPage />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
 
           <Route
             path="/user/bag"
-            element={networkRequest ? <BagPage /> : <Loading />}
+            element={
+              networkRequest ? (
+                <Suspense fallback={<Loading />}>
+                  <BagPage />
+                </Suspense>
+              ) : (
+                <Loading />
+              )
+            }
           />
         </Route>
 

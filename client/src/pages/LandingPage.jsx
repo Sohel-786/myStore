@@ -12,6 +12,8 @@ function LandingPage() {
       className="w-full h-full rounded-lg"
       src="/assets/1.jpg"
       role="presentation"
+      rel="preload"
+      fetchpriority="high"
     />,
     <img
       className="w-full h-full rounded-lg"
@@ -38,7 +40,12 @@ function LandingPage() {
   return (
     <UserLayout>
       <div className="absolute top-0 z-[-1] max-w-[1480px]">
-        <img src="/assets/main.jpg" alt="Front Image" />
+        <img
+          src="/assets/main.jpg"
+          alt="Front Image"
+          rel="preload"
+          fetchpriority="high"
+        />
       </div>
 
       <div className="w-full bg-[#0000006f] h-[400px] flex flex-col justify-center items-center">

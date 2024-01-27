@@ -116,6 +116,8 @@ function UserLayout({ children }) {
           {location.pathname === "/profile" ? (
             <img
               src={"/assets/MyLogo2.svg"}
+              rel="preload"
+              fetchpriority="high"
               alt="logo"
               onClick={() => {
                 scrollTo({
@@ -135,6 +137,8 @@ function UserLayout({ children }) {
                 });
                 navigate("/");
               }}
+              rel="preload"
+              fetchpriority="high"
               src="/assets/MyStoreLogo.svg"
               alt="logo"
               className="w-40 aspect-auto rounded-md cursor-pointer"
