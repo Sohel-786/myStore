@@ -73,6 +73,12 @@ function SignUp({ HaveAccount, close }) {
     const res = await dispatch(createUser(formData));
 
     if (res?.payload?.data?.success) {
+      setSignupDetails({
+        email: "",
+        fullname: "",
+        password: "",
+        avatar: "",
+      });
       close();
     }
   }
