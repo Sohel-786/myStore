@@ -2,7 +2,7 @@
 
 # My Store (MERN Stack Project)
 
-MyStore is an E-commerce App created by me with the collections of ideas gathered from many existing E-commerce Apps, this allows user to buy clothes through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, User can place multiple or single order for multiple or single product with any require quantity, size which is available, user can add products in the wishlist, and user can add, update and delete multiple address, the purchased product history will be available and filter through brand, price and discount is also available at products page and many more.. 
+MyStore is an E-commerce App created by me with the collections of ideas gathered from many existing E-commerce Apps, this allows user to buy clothes through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, User can place multiple or single order for multiple or single product with any require quantity, size which is available, user can add products in the wishlist, and user can add, update and delete multiple address, the purchased product history will be available and filter through brand, price and discount is also available at products page and many more..
 
 Along with all the capabilities of user, an Admin can Add, update, and delete products. Admin can view orders and the details of the orders done by users and admin can update the status of the order to delivered, Admin can view history of all deliverd orders and their details.
 
@@ -102,7 +102,7 @@ Along with all the capabilities of user, an Admin can Add, update, and delete pr
 
 - Change Password
 
-![](client/public/githubReadme/changePassword.png) 
+![](client/public/githubReadme/changePassword.png)
 
 - Change Password
 
@@ -155,7 +155,7 @@ Along with all the capabilities of user, an Admin can Add, update, and delete pr
 - ### 1. Clone the Project
 
   ```
-      git clone https://github.com/Sohel-786/LMS.git
+      git clone https://github.com/Sohel-786/myStore.git
   ```
 
 - ### 2. There are two directories, Move into directory name `client`
@@ -225,7 +225,7 @@ You Should have your own credentials to run the project on your local machine, y
 
   ```
 
-  VITE_APP_BASE_URL = http://localhost:2346/api/v1
+  VITE_APP_BASE_URL = http://localhost:5173
 
   ```
 
@@ -233,7 +233,7 @@ You Should have your own credentials to run the project on your local machine, y
 
   ```
 
-  PORT = 2346
+  PORT = 2348
   MONGO_URI = Your MongoDB Connection string
   JWT_SECRET = Your JWT Secret
   FRONTEND_URL = 'http://localhost:5173'
@@ -252,12 +252,15 @@ You Should have your own credentials to run the project on your local machine, y
 
   SMTP_FROM_EMAIL = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
 
-  RAZORPAY_KEY_ID = your razorpay key_id - Your can get this credentials from razorpay
-  RAZORPAY_SECRET =  your razorpay secret - Your can get this credentials from razorpay
-  RAZORPAY_PLAN_ID =  your razorpay plan_id - Your can get this credentials from razorpay (you have to create one plan for this)
+  STRIPE_API_KEY = your stripe api_key - Your can get this credentials from Stripe
+
+                  ```
+                    https://dashboard.stripe.com/test/apikeys
+                  ```
+
 
   ```
 
 ## End Notes
 
-This project is completely responsive. And you should visit the live link because there is much more then whatever you see in the screenshots.
+This project is not responsive.
