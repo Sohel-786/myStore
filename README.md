@@ -4,7 +4,7 @@
 
 MyStore is an E-commerce App created by me with the collections of ideas gathered from many existing E-commerce Apps, this allows user to buy clothes through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, User can place multiple or single order for multiple or single product with any require quantity, size which is available, user can add products in the wishlist, and user can add, update and delete multiple address, the purchased product history will be available and filter through brand, price and discount is also available at products page and many more..
 
-Along with all the capabilities of user, an Admin can Add, update, and delete products. Admin can view orders and the details of the orders done by users and admin can update the status of the order to delivered, Admin can view history of all deliverd orders and their details.
+Along with all the capabilities of user, an Admin can Add, update, and delete products. Admin can view orders and the details of the orders done by users and admin can update the status of the order to delivered, Admin can view history of all delivered orders and their details.
 
 ### Visit the deployed site :
 
