@@ -1,15 +1,15 @@
-![classroom](client/public/githubReadme/classroomlogo.png)
+![MyStore](client/public/githubReadme/myStoreLogo.png)
 
-# Classroom (MERN Stack Project)
+# My Store (MERN Stack Project)
 
-Classroom is a learning management system created by me with the collections of ideas gathered from many existing LMS, this allows user to purchase subscribtion through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, they send contact email to the classroom. User can view course list and view lectures of any course after subscribtion
+MyStore is an E-commerce App created by me with the collections of ideas gathered from many existing E-commerce Apps, this allows user to buy clothes through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, User can place multiple or single order for multiple or single product with any require quantity, size which is available, user can add products in the wishlist, and user can add, update and delete multiple address, the purchased product history will be available and filter through brand, price and discount is also available at products page and many more.. 
 
-And Admin can create, update, and delete course. Admin can view registered users and subscriber count, Admin can view total revenue of the year, Admin can view, edit, and delete lectures, and also Admin can also update his/her profile.
+Along with all the capabilities of user, an Admin can Add, update, and delete products. Admin can view orders and the details of the orders done by users and admin can update the status of the order to delivered, Admin can view history of all deliverd orders and their details.
 
 ### Visit the deployed site :
 
 ```
-    https://classroom-react.netlify.app/
+    https://mystore-app-react.netlify.app/
 ```
 
 ## Tech Stack
@@ -23,58 +23,58 @@ And Admin can create, update, and delete course. Admin can view registered users
 **User**
 
     - Login/SignUp/Logout
-    - subscribe through payment gateway (test plan)
-    - Create and edit profile
-    - View courses and lectures of courses (after subscribtion)
+    - Create and edit profile, and add, update, delete addresses
+    - View orders which are in process
+    - Can add, remove products in bag and in wishlist to buy it later
+    - Place an order through payment gateway (test plan)
+    - Filter products through brand, price and discount
     - Change and reset password
-    - Can fill Contact us form
 
 **Admin**
 
       Along with all the capabilities of USER, Admin can also do,
 
-    - Create/Update/Delete Course
-    - View Subscriber and Registered users count
-    - Add/Delete Lectures of any course
-    - No Need to Subscribe to view the lectures
+    - Add/Update/Delete Products
+    - View Orders and details of any order which are InProcess and Orders which are Delivered
+    - Can update the status of an order from InProcess to Delivered
 
 ## Screenshots
 
 - Home Page
 
-![](client/public/githubReadme/homepage.png)
+![](client/public/githubReadme/landingPage.png)
 
-- Login Page
+- Login
 
-![](client/public/githubReadme/login.png)
+![](client/public/githubReadme/SignIn.png)
 
-- SignUp Page
+- SignUp
 
-![](client/public/githubReadme/signUp.png)
+![](client/public/githubReadme/SignUp.png)
 
-- About Page
+- Products Page
 
-![](client/public/githubReadme/aboutUs.png)
+![](client/public/githubReadme/productPage.png)
 
-- Contact Page
+- Product Detail Page
 
-![](client/public/githubReadme/contactUs.png)
+![](client/public/githubReadme/productDetailsPage.png)
 
-- Course Landing Page
+- Bag Page
 
-![](client/public/githubReadme/courseLandingPage.png)
+![](client/public/githubReadme/bagPage.png)
 
-- Course Details Page
+- Wishlist Page
 
-![](client/public/githubReadme/courseDetailsPage.png)
+![](client/public/githubReadme/wishList.png)
 
 - Checkout Page
 
-![](client/public/githubReadme/checkout.png)
+![](client/public/githubReadme/checkoutPage.png)
 
 - PaymentGateway
 
-![](client/public/githubReadme/paymentGateway.png)
+![](client/public/githubReadme/paymentPage.png)
 
 - Payment Success Page
 
@@ -82,19 +82,55 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 - Payment Failure
 
-![](client/public/githubReadme/paymentFailedpage.png)
+![](client/public/githubReadme/paymentFailurePage.png)
 
-- Lectures Page
+- Orders Page
 
-![](client/public/githubReadme/Lectures.png)
+![](client/public/githubReadme/ordersPage.png)
+
+- Order Details
+
+![](client/public/githubReadme/orderDetails.png)
+
+- Purchased Products Page
+
+![](client/public/githubReadme/purchasedPage.png)
 
 - Profile Page
 
-![](client/public/githubReadme/profile.png)
+![](client/public/githubReadme/profilePage.png)
+
+- Change Password
+
+![](client/public/githubReadme/changePassword.png) 
+
+- Change Password
+
+![](client/public/githubReadme/changePassword.png)
 
 - Forgot Password Page
 
 ![](client/public/githubReadme/forgotPassword.png)
+
+- Reset Password Mail
+
+![](client/public/githubReadme/mail.png)
+
+- Reset Password Page
+
+![](client/public/githubReadme/resetPassword.png)
+
+- Create Modify Address
+
+![](client/public/githubReadme/createModifyAddress.png)
+
+- Access Denied Page
+
+![](client/public/githubReadme/accessDenied.png)
+
+- Not Found Page
+
+![](client/public/githubReadme/notFoundPage.png)
 
 ## This Pages are Accessible by ADMIN Only
 
@@ -102,13 +138,17 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ![](client/public/githubReadme/adminDashboard.png)
 
-- Create Course Page
+- Product Entry Page
 
-![](client/public/githubReadme/createCourse.png)
+![](client/public/githubReadme/productEntryPage.png)
 
-- ADD Lecture Page
+- Product CRUD Page
 
-![](client/public/githubReadme/Addlecture.png)
+![](client/public/githubReadme/productCrudPage.png)
+
+- Delivery History Page
+
+![](client/public/githubReadme/deliveryHistory.png)
 
 ## Installation Steps
 

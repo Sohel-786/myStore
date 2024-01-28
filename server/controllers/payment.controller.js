@@ -37,6 +37,7 @@ export const createCheckoutSession = async (req, res, next) => {
     totalPrice: handleTotal(products),
     isPaid: false,
     isProcessing: true,
+    expireAt : new Date(Date.now() + 30 * 60 * 1000)
   });
 
   if (!order) {

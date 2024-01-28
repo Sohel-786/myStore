@@ -43,7 +43,7 @@ function Result() {
 
         navigate("/user/bag");
       }
-    }, 4000);
+    }, 2800);
 
     return () => {
       clearTimeout(id);
