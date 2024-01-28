@@ -231,7 +231,7 @@ You Should have your own credentials to run the project on your local machine, y
 
 - ### .env file in server folder
 
-  ```
+  ````
 
   PORT = 2348
   MONGO_URI = Your MongoDB Connection string
@@ -259,8 +259,8 @@ You Should have your own credentials to run the project on your local machine, y
                   ```
 
 
-  ```
+  ````
 
 ## End Notes
 
-This project is not responsive.
+This project is not responsive for the mobile and tablet screen size.
