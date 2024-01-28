@@ -112,43 +112,46 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ## Installation Steps
 
- - ###  1. Clone the Project
+- ### 1. Clone the Project
 
-    ````
-        git clone https://github.com/Sohel-786/LMS.git
-    ````
+  ```
+      git clone https://github.com/Sohel-786/LMS.git
+  ```
 
- - ###  2. There are two directories, Move into directory name `client`
+- ### 2. There are two directories, Move into directory name `client`
 
-    ````
-        cd client
-    ````
+  ```
+      cd client
+  ```
 
- - ### & Install dependencies
+- ### & Install dependencies
 
-    ````
-        npm i
-    ````
+  ```
+      npm i
+  ```
 
- - ###  3. Move into directory name `server`
+- ### 3. Move into directory name `server`
 
- - ### First
+- ### First
 
-        ````
-            cd ..
-        ````
- - ### Second
+       ````
+           cd ..
+       ````
 
-        ````
-            cd server
-        ````
- - ### & Install dependencies
+- ### Second
 
-        ````
-            npm i
-        ````
-  *  4. After Successful Installation of Dependencies for client and server both,
-        start the client and server.
+       ````
+           cd server
+       ````
+
+- ### & Install dependencies
+
+       ````
+           npm i
+       ````
+
+* 4.  After Successful Installation of Dependencies for client and server both,
+      start the client and server.
 
 ---
 
@@ -180,40 +183,40 @@ You Should have your own credentials to run the project on your local machine, y
 
 - ### .env file in client folder
 
-    ````
+  ```
 
-    VITE_APP_BASE_URL = http://localhost:2346/api/v1
+  VITE_APP_BASE_URL = http://localhost:2346/api/v1
 
-    ````
+  ```
 
 - ### .env file in server folder
 
-    ````
+  ```
 
-    PORT = 2346
-    MONGO_URI = Your MongoDB Connection string
-    JWT_SECRET = Your JWT Secret 
-    FRONTEND_URL = 'http://localhost:5173'
-    JWT_EXPIRY = '72h'
+  PORT = 2346
+  MONGO_URI = Your MongoDB Connection string
+  JWT_SECRET = Your JWT Secret
+  FRONTEND_URL = 'http://localhost:5173'
+  JWT_EXPIRY = '72h'
 
-    CLOUDINARY_CLOUD_NAME = Your Cloudinary Name - Your can get this credentials from cloudinary 
-    CLOUDINARY_API_KEY = Your Cloudinary key - Your can get this credentials from cloudinary 
-    CLOUDINARY_API_SECRET = Your Cloudinary Api Secret - Your can get this credentials from cloudinary 
+  CLOUDINARY_CLOUD_NAME = Your Cloudinary Name - Your can get this credentials from cloudinary
+  CLOUDINARY_API_KEY = Your Cloudinary key - Your can get this credentials from cloudinary
+  CLOUDINARY_API_SECRET = Your Cloudinary Api Secret - Your can get this credentials from cloudinary
 
-    SMTP_HOST = 'smtp.gmail.com'
-    SMTP_PORT = '465'
+  SMTP_HOST = 'smtp.gmail.com'
+  SMTP_PORT = '465'
 
-    SMTP_USERNAME = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
+  SMTP_USERNAME = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
 
-    SMTP_PASSWORD = In Google account of your fake email Enable the two step verification and then you can get this one time password
+  SMTP_PASSWORD = In Google account of your fake email Enable the two step verification and then you can get this one time password
 
-    SMTP_FROM_EMAIL = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
+  SMTP_FROM_EMAIL = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
 
-    RAZORPAY_KEY_ID = your razorpay key_id - Your can get this credentials from razorpay 
-    RAZORPAY_SECRET =  your razorpay secret - Your can get this credentials from razorpay 
-    RAZORPAY_PLAN_ID =  your razorpay plan_id - Your can get this credentials from razorpay (you have to create one plan for this)
+  RAZORPAY_KEY_ID = your razorpay key_id - Your can get this credentials from razorpay
+  RAZORPAY_SECRET =  your razorpay secret - Your can get this credentials from razorpay
+  RAZORPAY_PLAN_ID =  your razorpay plan_id - Your can get this credentials from razorpay (you have to create one plan for this)
 
-    ````
+  ```
 
 ## End Notes
 
