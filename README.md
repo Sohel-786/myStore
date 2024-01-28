@@ -132,6 +132,10 @@ Along with all the capabilities of user, an Admin can Add, update, and delete pr
 
 ![](client/public/githubReadme/notFoundPage.png)
 
+- Not LoggedIn Page
+
+![](client/public/githubReadme/notLoggedIn.png)
+
 ## This Pages are Accessible by ADMIN Only
 
 - Admin Dashboard Page
