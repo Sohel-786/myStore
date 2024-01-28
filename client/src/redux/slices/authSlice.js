@@ -296,6 +296,8 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
           state.role = action?.payload?.data?.user?.role;
           state.data = action?.payload?.data?.user;
+          state.wishList = action?.payload?.data?.user?.wishlist;
+          state.bag = action?.payload?.data?.user?.cartItems;
         }
       })
       .addCase(getUserDetails.fulfilled, (state, action) => {
@@ -304,11 +306,9 @@ const authSlice = createSlice({
         }
       })
       .addCase(logout.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.isLoggedIn = false;
-          state.role = "";
-          state.data = {};
-        }
+        state.isLoggedIn = false;
+        state.role = "";
+        state.data = {};
       })
       .addCase(addToBag.fulfilled, (state, action) => {
         if (action.payload) {

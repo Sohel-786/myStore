@@ -12,7 +12,7 @@ function Denied() {
       <button
         aria-label="Go Back to Previous Page"
         onClick={() => {
-          navigate(-1);
+          navigate('/');
         }}
         className="relative -top-10 border-2 border-black px-5 py-2 rounded-lg font-bold transition-all duration-300 hover:bg-purple-900 hover:scale-125 hover:text-white hover:border-sky-300"
       >

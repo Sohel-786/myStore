@@ -53,7 +53,7 @@ function App() {
           element={networkRequest ? <LandingPage /> : <Loading />}
         />
 
-        <Route element={<CurrentActiveRoute />}>
+        <Route element={networkRequest ? <CurrentActiveRoute /> : <Loading />}>
           <Route
             path="/forgot-password"
             element={

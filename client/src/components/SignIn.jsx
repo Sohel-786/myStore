@@ -53,6 +53,9 @@ function SignIn({ CreateAccount, close }) {
         password: "",
       })
       close();
+      if(location.pathname === '/not-loggedIn'){
+        navigate('/');
+      }
     }
   }
 
