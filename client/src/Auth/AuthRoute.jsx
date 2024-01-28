@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 function AuthRoute({ allowedRoles }) {
   const { isLoggedIn, role } = useSelector((state) => state.auth);
+  console.log(isLoggedIn, role)
 
   return isLoggedIn && allowedRoles.find((myrole) => myrole === role) ? (
     <Outlet />

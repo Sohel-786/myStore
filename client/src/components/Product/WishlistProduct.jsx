@@ -104,7 +104,7 @@ function WishlistProduct({ data }) {
               className="capitalize text-[#6f7899] text-[16px] font-semibold leading-[20px] "
               title={name}
             >
-              {name.slice(0, 45)}..
+              {name.slice(0, 35)}..
             </p>
           </div>
 

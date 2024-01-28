@@ -34,7 +34,7 @@ function WishlistPage() {
       <div className="flex px-28 py-8 max-w-[1280px] relative mx-auto">
         <CommonDrawer />
 
-        <ul className="w-full flex gap-4 mt-2">
+        <ul className="w-full flex flex-wrap gap-6 mt-2 justify-center">
           {wishlist ? (
             <>
               {wishlist.length === 0 ? (

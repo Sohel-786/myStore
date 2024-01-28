@@ -138,7 +138,15 @@ function App() {
           }
         />
 
-        <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
+        <Route
+          element={
+            networkRequest ? (
+              <AuthRoute allowedRoles={["ADMIN"]} />
+            ) : (
+              <Loading />
+            )
+          }
+        >
           <Route
             path="/add-product"
             element={
@@ -192,7 +200,15 @@ function App() {
           />
         </Route>
 
-        <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
+        <Route
+          element={
+            networkRequest ? (
+              <AuthRoute allowedRoles={["ADMIN", "USER"]} />
+            ) : (
+              <Loading />
+            )
+          }
+        >
           <Route
             path="/profile"
             element={
@@ -285,7 +301,10 @@ function App() {
           />
         </Route>
 
-        <Route path="/not-loggedIn" element={<NotLoggedIn />} />
+        <Route
+          path="/not-loggedIn"
+          element={networkRequest ? <NotLoggedIn /> : <Loading />}
+        />
         <Route path="/denied" element={<Denied />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
