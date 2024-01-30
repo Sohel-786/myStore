@@ -88,7 +88,6 @@ function BagPage() {
   }
 
   useEffect(() => {
-    console.log("run");
     if (finalProducts) {
       handleTotal(finalProducts);
     }

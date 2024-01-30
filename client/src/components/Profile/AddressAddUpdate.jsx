@@ -129,7 +129,6 @@ function AddressAddUpdate({ Addressdata, toggle }) {
         res = await dispatch(addAddress(data));
       } else {
         res = await dispatch(updateAddress(data));
-        console.log(res, "Check");
       }
 
       if (res?.payload?.data?.success) {

@@ -65,8 +65,6 @@ function Profile() {
 
   function handleImage(e) {
     const uploadedImage = e.target.files[0];
-    console.log(profilePhoto);
-    console.log(e);
     if (!uploadedImage) return;
 
     setFormdata((s) => {
@@ -118,7 +116,6 @@ function Profile() {
     const res = await dispatch(updateUser(data));
 
     if (res?.payload?.data?.success) {
-      console.log("check");
       await dispatch(getUserDetails());
     }
 

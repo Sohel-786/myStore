@@ -20,8 +20,6 @@ function CheckoutPage() {
   const { toggleAddressDrawer } = useContext(AddressContext);
   const { address } = useSelector((s) => s?.auth?.data);
 
-  console.log(state);
-
   const [priceTotal, setPriceTotal] = useState({
     total: 0,
   });
@@ -45,7 +43,6 @@ function CheckoutPage() {
   }, []);
 
   useEffect(() => {
-    console.log("run");
     if (state) {
       handleTotal(state);
     }
@@ -80,7 +77,6 @@ function CheckoutPage() {
       postal: address[value].postal,
       country: address[value].country,
     });
-    console.log(value, temp);
     setOrderDetails({
       ...orderDetails,
       address: temp,
@@ -123,7 +119,6 @@ function CheckoutPage() {
         console.log(result.error);
       }
     } catch (e) {
-      console.log(e);
       toast.error("Something Went Wrong");
       return;
     }
