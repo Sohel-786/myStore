@@ -39,6 +39,7 @@ function SignUp({ HaveAccount, close }) {
       !signupDetails.email ||
       !signupDetails.password ||
       !signupDetails.avatar ||
+      !signupDetails.role ||
       !signupDetails.fullname
     ) {
       toast.error("Please Fill all the field", {
