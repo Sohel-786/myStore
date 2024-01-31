@@ -17,6 +17,7 @@ function SignUp({ HaveAccount, close }) {
     fullname: "",
     password: "",
     avatar: "",
+    role : "USER"
   });
 
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function SignUp({ HaveAccount, close }) {
     formData.append("email", signupDetails.email);
     formData.append("password", signupDetails.password);
     formData.append("avatar", signupDetails.avatar);
+    formData.append("role", signupDetails.role);
 
     const res = await dispatch(createUser(formData));
 
@@ -78,6 +80,7 @@ function SignUp({ HaveAccount, close }) {
         fullname: "",
         password: "",
         avatar: "",
+        role: "USER",
       });
       close();
     }
@@ -98,7 +101,7 @@ function SignUp({ HaveAccount, close }) {
   }
 
   return (
-    <section className="flex flex-col justify-center relative items-center my-10 w-full">
+    <section className="flex flex-col justify-center relative items-center mb-10 w-full">
       <span onClick={close} className="cursor-pointer">
         <IoClose
           size={"40px"}
@@ -159,7 +162,14 @@ function SignUp({ HaveAccount, close }) {
           placeholder="Enter your Email"
         />
 
-        <div className="w-[95%] sm:w-[80%] px-2 pl-3 bg-transparent border-[1.3px] border-b-[2.5px] border-black my-3 flex justify-center items-center">
+        <select onChange={handleChange} name="role" className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-[1.3px] border-b-[2.5px] focus:ring-0 border-black focus:outline-none placeholder:font-semibold font-bold mt-3 mb-1">
+          <option value="USER">User</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+
+        <p className="text-xs w-[80%] font-semibold text-gray-500 my-1">Admin & User Role Can Be Defined From Here, Because It's A Personal Project.</p>
+
+        <div className="w-[95%] sm:w-[80%] px-2 pl-3 bg-transparent border-[1.3px] border-b-[2.5px] border-black my-1 flex justify-center items-center">
           <input
             onChange={handleChange}
             className="bg-transparent py-3 focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
