@@ -15,9 +15,9 @@ const cookieOptions = {
 };
 
 export const register = async (req, res, next) => {
-  const { fullname, email, password } = req.body;
+  const { fullname, email, password, role } = req.body;
 
-  if ((!fullname, !email, !password)) {
+  if ((!fullname, !email, !password, !role)) {
     return next(new AppError("All input fields are required", 400));
   }
 
@@ -44,6 +44,7 @@ export const register = async (req, res, next) => {
     fullname,
     email,
     password,
+    role: role.toUpperCase(),
     avatar: {
       public_id: email,
       secure_url: "secure_url",
@@ -114,11 +115,11 @@ export const login = async (req, res, next) => {
 };
 
 export const logout = (req, res) => {
-  res.cookie("token", null,  {
+  res.cookie("token", null, {
     secure: true,
     maxAge: 0,
     httpOnly: true,
-    sameSite : 'none'
+    sameSite: "none",
   });
   // res.clearCookie("token");
   res.status(200).json({
