@@ -423,7 +423,7 @@ export const addAddress = async (req, res, next) => {
     return res.status(201).json({
       success: true,
       message: "Address Added Successfully",
-      user
+      user,
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -475,7 +475,7 @@ export const updateAddress = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: "Updated Successfully",
-      finalresult
+      finalresult,
     });
   } catch (e) {
     return res.status(400).send(e.message);
