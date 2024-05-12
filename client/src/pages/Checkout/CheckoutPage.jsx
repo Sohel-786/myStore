@@ -135,9 +135,7 @@ function CheckoutPage() {
 
           <ul className="w-full flex flex-col mt-4 ml-1 border-[1px] border-zinc-300 p-5">
             {state.map((el) => {
-              return (
-                <SummaryProduct key={nanoid(4)} el={el} />
-              );
+              return <SummaryProduct key={nanoid(4)} el={el} />;
             })}
           </ul>
         </div>
@@ -191,31 +189,40 @@ function CheckoutPage() {
           </div>
 
           <div className="flex w-full flex-col mt-5 border-[1px] border-black py-4 gap-7 bg-white">
-            {address.map((el, i) => {
-              return (
-                <label key={nanoid(5)} className="flex items-start gap-2 px-3">
-                  <input
-                    type="radio"
-                    name={`address`}
-                    value={i}
-                    className="mt-1"
-                    onChange={handleAddress}
-                    checked={checkedAddress == i ? true : false}
-                  />
-                  <h1 className="font-Nova font-black capitalize pr-2 w-full">
-                    <span className="capitalize break-words">
-                      {el.address}.
-                    </span>
-                    <br />
-                    <span>{el.state}</span>,{" "}
-                    <span className="capitalize">{el.city}</span>-
-                    <span>{el.postal}.</span>
-                    <br />
-                    <span className="capitalize">{el.country}</span>
-                  </h1>
-                </label>
-              );
-            })}
+            {address.length > 0 ? (
+              address.map((el, i) => {
+                return (
+                  <label
+                    key={nanoid(5)}
+                    className="flex items-start gap-2 px-3"
+                  >
+                    <input
+                      type="radio"
+                      name={`address`}
+                      value={i}
+                      className="mt-1"
+                      onChange={handleAddress}
+                      checked={checkedAddress == i ? true : false}
+                    />
+                    <h1 className="font-Nova font-black capitalize pr-2 w-full">
+                      <span className="capitalize break-words">
+                        {el.address}.
+                      </span>
+                      <br />
+                      <span>{el.state}</span>,{" "}
+                      <span className="capitalize">{el.city}</span>-
+                      <span>{el.postal}.</span>
+                      <br />
+                      <span className="capitalize">{el.country}</span>
+                    </h1>
+                  </label>
+                );
+              })
+            ) : (
+              <h1 className="pl-4 font-Nova italic text-gray-500">
+                No Address Added Yet, Please Add Address
+              </h1>
+            )}
           </div>
 
           <div className="w-full">
