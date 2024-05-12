@@ -310,6 +310,12 @@ const authSlice = createSlice({
         state.role = "";
         state.data = {};
       })
+      .addCase(addAddress.fulfilled, (state, action) => {
+        state.data = action?.payload?.data?.user;
+      })
+      .addCase(updateAddress.fulfilled, (state, action) => {
+        state.data = action?.payload?.data?.finalresult;
+      })
       .addCase(addToBag.fulfilled, (state, action) => {
         if (action.payload) {
           state.bag = action?.payload?.data?.bag;

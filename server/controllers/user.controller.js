@@ -423,6 +423,7 @@ export const addAddress = async (req, res, next) => {
     return res.status(201).json({
       success: true,
       message: "Address Added Successfully",
+      user
     });
   } catch (e) {
     return res.status(400).send(e.message);
@@ -468,9 +469,13 @@ export const updateAddress = async (req, res, next) => {
       return next(new AppError("Such Address Doesn't Exist", 400));
     }
 
+    const finalresult = await User.findById(req.user.id);
+    console.log(finalresult);
+
     return res.status(200).json({
       success: true,
       message: "Updated Successfully",
+      finalresult
     });
   } catch (e) {
     return res.status(400).send(e.message);

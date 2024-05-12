@@ -141,7 +141,6 @@ function AddressAddUpdate({ Addressdata, toggle }) {
         });
 
         toggle();
-        dispatch(getUserDetails());
       }
     } catch (err) {
       toast.error(err?.response?.data?.message);
